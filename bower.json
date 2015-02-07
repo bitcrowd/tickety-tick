@@ -1,10 +1,8 @@
 {
   "name": "bitcrowd-git",
-  "version": "0.1.0",
   "authors": [
     "Bodo Tasche <bodo@wannawork.de>"
   ],
-  "description": "a chrome extension",
   "license": "MIT",
   "ignore": [
     "**/.*",
