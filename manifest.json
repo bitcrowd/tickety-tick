@@ -20,6 +20,9 @@
       "js": ["ticketsystems/jira.js", "bower_components/jquery/dist/jquery.min.js"]
     }
   ],
+  "web_accessible_resources": [
+    "bower_components/jquery/dist/jquery.min.map"
+  ],
   "permissions": [
     "tabs"
   ],
