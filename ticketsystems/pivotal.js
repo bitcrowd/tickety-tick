@@ -10,14 +10,14 @@ if (window == top) {
 
 var findOpenTickets = function() {
   var storyTitles = [];
-  var stories = jQuery('div.story .selector.selected').closest('.story');
+  var stories = $('div.story .selector.selected').closest('.story');
   var collapsed = true;
   if (stories.length == 0) {
-    stories = jQuery('div.story .details').closest('.story');
+    stories = $('div.story .details').closest('.story');
     collapsed = false;
   }
   stories.each(function () {
-    var story = jQuery(this);
+    var story = $(this);
     var title = (collapsed ? story.find('.story_name').text() : story.find('.editor.name').val());
     var id = /story_(\d+)/.exec(story.attr('class'))[1];
     var type = story.find(".story_type .selection").text();
