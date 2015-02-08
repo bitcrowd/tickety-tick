@@ -9,12 +9,15 @@ if (window == top) {
 }
 
 var findOpenTickets = function() {
-  var title = $(".js-issue-title").text();
-  var id = $(".gh-header-number").text().substr(1);
-  var type = "feature";
-  if ($(".sidebar-labels .label[title='bug']").length > 0) {
-    type = "bug"
+  if ($(".gh-header-number").length > 0) {
+    var title = $(".js-issue-title").text();
+    var id = $(".gh-header-number").text().substr(1);
+    var type = "feature";
+    if ($(".sidebar-labels .label[title='bug']").length > 0) {
+      type = "bug"
+    }
+    return [{type: type, title: title, id: id}];
+  } else {
+    return [];
   }
-
-  return [{type: type, title: title, id: id}];
 }
