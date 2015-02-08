@@ -6,12 +6,11 @@ function displayHowto() {
     "<h1>Help</h1>" +
     "<p>Open a ticket and then click this extension again.</p>" +
     "<p>" +
+      "You then can select if you want to create a commit messag or a branch name " +
+      "based on that ticket."  +
+    "</p><p>" +
       "If you have selected more than one ticket, you can then select " +
       "the ticket to use." +
-    "</p><p>" +
-      "And as a final step you decide if you want to have a commit message or the branch name based on the ticket." +
-    "</p><p>" +
-      "Done." +
     "</p>"
   );
 }
@@ -33,6 +32,7 @@ function displayCopyPanel(ticket) {
   if (currentTickets.length > 1) {
     $("#content").append("<p><a href='#' class='to-select'>&laquo; Zurück</a></p>");
   }
+  $("#content a").first().focus();
 }
 
 function cleanTitleForGitBranch(storyType, title) {
@@ -61,6 +61,7 @@ function displayTicketSelect(tickets) {
     ticketList += "<li><a href='#' class='select-ticket' data-ticket-number='" + index + "'>" + ticket.title + "</a></li>";
   });
   $("#content").append("<ul class='button-list'>" + ticketList + "</ul>");
+  $("#content a").first().focus();
 }
 
 function updateTickets(tickets) {
