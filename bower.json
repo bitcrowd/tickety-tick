@@ -1,9 +1,5 @@
 {
   "name": "bitcrowd-git",
-  "authors": [
-    "Bodo Tasche <bodo@wannawork.de>"
-  ],
-  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
