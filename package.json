@@ -1,5 +1,5 @@
 {
-  "name": "bitcrowd-git",
+  "name": "ticket-git",
   "description": "A chrome extension that helps you to create commit messages and branch names.",
   "author": "Bodo Tasche <bodo@bitcrowd.net>",
   "version": "0.1.0",
