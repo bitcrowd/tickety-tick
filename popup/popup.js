@@ -19,7 +19,7 @@ function displayHowto() {
 function displayCopyPanel(ticket) {
   $("#content").empty();
 
-  var commitMessage = "[" + ticket.id + "] " + ticket.title;
+  var commitMessage = "[#" + ticket.id + "] " + ticket.title;
   var gitBranch = cleanTitleForGitBranch(ticket.type, ticket.id + "-" + ticket.title);
 
   $("#content").append("<h1>" + commitMessage + "</h1>");
