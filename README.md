@@ -1,13 +1,14 @@
-# bitcrowd ticketsystem helper
+# Git Ticket Helper
 
-This chrome extension helps to handle commits and branches the bitcrowd way.
+At bitcrowd we love conventions. One of them is how we name branches and commits. This makes it easy to find the branch and/or commit for a certain ticket.
 
-We have bookmarklets to create a unique mapping between tickets and their git
-branches. This extension does the same in a nicer way.
+Branches always follow the format `type/id-title` and commits always `[#id] title`.
 
-Currently supported ticket systems:
+This chrome extension helps to create branches and commits for a few ticket systems.
 
-* Pivotaltracker
+Currently supported:
+
+* Pivotal Tracker
 * Jira
 
 # Building
@@ -21,7 +22,9 @@ grunt build
 For development use `grunt run`. This will watch the files and refresh the
 content of the `chrome-extension` directory.
 
-# Important infos
+# ToDo
+
+Currenty this is only a Chrome extension. We should also support Safari and Firefox.
 
 * [firefox clipboard example](https://github.com/fwenzel/copy-url)
 * On Safari it is not possible to access clipboard?!
