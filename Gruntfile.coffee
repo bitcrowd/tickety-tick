@@ -20,8 +20,8 @@ module.exports = (grunt) ->
         dest: 'chrome-extension'
     watch:
       all:
-        files: ['src/*']
-        tasks: ['build:manifest', 'copy:src' ]
+        files: ['src/**']
+        tasks: ['build:sources', 'build:manifest', 'build:icons']
     zip:
       'chrome': { cwd: 'chrome-extension/', src: ['chrome-extension/**'], dest: 'chrome-extension.zip' }
 
@@ -49,5 +49,5 @@ module.exports = (grunt) ->
   grunt.registerTask 'build:icons', ['image_resize:icon16', 'image_resize:icon48', 'image_resize:icon128']
   grunt.registerTask 'build:sources', ['copy:src']
   grunt.registerTask 'build', ['build:sources', 'build:manifest', 'build:icons', 'bower', 'zip']
-  grunt.registerTask 'run', ['build:manifest', 'bower', 'build', 'watch']
+  grunt.registerTask 'run', ['bower', 'build', 'watch']
   grunt.registerTask 'default', ['build']
