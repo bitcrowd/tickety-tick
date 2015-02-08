@@ -1,5 +1,5 @@
 {
-  "name": "bitcrowd-git",
+  "name": "ticket-git",
   "ignore": [
     "**/.*",
     "node_modules",
