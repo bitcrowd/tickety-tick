@@ -10,15 +10,13 @@ if (window == top) {
 
 var findOpenTickets = function() {
   var storyTitles = []
-  if(story = $(".ghx-fieldname-issuekey a")){
+  if ((story = $(".ghx-fieldname-issuekey a")).length > 0){
     var title = $("[data-field-id='summary']").text();
     var id = story.text();
-
-    var translate = {
-      "ä": "ae", "ö": "oe", "ü": "ue", "ß": "ss"
-    };
-
-    var commitMessage = "[" +  id + "] " + title;
+    storyTitles.push({id: id, title: title});
+  } else if ((story = $(".aui-page-header-inner .aui-page-header-main")).length > 0) {
+    var title = $("#summary-val", story).text();
+    var id = $(".issue-link", story).text();
     storyTitles.push({id: id, title: title});
   }
 
