@@ -4,7 +4,7 @@ function displayHowto() {
   $("#content").empty();
   $("#content").append(
     "<h1>Help</h1>" +
-    "<p>Open a ticket and then click this extension again.</p>" +
+    "<p>Open a ticket and then click this extension.</p>" +
     "<p>" +
       "You then can select if you want to create a commit messag or a branch name " +
       "based on that ticket."  +
