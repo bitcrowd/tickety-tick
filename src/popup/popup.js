@@ -3,7 +3,7 @@ var currentTickets = [];
 function displayHowto() {
   $("#content").empty();
   $("#content").append(
-    "<h1>Help</h1>" +
+    "<h1><img src='../icon16.png'/> ticket git</h1>" +
     "<p>Open a ticket and then click this extension.</p>" +
     "<p>" +
       "You then can select if you want to create a commit messag or a branch name " +
@@ -11,6 +11,8 @@ function displayHowto() {
     "</p><p>" +
       "If you have selected more than one ticket, you can then select " +
       "the ticket to use." +
+    "</p><p>" +
+      "Logo by <a target='_blank' href='http://thenounproject.com/term/ticket/92194/'>Alejandro Santander</a> under CC-BY&nbsp;3.0" +
     "</p>"
   );
   $(":focus").blur();
