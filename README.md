@@ -10,6 +10,7 @@ Currently supported:
 
 * Pivotal Tracker
 * Jira
+* Github
 
 # Building
 
