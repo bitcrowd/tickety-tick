@@ -11,5 +11,4 @@ Currently supported ticket systems:
 
 # Important infos
 
-* [chrome clipboard api in chrome 41](http://jsfiddle.net/c8Ats/7/)
 * [add grunt file](https://github.com/websecurify/bootstrap-chrome-extension)
