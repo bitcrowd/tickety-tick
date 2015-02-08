@@ -7,6 +7,10 @@
 body {
 }
 
+:focus {
+  outline: red auto 5px;
+}
+
 #content {
   width: 250px;
   min-height: 200px;
@@ -35,12 +39,12 @@ h1 {
   width: 100%;
   display: block;
   padding: 8px;
-  background-color: #479FFC;
+  background-color: #c32f34;
 }
 
 .to-select {
   text-decoration: none;
-  color: #479FFC;
+  color: #c32f34;
 }
 
 #footer {
@@ -49,7 +53,7 @@ h1 {
 
 #footer a {
   text-decoration: none;
-  color: #479FFC;
+  color: #c32f34;
 }
 
 #footer .name {

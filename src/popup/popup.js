@@ -13,6 +13,7 @@ function displayHowto() {
       "the ticket to use." +
     "</p>"
   );
+  $(":focus").blur();
 }
 
 function displayCopyPanel(ticket) {
@@ -92,6 +93,10 @@ $("body").on("click", ".to-clipboard", function(event) {
 
 $("body").on("click", ".to-select", function(event) {
   displayTicketSelect(currentTickets);
+});
+
+$("body").on("click", ".about", function(event) {
+  displayHowto();
 });
 
 function showSelect() {
