@@ -1,4 +1,3 @@
-// Global accessor that the popup uses.
 function updateTickets(tabId) {
   chrome.pageAction.hide(tabId);
   chrome.tabs.sendRequest(tabId, {supported: true}, function(supported) {
