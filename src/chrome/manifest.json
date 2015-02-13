@@ -10,7 +10,7 @@
        "http://*/*",
        "https://*/*"
      ],
-      "js": ["content.js", "dist/jquery.js"]
+      "js": ["dist/jquery.js", "bowser.js", "content.js"]
     }
   ],
   "web_accessible_resources": [

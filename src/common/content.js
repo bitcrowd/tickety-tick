@@ -1,4 +1,4 @@
-if (window == top) {
+function addChromeListener() {
   chrome.extension.onRequest.addListener(function(req, sender, sendResponse) {
     if (req.supported) {
       sendResponse(true);
@@ -50,5 +50,11 @@ var findOpenTickets = function() {
     return pivotalStories(stories, false);
   } else {
     return [];
+  }
+}
+
+if (window == top) {
+  if (bowser.chrome) {
+    addChromeListener();
   }
 }

@@ -101,10 +101,16 @@ $("body").on("click", ".about", function(event) {
   displayHowto();
 });
 
-function showSelect() {
+function loadTicketsForChrome() {
   chrome.extension.getBackgroundPage().getTickets(function(tickets) {
     updateTickets(tickets);
   });
+}
+
+function showSelect() {
+  if (bowser.chrome) {
+    loadTicketsForChrome();
+  }
 }
 
 window.onload = showSelect;
