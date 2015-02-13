@@ -7,24 +7,10 @@
   "content_scripts": [
     {
      "matches": [
-       "http://*.pivotaltracker.com/*",
-       "https://*.pivotaltracker.com/*"
+       "http://*/*",
+       "https://*/*"
      ],
-      "js": ["ticketsystems/pivotal.js", "dist/jquery.js"]
-    },
-    {
-     "matches": [
-       "http://*.atlassian.net/*",
-       "https://*.atlassian.net/*"
-     ],
-      "js": ["ticketsystems/jira.js", "dist/jquery.js"]
-    },
-    {
-     "matches": [
-       "http://*.github.com/*",
-       "https://*.github.com/*"
-     ],
-      "js": ["ticketsystems/github.js", "dist/jquery.js"]
+      "js": ["content.js", "dist/jquery.js"]
     }
   ],
   "web_accessible_resources": [
