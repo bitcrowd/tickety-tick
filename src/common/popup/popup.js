@@ -12,7 +12,7 @@ function displayHowto() {
       "If you have selected more than one ticket, you can then select " +
       "the ticket to use." +
     "</p><p>" +
-      "Logo by <a target='_blank' href='http://thenounproject.com/term/ticket/92194/'>Alejandro Santander</a> under CC-BY&nbsp;3.0" +
+      "Logo by <a class='external' target='_blank' href='http://thenounproject.com/term/ticket/92194/'>Alejandro Santander</a> under CC-BY&nbsp;3.0" +
     "</p>"
   );
   $(":focus").blur();
@@ -46,7 +46,7 @@ function cleanTitleForGitBranch(storyType, title) {
   var translate = {
     "ä": "ae", "ö": "oe", "ü": "ue", "ß": "ss"
   };
-  var cleanedTitle = storyType + "/" + title.toLowerCase().replace(/[öäüß]/g, function(match) { 
+  var cleanedTitle = storyType + "/" + title.toLowerCase().replace(/[öäüß]/g, function(match) {
     return translate[match];
   }).replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-/, "").replace(/-$/, "");
 
@@ -77,6 +77,12 @@ function updateTickets(tickets) {
   }
 }
 
+$("body").on("click", "a.external", function(event) {
+  setTimeout(function() {
+    closeWindow();
+  }, 100);
+});
+
 $("body").on("click", ".select-ticket", function(event) {
   var number = $(event.target).attr("data-ticket-number");
   displayCopyPanel(currentTickets[number]);
@@ -84,13 +90,8 @@ $("body").on("click", ".select-ticket", function(event) {
 
 $("body").on("click", ".to-clipboard", function(event) {
   var text = unescape($(event.target).attr("data-clipboard-text"));
-  var copyFrom = $('<textarea/>');
-  copyFrom.text(text);
-  $('body').append(copyFrom);
-  copyFrom.select();
-  document.execCommand('copy');
-  copyFrom.remove();
-  window.close();
+  copyToClipboard(text);
+  closeWindow();
 });
 
 $("body").on("click", ".to-select", function(event) {
@@ -101,16 +102,48 @@ $("body").on("click", ".about", function(event) {
   displayHowto();
 });
 
+function copyToClipboard(text) {
+  if (bowser.chrome) {
+    var copyFrom = $('<textarea/>');
+    copyFrom.text(text);
+    $('body').append(copyFrom);
+    copyFrom.select();
+    document.execCommand('copy');
+    copyFrom.remove();
+  } else if (bowser.firefox && self.port) {
+    self.port.emit("set-clipboard", text);
+  }
+}
+
+function closeWindow() {
+  if (bowser.chrome) {
+    window.close();
+  } else if (bowser.firefox && self.port) {
+    self.port.emit("close");
+  }
+}
+
 function loadTicketsForChrome() {
   chrome.extension.getBackgroundPage().getTickets(function(tickets) {
     updateTickets(tickets);
   });
 }
 
-function showSelect() {
+function loadTicketsForFirefox() {
+  self.port.on("tickets", function onTickets(tickets) {
+    updateTickets(tickets);
+  });
+  self.port.on("show", function onShow() {
+    self.port.emit("get-tickets");
+  });
+}
+
+function init() {
   if (bowser.chrome) {
     loadTicketsForChrome();
+  } else if (bowser.firefox) {
+    loadTicketsForFirefox();
   }
 }
 
-window.onload = showSelect;
+window.onload = init;

@@ -1,4 +1,6 @@
 bower_components/*
+bower_dest/*
 node_modules/*
 chrome-extension/*
 chrome-extension.zip
+firefox-extension/*

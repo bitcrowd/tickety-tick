@@ -1,0 +1,9 @@
+{
+  "name": "#{NAME}",
+  "title": "#{NAME}",
+  "id": "jid1-ynkvezs8Qn2TJA",
+  "description": "#{DESCRIPTION}",
+  "author": "Bitcrowd",
+  "license": "MIT",
+  "version": "#{VERSION}"
+}

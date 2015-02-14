@@ -1,7 +1,7 @@
 function updateTickets(tabId) {
   chrome.pageAction.hide(tabId);
-  chrome.tabs.sendRequest(tabId, {supported: true}, function(supported) {
-    if (supported == undefined) {
+  chrome.tabs.sendRequest(tabId, {tickets: true}, function(tickets) {
+    if (tickets == null) {
       chrome.pageAction.hide(tabId);
     } else {
       chrome.pageAction.show(tabId);

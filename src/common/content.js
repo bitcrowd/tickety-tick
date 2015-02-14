@@ -1,10 +1,14 @@
 function addChromeListener() {
   chrome.extension.onRequest.addListener(function(req, sender, sendResponse) {
-    if (req.supported) {
-      sendResponse(true);
-    } else if (req.tickets) {
+    if (req.tickets) {
       sendResponse(findOpenTickets());
     }
+  });
+}
+
+function addFirefoxListener() {
+  self.port.on("get-tickets", function getTickets() {
+    self.port.emit("tickets", findOpenTickets());
   });
 }
 
@@ -49,12 +53,15 @@ var findOpenTickets = function() {
     var stories = $('div.story .details').closest('.story');
     return pivotalStories(stories, false);
   } else {
-    return [];
+    return null;
   }
 }
 
-if (window == top) {
-  if (bowser.chrome) {
+if (bowser.chrome) {
+  if (window == top) {
     addChromeListener();
   }
+} else if (bowser.firefox) {
+  addFirefoxListener();
 }
+
