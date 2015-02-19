@@ -52,6 +52,12 @@ var findOpenTickets = function() {
     // Pivotal Tracker opened stories
     var stories = $('div.story .details').closest('.story');
     return pivotalStories(stories, false);
+  } else if ($("#tracker .story .name textarea").length > 0) {
+    // Pivotal Tracker one story in separate tab
+    var id = $("#tracker aside input.id").val();
+    var title = $("#tracker .story .name textarea").text();
+    var type = $("#tracker aside .story_type .selection").text();
+    return [{id: id, title: title, type: type}]
   } else {
     return null;
   }
