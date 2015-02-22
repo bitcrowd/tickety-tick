@@ -29,7 +29,7 @@ h1 {
 }
 
 .button-list {
-  max-height: 200px;
+  max-height: 165px;
   overflow: scroll;
   list-style: none;
   padding: 0px;

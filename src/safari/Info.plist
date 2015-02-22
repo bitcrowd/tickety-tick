@@ -28,7 +28,7 @@
 				<key>Identifier</key>
 				<string>ticket-git.popup</string>
 				<key>Width</key>
-				<real>250</real>
+				<real>270</real>
 			</dict>
 		</array>
 		<key>Toolbar Items</key>

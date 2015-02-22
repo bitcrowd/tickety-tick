@@ -13,10 +13,12 @@ function addFirefoxListener() {
 }
 
 function handleSafariMessage(msgEvent) {
-  if (msgEvent.name == "get-tickets") {
-    setTimeout(function() {
-      safari.self.tab.dispatchMessage("tickets", findOpenTickets());
-    }, 10);
+  if (window.top === window) {
+    if (msgEvent.name == "get-tickets") {
+      setTimeout(function() {
+        safari.self.tab.dispatchMessage("tickets", findOpenTickets());
+      }, 10);
+    }
   }
 }
 
