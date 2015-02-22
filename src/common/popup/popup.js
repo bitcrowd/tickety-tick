@@ -34,6 +34,11 @@ function displayCopyPanel(ticket) {
 
   if (currentTickets.length > 1) {
     $("#content").append("<p><a href='#' class='to-select'>&laquo; Zurück</a></p>");
+
+    $(".to-select").click(function(event) {
+      displayTicketSelect(currentTickets);
+      event.preventDefault();
+    });
   }
   $("#content a").first().focus();
 }
@@ -65,6 +70,12 @@ function displayTicketSelect(tickets) {
   });
   $("#content").append("<ul class='button-list'>" + ticketList + "</ul>");
   $("#content a").first().focus();
+
+  $(".select-ticket").click(function(event) {
+    var number = $(event.target).attr("data-ticket-number");
+    displayCopyPanel(currentTickets[number]);
+    event.preventDefault();
+  });
 }
 
 function updateTickets(tickets) {
@@ -87,21 +98,10 @@ $("body").on("click", "a.external", function(event) {
   }
 });
 
-$("body").on("click", ".select-ticket", function(event) {
-  var number = $(event.target).attr("data-ticket-number");
-  displayCopyPanel(currentTickets[number]);
-  event.preventDefault();
-});
-
 $("body").on("click", ".to-clipboard", function(event) {
   var text = unescape($(event.target).attr("data-clipboard-text"));
   copyToClipboard(text);
   closeWindow();
-  event.preventDefault();
-});
-
-$("body").on("click", ".to-select", function(event) {
-  displayTicketSelect(currentTickets);
   event.preventDefault();
 });
 
