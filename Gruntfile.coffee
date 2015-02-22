@@ -19,6 +19,18 @@ module.exports = (grunt) ->
       icon64_firefox:
         options: width: 64
         files: 'firefox-extension/data/icon64.png': 'src/data/icon.png'
+      icon16_safari:
+        options: width: 16
+        files: 'ticket-git.safariextension/data/icon16.png': 'src/data/icon.png'
+      icon32_safari:
+        options: width: 32
+        files: 'ticket-git.safariextension/data/icon32.png': 'src/data/icon.png'
+      icon64_safari:
+        options: width: 64
+        files: 'ticket-git.safariextension/data/icon64.png': 'src/data/icon.png'
+      icon_safari:
+        options: width: 64
+        files: 'ticket-git.safariextension/Icon.png': 'src/data/icon.png'
     copy:
       src:
         files: [
@@ -32,6 +44,11 @@ module.exports = (grunt) ->
           { expand: true, cwd: "src/common",  src: ['**'], dest: 'firefox-extension/data/' },
           { expand: true, cwd: "src/data",    src: ['**'], dest: 'firefox-extension/data/' },
           { expand: true, cwd: "src/firefox", src: ['**', '!package.json'], dest: 'firefox-extension/lib/' }
+          # Safari Extension
+          { expand: true, cwd: "bower_dest",  src: ['**'], dest: 'ticket-git.safariextension/data/' },
+          { expand: true, cwd: "src/common",  src: ['**'], dest: 'ticket-git.safariextension/data/' },
+          { expand: true, cwd: "src/data",    src: ['**'], dest: 'ticket-git.safariextension/data/' },
+          { expand: true, cwd: "src/safari",  src: ['**', '!package.json'], dest: 'ticket-git.safariextension/' }
         ]
     bower:
       dev:

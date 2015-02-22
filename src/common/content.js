@@ -12,6 +12,18 @@ function addFirefoxListener() {
   });
 }
 
+function handleSafariMessage(msgEvent) {
+  if (msgEvent.name == "get-tickets") {
+    setTimeout(function() {
+      safari.self.tab.dispatchMessage("tickets", findOpenTickets());
+    }, 10);
+  }
+}
+
+function addSafariListener() {
+  safari.self.addEventListener("message", handleSafariMessage, false);
+}
+
 function pivotalStories(stories, collapsed) {
   storyTitles = []
   stories.each(function () {
@@ -69,5 +81,7 @@ if (bowser.chrome) {
   }
 } else if (bowser.firefox) {
   addFirefoxListener();
+} else if (bowser.safari) {
+  addSafariListener();
 }
 

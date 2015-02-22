@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>Bitcrowd</string>
+	<key>Builder Version</key>
+	<string>10600.3.18</string>
+	<key>CFBundleDisplayName</key>
+	<string>ticket-git</string>
+	<key>CFBundleIdentifier</key>
+	<string>net.bitcrowd.ticket-git</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Popovers</key>
+		<array>
+			<dict>
+				<key>Filename</key>
+				<string>data/popup/popup.html</string>
+				<key>Height</key>
+				<real>350</real>
+				<key>Identifier</key>
+				<string>ticket-git.popup</string>
+				<key>Width</key>
+				<real>300</real>
+			</dict>
+		</array>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Identifier</key>
+				<string>popup</string>
+				<key>Image</key>
+        <string>data/icon64.png</string>
+				<key>Include By Default</key>
+				<true/>
+				<key>Label</key>
+				<string>Test</string>
+				<key>Palette Label</key>
+				<string>Test</string>
+				<key>Popover</key>
+				<string>ticket-git.popup</string>
+				<key>Tool Tip</key>
+				<string>hello</string>
+			</dict>
+		</array>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>Start</key>
+			<array>
+				<string>data/bowser.js</string>
+				<string>data/dist/jquery.js</string>
+				<string>data/content.js</string>
+			</array>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>Create branches and commits based on tickets</string>
+	<key>DeveloperIdentifier</key>
+	<string>G2U9HY25P2</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+	<key>Website</key>
+  <string>https://github.com/bitcrowd/ticket-git</string>
+</dict>
+</plist>
+

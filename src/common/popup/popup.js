@@ -81,25 +81,33 @@ $("body").on("click", "a.external", function(event) {
   setTimeout(function() {
     closeWindow();
   }, 100);
+  if (bowser.safari) {
+    safari.application.activeBrowserWindow.openTab().url = $(this).attr("href");
+  }
+  event.preventDefault();
 });
 
 $("body").on("click", ".select-ticket", function(event) {
   var number = $(event.target).attr("data-ticket-number");
   displayCopyPanel(currentTickets[number]);
+  event.preventDefault();
 });
 
 $("body").on("click", ".to-clipboard", function(event) {
   var text = unescape($(event.target).attr("data-clipboard-text"));
   copyToClipboard(text);
   closeWindow();
+  event.preventDefault();
 });
 
 $("body").on("click", ".to-select", function(event) {
   displayTicketSelect(currentTickets);
+  event.preventDefault();
 });
 
 $("body").on("click", ".about", function(event) {
   displayHowto();
+  event.preventDefault();
 });
 
 function copyToClipboard(text) {
@@ -112,6 +120,8 @@ function copyToClipboard(text) {
     copyFrom.remove();
   } else if (bowser.firefox && self.port) {
     self.port.emit("set-clipboard", text);
+  } else if (bowser.safari) {
+    prompt('Here you go:', text);
   }
 }
 
@@ -120,6 +130,8 @@ function closeWindow() {
     window.close();
   } else if (bowser.firefox && self.port) {
     self.port.emit("close");
+  } else if (bowser.safari) {
+    safari.self.hide();
   }
 }
 
@@ -138,11 +150,33 @@ function loadTicketsForFirefox() {
   });
 }
 
+function handleSafariMessage(msgEvent) {
+    var messageName = msgEvent.name;
+    var messageData = msgEvent.message;
+    if (messageName === "tickets") {
+      updateTickets(messageData);
+    }
+}
+
+function popoverSafariHandler(msgEvent) {
+  safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("get-tickets");
+}
+
+function loadTicketsForSafari() {
+  safari.application.addEventListener("message", handleSafariMessage, false);
+  safari.application.addEventListener("popover", popoverSafariHandler, true);
+
+  safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("get-tickets");
+}
+
 function init() {
+  displayHowto();
   if (bowser.chrome) {
     loadTicketsForChrome();
   } else if (bowser.firefox) {
     loadTicketsForFirefox();
+  } else if (bowser.safari) {
+    loadTicketsForSafari();
   }
 }
 

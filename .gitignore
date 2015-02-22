@@ -4,3 +4,4 @@ node_modules/*
 chrome-extension/*
 chrome-extension.zip
 firefox-extension/*
+ticket-git.safariextension/*

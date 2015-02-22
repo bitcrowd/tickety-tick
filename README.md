@@ -39,6 +39,15 @@ Point it to the `chrome-extension` directory. Done.
 Download the [Firefox Addd-ons SDK](https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Installation)
 and go into the `firefox-extension` directory. Start a Firefox with `cfx run`.
 
+## Safari
+
+You need a [certificate](https://developer.apple.com/library/safari/documentation/Tools/Conceptual/SafariExtensionGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009977-CH1-SW1)
+to make the extension usable for you.
+
+After you installed the certificate, open Safari, enable the Developer Menu in the settings,
+go to the developer menu and open the extension builder. Press the + button and add the
+`ticket-git.safariextension` that was build by grunt.
+
 # ToDo
 
 Currently this is only a Chrome extension. We should also support Safari and Firefox.
