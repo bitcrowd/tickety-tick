@@ -1,5 +1,6 @@
 var data = require("sdk/self").data;
 var clipBoard = require("sdk/clipboard");
+var activeTab = null;
 
 var popupPanel = require("sdk/panel").Panel({
   width: 270,
@@ -23,6 +24,11 @@ popupPanel.port.on("set-clipboard", function(text) {
 
 popupPanel.port.on("close", function() {
   popupPanel.hide();
+});
+
+// Messages between content script and popupPanel
+popupPanel.port.on("get-tickets", function() {
+  activeTab.port.emit("get-tickets");
 });
 
 function handleHide() {
@@ -52,12 +58,9 @@ function handleChange(state) {
     popupPanel.show({
       position: toggleButton
     });
-
-    // Messages between content script and popupPanel
-    popupPanel.port.on("get-tickets", function() {
-      tab.port.emit("get-tickets");
-    });
+    activeTab = tab;
     tab.port.on("tickets", function(tickets) {
+      console.log("sending get tickets in handle change");
       popupPanel.port.emit("tickets", tickets);
     });
   }
