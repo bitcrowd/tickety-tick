@@ -32,7 +32,16 @@ function pivotalStories(stories, collapsed) {
     var story = $(this);
     var title = (collapsed ? story.find('.story_name').text() : story.find('.editor.name').val());
     var id = /story_(\d+)/.exec(story.attr('class'))[1];
-    var type = story.find(".story_type .selection").text();
+    classes = story.attr('class').split(" ");
+    if (classes.indexOf("bug") > 0) {
+      type = "bug"
+    } else if (classes.indexOf("chore") > 0) {
+      type = "chore"
+    } else if (classes.indexOf("feature") > 0) {
+      type = "feature"
+    } else if (classes.indexOf("release") > 0) {
+      type = "release"
+    }
     storyTitles.push({id: id, title: title, type: type})
   });
   return storyTitles;
