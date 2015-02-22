@@ -24,11 +24,11 @@
 				<key>Filename</key>
 				<string>data/popup/popup.html</string>
 				<key>Height</key>
-				<real>350</real>
+				<real>240</real>
 				<key>Identifier</key>
 				<string>ticket-git.popup</string>
 				<key>Width</key>
-				<real>300</real>
+				<real>250</real>
 			</dict>
 		</array>
 		<key>Toolbar Items</key>

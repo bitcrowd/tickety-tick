@@ -2,6 +2,8 @@ var data = require("sdk/self").data;
 var clipBoard = require("sdk/clipboard");
 
 var popupPanel = require("sdk/panel").Panel({
+  width: 270,
+  height: 240,
   contentURL: data.url("popup/popup.html"),
   contentScriptFile: [
     data.url("bowser.js"),

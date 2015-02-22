@@ -6,6 +6,7 @@
 
 body {
   font-family: 'Lucida Grande', sans-serif;
+  font-size: 11px;
 }
 
 a {
@@ -19,7 +20,7 @@ a {
 
 #content {
   width: 250px;
-  min-height: 200px;
+  height: 200px;
 }
 
 h1 {
@@ -42,7 +43,6 @@ h1 {
 .button-list li a {
   text-decoration: none;
   color: white;
-  width: 100%;
   display: block;
   padding: 8px;
   background-color: #c32f34;
