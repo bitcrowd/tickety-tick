@@ -50,7 +50,6 @@ go to the developer menu and open the extension builder. Press the + button and 
 
 # ToDo
 
-Currently this is only a Chrome extension. We should also support Safari and Firefox.
-
-* [firefox clipboard example](https://github.com/fwenzel/copy-url)
-* On Safari it is not possible to access clipboard?!
+* Rename
+* Add nice layout
+* Release
