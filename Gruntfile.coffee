@@ -3,62 +3,62 @@ module.exports = (grunt) ->
     image_resize:
       icon16_chrome:
         options: width: 16
-        files: 'chrome-extension/icon16.png': 'src/data/icon.png'
+        files: 'dist/chrome-extension/icon16.png': 'src/data/icon.png'
       icon48_chrome:
         options: width: 48
-        files: 'chrome-extension/icon48.png': 'src/data/icon.png'
+        files: 'dist/chrome-extension/icon48.png': 'src/data/icon.png'
       icon128_chrome:
         options: width: 128
-        files: 'chrome-extension/icon128.png': 'src/data/icon.png'
+        files: 'dist/chrome-extension/icon128.png': 'src/data/icon.png'
       icon16_firefox:
         options: width: 16
-        files: 'firefox-extension/data/icon16.png': 'src/data/icon.png'
+        files: 'dist/firefox-extension/data/icon16.png': 'src/data/icon.png'
       icon32_firefox:
         options: width: 32
-        files: 'firefox-extension/data/icon32.png': 'src/data/icon.png'
+        files: 'dist/firefox-extension/data/icon32.png': 'src/data/icon.png'
       icon64_firefox:
         options: width: 64
-        files: 'firefox-extension/data/icon64.png': 'src/data/icon.png'
+        files: 'dist/firefox-extension/data/icon64.png': 'src/data/icon.png'
       icon16_safari:
         options: width: 16
-        files: 'ticket-git.safariextension/data/icon16.png': 'src/data/icon.png'
+        files: 'dist/ticket-git.safariextension/data/icon16.png': 'src/data/icon.png'
       icon32_safari:
         options: width: 32
-        files: 'ticket-git.safariextension/data/icon32.png': 'src/data/icon.png'
+        files: 'dist/ticket-git.safariextension/data/icon32.png': 'src/data/icon.png'
       icon64_safari:
         options: width: 64
-        files: 'ticket-git.safariextension/data/icon64.png': 'src/data/icon.png'
+        files: 'dist/ticket-git.safariextension/data/icon64.png': 'src/data/icon.png'
       icon_safari:
         options: width: 64
-        files: 'ticket-git.safariextension/Icon.png': 'src/data/icon.png'
+        files: 'dist/ticket-git.safariextension/Icon.png': 'src/data/icon.png'
     copy:
       src:
         files: [
           # Chrome Extension
-          { expand: true, cwd: "bower_dest",  src: ['**'], dest: 'chrome-extension/' },
-          { expand: true, cwd: "src/common",  src: ['**'], dest: 'chrome-extension/' },
-          { expand: true, cwd: "src/data",    src: ['**'], dest: 'chrome-extension/' },
-          { expand: true, cwd: "src/chrome",  src: ['**', '!manifest.json'], dest: 'chrome-extension/' }
+          { expand: true, cwd: "dist/bower_dest",  src: ['**'], dest: 'dist/chrome-extension/' },
+          { expand: true, cwd: "src/common",  src: ['**'], dest: 'dist/chrome-extension/' },
+          { expand: true, cwd: "src/data",    src: ['**'], dest: 'dist/chrome-extension/' },
+          { expand: true, cwd: "src/chrome",  src: ['**', '!manifest.json'], dest: 'dist/chrome-extension/' }
           # Firefox Extension
-          { expand: true, cwd: "bower_dest",  src: ['**'], dest: 'firefox-extension/data/' },
-          { expand: true, cwd: "src/common",  src: ['**'], dest: 'firefox-extension/data/' },
-          { expand: true, cwd: "src/data",    src: ['**'], dest: 'firefox-extension/data/' },
-          { expand: true, cwd: "src/firefox", src: ['**', '!package.json'], dest: 'firefox-extension/lib/' }
+          { expand: true, cwd: "dist/bower_dest",  src: ['**'], dest: 'dist/firefox-extension/data/' },
+          { expand: true, cwd: "src/common",  src: ['**'], dest: 'dist/firefox-extension/data/' },
+          { expand: true, cwd: "src/data",    src: ['**'], dest: 'dist/firefox-extension/data/' },
+          { expand: true, cwd: "src/firefox", src: ['**', '!package.json'], dest: 'dist/firefox-extension/lib/' }
           # Safari Extension
-          { expand: true, cwd: "bower_dest",  src: ['**'], dest: 'ticket-git.safariextension/data/' },
-          { expand: true, cwd: "src/common",  src: ['**'], dest: 'ticket-git.safariextension/data/' },
-          { expand: true, cwd: "src/data",    src: ['**'], dest: 'ticket-git.safariextension/data/' },
-          { expand: true, cwd: "src/safari",  src: ['**', '!package.json'], dest: 'ticket-git.safariextension/' }
+          { expand: true, cwd: "dist/bower_dest",  src: ['**'], dest: 'dist/ticket-git.safariextension/data/' },
+          { expand: true, cwd: "src/common",  src: ['**'], dest: 'dist/ticket-git.safariextension/data/' },
+          { expand: true, cwd: "src/data",    src: ['**'], dest: 'dist/ticket-git.safariextension/data/' },
+          { expand: true, cwd: "src/safari",  src: ['**', '!package.json'], dest: 'dist/ticket-git.safariextension/' }
         ]
     bower:
       dev:
-        dest: 'bower_dest'
+        dest: 'dist/bower_dest'
     watch:
       all:
         files: ['src/**']
         tasks: ['build:sources', 'build:manifests', 'build:icons']
     zip:
-      'chrome': { cwd: 'chrome-extension/', src: ['chrome-extension/**'], dest: 'chrome-extension.zip' }
+      'chrome': { cwd: 'dist/chrome-extension/', src: ['dist/chrome-extension/**'], dest: 'dist/chrome-extension.zip' }
 
   grunt.loadNpmTasks 'grunt-image-resize'
   grunt.loadNpmTasks 'grunt-contrib-copy'
@@ -79,7 +79,7 @@ module.exports = (grunt) ->
       "48": "icon48.png"
       "128": "icon128.png"
 
-    grunt.file.write 'chrome-extension/manifest.json', JSON.stringify(mnf)
+    grunt.file.write 'dist/chrome-extension/manifest.json', JSON.stringify(mnf)
 
   grunt.registerTask 'build:manifest-firefox', 'Build firefox manifest file.', () ->
     mnf = grunt.file.readJSON 'src/firefox/package.json'
@@ -90,7 +90,7 @@ module.exports = (grunt) ->
     mnf.version = pckg.version
     mnf.description = pckg.description
 
-    grunt.file.write 'firefox-extension/package.json', JSON.stringify(mnf)
+    grunt.file.write 'dist/firefox-extension/package.json', JSON.stringify(mnf)
 
   grunt.registerTask 'build:icons', ['image_resize']
   grunt.registerTask 'build:sources', ['copy:src']

@@ -1,7 +1,2 @@
-bower_components/*
-bower_dest/*
+dist/*
 node_modules/*
-chrome-extension/*
-chrome-extension.zip
-firefox-extension/*
-ticket-git.safariextension/*
