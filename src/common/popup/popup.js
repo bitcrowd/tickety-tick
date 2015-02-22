@@ -83,8 +83,8 @@ $("body").on("click", "a.external", function(event) {
   }, 100);
   if (bowser.safari) {
     safari.application.activeBrowserWindow.openTab().url = $(this).attr("href");
+    event.preventDefault();
   }
-  event.preventDefault();
 });
 
 $("body").on("click", ".select-ticket", function(event) {
