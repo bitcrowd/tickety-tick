@@ -7,9 +7,9 @@
 	<key>Builder Version</key>
 	<string>10600.3.18</string>
 	<key>CFBundleDisplayName</key>
-	<string>ticket-git</string>
+	<string>tickety-tick</string>
 	<key>CFBundleIdentifier</key>
-	<string>net.bitcrowd.ticket-git</string>
+	<string>net.bitcrowd.tickety-tick</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
@@ -26,7 +26,7 @@
 				<key>Height</key>
 				<real>240</real>
 				<key>Identifier</key>
-				<string>ticket-git.popup</string>
+				<string>tickety-tick.popup</string>
 				<key>Width</key>
 				<real>270</real>
 			</dict>
@@ -45,7 +45,7 @@
 				<key>Palette Label</key>
 				<string>Test</string>
 				<key>Popover</key>
-				<string>ticket-git.popup</string>
+				<string>tickety-tick.popup</string>
 				<key>Tool Tip</key>
 				<string>hello</string>
 			</dict>
@@ -80,7 +80,7 @@
 		</dict>
 	</dict>
 	<key>Website</key>
-  <string>https://github.com/bitcrowd/ticket-git</string>
+  <string>https://github.com/bitcrowd/tickety-tick</string>
 </dict>
 </plist>
 

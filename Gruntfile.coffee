@@ -21,16 +21,16 @@ module.exports = (grunt) ->
         files: 'dist/firefox-extension/data/icon64.png': 'src/data/icon.png'
       icon16_safari:
         options: width: 16
-        files: 'dist/ticket-git.safariextension/data/icon16.png': 'src/data/icon.png'
+        files: 'dist/tickety-tick.safariextension/data/icon16.png': 'src/data/icon.png'
       icon32_safari:
         options: width: 32
-        files: 'dist/ticket-git.safariextension/data/icon32.png': 'src/data/icon.png'
+        files: 'dist/tickety-tick.safariextension/data/icon32.png': 'src/data/icon.png'
       icon64_safari:
         options: width: 64
-        files: 'dist/ticket-git.safariextension/data/icon64.png': 'src/data/icon.png'
+        files: 'dist/tickety-tick.safariextension/data/icon64.png': 'src/data/icon.png'
       icon_safari:
         options: width: 64
-        files: 'dist/ticket-git.safariextension/Icon.png': 'src/data/icon.png'
+        files: 'dist/tickety-tick.safariextension/Icon.png': 'src/data/icon.png'
     copy:
       src:
         files: [
@@ -45,10 +45,10 @@ module.exports = (grunt) ->
           { expand: true, cwd: "src/data",    src: ['**'], dest: 'dist/firefox-extension/data/' },
           { expand: true, cwd: "src/firefox", src: ['**', '!package.json'], dest: 'dist/firefox-extension/lib/' }
           # Safari Extension
-          { expand: true, cwd: "dist/bower_dest",  src: ['**'], dest: 'dist/ticket-git.safariextension/data/' },
-          { expand: true, cwd: "src/common",  src: ['**'], dest: 'dist/ticket-git.safariextension/data/' },
-          { expand: true, cwd: "src/data",    src: ['**'], dest: 'dist/ticket-git.safariextension/data/' },
-          { expand: true, cwd: "src/safari",  src: ['**', '!package.json'], dest: 'dist/ticket-git.safariextension/' }
+          { expand: true, cwd: "dist/bower_dest",  src: ['**'], dest: 'dist/tickety-tick.safariextension/data/' },
+          { expand: true, cwd: "src/common",  src: ['**'], dest: 'dist/tickety-tick.safariextension/data/' },
+          { expand: true, cwd: "src/data",    src: ['**'], dest: 'dist/tickety-tick.safariextension/data/' },
+          { expand: true, cwd: "src/safari",  src: ['**', '!package.json'], dest: 'dist/tickety-tick.safariextension/' }
         ]
     bower:
       dev:

@@ -1,4 +1,4 @@
-# Ticket Git
+# Tickety Tick
 
 At bitcrowd we love conventions. One of them is how we name branches and
 commits. This makes it easy to find the branch and/or commit for a certain
@@ -46,7 +46,7 @@ to make the extension usable for you.
 
 After you installed the certificate, open Safari, enable the Developer Menu in the settings,
 go to the developer menu and open the extension builder. Press the + button and add the
-`ticket-git.safariextension` that was build by grunt.
+`tickety-tick.safariextension` that was build by grunt.
 
 # ToDo
 
