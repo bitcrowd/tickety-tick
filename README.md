@@ -1,4 +1,4 @@
-# Tickety Tick
+# Tickety-Tick
 
 At bitcrowd we love conventions. One of them is how we name branches and
 commits. This makes it easy to find the branch and/or commit for a certain
