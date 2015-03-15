@@ -15,7 +15,8 @@ a {
 }
 
 :focus {
-  outline: red auto 5px;
+  outline: none;
+  text-decoration: underline;
 }
 
 #content {
@@ -38,6 +39,18 @@ h1 {
 .button-list li {
   margin-bottom: 8px;
   color: white;
+}
+
+.ticket-list {
+  padding: 0px;
+}
+
+.ticket-list li {
+  background: url(../icon16.png) no-repeat 0px 0px transparent;
+  list-style-type: none;
+  margin: 0;
+  padding: 0px 0px 5px 25px;
+  vertical-align: middle;
 }
 
 .button-list li a {

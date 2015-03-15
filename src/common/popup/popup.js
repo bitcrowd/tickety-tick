@@ -3,7 +3,7 @@ var currentTickets = [];
 function displayHowto() {
   $("#content").empty();
   $("#content").append(
-    "<h1><img src='../icon16.png'/> ticket git</h1>" +
+    "<h1><img src='../icon16.png'/> tickety-tick</h1>" +
     "<p>Open a ticket and then click this extension.</p>" +
     "<p>" +
       "You then can select if you want to create a commit messag or a branch name " +
@@ -68,7 +68,7 @@ function displayTicketSelect(tickets) {
   }).forEach(function(ticket, index) {
     ticketList += "<li><a href='#' class='select-ticket' data-ticket-number='" + index + "'>" + ticket.title + "</a></li>";
   });
-  $("#content").append("<ul class='button-list'>" + ticketList + "</ul>");
+  $("#content").append("<ul class='ticket-list'>" + ticketList + "</ul>");
   $("#content a").first().focus();
 
   $(".select-ticket").click(function(event) {
