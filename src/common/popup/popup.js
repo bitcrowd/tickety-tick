@@ -6,7 +6,7 @@ function displayHowto() {
     "<h1><img src='../icon16.png'/> tickety-tick</h1>" +
     "<p>Open a ticket and then click this extension.</p>" +
     "<p>" +
-      "You then can select if you want to create a commit messag or a branch name " +
+      "You then can select if you want to create a commit message or a branch name " +
       "based on that ticket."  +
     "</p><p>" +
       "If you have selected more than one ticket, you can then select " +
