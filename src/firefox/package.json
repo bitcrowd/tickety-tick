@@ -1,9 +1,10 @@
 {
   "name": "#{NAME}",
   "title": "#{NAME}",
-  "id": "jid1-ynkvezs8Qn2TJA",
+  "id": "jid1-ynkvezs8Qn2TJA@jetpack",
   "description": "#{DESCRIPTION}",
   "author": "Bitcrowd",
   "license": "MIT",
-  "version": "#{VERSION}"
+  "version": "#{VERSION}",
+  "main": "lib/main.js"
 }

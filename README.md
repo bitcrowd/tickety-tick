@@ -45,7 +45,9 @@ Point it to the `chrome-extension` directory. Done.
 ## Firefox
 
 Download the [Firefox Addd-ons SDK](https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Installation)
-and go into the `firefox-extension` directory. Start a Firefox with `cfx run`.
+and go into the `firefox-extension` directory. Start a Firefox with `jpm run`.
+
+To build the xpi for distribution, go into the `firefox-extension` directory and use `jpm xpi`.
 
 ## Safari
 

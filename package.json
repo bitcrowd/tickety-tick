@@ -2,7 +2,7 @@
   "name": "tickety-tick",
   "description": "A chrome extension that helps you to create commit messages and branch names.",
   "author": "Bodo Tasche <bodo@bitcrowd.net>",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
 
   "private": true,
