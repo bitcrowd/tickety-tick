@@ -60,7 +60,6 @@ function handleChange(state) {
     });
     activeTab = tab;
     tab.port.on("tickets", function(tickets) {
-      console.log("sending get tickets in handle change");
       popupPanel.port.emit("tickets", tickets);
     });
   }
