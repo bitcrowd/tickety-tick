@@ -18,11 +18,11 @@ Currently supported:
 * Jira
 * Github
 
-Currently compatible with:
+# Installation
 
 * [Chrome](https://chrome.google.com/webstore/detail/ciakolhgmfijpjbpcofoalfjiladihbg)
 * [Firefox](https://addons.mozilla.org/de/firefox/addon/tickety-tick/)
-* Safari
+* For Safari you need to build it yourself, see below
 
 # Building
 
