@@ -27,7 +27,7 @@ function addSafariListener() {
 }
 
 function pivotalStories(stories, collapsed) {
-  storyTitles = []
+  var storyTitles = [];
   stories.each(function () {
     var story = $(this);
     var title = (collapsed ? story.find('.story_name').text() : story.find('.editor.name').val());
