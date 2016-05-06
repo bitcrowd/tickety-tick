@@ -58,8 +58,3 @@ After you installed the certificate, open Safari, enable the Developer Menu in t
 go to the developer menu and open the extension builder. Press the + button and add the
 `tickety-tick.safariextension` that was build by grunt.
 
-# ToDo
-
-* Rename
-* Add nice layout
-* Release
