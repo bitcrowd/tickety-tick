@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cd $(dirname $0)/../src/common/icons
+
+for s in 16 32 48 64 128; do
+  convert icon.png -resize "${s}x${s}" "icon-${s}.png"
+  pngcrush -brute -ow "icon-${s}.png"
+done

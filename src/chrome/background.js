@@ -1,7 +1,13 @@
+/* globals chrome, window */
+
+const exports = window;
+
 function getTickets(callback) {
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendRequest(tabs[0].id, {tickets: true}, function(newTickets) {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.sendMessage(tabs[0].id, { tickets: true }, (newTickets) => {
       callback(newTickets);
     });
   });
 }
+
+exports.getTickets = getTickets;

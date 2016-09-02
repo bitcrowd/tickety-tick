@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2011 The Chromium Authors. All rights reserved.
- * Use of this source code is governed by a BSD-style license that can be
- * found in the LICENSE file.
- */
-
 body {
   font-family: 'Lucida Grande', sans-serif;
   font-size: 11px;
@@ -46,7 +40,7 @@ h1 {
 }
 
 .ticket-list li {
-  background: url(../icon16.png) no-repeat 0px 0px transparent;
+  background: url(../icons/icon-16.png) no-repeat 0px 0px transparent;
   list-style-type: none;
   margin: 0;
   padding: 0px 0px 5px 25px;

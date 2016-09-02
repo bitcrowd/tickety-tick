@@ -37,7 +37,7 @@
 				<key>Identifier</key>
 				<string>popup</string>
 				<key>Image</key>
-        <string>data/icon64.png</string>
+				<string>icons/icon-64.png</string>
 				<key>Include By Default</key>
 				<true/>
 				<key>Label</key>
@@ -57,8 +57,6 @@
 		<dict>
 			<key>Start</key>
 			<array>
-				<string>data/bowser.js</string>
-				<string>data/dist/jquery.js</string>
 				<string>data/content.js</string>
 			</array>
 		</dict>

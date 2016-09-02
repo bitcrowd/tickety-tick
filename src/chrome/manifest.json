@@ -1,16 +1,19 @@
 {
+  "manifest_version": 2,
   "name": "#{NAME}",
   "version": "#{VERSION}",
   "description": "#{DESCRIPTION}",
-  "icons": { "128": "icon.png" },
-  "background": { "scripts": ["background.js"] },
+  "icons": {},
+  "background": {
+    "scripts": ["background.js"]
+  },
   "content_scripts": [
     {
      "matches": [
        "http://*/*",
        "https://*/*"
      ],
-      "js": ["dist/jquery.js", "bowser.js", "content.js"]
+      "js": ["content.js"]
     }
   ],
   "web_accessible_resources": [
@@ -21,9 +24,8 @@
   ],
   "browser_action": {
     "default_name": "Git Branch/Message",
-    "default_icon": "icon.png",
+    "default_icon": "icons/icon.png",
     "default_popup": "popup/popup.html"
   },
-  "manifest_version": 2,
   "content_security_policy": "default-src 'none'; style-src 'self'; script-src 'self';"
 }
