@@ -1,4 +1,5 @@
-/* globals chrome, window */
+/* eslint-env browser */
+/* globals chrome */
 
 const exports = window;
 

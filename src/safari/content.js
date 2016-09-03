@@ -1,19 +1,14 @@
-/* globals safari, window, document */
+/* eslint-env browser */
+/* globals safari */
 
-import defsearch from '../common/search';
+import stdsearch from '../common/search';
 
 function onMessage(event) {
   if (window.top === window) {
     if (event.name === 'get-tickets') {
-      const respond = () => {
-        defsearch(document, (tickets) => {
-          safari.self.tab.dispatchMessage('tickets', tickets);
-        });
-      };
-
-      const delay = 10;
-
-      setTimeout(respond, delay);
+      stdsearch(document, (tickets) => {
+        safari.self.tab.dispatchMessage('tickets', tickets);
+      });
     }
   }
 }

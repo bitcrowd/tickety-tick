@@ -47,7 +47,7 @@ function contentjs(browser) {
   const bundler = browserify({
     basedir: src[browser](),
     entries: ['./content.js'],
-    transform: ['babelify'],
+    transform: ['babelify', 'envify'],
     debug: true
   });
 
@@ -76,8 +76,9 @@ function css(browser, compat) {
 function js(browser) {
   const bundler = browserify({
     basedir: src[browser]('popup'),
-    entries: ['./popup.js'],
-    transform: ['babelify'],
+    entries: ['./popup.jsx'],
+    transform: ['babelify', 'envify'],
+    extensions: ['.jsx'],
     debug: true
   });
 
