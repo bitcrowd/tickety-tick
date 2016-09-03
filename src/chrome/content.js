@@ -1,14 +1,15 @@
-/* global chrome, window, top */
+/* global chrome, window, top, document */
 
-import { findOpenTickets } from '../common/content';
+import defsearch from '../common/search';
 
 const runtime = chrome.runtime;
 
 if (window === top) {
   runtime.onMessage.addListener((req, sender, respond) => {
     if (req.tickets) {
-      const tickets = findOpenTickets();
-      respond(tickets);
+      defsearch(document, (tickets) => {
+        respond(tickets);
+      });
     }
   });
 }

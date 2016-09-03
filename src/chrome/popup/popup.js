@@ -1,6 +1,6 @@
 /* globals chrome */
 
-import { updateTickets } from '../../common/popup/popup';
+import { updateTickets } from '../../common/popup/utils';
 
 const extension = chrome.extension;
 const background = extension.getBackgroundPage();

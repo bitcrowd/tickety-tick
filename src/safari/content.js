@@ -1,13 +1,14 @@
-/* globals safari, window */
+/* globals safari, window, document */
 
-import { findOpenTickets } from '../common/content';
+import defsearch from '../common/search';
 
 function onMessage(event) {
   if (window.top === window) {
     if (event.name === 'get-tickets') {
       const respond = () => {
-        const tickets = findOpenTickets();
-        safari.self.tab.dispatchMessage('tickets', tickets);
+        defsearch(document, (tickets) => {
+          safari.self.tab.dispatchMessage('tickets', tickets);
+        });
       };
 
       const delay = 10;

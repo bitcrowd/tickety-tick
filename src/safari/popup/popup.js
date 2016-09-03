@@ -1,6 +1,6 @@
 /* globals safari */
 
-import { updateTickets } from '../../common/popup/popup';
+import { updateTickets } from '../../common/popup/utils';
 
 const app = safari.application;
 
