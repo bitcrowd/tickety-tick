@@ -14,7 +14,7 @@ class EnvProvider extends React.Component {
 EnvProvider.propTypes = {
   openext: React.PropTypes.func.isRequired,
   grab: React.PropTypes.func.isRequired,
-  children: React.PropTypes.element
+  children: React.PropTypes.element.isRequired
 };
 
 EnvProvider.childContextTypes = {

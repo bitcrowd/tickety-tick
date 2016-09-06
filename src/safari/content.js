@@ -1,5 +1,5 @@
 /* eslint-env browser */
-/* globals safari */
+/* global safari */
 
 import stdsearch from '../common/search';
 

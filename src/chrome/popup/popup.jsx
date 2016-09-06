@@ -1,5 +1,5 @@
 /* eslint-env browser */
-/* globals chrome */
+/* global chrome */
 
 import render from '../../common/popup/render';
 

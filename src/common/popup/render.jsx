@@ -18,11 +18,11 @@ function propped(Component, defaults) {
   return ProppedComponent;
 }
 
-function render(tickets, { grab, openext }) {
+function render(tickets, env) {
   const root = document.getElementById('popup-root');
 
   const component = (
-    <EnvProvider openext={openext} grab={grab}>
+    <EnvProvider {...env}>
       <Router>
         <Route path="/" component={App}>
           <IndexRoute component={propped(Tool, { tickets })} />

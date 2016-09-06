@@ -5,7 +5,7 @@ import NoTickets from './no-tickets';
 import Header from './header';
 
 function Tool(props) {
-  const content = (props.tickets)
+  const content = (props.tickets && props.tickets.length > 0)
     ? <TicketList tickets={props.tickets} />
     : <NoTickets />;
 

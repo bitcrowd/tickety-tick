@@ -3,9 +3,9 @@ import $ from 'jquery';
 // TODO: remove jquery?
 
 const trim = (s) => s.replace(/^\s+|\s+$/g, '');
-const has = (sel, doc) => $(sel, doc).length > 0;
-const val = (sel, doc) => trim($(sel, doc).val());
-const txt = (sel, doc) => trim($(sel, doc).text());
+const has = (sel, ctx) => $(sel, ctx).length > 0;
+const val = (sel, ctx) => trim($(sel, ctx).val());
+const txt = (sel, ctx) => trim($(sel, ctx).text());
 
 function multiple(elements, collapsed) {
   return elements.map(function inspect() {

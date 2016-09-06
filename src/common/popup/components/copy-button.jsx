@@ -10,7 +10,7 @@ CopyButton.propTypes = {
 };
 
 CopyButton.contextTypes = {
-  grab: React.PropTypes.func
+  grab: React.PropTypes.func.isRequired
 };
 
 export default CopyButton;
