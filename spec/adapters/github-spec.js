@@ -40,12 +40,12 @@ const INDEXPAGE = `
 `;
 
 describe('github adapter', () => {
-  function doc(body = '') {
+  function dom(body = '') {
     return jsdom(`<html><body>${body}</body></html>`);
   }
 
   it('returns null if it is on a different page', () => {
-    adapter.inspect(doc(), (err, res) => {
+    adapter.inspect(null, dom(), (err, res) => {
       expect(err).toBe(null);
       expect(res).toBe(null);
     });
@@ -53,7 +53,7 @@ describe('github adapter', () => {
 
   it('extracts tickets from issue pages', () => {
     const expected = [{ id: '12', title: 'A Random GitHub Issue', type: 'feature' }];
-    adapter.inspect(doc(ISSUEPAGE), (err, res) => {
+    adapter.inspect(null, dom(ISSUEPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
     });
@@ -61,7 +61,7 @@ describe('github adapter', () => {
 
   it('recognizes issues labelled as bugs', () => {
     const expected = [{ id: '12', title: 'A Random GitHub Issue', type: 'bug' }];
-    adapter.inspect(doc(BUGPAGE), (err, res) => {
+    adapter.inspect(null, dom(BUGPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
     });
@@ -69,7 +69,7 @@ describe('github adapter', () => {
 
   it('extracts tickets from issues index pages', () => {
     const expected = [{ id: '12', title: 'A Selected GitHub Issue', type: 'bug' }];
-    adapter.inspect(doc(INDEXPAGE), (err, res) => {
+    adapter.inspect(null, dom(INDEXPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
     });

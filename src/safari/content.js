@@ -6,7 +6,7 @@ import stdsearch from '../common/search';
 function onMessage(event) {
   if (window.top === window) {
     if (event.name === 'get-tickets') {
-      stdsearch(document, (tickets) => {
+      stdsearch(location, document, (tickets) => {
         safari.self.tab.dispatchMessage('tickets', tickets);
       });
     }

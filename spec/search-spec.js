@@ -4,19 +4,20 @@ describe('ticket search', () => {
   function mocks(results) {
     return results.map((result, i) => {
       const adapter = jasmine.createSpyObj(`adapter(${i})`, ['inspect']);
-      adapter.inspect.and.callFake((doc, fn) => { fn(null, result); });
+      adapter.inspect.and.callFake((l, d, fn) => { fn(null, result); });
       return adapter;
     });
   }
 
-  const dummydoc = { title: 'dummy document' };
+  const doc = { title: 'dummy document' };
+  const loc = { host: 'dummy.org' };
 
-  it('feeds the document to every adapter', (done) => {
+  it('feeds the location and document to every adapter', (done) => {
     const adapters = mocks([null, null]);
 
-    search(adapters, dummydoc, () => {
+    search(adapters, loc, doc, () => {
       adapters.forEach((adapter) => {
-        expect(adapter.inspect).toHaveBeenCalledWith(dummydoc, jasmine.any(Function));
+        expect(adapter.inspect).toHaveBeenCalledWith(loc, doc, jasmine.any(Function));
       });
 
       done();
@@ -27,7 +28,7 @@ describe('ticket search', () => {
     const result = [{ id: '1', title: 'true story' }];
     const adapters = mocks([null, result]);
 
-    search(adapters, dummydoc, (res) => {
+    search(adapters, loc, doc, (res) => {
       expect(res).toBe(result);
       done();
     });
@@ -36,7 +37,7 @@ describe('ticket search', () => {
   it('invokes the callback with null when no adapter created any results', (done) => {
     const adapters = mocks([null, undefined]);
 
-    search(adapters, dummydoc, (res) => {
+    search(adapters, loc, doc, (res) => {
       expect(res).toBe(null);
       done();
     });

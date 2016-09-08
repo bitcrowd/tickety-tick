@@ -7,25 +7,29 @@ const has = (sel, ctx) => $(sel, ctx).length > 0;
 const val = (sel, ctx) => trim($(sel, ctx).val());
 const txt = (sel, ctx) => trim($(sel, ctx).text());
 
+const cls = (ctx) => ['bug', 'chore', 'feature', 'release']
+  .find((c) => ctx.hasClass(c));
+
 function multiple(elements, collapsed) {
-  return elements.map(function inspect() {
+  return elements.map(function extract() {
     const story = $(this);
 
-    const id = /story_(\d+)/.exec(story.attr('class'))[1];
+    const id = story.data('id').toString();
 
     const title = collapsed
-      ? story.find('.story_name').text()
-      : story.find('.editor.name').val();
+      ? txt('.story_name', story)
+      : val('.editor.name', story);
 
-    const type = ['bug', 'chore', 'feature', 'release']
-      .find((c) => story.hasClass(c));
+    const type = cls(story);
 
     return { id, title, type };
-  });
+  }).get();
 }
 
 const adapter = {
-  inspect(doc, fn) {
+  inspect(loc, doc, fn) {
+    if (doc.body.id !== 'tracker') return fn(null, null);
+
     if (has('div.story .selector.selected', doc)) { // selected stories
       const selection = $('div.story .selector.selected', doc).closest('.story');
       const tickets = multiple(selection, true);
@@ -34,10 +38,11 @@ const adapter = {
       const opened = $('div.story .details', doc).closest('.story');
       const tickets = multiple(opened, false);
       return fn(null, tickets);
-    } else if (has('#tracker .story .name textarea', doc)) { // single story in separate tab
-      const id = val('#tracker aside input.id', doc);
-      const title = txt('#tracker .story .name textarea', doc);
-      const type = txt('#tracker aside .story_type .selection', doc);
+    } else if (has('.story.maximized', doc)) { // single story in separate tab
+      const story = $('.story.maximized', doc);
+      const id = val('aside input.id', story).replace(/^#/, '');
+      const title = txt('.editor.name', story);
+      const type = cls(story);
       const tickets = [{ id, title, type }];
       return fn(null, tickets);
     }

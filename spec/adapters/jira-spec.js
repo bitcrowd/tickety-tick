@@ -14,13 +14,20 @@ const TICKETPAGE = `
 `;
 
 describe('jira adapter', () => {
-  function doc(body = '') {
-    return jsdom(`<html><body>${body}</body></html>`);
+  function doc(body = '', id = 'jira') {
+    return jsdom(`<html><body id="${id}">${body}</body></html>`);
   }
+
+  it('returns null if it is on a different page', () => {
+    adapter.inspect(null, doc(TICKETPAGE, 'foo'), (err, res) => {
+      expect(err).toBe(null);
+      expect(res).toBe(null);
+    });
+  });
 
   it('extracts tickets from a ticket page', () => {
     const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue' }];
-    adapter.inspect(doc(TICKETPAGE), (err, res) => {
+    adapter.inspect(null, doc(TICKETPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
     });

@@ -8,7 +8,7 @@ const runtime = chrome.runtime;
 if (window === top) {
   runtime.onMessage.addListener((req, sender, respond) => {
     if (req.tickets) {
-      stdsearch(document, respond);
+      stdsearch(location, document, respond);
     }
   });
 }

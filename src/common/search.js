@@ -5,7 +5,7 @@ import Trello from './adapters/trello';
 
 const stdadapters = [GitHub, Jira, Pivotal, Trello];
 
-function search(adapters, doc, fn) {
+function search(adapters, loc, doc, fn) {
   let pending = adapters.length;
   const results = [];
 
@@ -15,7 +15,7 @@ function search(adapters, doc, fn) {
   }
 
   adapters.forEach((adapter, i) => {
-    adapter.inspect(doc, (err, res) => {
+    adapter.inspect(loc, doc, (err, res) => {
       if (err) console.error(err); // eslint-disable-line no-console
       results[i] = err ? null : res;
       if (--pending === 0) done();
@@ -24,4 +24,4 @@ function search(adapters, doc, fn) {
 }
 
 export { search, stdadapters };
-export default (doc, fn) => search(stdadapters, doc, fn);
+export default (loc, doc, fn) => search(stdadapters, loc, doc, fn);

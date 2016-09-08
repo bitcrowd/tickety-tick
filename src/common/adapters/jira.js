@@ -7,11 +7,13 @@ const has = (sel, ctx) => $(sel, ctx).length > 0;
 const txt = (sel, ctx) => trim($(sel, ctx).text());
 
 const adapter = {
-  inspect(doc, fn) {
+  inspect(loc, doc, fn) {
+    if (doc.body.id !== 'jira') return fn(null, null);
+
     if (has('.ghx-fieldname-issuekey a', doc)) { // JIRA sidebar
       // TODO: check what this looks like in JIRA, update tests, find better selectors
       const id = txt('.ghx-fieldname-issuekey a', doc);
-      const title = txt('[data-field-id=\'summary\']', doc);
+      const title = txt('[data-field-id="summary"]', doc);
       return fn(null, [{ id, title }]);
     } else if (has('#issue-content', doc)) { // JIRA ticket page
       const issue = $('#issue-content', doc);

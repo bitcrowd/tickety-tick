@@ -8,11 +8,11 @@ const txt = (sel, ctx) => trim($(sel, ctx).text());
 const val = (sel, ctx) => $(sel, ctx).val();
 
 const adapter = {
-  inspect(doc, fn) {
+  inspect(loc, doc, fn) {
     if (has('.issues-listing', doc)) {
       const issues = $('.issues-listing .js-issue-row.selected', doc);
 
-      const tickets = issues.map(function () {
+      const tickets = issues.map(function extract() {
         const issue = $(this);
 
         const id = val('input.js-issues-list-check', issue);
