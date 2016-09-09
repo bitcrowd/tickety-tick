@@ -34,7 +34,7 @@ function About() {
             <p>
               <span>Logo by </span>
               <ExternalLink href="http://thenounproject.com/term/ticket/92194/">
-                Alejandro Santander
+                Ramón G.
               </ExternalLink>
               <span> under CC-BY&nbsp;3.0</span>
             </p>

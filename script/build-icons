@@ -1,8 +1,11 @@
 #!/bin/sh
 
-cd $(dirname $0)/../src/common/icons
+dir=$(cd $(dirname $0) && cd "../src/common/icons" && pwd)
+src="${dir}/icon.svg"
 
 for s in 16 32 48 64 128; do
-  convert icon.png -resize "${s}x${s}" "icon-${s}.png"
-  pngcrush -brute -ow "icon-${s}.png"
+  dest="${dir}/icon-${s}.png"
+  inkscape -z -e $dest -D -w $s $src # export
+  convert $dest -background none -gravity center -extent "${s}x${s}" $dest # pad
+  pngcrush -brute -ow $dest # reduce
 done
