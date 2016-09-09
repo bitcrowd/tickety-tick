@@ -9,7 +9,10 @@ function NoTickets() {
     <div className="container no-tickets">
       <h2 className="no-tickets-heading">No tickets found on this page.</h2>
       <p>
-        Tickety-Tick currently supports GitHub, Jira, Pivotal, Trello.
+        Did you select or open any tickets?
+      </p>
+      <p>
+        Tickety-Tick currently supports GitHub, Jira, Pivotal and Trello.
       </p>
       <p>
         Missing anything or think you found a bug?
