@@ -3,16 +3,23 @@ import { jsdom } from 'jsdom';
 import adapter from '../../src/common/adapters/github';
 
 const ISSUEPAGE = `
-  <h1 class="gh-header-title">
-    <span class="js-issue-title">A Random GitHub Issue</span>
-    <span class="gh-header-number">#12</span>
-  </h1>
+  <div class="issues-listing">
+    <h1 class="gh-header-title">
+      <span class="js-issue-title">A Random GitHub Issue</span>
+      <span class="gh-header-number">#12</span>
+    </h1>
+  </div>
 `;
 
 const BUGPAGE = `
-  ${ISSUEPAGE}
-  <div class="sidebar-labels">
-    <a class="label" title="bug">bug</a>
+  <div class="issues-listing">
+    <h1 class="gh-header-title">
+      <span class="js-issue-title">A Random GitHub Issue</span>
+      <span class="gh-header-number">#12</span>
+    </h1>
+    <div class="sidebar-labels">
+      <a class="label" title="bug">bug</a>
+    </div>
   </div>
 `;
 

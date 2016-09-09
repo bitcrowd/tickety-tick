@@ -9,7 +9,7 @@ const val = (sel, ctx) => $(sel, ctx).val();
 
 const adapter = {
   inspect(loc, doc, fn) {
-    if (has('.issues-listing', doc)) {
+    if (has('.issues-listing .js-issue-row.selected', doc)) {
       const issues = $('.issues-listing .js-issue-row.selected', doc);
 
       const tickets = issues.map(function extract() {
@@ -25,10 +25,10 @@ const adapter = {
       return fn(null, tickets);
     }
 
-    if (has('.gh-header-number', doc)) {
+    if (has('.issues-listing .gh-header-number', doc)) {
       const id = txt('.gh-header-number', doc).replace(/^#/, '');
       const title = txt('.js-issue-title', doc);
-      const type = has('.sidebar-labels .label[title=\'bug\']', doc) ? 'bug' : 'feature';
+      const type = has('.sidebar-labels .label[title="bug"]', doc) ? 'bug' : 'feature';
       const tickets = [{ id, title, type }];
       return fn(null, tickets);
     }
