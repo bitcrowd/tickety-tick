@@ -23,17 +23,15 @@ function src(...p) {
 }
 
 src.common = src.bind(null, 'common');
-src.chrome = src.bind(null, 'chrome');
-src.firefox = src.bind(null, 'firefox');
-src.safari = src.bind(null, 'safari');
+src.webext = src.bind(null, 'web-extension');
+src.safari = src.bind(null, 'safari-extension');
 
 function dist(...p) {
   return path.join('./dist', ...p);
 }
 
-dist.chrome = dist.bind(null, 'chrome-extension');
-dist.firefox = dist.bind(null, 'firefox-extension');
-dist.safari = dist.bind(null, 'tickety-tick.safariextension');
+dist.webext = dist.bind(null, 'web-extension');
+dist.safari = dist.bind(null, 'safari-extension');
 
 function copy(source, destination) {
   return gulp.src(source).pipe(gulp.dest(destination));
@@ -121,87 +119,45 @@ gulp.task('clean', (done) => {
   rimraf(dist(), done);
 });
 
-gulp.task('build:chrome:backgroundjs', () => {
-  return backgroundjs('chrome');
+gulp.task('build:webext:backgroundjs', () => {
+  return backgroundjs('webext');
 });
 
-gulp.task('build:chrome:contentjs', () => {
-  return contentjs('chrome');
+gulp.task('build:webext:contentjs', () => {
+  return contentjs('webext');
 });
 
-gulp.task('build:chrome:html', () => {
-  return html('chrome');
+gulp.task('build:webext:html', () => {
+  return html('webext');
 });
 
-gulp.task('build:chrome:css', () => {
-  return css('chrome', ['Chrome >= 49']);
+gulp.task('build:webext:css', () => {
+  return css('webext', ['Chrome >= 49', 'Firefox >= 48']);
 });
 
-gulp.task('build:chrome:js', () => {
-  return js('chrome');
+gulp.task('build:webext:js', () => {
+  return js('webext');
 });
 
-gulp.task('build:chrome:icons', () => {
-  return copy(src.common('icons', '*.png'), dist.chrome('icons'));
+gulp.task('build:webext:icons', () => {
+  return copy(src.common('icons', '*.png'), dist.webext('icons'));
 });
 
-gulp.task('build:chrome:manifest', () => {
-  return manifest('chrome', pkg);
+gulp.task('build:webext:manifest', () => {
+  return manifest('webext', pkg);
 });
 
-gulp.task('build:chrome', [
-  'build:chrome:backgroundjs',
-  'build:chrome:contentjs',
-  'build:chrome:html',
-  'build:chrome:css',
-  'build:chrome:js',
-  'build:chrome:icons',
-  'build:chrome:manifest'
+gulp.task('build:webext', [
+  'build:webext:backgroundjs',
+  'build:webext:contentjs',
+  'build:webext:html',
+  'build:webext:css',
+  'build:webext:js',
+  'build:webext:icons',
+  'build:webext:manifest'
 ], () => {
-  return gulp.src(dist.chrome('*'))
-    .pipe(zip('chrome-extension.zip'))
-    .pipe(gulp.dest(dist()));
-});
-
-gulp.task('build:firefox:backgroundjs', () => {
-  return backgroundjs('firefox');
-});
-
-gulp.task('build:firefox:contentjs', () => {
-  return contentjs('firefox');
-});
-
-gulp.task('build:firefox:html', () => {
-  return html('firefox');
-});
-
-gulp.task('build:firefox:css', () => {
-  return css('firefox', ['Firefox >= 48']);
-});
-
-gulp.task('build:firefox:js', () => {
-  return js('firefox');
-});
-
-gulp.task('build:firefox:icons', () => {
-  return copy(src.common('icons', '*.png'), dist.firefox('icons'));
-});
-
-gulp.task('build:firefox:manifest', () => {
-  return manifest('firefox', pkg);
-});
-
-gulp.task('build:firefox', [
-  'build:firefox:backgroundjs',
-  'build:firefox:contentjs',
-  'build:firefox:html',
-  'build:firefox:css',
-  'build:firefox:js',
-  'build:firefox:icons',
-  'build:firefox:manifest'
-], () => {
-  return gulp.src(dist.firefox('*'))
-    .pipe(zip('firefox-extension.zip'))
+  return gulp.src(dist.webext('*'))
+    .pipe(zip('web-extension.zip'))
     .pipe(gulp.dest(dist()));
 });
 
@@ -239,8 +195,7 @@ gulp.task('build:safari', [
 ]);
 
 gulp.task('build', [
-  'build:chrome',
-  'build:firefox',
+  'build:webext',
   'build:safari'
 ]);
 

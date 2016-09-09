@@ -51,7 +51,7 @@ extension whenever source files change.
 
 Navigate to the [chrome://extensions](chrome://extensions) page, enable
 "Developer mode" and press "Load unpacked extension". Point it to the
-`chrome-extension` directory. Done.
+`dist/web-extension` directory. Done.
 
 ### Firefox
 
@@ -67,4 +67,4 @@ Same process as in [Chrome](#chrome).
 
 Open Safari and enable the "Developer Menu" in the application preferences. Now
 go to the developer menu and open the "Extension Builder". Press the "+" button
-and add the `tickety-tick.safariextension` that you just built.
+and add the `dist/tickety-tick.safariextension` that you just built.
