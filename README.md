@@ -26,8 +26,11 @@ Currently, we support:
 
 ## Installation
 
-- [Chrome](https://chrome.google.com/webstore/detail/ciakolhgmfijpjbpcofoalfjiladihbg)
+Tickety-Tick is available for every major browser:
+
+- [Chrome/Chromium](https://chrome.google.com/webstore/detail/ciakolhgmfijpjbpcofoalfjiladihbg)
 - [Firefox](https://addons.mozilla.org/de/firefox/addon/tickety-tick/)
+- [Opera](https://addons.opera.com/en/extensions/???) (to be published)
 - For Safari, you need to build it yourself (see below)
 
 ## Building
@@ -55,6 +58,10 @@ Navigate to the [chrome://extensions](chrome://extensions) page, enable
 If you just want to try out and debug the extension, go to
 [about:debugging#addons](about:debugging#addons). Then press "Load Temporary
 Add-On" and select the `manifest.json` from the built extension directory.
+
+### Opera
+
+Same process as in [Chrome](#chrome).
 
 ### Safari
 
