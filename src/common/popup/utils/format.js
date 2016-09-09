@@ -1,20 +1,9 @@
-// TODO: find a library to normalize non-ascii chars?
+import { createSlug } from 'speakingurl';
+
+const slugify = createSlug({ separator: '-' });
 
 function normalize(s) {
-  /* eslint-disable quote-props */
-  const charmap = {
-    'ä': 'ae',
-    'ö': 'oe',
-    'ü': 'ue',
-    'ß': 'ss'
-  };
-  /* eslint-enable quote-props */
-
-  return s.toLowerCase()
-    .replace(/[öäüß]/g, (match) => charmap[match])
-    .replace(/[^a-z0-9]/g, '-')
-    .replace(/^-/, '')
-    .replace(/-$/, '');
+  return slugify(s);
 }
 
 function commit(ticket) {
