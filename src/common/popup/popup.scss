@@ -1,9 +1,5 @@
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 11px;
-  margin: 0;
-  padding: 0;
-}
+@import "styles/normalize";
+@import "styles/base";
 
 .popup {
   width: 270px;
@@ -92,4 +88,23 @@ body {
 
 .about-heading {
   margin-top: 0;
+}
+
+.about-subheading {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.logo-sm {
+  width: 16px;
+  height: 16px;
+}
+
+.usage-list {
+  margin: 0 0 1em 0;
+  padding: 0 0 0 1.2em;
+}
+
+.usage-list-item {
+  margin: 0 0 .5em 0;
 }

@@ -13,18 +13,25 @@ function About() {
         <div className="container about">
           <div>
             <h1 className="about-heading">
-              <img src="../icons/icon-16.png" role="presentation" /> tickety-tick
+              <img
+                src="../icons/icon-32.png"
+                className="logo-sm"
+                role="presentation"
+              /> tickety-tick
             </h1>
+            <h4 className="about-subheading">Usage:</h4>
+            <ol className="usage-list">
+              <li className="usage-list-item">
+                Open one ore more tickets in your favourite ticket tracking system,
+                then click the extension icon.
+              </li>
+              <li className="usage-list-item">
+                You can then select if you want to create a commit message or a branch name
+                based on these tickets.
+              </li>
+            </ol>
             <p>
-              Open one ore more tickets in your favourite ticket tracking system,
-              then click the extension icon.
-            </p>
-            <p>
-              You can then select if you want to create a commit message or a branch name
-              based on these tickets.
-            </p>
-            <p>
-              <span>This extension is open-source software by your fellows at </span>
+              <span>This extension is open-source software by the fellows at </span>
               <ExternalLink href="http://bitcrowd.net">bitcrowd</ExternalLink>.
             </p>
             <p>
