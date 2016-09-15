@@ -31,7 +31,7 @@ function dist(...p) {
 }
 
 dist.webext = dist.bind(null, 'web-extension');
-dist.safari = dist.bind(null, 'safari-extension');
+dist.safari = dist.bind(null, 'tickety-tick.safariextension');
 
 function copy(source, destination) {
   return gulp.src(source).pipe(gulp.dest(destination));
