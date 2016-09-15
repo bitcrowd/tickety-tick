@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "#{NAME}",
+  "version": "#{VERSION}",
+  "description": "#{DESCRIPTION}",
+  "icons": {},
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+     "matches": [
+       "http://*/*",
+       "https://*/*"
+     ],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    "dist/jquery.map"
+  ],
+  "permissions": [
+    "tabs"
+  ],
+  "browser_action": {
+    "default_name": "Git Branch/Message",
+    "default_icon": "icons/icon-128.png",
+    "default_popup": "popup/popup.html"
+  },
+  "content_security_policy": "default-src 'none'; style-src 'self'; script-src 'self';"
+}

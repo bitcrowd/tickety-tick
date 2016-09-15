@@ -1,59 +1,70 @@
-# Tickety-Tick
+# Tickety-Tick [![Build Status](https://travis-ci.org/bitcrowd/tickety-tick.svg?branch=master)](https://travis-ci.org/bitcrowd/tickety-tick)
+
+*How do you name this branch? What is the message for that commit?*
 
 At bitcrowd we love conventions. One of them is how we name branches and
-commits. This makes it easy to find the branch and/or commit for a certain
-ticket.
+commits. This makes it easy to relate a particular branch or commit to a
+certain ticket.
 
-![screenshot](src/data/screenshot.png)
+![screenshot](./screenshot.png)
 
-Branches always follow the format `type/id-title` and commits always `[#id]
-title`.
+Branches always follow the format `type/id-title`, where `type` can be one of
+`feature`, `bug`, `chore` etc., `id` is the identifier of the ticket in your
+ticketing system and `title` is a lowercase, dasherized version of the ticket
+title.
 
-This chrome extension helps to create branches and commits for a few ticket
-systems.
+Commits always contain `[#id] title`.
 
-Currently supported:
+Tickety-Tick helps you create branches and commits for a few ticket systems.
 
-* Pivotal Tracker
-* Jira
-* Github
+Currently, we support:
 
-# Installation
+- Pivotal Tracker
+- Jira
+- Github
+- Trello
 
-* [Chrome](https://chrome.google.com/webstore/detail/ciakolhgmfijpjbpcofoalfjiladihbg)
-* [Firefox](https://addons.mozilla.org/de/firefox/addon/tickety-tick/)
-* For Safari you need to build it yourself, see below
+## Installation
 
-# Building
+Tickety-Tick is available for every major browser:
+
+- [Chrome/Chromium](https://chrome.google.com/webstore/detail/ciakolhgmfijpjbpcofoalfjiladihbg)
+- [Firefox](https://addons.mozilla.org/de/firefox/addon/tickety-tick/)
+- [Opera](https://addons.opera.com/en/extensions/???) (to be published)
+- For Safari, you need to build it yourself (see below)
+
+## Building
+
+In order to build the extension from source, run:
 
 ```
 npm install
-bower install
-grunt build
+npm run build
 ```
 
-For development use `grunt run`. This will watch the files and refresh the
-content of the `chrome-extension` directory.
+For development use `npm run watch`. This will watch the files and rebuild the
+extension whenever source files change.
 
-## Run development version
+## Installing a custom-built version
 
 ### Chrome
 
-Go to the [chrome extensions page](chrome://extensions/) and press "Load unpacked extension".
-Point it to the `chrome-extension` directory. Done.
+Navigate to the [chrome://extensions](chrome://extensions) page, enable
+"Developer mode" and press "Load unpacked extension". Point it to the
+`dist/web-extension` directory. Done.
 
 ### Firefox
 
-Download the [Firefox Addd-ons SDK](https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Installation)
-and go into the `firefox-extension` directory. Start a Firefox with `jpm run`.
+If you just want to try out and debug the extension, go to
+[about:debugging#addons](about:debugging#addons). Then press "Load Temporary
+Add-On" and select the `manifest.json` from the built extension directory.
 
-To build the xpi for distribution, go into the `firefox-extension` directory and use `jpm xpi`.
+### Opera
+
+Same process as in [Chrome](#chrome).
 
 ### Safari
 
-You need a [certificate](https://developer.apple.com/library/safari/documentation/Tools/Conceptual/SafariExtensionGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009977-CH1-SW1)
-to make the extension usable for you.
-
-After you installed the certificate, open Safari, enable the Developer Menu in the settings,
-go to the developer menu and open the extension builder. Press the + button and add the
-`tickety-tick.safariextension` that was build by grunt.
+Open Safari and enable the "Developer Menu" in the application preferences. Now
+go to the developer menu and open the "Extension Builder". Press the "+" button
+and add the `dist/tickety-tick.safariextension` that you just built.

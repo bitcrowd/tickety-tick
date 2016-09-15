@@ -1,0 +1,66 @@
+// Popup
+
+.popup {
+  width: 285px;
+  min-height: 210px;
+  padding-top: 42px;
+}
+
+// Logos
+
+.logo-sm {
+  width: 16px;
+  height: 16px;
+}
+
+// Grid
+
+.list-group-container {
+  padding: 0;
+}
+
+// Navs
+
+.navbar-tt {
+  border-bottom: 1px solid $gray-lighter;
+  background: #fff;
+}
+
+.nav-text {
+  display: inline-block;
+}
+
+.nav-text-sm {
+  padding: .55rem;
+  font-size: $font-size-sm;
+}
+
+// List groups
+
+.list-group-item-tt {
+  border-width: 1px 0 0 0;
+  border-radius: 0;
+}
+
+.list-group-item-tt:first-child {
+  border-top: 0;
+}
+
+// Spacing
+
+.pq {
+  margin-left: 0.25rem;
+}
+
+// Octicons
+
+.octicon {
+   display: inline-block;
+   vertical-align: text-top;
+   fill: currentColor;
+}
+
+.octicon-sm {
+  width: 16px;
+  height: 16px;
+}
