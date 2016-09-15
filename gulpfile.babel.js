@@ -156,7 +156,7 @@ gulp.task('build:webext', [
   'build:webext:icons',
   'build:webext:manifest'
 ], () => {
-  return gulp.src(dist.webext('*'))
+  return gulp.src(dist.webext('**/*'))
     .pipe(zip('web-extension.zip'))
     .pipe(gulp.dest(dist()));
 });
