@@ -66,7 +66,7 @@ function html(browser) {
 function css(browser, compat) {
   const prefixer = autoprefixer({ browsers: compat });
   return gulp.src(src.common('popup', 'popup.scss'))
-    .pipe(sass({}).on('error', sass.logError))
+    .pipe(sass({ includePaths: './node_modules' }).on('error', sass.logError))
     .pipe(postcss([prefixer]))
     .pipe(gulp.dest(dist[browser]('popup')));
 }

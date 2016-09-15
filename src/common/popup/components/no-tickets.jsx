@@ -6,19 +6,20 @@ const href = 'https://github.com/bitcrowd/tickety-tick/issues';
 
 function NoTickets() {
   return (
-    <div className="container no-tickets">
-      <h2 className="no-tickets-heading">No tickets found on this page.</h2>
-      <p>
+    <div className="text-xs-center m-b-2">
+      <h5 className="m-t-2 m-b-2">No tickets found on this page.</h5>
+      <h6>
         Did you select or open any tickets?
-      </p>
+      </h6>
       <p>
-        Tickety-Tick currently supports GitHub, Jira, Pivotal and Trello.
+        Tickety-Tick currently supports<br />
+        GitHub, Jira, Pivotal and Trello.
       </p>
+      <h6>
+        Missing anything or found a bug?
+      </h6>
       <p>
-        Missing anything or think you found a bug?
-      </p>
-      <p>
-        <ExternalLink className="issues-link" href={href}>Report an issue</ExternalLink>
+        <ExternalLink href={href}>Report an issue</ExternalLink>
       </p>
     </div>
   );

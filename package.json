@@ -45,7 +45,9 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.4",
     "jquery": "^3.1.0",
+    "octicons": "^4.4.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-router": "^2.7.0",

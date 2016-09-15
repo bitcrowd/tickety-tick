@@ -6,31 +6,29 @@ import TicketShape from '../utils/ticket-shape';
 import fmt from '../utils/format';
 
 function Header(props) {
-  const actions = ((tickets) => {
+  const btn = ((tickets) => {
     if (tickets.length === 0) return null;
 
     const summary = tickets.map(fmt.commit).join(', ');
 
     return (
-      <ul className="action-list">
-        <li className="action-list-item">
-          <CopyButton value={summary}>Summary</CopyButton>
-        </li>
-        <li className="action-list-item">
+      <div>
+        <CopyButton className="btn btn-secondary btn-sm" value={summary}>Summary</CopyButton>
+        <span className="nav-text nav-text-sm">
           {tickets.length} {(tickets.length === 1 ? 'ticket' : 'tickets')}
-        </li>
-      </ul>
+        </span>
+      </div>
     );
   })(props.tickets);
 
   return (
-    <div className="container header">
-      <div className="header-actions">
-        {actions}
-      </div>
-      <div className="header-info">
-        <Link to="/about">Info</Link>
-      </div>
+    <div className="navbar navbar-light navbar-tt">
+      <ul className="nav navbar-nav pull-xs-right">
+        <li className="nav-item text-xs-right">
+          <Link className="nav-link" to="/about">Info</Link>
+        </li>
+      </ul>
+      {btn}
     </div>
   );
 }

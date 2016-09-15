@@ -1,110 +1,27 @@
-@import "styles/normalize";
-@import "styles/base";
+// Customization
+@import "styles/settings";
 
-.popup {
-  width: 270px;
-  height: 240px;
-  margin: 0;
-  padding: 0;
-}
+// Core variables and mixins
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
 
-.container {
-  padding: 5px;
-}
+// Reset and dependencies
+@import "bootstrap/scss/normalize";
 
-.header {
-  border-bottom: 1px solid #ccc;
-  min-height: 22px;
-  line-height: 22px;
-  display: flex;
-  flex-direction: row;
-}
+// Core CSS
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/buttons";
 
-.header-actions {
-  flex: 3;
-}
+// Components
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/list-group";
 
-.header-info {
-  text-align: right;
-  flex: 1;
-}
+// Utility classes
+@import "bootstrap/scss/utilities";
 
-.action-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.action-list-item {
-  display: inline-block;
-  padding: 0 4px 0 0;
-  float: left;
-}
-
-.content {
-  height: 207px;
-  overflow-y: auto;
-}
-
-.ticket-list {
-  padding: 0;
-  margin: 0;
-}
-
-.ticket-list-item {
-  border-bottom: 1px solid #ddd;
-  margin: 0;
-  list-style-type: none;
-  vertical-align: middle;
-  display: flex;
-  flex-direction: row;
-}
-
-.ticket-list-item:last-child {
-  border-bottom: 0;
-}
-
-.ticket-list-item-content {
-  flex: 3;
-}
-
-.ticket-list-item-actions {
-  flex: 1;
-}
-
-.copy-button {
-}
-
-.no-tickets {
-  text-align: center;
-}
-
-.no-tickets-heading {
-  margin: 1em 0;
-}
-
-.about {
-}
-
-.about-heading {
-  margin-top: 0;
-}
-
-.about-subheading {
-  font-size: 1.1em;
-  font-weight: 600;
-}
-
-.logo-sm {
-  width: 16px;
-  height: 16px;
-}
-
-.usage-list {
-  margin: 0 0 1em 0;
-  padding: 0 0 0 1.2em;
-}
-
-.usage-list-item {
-  margin: 0 0 .5em 0;
-}
+// Popup style
+@import "styles/additions";
