@@ -33,12 +33,12 @@ describe('ticket-list-item', () => {
   });
 
   it('renders a copy-button for the commit messsage', () => {
-    const button = (<CopyButton value={fmt.commit(ticket)} >Commit message</CopyButton>);
-    expect(wrapper.containsMatchingElement(button)).toBe(true);
+    const buttons = wrapper.find(CopyButton);
+    expect(buttons.someWhere((b) => b.prop('value') === fmt.commit(ticket))).toBe(true);
   });
 
   it('renders a copy-button for the branch name', () => {
-    const button = (<CopyButton value={fmt.branch(ticket)} >Branch name</CopyButton>);
-    expect(wrapper.containsMatchingElement(button)).toBe(true);
+    const buttons = wrapper.find(CopyButton);
+    expect(buttons.someWhere((b) => b.prop('value') === fmt.branch(ticket))).toBe(true);
   });
 });
