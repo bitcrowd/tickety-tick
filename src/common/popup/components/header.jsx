@@ -22,7 +22,7 @@ function Header(props) {
   })(props.tickets);
 
   return (
-    <div className="navbar navbar-light navbar-tt">
+    <div className="navbar navbar-light navbar-fixed-top navbar-tt">
       <ul className="nav navbar-nav pull-xs-right">
         <li className="nav-item text-xs-right">
           <Link className="nav-link" to="/about">Info</Link>

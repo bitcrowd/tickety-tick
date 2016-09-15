@@ -6,7 +6,7 @@ import ExternalLink from './external-link';
 function About() {
   return (
     <div>
-      <div className="navbar navbar-light navbar-tt">
+      <div className="navbar navbar-light navbar-fixed-top navbar-tt">
         <div className="nav navbar-nav">
           <IndexLink className="nav-link" to="/">&lt; back</IndexLink>
         </div>
