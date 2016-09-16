@@ -1,10 +1,8 @@
-import $ from 'jquery';
-
-// TODO: remove jquery?
+/* global $$$ */
 
 const trim = (s) => s.replace(/^\s+|\s+$/g, '');
-const has = (sel, ctx) => $(sel, ctx).length > 0;
-const txt = (sel, ctx) => trim($(sel, ctx).text());
+const has = (sel, ctx) => $$$(sel, ctx).length > 0;
+const txt = (sel, ctx) => trim($$$(sel, ctx).text());
 
 const adapter = {
   inspect(loc, doc, fn) {
@@ -16,7 +14,7 @@ const adapter = {
       const title = txt('[data-field-id="summary"]', doc);
       return fn(null, [{ id, title }]);
     } else if (has('#issue-content', doc)) { // JIRA ticket page
-      const issue = $('#issue-content', doc);
+      const issue = $$$('#issue-content', doc);
       const id = txt('#key-val', issue);
       const title = txt('#summary-val', issue);
       return fn(null, [{ id, title }]);

@@ -1,10 +1,8 @@
-import $ from 'jquery';
-
-// TODO: remove jquery?
+/* global $$$ */
 
 const trim = (s) => s.replace(/^\s+|\s+$/g, '');
-const has = (sel, ctx) => $(sel, ctx).length > 0;
-const txt = (sel, ctx) => trim($(sel, ctx).text());
+const has = (sel, ctx) => $$$(sel, ctx).length > 0;
+const txt = (sel, ctx) => trim($$$(sel, ctx).text());
 
 const adapter = {
   inspect(loc, doc, fn) {

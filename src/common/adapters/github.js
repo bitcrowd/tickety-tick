@@ -1,19 +1,17 @@
-import $ from 'jquery';
-
-// TODO: remove jquery?
+/* global $$$ */
 
 const trim = (s) => s.replace(/^\s+|\s+$/g, '');
-const has = (sel, ctx) => $(sel, ctx).length > 0;
-const txt = (sel, ctx) => trim($(sel, ctx).text());
-const val = (sel, ctx) => $(sel, ctx).val();
+const has = (sel, ctx) => $$$(sel, ctx).length > 0;
+const txt = (sel, ctx) => trim($$$(sel, ctx).text());
+const val = (sel, ctx) => $$$(sel, ctx).val();
 
 const adapter = {
   inspect(loc, doc, fn) {
     if (has('.issues-listing .js-issue-row.selected', doc)) {
-      const issues = $('.issues-listing .js-issue-row.selected', doc);
+      const issues = $$$('.issues-listing .js-issue-row.selected', doc);
 
       const tickets = issues.map(function extract() {
-        const issue = $(this);
+        const issue = $$$(this);
 
         const id = val('input.js-issues-list-check', issue);
         const title = txt('a.js-navigation-open', issue);

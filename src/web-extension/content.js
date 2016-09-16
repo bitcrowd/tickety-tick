@@ -1,7 +1,9 @@
-/* eslint-env browser */
+/* eslint-env browser, jquery */
 /* global chrome */
 
 import stdsearch from '../common/search';
+
+window.$$$ = $.noConflict(true);
 
 const runtime = chrome.runtime;
 

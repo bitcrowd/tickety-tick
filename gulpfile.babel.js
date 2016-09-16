@@ -37,17 +37,19 @@ function copy(source, destination) {
   return gulp.src(source).pipe(gulp.dest(destination));
 }
 
-function backgroundjs(browser) {
-  return copy(src[browser]('background.js'), dist[browser]());
+function backgroundjs(version) {
+  return copy(src[version]('background.js'), dist[version]());
 }
 
-function contentjs(browser) {
+function contentjs(version) {
   const bundler = browserify({
-    basedir: src[browser](),
+    basedir: src[version](),
     entries: ['./content.js'],
     transform: ['babelify', 'envify'],
     debug: true
   });
+
+  bundler.external('jquery.js'); // ...just to please mozilla
 
   return bundler.bundle()
     .pipe(srcstream('content.js'))
@@ -55,25 +57,29 @@ function contentjs(browser) {
     .pipe(srcmaps.init({ loadMaps: true }))
     .pipe(uglify())
     .pipe(srcmaps.write())
-    .pipe(gulp.dest(dist[browser]()));
+    .pipe(gulp.dest(dist[version]()));
 }
 
-function html(browser) {
+function jquery(version) {
+  return copy('./node_modules/jquery/dist/jquery.js', dist[version]());
+}
+
+function html(version) {
   return gulp.src(src.common('popup', 'popup.html'))
-    .pipe(gulp.dest(dist[browser]('popup')));
+    .pipe(gulp.dest(dist[version]('popup')));
 }
 
-function css(browser, compat) {
+function css(version, compat) {
   const prefixer = autoprefixer({ browsers: compat });
   return gulp.src(src.common('popup', 'popup.scss'))
     .pipe(sass({ includePaths: './node_modules' }).on('error', sass.logError))
     .pipe(postcss([prefixer]))
-    .pipe(gulp.dest(dist[browser]('popup')));
+    .pipe(gulp.dest(dist[version]('popup')));
 }
 
-function js(browser) {
+function js(version) {
   const bundler = browserify({
-    basedir: src[browser]('popup'),
+    basedir: src[version]('popup'),
     entries: ['./popup.jsx'],
     transform: ['babelify', 'envify'],
     extensions: ['.jsx'],
@@ -86,10 +92,10 @@ function js(browser) {
     .pipe(srcmaps.init({ loadMaps: true }))
     .pipe(uglify())
     .pipe(srcmaps.write())
-    .pipe(gulp.dest(dist[browser]('popup')));
+    .pipe(gulp.dest(dist[version]('popup')));
 }
 
-function manifest(browser, pkginfo) {
+function manifest(version, pkginfo) {
   const process = (file, enc, cb) => {
     const mf = JSON.parse(file.contents.toString());
 
@@ -110,9 +116,9 @@ function manifest(browser, pkginfo) {
     cb(null, file);
   };
 
-  return gulp.src(src[browser]('manifest.json'))
+  return gulp.src(src[version]('manifest.json'))
     .pipe(through.obj(process))
-    .pipe(gulp.dest(dist[browser]()));
+    .pipe(gulp.dest(dist[version]()));
 }
 
 gulp.task('clean', (done) => {
@@ -125,6 +131,10 @@ gulp.task('build:webext:backgroundjs', () => {
 
 gulp.task('build:webext:contentjs', () => {
   return contentjs('webext');
+});
+
+gulp.task('build:webext:jquery', () => {
+  return jquery('webext');
 });
 
 gulp.task('build:webext:html', () => {
@@ -150,6 +160,7 @@ gulp.task('build:webext:manifest', () => {
 gulp.task('build:webext', [
   'build:webext:backgroundjs',
   'build:webext:contentjs',
+  'build:webext:jquery',
   'build:webext:html',
   'build:webext:css',
   'build:webext:js',
@@ -163,6 +174,10 @@ gulp.task('build:webext', [
 
 gulp.task('build:safari:contentjs', () => {
   return contentjs('safari');
+});
+
+gulp.task('build:safari:jquery', () => {
+  return jquery('safari');
 });
 
 gulp.task('build:safari:html', () => {
@@ -187,6 +202,7 @@ gulp.task('build:safari:plist', () => {
 
 gulp.task('build:safari', [
   'build:safari:contentjs',
+  'build:safari:jquery',
   'build:safari:html',
   'build:safari:css',
   'build:safari:js',
