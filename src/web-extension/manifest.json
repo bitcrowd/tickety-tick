@@ -20,7 +20,9 @@
     "dist/jquery.map"
   ],
   "permissions": [
-    "tabs"
+    "tabs",
+    "clipboardRead",
+    "clipboardWrite"
   ],
   "browser_action": {
     "default_name": "Git Branch/Message",
