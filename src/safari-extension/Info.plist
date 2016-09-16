@@ -57,6 +57,7 @@
 		<dict>
 			<key>Start</key>
 			<array>
+				<string>jquery.js</string>
 				<string>content.js</string>
 			</array>
 		</dict>

@@ -13,11 +13,13 @@
        "http://*/*",
        "https://*/*"
      ],
-      "js": ["content.js"]
+     "js": [
+       "jquery.js",
+       "content.js"
+     ]
     }
   ],
   "web_accessible_resources": [
-    "dist/jquery.map"
   ],
   "permissions": [
     "tabs",

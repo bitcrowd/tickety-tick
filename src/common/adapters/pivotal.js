@@ -1,18 +1,16 @@
-import $ from 'jquery';
-
-// TODO: remove jquery?
+/* global $$$ */
 
 const trim = (s) => s.replace(/^\s+|\s+$/g, '');
-const has = (sel, ctx) => $(sel, ctx).length > 0;
-const val = (sel, ctx) => trim($(sel, ctx).val());
-const txt = (sel, ctx) => trim($(sel, ctx).text());
+const has = (sel, ctx) => $$$(sel, ctx).length > 0;
+const val = (sel, ctx) => trim($$$(sel, ctx).val());
+const txt = (sel, ctx) => trim($$$(sel, ctx).text());
 
 const cls = (ctx) => ['bug', 'chore', 'feature', 'release']
   .find((c) => ctx.hasClass(c));
 
 function multiple(elements, collapsed) {
   return elements.map(function extract() {
-    const story = $(this);
+    const story = $$$(this);
 
     const id = story.data('id').toString();
 
@@ -31,15 +29,15 @@ const adapter = {
     if (doc.body.id !== 'tracker') return fn(null, null);
 
     if (has('div.story .selector.selected', doc)) { // selected stories
-      const selection = $('div.story .selector.selected', doc).closest('.story');
+      const selection = $$$('div.story .selector.selected', doc).closest('.story');
       const tickets = multiple(selection, true);
       return fn(null, tickets);
     } else if (has('div.story .details', doc)) { // opened stories
-      const opened = $('div.story .details', doc).closest('.story');
+      const opened = $$$('div.story .details', doc).closest('.story');
       const tickets = multiple(opened, false);
       return fn(null, tickets);
     } else if (has('.story.maximized', doc)) { // single story in separate tab
-      const story = $('.story.maximized', doc);
+      const story = $$$('.story.maximized', doc);
       const id = val('aside input.id', story).replace(/^#/, '');
       const title = txt('.editor.name', story);
       const type = cls(story);
