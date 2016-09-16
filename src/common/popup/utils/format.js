@@ -11,7 +11,7 @@ function commit(ticket) {
 }
 
 function branch(ticket) {
-  return `${ticket.type || 'feature'}/${normalize(ticket.title)}`;
+  return `${ticket.type || 'feature'}/${ticket.id}-${normalize(ticket.title)}`;
 }
 
 export default {
