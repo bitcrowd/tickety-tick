@@ -20,10 +20,20 @@ function TicketListItem(props) {
             <h6 className="list-group-heading">{ticket.title}</h6>
           </div>
           <div className="col-xs-4 text-xs-right">
-            <CopyButton className="btn btn-primary btn-sm" title="Branch name" value={branch}>
+            <CopyButton
+              className="btn btn-primary btn-sm"
+              title="Branch name"
+              value={branch}
+              tabIndex={1}
+            >
               <span className="octicon octicon-sm" dangerouslySetInnerHTML={svg('git-branch')} />
             </CopyButton>
-            <CopyButton className="btn btn-primary btn-sm pq" title="Commit message" value={commit}>
+            <CopyButton
+              className="btn btn-primary btn-sm pq"
+              title="Commit message"
+              value={commit}
+              tabIndex={1}
+            >
               <span className="octicon octicon-sm" dangerouslySetInnerHTML={svg('comment')} />
             </CopyButton>
           </div>
