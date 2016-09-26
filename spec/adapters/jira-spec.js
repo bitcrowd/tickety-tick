@@ -10,6 +10,11 @@ const TICKETPAGE = `
       <a class="issue-link" data-issue-key="UXPL-39" id="key-val">UXPL-39</a>
       <h1 id="summary-val">A Random JIRA Issue</h1>
     </div>
+    <div class="issue-body-content">
+      <span id="type-val" class="value editable-field inactive">
+        <img alt="" src="/" title="Bug - A problem"> Bug
+      </span>
+    </div>
   </div>
 `;
 
@@ -26,7 +31,7 @@ describe('jira adapter', () => {
   });
 
   it('extracts tickets from a ticket page', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue' }];
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'bug' }];
     adapter.inspect(null, doc(TICKETPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
