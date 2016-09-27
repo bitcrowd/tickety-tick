@@ -17,7 +17,8 @@ describe('format util', () => {
   describe('branch', () => {
     it('formats', () => {
       const formatted = format.branch(ticket);
-      expect(formatted).toBe(`${ticket.type || 'feature'}/${ticket.id}-${format.normalize(ticket.title)}`);
+      expect(formatted)
+        .toBe(`${ticket.type || 'feature'}/${ticket.id}-${format.normalize(ticket.title)}`);
     });
 
     it('formats type to feature if not provided', () => {
@@ -46,6 +47,5 @@ describe('format util', () => {
       expect(formatted).toBe('hello-bitcrowd');
     });
   });
-
 });
 
