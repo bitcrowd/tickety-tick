@@ -9,8 +9,8 @@ function $data(context, key) {
   return node.data(key);
 }
 
-function $attr(context, key) {
-  const node = $$$(context);
+function $attr(selector, context, key) {
+  const node = $$$(selector, context);
   return node.attr(key);
 }
 
