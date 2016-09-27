@@ -9,6 +9,11 @@ function $data(context, key) {
   return node.data(key);
 }
 
+function $attr(selector, context, key) {
+  const node = $$$(selector, context);
+  return node.attr(key);
+}
+
 function $has(selector, context) {
   const nodes = $$$(selector, context);
   return nodes.length > 0;
@@ -38,6 +43,7 @@ function $value(selector, context) {
 
 export {
   $data,
+  $attr,
   $find,
   $has,
   $classed,
