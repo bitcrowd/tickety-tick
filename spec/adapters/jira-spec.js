@@ -2,15 +2,17 @@ import { jsdom } from 'jsdom';
 
 import adapter from '../../src/common/adapters/jira';
 
-const SIDEBAR = `<div>
-  <div class="ghx-fieldname-issuekey">
-    <a href="#">UXPL-39</a>
+const SIDEBAR = `
+  <div>
+    <div class="ghx-fieldname-issuekey">
+      <a href="#">UXPL-39</a>
+    </div>
+    <div data-field-id="summary">A Random JIRA Sidebar Issue</div>
+    <div data-issue-key="UXPL-39">
+      <span class="ghx-type" title="Story"></span>
+    </div>
   </div>
-  <div data-field-id="summary">A Random JIRA Sidebar Issue</div>
-  <div data-issue-key="UXPL-39">
-    <span class="ghx-type" title="Story"></span>
-  </div>
-</div>`;
+`;
 const BUG_SIDEBAR = SIDEBAR.replace(/Story/, 'Bug');
 const CHORE_SIDEBAR = SIDEBAR.replace(/Story/, 'Chore');
 

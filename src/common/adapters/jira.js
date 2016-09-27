@@ -12,7 +12,6 @@ const adapter = {
     if (doc.body.id !== 'jira') return fn(null, null);
 
     if ($has('.ghx-fieldname-issuekey a', doc)) { // JIRA sidebar
-      // TODO: check what this looks like in JIRA, update tests, find better selectors
       const id = $text('.ghx-fieldname-issuekey a', doc);
       const title = $text('[data-field-id="summary"]', doc);
       const type = normalizeType($attr(`[data-issue-key="${id}"] .ghx-type`, doc, 'title'));
