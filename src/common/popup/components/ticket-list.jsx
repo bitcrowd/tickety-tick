@@ -11,6 +11,7 @@ function TicketListItem(props) {
   const ticket = props.ticket;
   const commit = fmt.commit(ticket);
   const branch = fmt.branch(ticket);
+  const command = fmt.command(ticket);
 
   return (
     <li className="list-group-item list-group-item-tt">
@@ -35,6 +36,14 @@ function TicketListItem(props) {
               tabIndex={1}
             >
               <span className="octicon octicon-sm" dangerouslySetInnerHTML={svg('comment')} />
+            </CopyButton>
+            <CopyButton
+              className="btn btn-primary btn-sm pq"
+              title="CLI command"
+              value={command}
+              tabIndex={1}
+            >
+              <span className="octicon octicon-sm" dangerouslySetInnerHTML={svg('terminal')} />
             </CopyButton>
           </div>
         </div>
