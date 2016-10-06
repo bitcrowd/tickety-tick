@@ -31,6 +31,13 @@ describe('format util', () => {
     });
   });
 
+  describe('command', () => {
+    it('includes branch anme and commit message', () => {
+      const formatted = format.command(ticket);
+      expect(formatted).toBe(`git checkout -b ${format.branch(ticket)} && git commit --allow-empty -m "${format.commit(ticket)}"`);
+    });
+  });
+
   describe('normalize', () => {
     it('formats normal strings', () => {
       const formatted = format.normalize('hello');

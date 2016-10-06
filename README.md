@@ -6,7 +6,7 @@ At bitcrowd we love conventions. One of them is how we name branches and
 commits. This makes it easy to relate a particular branch or commit to a
 certain ticket.
 
-![screenshot](./screenshot.png)
+![screenshot](./screenshot.jpg)
 
 Branches always follow the format `type/id-title`, where `type` can be one of
 `feature`, `bug`, `chore` etc., `id` is the identifier of the ticket in your
@@ -14,6 +14,12 @@ ticketing system and `title` is a lowercase, dasherized version of the ticket
 title.
 
 Commits always contain `[#id] title`.
+
+CLI Commands combines both branches and commits and always contains a `git checkout -b` with the branch name and an
+empty commit which contains the matching commit message. Example Output:
+```
+git checkout -b feature/JIRA-422-datepicker-validations-for-local-times-in-forms && git commit --allow-empty -m "[#JIRA-422] Datepicker validations for local times in forms"
+```
 
 Tickety-Tick helps you create branches and commits for a few ticket systems.
 

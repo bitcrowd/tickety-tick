@@ -15,7 +15,7 @@ function branch(ticket) {
 }
 
 function command(ticket) {
-  return `git checkout -b ${branch(ticket)}  && git commit --allow-empty -m"${commit(ticket)}"`;
+  return `git checkout -b ${branch(ticket)} && git commit --allow-empty -m "${commit(ticket)}"`;
 }
 
 export default {
