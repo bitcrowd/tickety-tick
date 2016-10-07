@@ -6,7 +6,7 @@ At bitcrowd we love conventions. One of them is how we name branches and
 commits. This makes it easy to relate a particular branch or commit to a
 certain ticket.
 
-![screenshot](./screenshot.jpg)
+![screenshot](./screenshot.png)
 
 **Branches** always follow the format `type/id-title`, where:
 

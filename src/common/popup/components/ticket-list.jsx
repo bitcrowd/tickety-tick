@@ -17,10 +17,10 @@ function TicketListItem(props) {
     <li className="list-group-item list-group-item-tt">
       <div className="container list-group-container">
         <div className="row">
-          <div className="col-xs-8">
+          <div className="col-xs-7">
             <h6 className="list-group-heading">{ticket.title}</h6>
           </div>
-          <div className="col-xs-4 text-xs-right">
+          <div className="col-xs-5 text-xs-right">
             <CopyButton
               className="btn btn-primary btn-sm"
               title="Branch name"
