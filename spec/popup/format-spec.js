@@ -32,10 +32,33 @@ describe('format util', () => {
   });
 
   describe('command', () => {
-    it('includes branch anme and commit message', () => {
+    it('includes the quoted branch name and commit message', () => {
+      const quote = (arg) => (`'quoted-${arg}'`);
+
+      const branchname = 'branch-name';
+      const message = 'commit-message';
+
+      spyOn(format, 'shellquote').and.callFake(quote);
+
+      spyOn(format, 'branch').and.returnValue(branchname);
+      spyOn(format, 'commit').and.returnValue(message);
+
       const formatted = format.command(ticket);
-      expect(formatted).toBe(`git checkout -b ${format.branch(ticket)}`
-        + ` && git commit --allow-empty -m '${format.commit(ticket)}'`);
+
+      expect(format.shellquote.calls.count()).toBe(2);
+
+      expect(formatted).toBe(`git checkout -b ${quote(branchname)}`
+        + ` && git commit --allow-empty -m ${quote(message)}`);
+    });
+  });
+
+  describe('shellquote', () => {
+    it('wraps the input in single-quotes', () => {
+      expect(format.shellquote('echo "pwned"')).toBe('\'echo "pwned"\'');
+    });
+
+    it('escapes any single-quotes in the input', () => {
+      expect(format.shellquote('esc\'; echo "pwned"')).toBe('\'esc\'\\\'\'; echo "pwned"\'');
     });
   });
 
