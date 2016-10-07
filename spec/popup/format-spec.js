@@ -35,7 +35,7 @@ describe('format util', () => {
     it('includes branch anme and commit message', () => {
       const formatted = format.command(ticket);
       expect(formatted).toBe(`git checkout -b ${format.branch(ticket)}`
-                             + ` && git commit --allow-empty -m "${format.commit(ticket)}"`);
+        + ` && git commit --allow-empty -m '${format.commit(ticket)}'`);
     });
   });
 
