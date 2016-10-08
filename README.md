@@ -1,4 +1,4 @@
-# Tickety-Tick [![Build Status](https://travis-ci.org/bitcrowd/tickety-tick.svg?branch=master)](https://travis-ci.org/bitcrowd/tickety-tick)
+# Tickety-Tick [![Build Status](https://travis-ci.org/bitcrowd/tickety-tick.svg?branch=master)](https://travis-ci.org/bitcrowd/tickety-tick) [![Coverage Status](https://coveralls.io/repos/bitcrowd/tickety-tick/badge.svg?branch=master&service=github)](https://coveralls.io/github/bitcrowd/tickety-tick?branch=master)
 
 *How do you name this branch? What is the message for that commit?*
 
@@ -48,9 +48,10 @@ Tickety-Tick is available for every major browser:
 
 In order to build the extension from source, run:
 
-```
+```shell
 npm install
 npm run build
+npm run checks
 ```
 
 For development use `npm run watch`. This will watch the files and rebuild the

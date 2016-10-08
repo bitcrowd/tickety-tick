@@ -1,6 +1,7 @@
 language: "node_js"
 node_js: "6"
-script: "npm run ci"
 cache:
   directories:
     - "node_modules"
+script: "npm run lint && npm run test:coverage"
+after_success: "npm install coveralls@2.11.14 && nyc report --reporter=text-lcov | coveralls"

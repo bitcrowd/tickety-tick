@@ -7,5 +7,12 @@ node_modules
 # Optional npm cache directory
 .npm
 
+# Optional eslint cache
+.eslintcache
+
 # Build output
 dist
+
+# Test coverage reports
+.nyc_output/
+coverage/
