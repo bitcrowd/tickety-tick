@@ -41,4 +41,9 @@ describe('ticket-list-item', () => {
     const buttons = wrapper.find(CopyButton);
     expect(buttons.someWhere((b) => b.prop('value') === fmt.branch(ticket))).toBe(true);
   });
+
+  it('renders a copy-button for the git commands', () => {
+    const buttons = wrapper.find(CopyButton);
+    expect(buttons.someWhere((b) => b.prop('value') === fmt.command(ticket))).toBe(true);
+  });
 });
