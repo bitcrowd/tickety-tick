@@ -3,6 +3,7 @@ import React from 'react';
 import TicketList from './ticket-list';
 import NoTickets from './no-tickets';
 import Header from './header';
+import TicketShape from '../utils/ticket-shape';
 
 function Tool(props) {
   const content = (props.tickets && props.tickets.length > 0)
@@ -18,7 +19,7 @@ function Tool(props) {
 }
 
 Tool.propTypes = {
-  tickets: React.PropTypes.array
+  tickets: React.PropTypes.arrayOf(TicketShape)
 };
 
 export default Tool;

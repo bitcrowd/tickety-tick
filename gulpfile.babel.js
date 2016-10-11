@@ -16,7 +16,7 @@ import rimraf from 'rimraf';
 import srcstream from 'vinyl-source-stream';
 import through from 'through2';
 
-import pkg from './package';
+import pkg from './package.json';
 
 function src(...p) {
   return path.join('./src', ...p);

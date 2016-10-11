@@ -9,7 +9,7 @@ function EnvReceiver(props, ctx) {
 }
 
 EnvReceiver.propTypes = {
-  received: React.PropTypes.object.isRequired
+  received: React.PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };
 
 EnvReceiver.contextTypes = {

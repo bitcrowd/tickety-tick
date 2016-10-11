@@ -5,7 +5,9 @@ import CopyButton from './copy-button';
 import TicketShape from '../utils/ticket-shape';
 import fmt from '../utils/format';
 
-const svg = (name) => ({ __html: octicons.svg[name] });
+const svg = name => ({ __html: octicons.svg[name] });
+
+/* eslint-disable jsx-a11y/tabindex-no-positive, react/no-danger */
 
 function TicketListItem(props) {
   const ticket = props.ticket;
@@ -52,12 +54,14 @@ function TicketListItem(props) {
   );
 }
 
+/* eslint-enable jsx-a11y/tabindex-no-positive, react/no-danger */
+
 TicketListItem.propTypes = {
   ticket: TicketShape.isRequired
 };
 
 function TicketList(props) {
-  const item = (ticket) => (
+  const item = ticket => (
     <TicketListItem key={ticket.id} ticket={ticket} />
   );
 
