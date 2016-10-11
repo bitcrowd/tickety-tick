@@ -1,4 +1,4 @@
-# Tickety-Tick [![Build Status](https://travis-ci.org/bitcrowd/tickety-tick.svg?branch=master)](https://travis-ci.org/bitcrowd/tickety-tick) [![Coverage Status](https://coveralls.io/repos/bitcrowd/tickety-tick/badge.svg?branch=master&service=github)](https://coveralls.io/github/bitcrowd/tickety-tick?branch=master)
+# Tickety-Tick [![Build Status](https://travis-ci.org/bitcrowd/tickety-tick.svg?branch=master)](https://travis-ci.org/bitcrowd/tickety-tick)
 
 *How do you name this branch? What is the message for that commit?*
 
