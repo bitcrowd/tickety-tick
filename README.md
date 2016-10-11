@@ -81,7 +81,26 @@ Open Safari and enable the "Developer Menu" in the application preferences. Now
 go to the developer menu and open the "Extension Builder". Press the "+" button
 and add the `dist/tickety-tick.safariextension` that you just built.
 
-## Generated commands
+## Development
+
+### Generating coverage reports
+
+In order to generate code coverage reports locally, just run:
+
+```shell
+npm run test:coverage
+```
+
+Then, to generate and view HTML reports:
+
+```shell
+./node_modules/.bin/nyc report --reporter lcov
+open coverage/lcov-report/index.html
+```
+
+## Insights
+
+### Generated commands
 
 As mentioned earlier, in addition to branch names and commit messages,
 Tickety-Tick generates git commands to set up a branch with the proper name
