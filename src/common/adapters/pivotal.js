@@ -1,6 +1,6 @@
 import { $data, $find, $has, $classed, $text, $value } from './helpers';
 
-const cls = (ctx) => ['bug', 'chore', 'feature', 'release'].find((c) => $classed(ctx, c));
+const cls = ctx => ['bug', 'chore', 'feature', 'release'].find(c => $classed(ctx, c));
 
 function multiple(elements, collapsed) {
   return elements.map((i, story) => {

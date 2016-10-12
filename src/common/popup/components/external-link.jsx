@@ -5,6 +5,7 @@ function ExternalLink(props, context) {
     ? () => context.openext(props.href)
     : () => true;
 
+  // eslint-disable-next-line jsx-a11y/anchor-has-content, jsx-a11y/no-static-element-interactions
   return (<a {...props} target="_blank" rel="noopener noreferrer" onClick={handler} />);
 }
 

@@ -1,4 +1,4 @@
-import format from '../../src/common/popup/utils/format.js';
+import format from '../../src/common/popup/utils/format';
 
 describe('format util', () => {
   const ticket = {
@@ -33,7 +33,7 @@ describe('format util', () => {
 
   describe('command', () => {
     it('includes the quoted branch name and commit message', () => {
-      const quote = (arg) => (`'quoted-${arg}'`);
+      const quote = arg => (`'quoted-${arg}'`);
 
       const branchname = 'branch-name';
       const message = 'commit-message';
