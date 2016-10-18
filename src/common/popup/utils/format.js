@@ -5,7 +5,7 @@ const slugify = createSlug({ separator: '-' });
 const format = {};
 
 format.shellquote = function shellquote(s) {
-  if (typeof s === 'string') return `'${s.replace('\'', '\'\\\'\'')}'`;
+  if (typeof s === 'string') return `'${s.replace(/'/g, '\'\\\'\'')}'`;
   return '\'\'';
 };
 

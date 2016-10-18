@@ -58,7 +58,9 @@ describe('format util', () => {
     });
 
     it('escapes any single-quotes in the input', () => {
-      expect(format.shellquote('esc\'; echo "pwned"')).toBe('\'esc\'\\\'\'; echo "pwned"\'');
+      const input = 'you\'; echo aren\'t "pwned"';
+      const quoted = '\'you\'\\\'\'; echo aren\'\\\'\'t "pwned"\'';
+      expect(format.shellquote(input)).toBe(quoted);
     });
   });
 
