@@ -5,12 +5,13 @@ import CopyButton from './copy-button';
 import TicketShape from '../utils/ticket-shape';
 import fmt from '../utils/format';
 
-const svg = name => ({ __html: octicons.svg[name] });
+const svg = name => ({ __html: octicons[name].toSVG() });
 
 /* eslint-disable jsx-a11y/tabindex-no-positive, react/no-danger */
 
 function TicketListItem(props) {
   const ticket = props.ticket;
+
   const commit = fmt.commit(ticket);
   const branch = fmt.branch(ticket);
   const command = fmt.command(ticket);
