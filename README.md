@@ -49,12 +49,12 @@ Tickety-Tick is available for every major browser:
 In order to build the extension from source, run:
 
 ```shell
-npm install
-npm run build
-npm run checks
+yarn install
+yarn run build
+yarn run checks
 ```
 
-For development use `npm run watch`. This will watch the files and rebuild the
+For development use `yarn run watch`. This will watch the files and rebuild the
 extension whenever source files change.
 
 ## Installing a custom-built version
@@ -88,7 +88,7 @@ and add the `dist/tickety-tick.safariextension` that you just built.
 In order to generate code coverage reports locally, just run:
 
 ```shell
-npm run test:coverage
+yarn run test:coverage
 ```
 
 Then, to generate and view HTML reports:
