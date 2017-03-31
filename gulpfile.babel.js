@@ -3,6 +3,7 @@
 import path from 'path';
 
 import gulp from 'gulp';
+import elm from 'gulp-elm';
 import postcss from 'gulp-postcss';
 import sass from 'gulp-sass';
 import srcmaps from 'gulp-sourcemaps';
@@ -78,16 +79,22 @@ function css(version, compat) {
 }
 
 function js(version) {
+  return gulp.src(src.common('popup', '**', '*.elm'))
+    .pipe(elm.bundle('popup.js'))
+    .pipe(gulp.dest(dist[version]('popup')));
+}
+
+function mainjs(version) {
   const bundler = browserify({
     basedir: src[version]('popup'),
-    entries: ['./popup.jsx'],
+    entries: ['./main.js'],
     transform: ['babelify', 'envify'],
-    extensions: ['.jsx'],
+    extensions: ['.js'],
     debug: true
   });
 
   return bundler.bundle()
-    .pipe(srcstream('popup.js'))
+    .pipe(srcstream('main.js'))
     .pipe(buffer())
     .pipe(srcmaps.init({ loadMaps: true }))
     .pipe(uglify())
@@ -149,6 +156,10 @@ gulp.task('build:webext:js', () => {
   return js('webext');
 });
 
+gulp.task('build:webext:mainjs', () => {
+  return mainjs('webext');
+});
+
 gulp.task('build:webext:icons', () => {
   return copy(src.common('icons', '*.png'), dist.webext('icons'));
 });
@@ -164,6 +175,7 @@ gulp.task('build:webext', [
   'build:webext:html',
   'build:webext:css',
   'build:webext:js',
+  'build:webext:mainjs',
   'build:webext:icons',
   'build:webext:manifest'
 ], () => {
@@ -192,6 +204,10 @@ gulp.task('build:safari:js', () => {
   return js('safari');
 });
 
+gulp.task('build:safari:mainjs', () => {
+  return mainjs('safari');
+});
+
 gulp.task('build:safari:icons', () => {
   return copy(src.common('icons', '*.png'), dist.safari('icons'));
 });
@@ -206,6 +222,7 @@ gulp.task('build:safari', [
   'build:safari:html',
   'build:safari:css',
   'build:safari:js',
+  'build:safari:mainjs',
   'build:safari:icons',
   'build:safari:plist'
 ]);

@@ -10,9 +10,9 @@ function multiple(elements, collapsed) {
       ? $text('.story_name', story)
       : $value('.editor.name', story);
 
-    const type = cls(story);
+    const kind = cls(story);
 
-    return { id, title, type };
+    return { id, title, kind };
   }).get();
 }
 
@@ -32,8 +32,8 @@ const adapter = {
       const story = $find('.story.maximized', doc);
       const id = $value('aside input.id', story).replace(/^#/, '');
       const title = $text('.editor.name', story);
-      const type = cls(story);
-      const tickets = [{ id, title, type }];
+      const kind = cls(story);
+      const tickets = [{ id, title, kind }];
       return fn(null, tickets);
     }
 

@@ -1,9 +1,9 @@
 import { $find, $has, $text, $attr } from './helpers';
 
-const TYPES = ['bug', 'chore'];
-const normalizeType = (type) => {
-  const sanitizedType = type && type.toLowerCase();
-  if (TYPES.indexOf(sanitizedType) > -1) return sanitizedType;
+const KINDS = ['bug', 'chore'];
+const normalizeKind = (kind) => {
+  const sanitizedKind = kind && kind.toLowerCase();
+  if (KINDS.indexOf(sanitizedKind) > -1) return sanitizedKind;
   return 'feature';
 };
 
@@ -14,14 +14,14 @@ const adapter = {
     if ($has('.ghx-fieldname-issuekey a', doc)) { // JIRA sidebar
       const id = $text('.ghx-fieldname-issuekey a', doc);
       const title = $text('[data-field-id="summary"]', doc);
-      const type = normalizeType($attr(`[data-issue-key="${id}"] .ghx-type`, doc, 'title'));
-      return fn(null, [{ id, title, type }]);
+      const kind = normalizeKind($attr(`[data-issue-key="${id}"] .ghx-type`, doc, 'title'));
+      return fn(null, [{ id, title, kind }]);
     } else if ($has('#issue-content', doc)) { // JIRA ticket page
       const issue = $find('#issue-content', doc);
       const id = $text('#key-val', issue);
       const title = $text('#summary-val', issue);
-      const type = normalizeType($text('#type-val', issue));
-      return fn(null, [{ id, title, type }]);
+      const kind = normalizeKind($text('#type-val', issue));
+      return fn(null, [{ id, title, kind }]);
     }
 
     return fn(null, null);

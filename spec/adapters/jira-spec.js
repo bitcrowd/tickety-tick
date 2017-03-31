@@ -45,7 +45,7 @@ describe('jira adapter', () => {
   });
 
   it('extracts story tickets from a ticket page', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'feature' }];
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue', kind: 'feature' }];
     adapter.inspect(null, doc(STORYPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
@@ -53,7 +53,7 @@ describe('jira adapter', () => {
   });
 
   it('extracts bug tickets from a ticket page', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'bug' }];
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue', kind: 'bug' }];
     adapter.inspect(null, doc(BUGPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
@@ -61,7 +61,7 @@ describe('jira adapter', () => {
   });
 
   it('extracts chore tickets from a ticket page', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'chore' }];
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue', kind: 'chore' }];
     adapter.inspect(null, doc(CHOREPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
@@ -69,7 +69,7 @@ describe('jira adapter', () => {
   });
 
   it('extracts tickets from the sidebar', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Sidebar Issue', type: 'feature' }];
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Sidebar Issue', kind: 'feature' }];
     adapter.inspect(null, doc(SIDEBAR), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
@@ -77,7 +77,7 @@ describe('jira adapter', () => {
   });
 
   it('extracts bug tickets from the sidebar', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Sidebar Issue', type: 'bug' }];
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Sidebar Issue', kind: 'bug' }];
     adapter.inspect(null, doc(BUG_SIDEBAR), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
@@ -85,7 +85,7 @@ describe('jira adapter', () => {
   });
 
   it('extracts chore tickets from the sidebar', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Sidebar Issue', type: 'chore' }];
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Sidebar Issue', kind: 'chore' }];
     adapter.inspect(null, doc(CHORE_SIDEBAR), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);

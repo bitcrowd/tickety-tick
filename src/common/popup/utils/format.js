@@ -18,7 +18,7 @@ format.commit = function commit(ticket) {
 };
 
 format.branch = function branch(ticket) {
-  return `${ticket.type || 'feature'}/${ticket.id}-${format.normalize(ticket.title)}`;
+  return `${ticket.kind || 'feature'}/${ticket.id}-${format.normalize(ticket.title)}`;
 };
 
 format.command = function command(ticket) {

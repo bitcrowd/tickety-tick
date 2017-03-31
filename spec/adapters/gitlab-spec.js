@@ -33,7 +33,7 @@ describe('gitlab adapter', () => {
   });
 
   it('extracts tickets from issue pages', () => {
-    const expected = [{ id: '22578', title: 'A Random GitLab Issue', type: 'feature' }];
+    const expected = [{ id: '22578', title: 'A Random GitLab Issue', kind: 'feature' }];
     adapter.inspect(null, dom(ISSUEPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
@@ -41,7 +41,7 @@ describe('gitlab adapter', () => {
   });
 
   xit('recognizes issues labelled as bugs', () => {
-    const expected = [{ id: '12', title: 'A Random GitHub Issue', type: 'bug' }];
+    const expected = [{ id: '12', title: 'A Random GitHub Issue', kind: 'bug' }];
     adapter.inspect(null, dom(BUGPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);

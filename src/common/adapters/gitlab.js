@@ -5,8 +5,8 @@ const adapter = {
     if ($has('.issue-details', doc)) {
       const id = $text('.detail-page-header .issuable-meta .identifier', doc).match(/#(\d+)/)[1];
       const title = $text('.issue-details .detail-page-description .title', doc);
-      const type = $has('.sidebar-labels .label[title="bug"]', doc) ? 'bug' : 'feature';
-      const tickets = [{ id, title, type }];
+      const kind = $has('.sidebar-labels .label[title="bug"]', doc) ? 'bug' : 'feature';
+      const tickets = [{ id, title, kind }];
       return fn(null, tickets);
     }
 

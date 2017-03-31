@@ -8,9 +8,9 @@ certain ticket.
 
 ![screenshot](./screenshot.png)
 
-**Branches** always follow the format `type/id-title`, where:
+**Branches** always follow the format `kind/id-title`, where:
 
-- `type` is usually one of:
+- `kind` is usually one of:
   - `feature` (default)
   - `bug`
   - `chore`

@@ -7,9 +7,9 @@ const adapter = {
 
     const id = loc.pathname.match(/\/([\d]+)-[^/]+$/)[1];
     const title = $text('.card-detail-title-assist', doc);
-    const type = 'feature';
+    const kind = 'feature';
 
-    const tickets = [{ id, title, type }];
+    const tickets = [{ id, title, kind }];
 
     return fn(null, tickets);
   }
