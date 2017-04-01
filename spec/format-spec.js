@@ -1,4 +1,4 @@
-import format from '../../../src/common/popup/utils/format';
+import format from '../src/common/format';
 
 describe('format util', () => {
   const ticket = {
