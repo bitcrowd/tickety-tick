@@ -10,6 +10,7 @@ function render(tickets, { grab, openext }) {
 
   // For some reason, `tickets` is not `instanceof Array`,
   // which causes Elm not to recognize it as a valid `List` input.
+  // Potentially because it's from a content/background script?
   const list = Array.of.apply(null, tickets);
 
   app.ports.load.send(list || []);
