@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tickety-Tick</title>
+    <link rel="stylesheet" href="dist/web-extension/popup/popup.css" type="text/css">
+  </head>
+  <body>
+    <div id="popup-root" class="popup"></div>
+    <script src="dist/web-extension/popup/popup.js"></script>
+    <script>
+      function render(tickets, env) {
+        var node = document.getElementById('popup-root');
+        var app = Elm.App.embed(node);
+
+        app.ports.grab.subscribe(env.grab);
+        app.ports.openext.subscribe(env.openext);
+
+        app.ports.load.send(tickets || []);
+      }
+
+      render([{id: 'id', title: 'Hello Elm, from Tickety-Tick', kind: 'experiment'}], {
+        grab: function grab(value) { console.log('grab:', value); },
+        openext: function openext(url) { console.log('open:', value); }
+      });
+    </script>
+  </body>
+</html>
