@@ -1,9 +1,12 @@
 /* eslint-env browser */
 /* global Elm */
 
-function render(tickets /* , env */) {
+function render(tickets, { grab, openext }) {
   const node = document.getElementById('popup-root');
-  Elm.App.embed(node, { tickets }); // , env });
+  const app = Elm.App.embed(node, { tickets });
+
+  app.ports.grab.subscribe(grab);
+  app.ports.openext.subscribe(openext);
 }
 
 export default render;

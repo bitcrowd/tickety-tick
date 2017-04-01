@@ -1,6 +1,10 @@
 module App exposing (..)
 
 import Html exposing (..)
+import Html.Events exposing (..)
+
+import Grab exposing (grab)
+import OpenExt exposing (openext)
 
 main =
   Html.programWithFlags
@@ -34,11 +38,13 @@ init flags =
 
 -- UPDATE
 
-type Msg = Load
+type Msg = OpenGitHub
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
-  (model, Cmd.none) 
+  case msg of
+    OpenGitHub ->
+      (model, grab "https://github.com/bitcrowd/tickety-tick")
 
 
 -- SUBSCRIPTIONS
@@ -52,4 +58,7 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-  div [] [ text "Hello Tickety-Tick" ]
+  div []
+    [ text "Hello Tickety-Tick"
+    , button [ onClick OpenGitHub ] [ text "Copy GitHub URL" ]
+    ]
