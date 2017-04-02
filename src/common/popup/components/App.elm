@@ -1,11 +1,12 @@
 module App exposing (..)
 
 import Html exposing (..)
-import Html.Events exposing (..)
 
 import Models exposing (Ticket)
 import Ports exposing (load, grab, openext)
+import Messages exposing (Msg(Load, Navigate))
 
+import Routes exposing (Route(IndexRoute, AboutRoute))
 import Index
 import About
 
@@ -21,25 +22,17 @@ main =
 
 -- MODEL
 
-type Page
-  = Index
-  | About
-
 type alias Model =
   { tickets : Maybe (List Ticket)
-  , page : Page
+  , route : Route
   }
 
 init : (Model, Cmd Msg)
 init =
-  (Model Nothing Index, Cmd.none)
+  (Model Nothing IndexRoute, Cmd.none)
 
 
 -- UPDATE
-
-type Msg
-  = Load (List Ticket)
-  | Navigate Page
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -47,8 +40,8 @@ update msg model =
     Load tickets ->
       ({ model | tickets = Just tickets }, Cmd.none)
 
-    Navigate page ->
-      ({ model | page = page }, Cmd.none)
+    Navigate route ->
+      ({ model | route = route }, Cmd.none)
 
 
 -- SUBSCRIPTIONS
@@ -64,11 +57,11 @@ view : Model -> Html Msg
 view model =
   case model.tickets of
     Just tickets ->
-      case model.page of
-        Index ->
+      case model.route of
+        IndexRoute ->
           Index.view tickets
 
-        About ->
+        AboutRoute ->
           About.view
 
     Nothing ->

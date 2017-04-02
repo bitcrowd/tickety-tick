@@ -2,11 +2,14 @@ module Header exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 
 import Models exposing (Ticket)
+import Messages exposing (Msg(Navigate))
+import Routes exposing (Route(AboutRoute))
 
 
-view : List Ticket -> Html msg
+view : List Ticket -> Html Msg
 view tickets =
   let
     btn =
@@ -21,7 +24,7 @@ view tickets =
     div [ class "navbar navbar-light navbar-fixed-top navbar-tt" ]
       [ ul [ class "nav navbar-nav pull-xs-right" ]
         [ li [ class "nav-item text-xs-right" ]
-          [ a [ class "nav-link" ] [ text "Info" ]
+          [ a [ class "nav-link", onClick (Navigate AboutRoute) ] [ text "Info" ]
           ]
         ]
       , btn

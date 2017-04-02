@@ -2,14 +2,18 @@ module About exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
+
+import Messages exposing (Msg(Navigate))
+import Routes exposing (Route(IndexRoute))
 
 
-view : Html msg
+view : Html Msg
 view =
   div []
     [ div [ class "navbar navbar-light navbar-fixed-top navbar-tt" ]
       [ div [ class "nav navbar-nav" ]
-        [ a [ class "nav-link" ] [ text "< back" ]
+        [ a [ class "nav-link", onClick (Navigate IndexRoute) ] [ text "< back" ]
         ]
       ]
     , div [ class "content" ]
