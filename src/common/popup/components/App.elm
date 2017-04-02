@@ -1,10 +1,14 @@
-port module App exposing (..)
+module App exposing (..)
 
 import Html exposing (..)
 import Html.Events exposing (..)
 
 import Models exposing (Ticket)
 import Ports exposing (load, grab, openext)
+
+import Index
+import About
+
 
 main =
   Html.program
@@ -17,20 +21,25 @@ main =
 
 -- MODEL
 
+type Page
+  = Index
+  | About
+
 type alias Model =
   { tickets : Maybe (List Ticket)
+  , page : Page
   }
 
 init : (Model, Cmd Msg)
 init =
-  (Model Nothing, Cmd.none)
+  (Model Nothing Index, Cmd.none)
 
 
 -- UPDATE
 
 type Msg
   = Load (List Ticket)
-  | OpenGitHub
+  | Navigate Page
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -38,8 +47,8 @@ update msg model =
     Load tickets ->
       ({ model | tickets = Just tickets }, Cmd.none)
 
-    OpenGitHub ->
-      (model, grab "https://github.com/bitcrowd/tickety-tick")
+    Navigate page ->
+      ({ model | page = page }, Cmd.none)
 
 
 -- SUBSCRIPTIONS
@@ -51,23 +60,16 @@ subscriptions model =
 
 -- VIEW
 
-ticketListItem : Ticket -> Html Msg
-ticketListItem ticket =
-  li []
-    [ h6 [] [ text ticket.title ]
-    ]
-
 view : Model -> Html Msg
 view model =
   case model.tickets of
     Just tickets ->
-      ul [] (List.map ticketListItem tickets)
+      case model.page of
+        Index ->
+          Index.view tickets
+
+        About ->
+          About.view
 
     Nothing ->
       div [] [ text "loading" ]
-
-    -- div []
-    --   [ text "Hello Tickety-Tick"
-    --   , button [ onClick OpenGitHub ] [ text "Copy GitHub URL" ]
-    --   , ul [] (List.map ticketListItem tickets)
-    --   ]
