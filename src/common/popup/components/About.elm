@@ -4,6 +4,8 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
+import ExternalLink
+
 import Messages exposing (Msg(Navigate))
 import Routes exposing (Route(IndexRoute))
 
@@ -20,7 +22,7 @@ view =
       [ div [ class "container" ]
         [ h1 [ class "h3 m-t-1 m-b-1" ]
           [ img [ src "../icons/icon-32.png", class "logo-sm", attribute "role" "presentation" ] []
-          , text "tickety-tick"
+          , text " tickety-tick"
           ]
         , h6 [] [ text "Usage:" ]
         , ol [ class "m-t-1 p-l-2" ]
@@ -29,22 +31,26 @@ view =
             ]
         , p []
             [ text "This extension is open-source software by the fellows at "
-            , a [ href "http://bitcrowd.net" ] [ text "bitcrowd" ]
+            , extlink "http://bitcrowd.net" "bitcrowd"
             , text "."
             ]
         , p []
             [ text "The source code is available on "
-            , a [ href "https://github.com/bitcrowd/tickety-tick" ] [ text "GitHub" ]
+            , extlink "https://github.com/bitcrowd/tickety-tick" "GitHub"
             , text "."
             ]
         , p [ class "small" ]
             [ text "Logo by "
-            , a [ href "http://thenounproject.com/term/ticket/92194/" ] [ text "Ramón G." ]
+            , extlink "http://thenounproject.com/term/ticket/92194/" "Ramón G."
             , text " under CC-BY 3.0"
             , br [] []
             , text "Other icons from "
-            , a [ href "https://octicons.github.com/" ] [ text "GitHub Octicons" ]
+            , extlink "https://octicons.github.com/" "GitHub Octicons"
             ]
           ]
         ]
       ]
+
+extlink : String -> String -> Html Msg
+extlink url txt =
+  ExternalLink.view url txt

@@ -3,8 +3,12 @@ module NoTickets exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
+import ExternalLink
 
-view : Html msg
+import Messages exposing (Msg)
+
+
+view : Html Msg
 view =
   div [ class "text-xs-center m-b-2" ] 
     [ h5 [ class "m-t-2 m-b-2" ] [ text "No tickets found on this page." ]
@@ -15,5 +19,5 @@ view =
       , text "GitHub, Jira, Pivotal and Trello."
       ]
     , h6 [] [ text "Missing anything or found a bug?" ]
-    , p [] [ a [] [ text "Report an issue" ] ]
+    , p [] [ ExternalLink.view "https://github.com/bitcrowd/tickety-tick/issues" "Report an issue" ]
     ]

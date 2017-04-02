@@ -21,7 +21,6 @@ function grab(text) {
 function openext(url) {
   app.activeBrowserWindow.openTab().url = url;
   setTimeout(close, 100);
-  return false;
 }
 
 function load() {

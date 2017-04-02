@@ -4,7 +4,7 @@ import Html exposing (..)
 
 import Models exposing (Ticket)
 import Ports exposing (load, grab, openext)
-import Messages exposing (Msg(Load, Navigate))
+import Messages exposing (Msg(Load, Navigate, Grab, OpenExt))
 
 import Routes exposing (Route(IndexRoute, AboutRoute))
 import Index
@@ -42,6 +42,12 @@ update msg model =
 
     Navigate route ->
       ({ model | route = route }, Cmd.none)
+
+    OpenExt url ->
+      (model, openext url)
+
+    Grab text ->
+      (model, grab text)
 
 
 -- SUBSCRIPTIONS
