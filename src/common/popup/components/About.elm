@@ -15,7 +15,7 @@ view =
   div []
     [ div [ class "navbar navbar-light navbar-fixed-top navbar-tt" ]
       [ div [ class "nav navbar-nav" ]
-        [ a [ class "nav-link", onClick (Navigate IndexRoute) ] [ text "< back" ]
+        [ a [ class "nav-link", href "#index", onClick (Navigate IndexRoute) ] [ text "< back" ]
         ]
       ]
     , div [ class "content" ]

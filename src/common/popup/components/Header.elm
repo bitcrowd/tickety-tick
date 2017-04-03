@@ -19,14 +19,14 @@ view tickets =
         text ""
       else
         div []
-          [ button [ class "btn btn-secondary btn-sm", value (summary tickets) ] [ text "Summary" ]
+          [ CopyButton.view [ class "btn btn-secondary btn-sm" ] [ text "Summary" ] (summary tickets)
           , span [ class "nav-text nav-text-sm" ] [ text (label tickets) ]
           ]
   in
     div [ class "navbar navbar-light navbar-fixed-top navbar-tt" ]
       [ ul [ class "nav navbar-nav pull-xs-right" ]
         [ li [ class "nav-item text-xs-right" ]
-          [ a [ class "nav-link", onClick (Navigate AboutRoute) ] [ text "Info" ]
+          [ a [ class "nav-link", href "#about", onClick (Navigate AboutRoute) ] [ text "Info" ]
           ]
         ]
       , btn
