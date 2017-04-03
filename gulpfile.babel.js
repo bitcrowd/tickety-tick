@@ -65,6 +65,10 @@ function jquery(version) {
   return copy('./node_modules/jquery/dist/jquery.js', dist[version]());
 }
 
+function icons(version) {
+  return copy(src.common('icons', '*.png'), dist[version]('icons'));
+}
+
 function html(version) {
   return gulp.src(src.common('popup', 'popup.html'))
     .pipe(gulp.dest(dist[version]('popup')));
@@ -161,7 +165,7 @@ gulp.task('build:webext:mainjs', () => {
 });
 
 gulp.task('build:webext:icons', () => {
-  return copy(src.common('icons', '*.png'), dist.webext('icons'));
+  return icons('webext');
 });
 
 gulp.task('build:webext:manifest', () => {
@@ -209,7 +213,7 @@ gulp.task('build:safari:mainjs', () => {
 });
 
 gulp.task('build:safari:icons', () => {
-  return copy(src.common('icons', '*.png'), dist.safari('icons'));
+  return icons('safari');
 });
 
 gulp.task('build:safari:plist', () => {
