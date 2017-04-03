@@ -51,6 +51,4 @@ view =
         ]
       ]
 
-extlink : String -> String -> Html Msg
-extlink url txt =
-  ExternalLink.view url txt
+extlink = ExternalLink.view
