@@ -2,6 +2,7 @@ module TicketList exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Octicons
 
 import CopyButton
 
@@ -23,13 +24,13 @@ item ticket =
             ]
         , div [ class "col-xs-5 text-xs-right" ]
           [ copybtn [ class "btn btn-primary btn-sm", title "Branch name", tabindex 1 ]
-            [ span [ class "octicon octicon-sm" ] [ text "git-branch svg" ] ] -- dangerouslySetInnerHTML {svg('git-branch')}
+            [ span [ class "octicon octicon-sm" ] [ branchIcon ] ]
             ticket.fmt.branch
           , copybtn [ class "btn btn-primary btn-sm pq", title "Commit message", tabindex 1 ]
-            [ span [ class "octicon octicon-sm" ] [ text "comment svg" ] ] -- dangerouslySetInnerHTML {svg('comment')}
+            [ span [ class "octicon octicon-sm" ] [ commitIcon ] ]
             ticket.fmt.commit
           , copybtn [ class "btn btn-primary btn-sm pq", title "CLI command", tabindex 1 ]
-            [ span [ class "octicon octicon-sm" ] [ text "terminal svg" ] ]
+            [ span [ class "octicon octicon-sm" ] [ cmdIcon ] ]
             ticket.fmt.cmd
           ]
         ]
@@ -37,3 +38,15 @@ item ticket =
     ]
 
 copybtn = CopyButton.view
+
+branchIcon : Html msg
+branchIcon =
+  Octicons.gitBranchOptions |> Octicons.color "" |> Octicons.gitBranchIcon
+
+commitIcon : Html msg
+commitIcon =
+  Octicons.commentOptions |> Octicons.color "" |> Octicons.commentIcon
+
+cmdIcon : Html msg
+cmdIcon =
+  Octicons.terminalOptions |> Octicons.color "" |> Octicons.terminalIcon
