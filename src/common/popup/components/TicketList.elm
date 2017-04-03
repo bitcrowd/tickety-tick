@@ -24,13 +24,13 @@ item ticket =
         , div [ class "col-xs-5 text-xs-right" ]
           [ copybtn [ class "btn btn-primary btn-sm", title "Branch name", tabindex 1 ]
             [ span [ class "octicon octicon-sm" ] [ text "git-branch svg" ] ] -- dangerouslySetInnerHTML {svg('git-branch')}
-            "branch" -- TODO: fmt {branch}
+            ticket.fmt.branch
           , copybtn [ class "btn btn-primary btn-sm pq", title "Commit message", tabindex 1 ]
             [ span [ class "octicon octicon-sm" ] [ text "comment svg" ] ] -- dangerouslySetInnerHTML {svg('comment')}
-            "commit" -- TODO: fmt {commit}
+            ticket.fmt.commit
           , copybtn [ class "btn btn-primary btn-sm pq", title "CLI command", tabindex 1 ]
             [ span [ class "octicon octicon-sm" ] [ text "terminal svg" ] ]
-            "command" -- TODO: fmt command
+            ticket.fmt.cmd
           ]
         ]
       ]

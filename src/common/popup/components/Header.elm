@@ -35,7 +35,7 @@ view tickets =
 summary : List Ticket -> String
 summary tickets =
   tickets
-    |> List.map .title -- TODO: Should use format.commit
+    |> List.map (.fmt >> .commit)
     |> String.join ", "
 
 label : List Ticket -> String
