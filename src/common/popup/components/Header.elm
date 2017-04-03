@@ -4,6 +4,8 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
+import CopyButton
+
 import Models exposing (Ticket)
 import Messages exposing (Msg(Navigate))
 import Routes exposing (Route(AboutRoute))
@@ -32,7 +34,9 @@ view tickets =
 
 summary : List Ticket -> String
 summary tickets =
-  ""
+  tickets
+    |> List.map .title -- TODO: Should use format.commit
+    |> String.join ", "
 
 label : List Ticket -> String
 label tickets =
