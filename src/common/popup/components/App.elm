@@ -7,6 +7,7 @@ import Ports exposing (load, grab, openext)
 import Messages exposing (Msg(Load, Navigate, Grab, OpenExt))
 
 import Routes exposing (Route(IndexRoute, AboutRoute))
+import Loading
 import Index
 import About
 
@@ -71,4 +72,4 @@ view model =
           About.view
 
     Nothing ->
-      div [] [ text "loading" ]
+      Loading.view
