@@ -24,8 +24,8 @@ function grab(text) {
   close();
 }
 
-function openext() {
-  return true;
+function openext(url) {
+  window.open(url, '_blank');
 }
 
 function load() {

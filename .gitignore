@@ -13,6 +13,10 @@ node_modules
 # Build output
 dist
 
+# Elm generated files
+elm-stuff
+repl-temp-*
+
 # Test coverage reports
 .nyc_output/
 coverage/

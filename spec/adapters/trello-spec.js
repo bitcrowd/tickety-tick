@@ -23,7 +23,7 @@ describe('trello adapter', () => {
   });
 
   it('extracts tickets from trello cards', () => {
-    const expected = [{ id: '89', title: 'A Trello Card', type: 'feature' }];
+    const expected = [{ id: '89', title: 'A Trello Card', kind: 'feature' }];
     adapter.inspect(loc, doc(CARD), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);

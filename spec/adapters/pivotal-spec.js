@@ -2,9 +2,9 @@ import { jsdom } from 'jsdom';
 
 import adapter from '../../src/common/adapters/pivotal';
 
-function selected({ id, title, type }) {
+function selected({ id, title, kind }) {
   return `
-    <div class="story ${type}" data-id="${id}">
+    <div class="story ${kind}" data-id="${id}">
       <header class="preview">
         <a class="selector selected"></a>
         <span class="name">
@@ -15,9 +15,9 @@ function selected({ id, title, type }) {
   `;
 }
 
-function opened({ id, title, type }) {
+function opened({ id, title, kind }) {
   return `
-    <div class="story ${type}" data-id="${id}">
+    <div class="story ${kind}" data-id="${id}">
       <div class="details">
         <section class="edit">
           <form action="#" class="story">
@@ -31,9 +31,9 @@ function opened({ id, title, type }) {
   `;
 }
 
-function maximized({ id, title, type }) {
+function maximized({ id, title, kind }) {
   return `
-    <article class="story ${type} maximized">
+    <article class="story ${kind} maximized">
       <div class="details">
         <section class="edit">
           <form action="#" class="story">
@@ -66,7 +66,7 @@ describe('pivotal adapter', () => {
   });
 
   it('extracts tickets from selected stories', () => {
-    const expected = [{ id: '1231244', title: 'A Selected Pivotal Story', type: 'feature' }];
+    const expected = [{ id: '1231244', title: 'A Selected Pivotal Story', kind: 'feature' }];
     const doc = dom(expected.map(selected).join(''));
     adapter.inspect(null, doc, (err, res) => {
       expect(err).toBe(null);
@@ -75,7 +75,7 @@ describe('pivotal adapter', () => {
   });
 
   it('extracts tickets from opened stories', () => {
-    const expected = [{ id: '1231245', title: 'An Opened Pivotal Story', type: 'bug' }];
+    const expected = [{ id: '1231245', title: 'An Opened Pivotal Story', kind: 'bug' }];
     const doc = dom(expected.map(opened).join(''));
     adapter.inspect(null, doc, (err, res) => {
       expect(err).toBe(null);
@@ -84,7 +84,7 @@ describe('pivotal adapter', () => {
   });
 
   it('extracts tickets from maximized stories', () => {
-    const expected = [{ id: '1231246', title: 'A Maximized Pivotal Story', type: 'chore' }];
+    const expected = [{ id: '1231246', title: 'A Maximized Pivotal Story', kind: 'chore' }];
     const doc = dom(expected.map(maximized).join(''));
     adapter.inspect(null, doc, (err, res) => {
       expect(err).toBe(null);

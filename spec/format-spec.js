@@ -1,10 +1,10 @@
-import format from '../../src/common/popup/utils/format';
+import format from '../src/common/format';
 
 describe('format util', () => {
   const ticket = {
     id: 'BTC-042',
     title: 'Add more tests for src/common/popup/utils/format.js',
-    type: 'bug'
+    kind: 'bug'
   };
 
   describe('commit', () => {
@@ -15,18 +15,18 @@ describe('format util', () => {
   });
 
   describe('branch', () => {
-    it('includes ticket type, id and title', () => {
+    it('includes ticket kind, id and title', () => {
       const formatted = format.branch(ticket);
       expect(formatted)
-        .toBe(`${ticket.type}/${ticket.id}-${format.normalize(ticket.title)}`);
+        .toBe(`${ticket.kind}/${ticket.id}-${format.normalize(ticket.title)}`);
     });
 
-    it('formats type to feature if not provided', () => {
-      const typeless = {
+    it('formats kind to feature if not provided', () => {
+      const kindless = {
         id: ticket.id,
         title: ticket.title
       };
-      const formatted = format.branch(typeless);
+      const formatted = format.branch(kindless);
       expect(formatted).toBe(`feature/${ticket.id}-${format.normalize(ticket.title)}`);
     });
   });

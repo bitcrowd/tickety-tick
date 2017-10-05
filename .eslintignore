@@ -1,3 +1,5 @@
 node_modules
+elm-stuff
+repl-temp-*
 dist
 coverage

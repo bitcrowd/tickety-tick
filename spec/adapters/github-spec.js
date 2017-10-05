@@ -59,7 +59,7 @@ describe('github adapter', () => {
   });
 
   it('extracts tickets from issue pages', () => {
-    const expected = [{ id: '12', title: 'A Random GitHub Issue', type: 'feature' }];
+    const expected = [{ id: '12', title: 'A Random GitHub Issue', kind: 'feature' }];
     adapter.inspect(null, dom(ISSUEPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
@@ -67,7 +67,7 @@ describe('github adapter', () => {
   });
 
   it('recognizes issues labelled as bugs', () => {
-    const expected = [{ id: '12', title: 'A Random GitHub Issue', type: 'bug' }];
+    const expected = [{ id: '12', title: 'A Random GitHub Issue', kind: 'bug' }];
     adapter.inspect(null, dom(BUGPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
@@ -75,7 +75,7 @@ describe('github adapter', () => {
   });
 
   it('extracts tickets from issues index pages', () => {
-    const expected = [{ id: '12', title: 'A Selected GitHub Issue', type: 'bug' }];
+    const expected = [{ id: '12', title: 'A Selected GitHub Issue', kind: 'bug' }];
     adapter.inspect(null, dom(INDEXPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);

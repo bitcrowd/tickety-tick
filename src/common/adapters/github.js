@@ -8,9 +8,9 @@ const adapter = {
       const tickets = $map(issues, (i, issue) => {
         const id = $value('input.js-issues-list-check', issue);
         const title = $text('a.js-navigation-open', issue);
-        const type = $has('.labels .label:contains(bug)', issue) ? 'bug' : 'feature';
+        const kind = $has('.labels .label:contains(bug)', issue) ? 'bug' : 'feature';
 
-        return { id, title, type };
+        return { id, title, kind };
       });
 
       return fn(null, tickets);
@@ -19,8 +19,8 @@ const adapter = {
     if ($has('.issues-listing .gh-header-number', doc)) {
       const id = $text('.gh-header-number', doc).replace(/^#/, '');
       const title = $text('.js-issue-title', doc);
-      const type = $has('.sidebar-labels .label[title="bug"]', doc) ? 'bug' : 'feature';
-      const tickets = [{ id, title, type }];
+      const kind = $has('.sidebar-labels .label[title="bug"]', doc) ? 'bug' : 'feature';
+      const tickets = [{ id, title, kind }];
       return fn(null, tickets);
     }
 
