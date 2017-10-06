@@ -29,6 +29,27 @@ const STORYPAGE = `
     </div>
   </div>
 `;
+
+const STORYPAGE_TITLE_EDITED = `
+  <div id="issue-content">
+    <div class="issue-header-content">
+      <a class="issue-link" data-issue-key="UXPL-39" id="key-val">UXPL-39</a>
+      <h1 id="summary-val" class="editable-field active">
+        <form id="summary-form">
+          <textarea id="summary">A Random JIRA Issue</textarea>
+          <button type="submit">Save</button>
+            <button type="cancel">Cancel</button>
+        </form>
+      </h1>
+    </div>
+    <div class="issue-body-content">
+      <span id="type-val" class="value editable-field inactive">
+        <img alt="" src="/" title="Story - A story"> Story
+      </span>
+    </div>
+  </div>
+`;
+
 const CHOREPAGE = STORYPAGE.replace(/Story/gi, 'Chore');
 const BUGPAGE = STORYPAGE.replace(/Story/gi, 'Bug');
 
@@ -47,6 +68,14 @@ describe('jira adapter', () => {
   it('extracts story tickets from a ticket page', () => {
     const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'feature' }];
     adapter.inspect(null, doc(STORYPAGE), (err, res) => {
+      expect(err).toBe(null);
+      expect(res).toEqual(expected);
+    });
+  });
+
+  it('extracts story tickets from a ticket page even when the title is being edited', () => {
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'feature' }];
+    adapter.inspect(null, doc(STORYPAGE_TITLE_EDITED), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
     });

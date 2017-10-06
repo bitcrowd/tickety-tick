@@ -7,6 +7,14 @@ const normalizeType = (type) => {
   return 'feature';
 };
 
+const ticketPageTitle = (issue) => {
+  if ($has('#summary-form', issue)) { // ticket title is currently being edited
+    return $text('#summary-form #summary', issue);
+  }
+
+  return $text('#summary-val', issue);
+};
+
 const adapter = {
   inspect(loc, doc, fn) {
     if (doc.body.id !== 'jira') return fn(null, null);
@@ -19,7 +27,7 @@ const adapter = {
     } else if ($has('#issue-content', doc)) { // JIRA ticket page
       const issue = $find('#issue-content', doc);
       const id = $text('#key-val', issue);
-      const title = $text('#summary-val', issue);
+      const title = ticketPageTitle(issue);
       const type = normalizeType($text('#type-val', issue));
       return fn(null, [{ id, title, type }]);
     }
