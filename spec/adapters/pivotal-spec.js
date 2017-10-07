@@ -1,4 +1,4 @@
-import { jsdom } from 'jsdom';
+import { JSDOM } from 'jsdom';
 
 import adapter from '../../src/common/adapters/pivotal';
 
@@ -54,7 +54,8 @@ function maximized({ id, title, type }) {
 
 describe('pivotal adapter', () => {
   function dom(body = '', id = 'tracker') {
-    return jsdom(`<html><body id="${id}">${body}</body></html>`);
+    const { window } = new JSDOM(`<html><body id="${id}">${body}</body></html>`);
+    return window.document;
   }
 
   it('returns null if it is on a different page', () => {

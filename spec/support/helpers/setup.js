@@ -1,8 +1,8 @@
-import { jsdom } from 'jsdom';
+import { JSDOM } from 'jsdom';
 import jquery from 'jquery';
 
-global.document = jsdom('<html><body></body></html>');
-global.window = global.document.defaultView;
+global.window = new JSDOM('<html><body></body></html>').window;
+global.document = global.window.document;
 global.navigator = global.window.navigator;
 
 global.$$$ = jquery(global.window);

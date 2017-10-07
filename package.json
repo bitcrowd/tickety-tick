@@ -38,7 +38,7 @@
     "gulp-uglify": "^2.0.0",
     "gulp-zip": "^3.2.0",
     "jasmine": "^2.5.2",
-    "jsdom": "^9.6.0",
+    "jsdom": "^11.3.0",
     "nodemon": "^1.11.0",
     "nyc": "^10.0.0",
     "react-addons-test-utils": "^15.3.2",
