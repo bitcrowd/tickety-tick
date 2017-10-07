@@ -1,4 +1,4 @@
-import { jsdom } from 'jsdom';
+import { JSDOM } from 'jsdom';
 
 import adapter from '../../src/common/adapters/jira';
 
@@ -55,7 +55,8 @@ const BUGPAGE = STORYPAGE.replace(/Story/gi, 'Bug');
 
 describe('jira adapter', () => {
   function doc(body = '', id = 'jira') {
-    return jsdom(`<html><body id="${id}">${body}</body></html>`);
+    const { window } = new JSDOM(`<html><body id="${id}">${body}</body></html>`);
+    return window.document;
   }
 
   it('returns null if it is on a different page', () => {

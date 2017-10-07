@@ -1,4 +1,4 @@
-import { jsdom } from 'jsdom';
+import { JSDOM } from 'jsdom';
 
 import adapter from '../../src/common/adapters/github';
 
@@ -48,7 +48,8 @@ const INDEXPAGE = `
 
 describe('github adapter', () => {
   function dom(body = '') {
-    return jsdom(`<html><body>${body}</body></html>`);
+    const { window } = new JSDOM(`<html><body>${body}</body></html>`);
+    return window.document;
   }
 
   it('returns null if it is on a different page', () => {

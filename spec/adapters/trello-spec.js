@@ -1,4 +1,4 @@
-import { jsdom } from 'jsdom';
+import { JSDOM } from 'jsdom';
 
 import adapter from '../../src/common/adapters/trello';
 
@@ -12,7 +12,8 @@ describe('trello adapter', () => {
   const loc = { host: 'trello.com', pathname: '/c/kkRPwRqw/89-a-trello-card' };
 
   function doc(body = '') {
-    return jsdom(`<html><body>${body}</body></html>`);
+    const { window } = new JSDOM(`<html><body>${body}</body></html>`);
+    return window.document;
   }
 
   it('returns null if it is on a different page', () => {
