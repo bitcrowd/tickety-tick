@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function CopyButton(props, context) {
   const handler = () => context.grab(props.value);
@@ -6,11 +7,11 @@ function CopyButton(props, context) {
 }
 
 CopyButton.propTypes = {
-  value: React.PropTypes.string.isRequired
+  value: PropTypes.string.isRequired
 };
 
 CopyButton.contextTypes = {
-  grab: React.PropTypes.func.isRequired
+  grab: PropTypes.func.isRequired
 };
 
 export default CopyButton;

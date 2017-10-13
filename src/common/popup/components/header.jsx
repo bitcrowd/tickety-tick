@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 import CopyButton from './copy-button';
@@ -34,7 +35,7 @@ function Header(props) {
 }
 
 Header.propTypes = {
-  tickets: React.PropTypes.arrayOf(TicketShape).isRequired
+  tickets: PropTypes.arrayOf(TicketShape).isRequired
 };
 
 export default Header;

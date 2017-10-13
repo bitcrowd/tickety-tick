@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ExternalLink(props, context) {
   const handler = (props.href && context.openext)
@@ -10,11 +11,11 @@ function ExternalLink(props, context) {
 }
 
 ExternalLink.propTypes = {
-  href: React.PropTypes.string.isRequired
+  href: PropTypes.string.isRequired
 };
 
 ExternalLink.contextTypes = {
-  openext: React.PropTypes.func
+  openext: PropTypes.func
 };
 
 export default ExternalLink;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TicketList from './ticket-list';
 import NoTickets from './no-tickets';
@@ -19,7 +20,7 @@ function Tool(props) {
 }
 
 Tool.propTypes = {
-  tickets: React.PropTypes.arrayOf(TicketShape)
+  tickets: PropTypes.arrayOf(TicketShape)
 };
 
 export default Tool;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { mount, shallow } from 'enzyme';
 
 import EnvProvider from '../../../src/common/popup/components/env-provider';
@@ -9,12 +10,12 @@ function EnvReceiver(props, ctx) {
 }
 
 EnvReceiver.propTypes = {
-  received: React.PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
+  received: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };
 
 EnvReceiver.contextTypes = {
-  openext: React.PropTypes.func.isRequired,
-  grab: React.PropTypes.func.isRequired
+  openext: PropTypes.func.isRequired,
+  grab: PropTypes.func.isRequired
 };
 
 describe('env-provider', () => {

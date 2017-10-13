@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import octicons from 'octicons';
 
 import CopyButton from './copy-button';
@@ -76,7 +77,7 @@ function TicketList(props) {
 }
 
 TicketList.propTypes = {
-  tickets: React.PropTypes.arrayOf(TicketShape).isRequired
+  tickets: PropTypes.arrayOf(TicketShape).isRequired
 };
 
 export { TicketListItem };
