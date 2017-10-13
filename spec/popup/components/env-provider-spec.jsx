@@ -10,12 +10,12 @@ function EnvReceiver(props, ctx) {
 }
 
 EnvReceiver.propTypes = {
-  received: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
+  received: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 EnvReceiver.contextTypes = {
   openext: PropTypes.func.isRequired,
-  grab: PropTypes.func.isRequired
+  grab: PropTypes.func.isRequired,
 };
 
 describe('env-provider', () => {

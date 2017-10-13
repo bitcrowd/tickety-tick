@@ -11,6 +11,7 @@ describe('header', () => {
 
   it('renders a link to the about page', () => {
     const wrapper = shallow(<Header tickets={tickets} />);
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
     const link = (<Link to="/about">Info</Link>);
     expect(wrapper.containsMatchingElement(link)).toBe(true);
   });

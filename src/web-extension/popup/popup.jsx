@@ -3,7 +3,7 @@
 
 import render from '../../common/popup/render';
 
-const extension = chrome.extension;
+const { extension } = chrome;
 const background = extension.getBackgroundPage();
 
 function pbcopy(text) {

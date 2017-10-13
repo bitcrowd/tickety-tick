@@ -1,4 +1,4 @@
 {
   "root": true,
-  "extends": "bitcrowd-react"
+  "extends": "airbnb"
 }

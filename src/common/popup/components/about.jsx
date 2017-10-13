@@ -18,7 +18,7 @@ function About() {
               <img
                 src="../icons/icon-32.png"
                 className="logo-sm"
-                role="presentation"
+                alt=""
               /> tickety-tick
             </h1>
             <h6>Usage:</h6>

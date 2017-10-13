@@ -50,5 +50,5 @@ export {
   $map,
   $text,
   $value,
-  trim
+  trim,
 };

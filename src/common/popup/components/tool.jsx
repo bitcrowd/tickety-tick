@@ -20,7 +20,9 @@ function Tool(props) {
 }
 
 Tool.propTypes = {
-  tickets: PropTypes.arrayOf(TicketShape)
+  tickets: PropTypes.arrayOf(TicketShape),
 };
+
+Tool.defaultProps = [];
 
 export default Tool;

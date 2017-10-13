@@ -4,7 +4,7 @@ describe('format util', () => {
   const ticket = {
     id: 'BTC-042',
     title: 'Add more tests for src/common/popup/utils/format.js',
-    type: 'bug'
+    type: 'bug',
   };
 
   describe('commit', () => {
@@ -24,7 +24,7 @@ describe('format util', () => {
     it('formats type to feature if not provided', () => {
       const typeless = {
         id: ticket.id,
-        title: ticket.title
+        title: ticket.title,
       };
       const formatted = format.branch(typeless);
       expect(formatted).toBe(`feature/${ticket.id}-${format.normalize(ticket.title)}`);

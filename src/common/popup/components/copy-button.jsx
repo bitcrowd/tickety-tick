@@ -7,11 +7,11 @@ function CopyButton(props, context) {
 }
 
 CopyButton.propTypes = {
-  value: PropTypes.string.isRequired
+  value: PropTypes.string.isRequired,
 };
 
 CopyButton.contextTypes = {
-  grab: PropTypes.func.isRequired
+  grab: PropTypes.func.isRequired,
 };
 
 export default CopyButton;

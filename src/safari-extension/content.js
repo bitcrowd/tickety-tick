@@ -8,7 +8,7 @@ window.$$$ = $.noConflict(true);
 function onMessage(event) {
   if (window.top === window) {
     if (event.name === 'get-tickets') {
-      stdsearch(location, document, (tickets) => {
+      stdsearch(window.location, document, (tickets) => {
         safari.self.tab.dispatchMessage('tickets', tickets);
       });
     }
