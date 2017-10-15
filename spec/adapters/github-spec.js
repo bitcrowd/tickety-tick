@@ -46,6 +46,29 @@ const INDEXPAGE = `
   </div>
 `;
 
+const PROJECTPAGE = `
+  <div class="project-columns">
+    <div class="project-card"
+         data-card-state='["open"]'
+         data-card-label='["enhancement"]'
+         data-card-title='["an","example","feature","ticket","42","#42"]'>
+      <a class="h5">An Example Feature Ticket</a>
+    </div>
+    <div class="project-card"
+         data-card-state='["open"]'
+         data-card-label='["bug"]'
+         data-card-title='["an","example","bug","ticket","43","#43"]'>
+      <a class="h5">An Example Bug Ticket</a>
+    </div>
+    <div class="project-card"
+         data-card-state='["closed"]'
+         data-card-label='["bug"]'
+         data-card-title='["an","example","bug","ticket","which","was","closed","and","should","not","be","found","44","#44"]'>
+      <a class="h5">An Example Bug Ticket which was closed and should not be found</a>
+    </div>
+  </div>
+`;
+
 describe('github adapter', () => {
   function dom(body = '') {
     const { window } = new JSDOM(`<html><body>${body}</body></html>`);
@@ -78,6 +101,17 @@ describe('github adapter', () => {
   it('extracts tickets from issues index pages', () => {
     const expected = [{ id: '12', title: 'A Selected GitHub Issue', type: 'bug' }];
     adapter.inspect(null, dom(INDEXPAGE), (err, res) => {
+      expect(err).toBe(null);
+      expect(res).toEqual(expected);
+    });
+  });
+
+  it('extracts tickets from project pages', () => {
+    const expected = [
+      { id: '42', title: 'An Example Feature Ticket', type: 'feature' },
+      { id: '43', title: 'An Example Bug Ticket', type: 'bug' }
+    ];
+    adapter.inspect(null, dom(PROJECTPAGE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
     });
