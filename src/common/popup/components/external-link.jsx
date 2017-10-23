@@ -6,20 +6,24 @@ function ExternalLink(props, context) {
     ? () => context.openext(props.href)
     : () => true;
 
-  /* eslint-disable jsx-a11y/anchor-has-content, jsx-a11y/no-static-element-interactions */
+  const { children, href, ...other } = props;
+
   return (
     <a
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       onClick={handler}
       onKeyDown={handler}
-      {...props}
-    />
+      {...other}
+    >
+      {children}
+    </a>
   );
-  /* eslint-enable jsx-a11y/anchor-has-content, jsx-a11y/no-static-element-interactions */
 }
 
 ExternalLink.propTypes = {
+  children: PropTypes.node.isRequired,
   href: PropTypes.string.isRequired,
 };
 
