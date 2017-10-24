@@ -4,11 +4,6 @@
   "version": "#{VERSION}",
   "description": "#{DESCRIPTION}",
   "icons": {},
-  "applications": {
-    "gecko": {
-      "id": "tickety-tick@bitcrowd.net"
-    }
-  },
   "background": {
     "scripts": ["background.js"]
   },
