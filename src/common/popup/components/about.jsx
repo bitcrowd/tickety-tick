@@ -1,5 +1,5 @@
 import React from 'react';
-import { IndexLink } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import ExternalLink from './external-link';
 
@@ -8,7 +8,7 @@ function About() {
     <div>
       <div className="navbar navbar-light navbar-fixed-top navbar-tt">
         <div className="nav navbar-nav">
-          <IndexLink className="nav-link" to="/">&lt; back</IndexLink>
+          <Link className="nav-link" to="/">&lt; back</Link>
         </div>
       </div>
       <div className="content">

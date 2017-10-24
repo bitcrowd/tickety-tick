@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, createMemoryHistory } from 'react-router';
+import { MemoryRouter as Router, Route } from 'react-router';
 
 import EnvProvider from '../../common/popup/components/env-provider';
 import App from '../../common/popup/components/app';
@@ -20,20 +20,19 @@ function propped(Component, defaults) {
 
 function render(tickets, env) {
   const root = document.getElementById('popup-root');
-  const history = createMemoryHistory();
 
-  const component = (
+  const element = (
     <EnvProvider {...env}>
-      <Router history={history}>
-        <Route path="/" component={App}>
-          <IndexRoute component={propped(Tool, { tickets })} />
-          <Route path="about" component={About} />
-        </Route>
+      <Router>
+        <App>
+          <Route exact path="/" component={propped(Tool, { tickets })} />
+          <Route path="/about" component={About} />
+        </App>
       </Router>
     </EnvProvider>
   );
 
-  ReactDOM.render(component, root);
+  ReactDOM.render(element, root);
 }
 
 export { propped };
