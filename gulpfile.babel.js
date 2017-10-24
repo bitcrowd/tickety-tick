@@ -46,7 +46,7 @@ function contentjs(version) {
     basedir: src[version](),
     entries: ['./content.js'],
     transform: ['babelify', 'envify'],
-    debug: true
+    debug: true,
   });
 
   bundler.external('jquery.js'); // ...just to please mozilla
@@ -83,7 +83,7 @@ function js(version) {
     entries: ['./popup.jsx'],
     transform: ['babelify', 'envify'],
     extensions: ['.jsx'],
-    debug: true
+    debug: true,
   });
 
   return bundler.bundle()
@@ -107,11 +107,11 @@ function manifest(version, pkginfo) {
       32: 'icons/icon-32.png',
       48: 'icons/icon-48.png',
       64: 'icons/icon-64.png',
-      128: 'icons/icon-128.png'
+      128: 'icons/icon-128.png',
     };
 
     // eslint-disable-next-line no-param-reassign
-    file.contents = new Buffer(JSON.stringify(mf));
+    file.contents = Buffer.from(JSON.stringify(mf));
 
     cb(null, file);
   };
@@ -165,7 +165,7 @@ gulp.task('build:webext', [
   'build:webext:css',
   'build:webext:js',
   'build:webext:icons',
-  'build:webext:manifest'
+  'build:webext:manifest',
 ], () => {
   return gulp.src(dist.webext('**/*'))
     .pipe(zip('web-extension.zip'))
@@ -207,12 +207,12 @@ gulp.task('build:safari', [
   'build:safari:css',
   'build:safari:js',
   'build:safari:icons',
-  'build:safari:plist'
+  'build:safari:plist',
 ]);
 
 gulp.task('build', [
   'build:webext',
-  'build:safari'
+  'build:safari',
 ]);
 
 gulp.task('watch', () => {

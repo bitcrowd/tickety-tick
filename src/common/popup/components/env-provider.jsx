@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class EnvProvider extends React.Component {
   getChildContext() {
@@ -12,14 +13,14 @@ class EnvProvider extends React.Component {
 }
 
 EnvProvider.propTypes = {
-  openext: React.PropTypes.func.isRequired,
-  grab: React.PropTypes.func.isRequired,
-  children: React.PropTypes.element.isRequired
+  openext: PropTypes.func.isRequired,
+  grab: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 EnvProvider.childContextTypes = {
-  openext: React.PropTypes.func.isRequired,
-  grab: React.PropTypes.func.isRequired
+  openext: PropTypes.func.isRequired,
+  grab: PropTypes.func.isRequired,
 };
 
 export default EnvProvider;

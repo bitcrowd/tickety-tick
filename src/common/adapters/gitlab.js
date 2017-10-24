@@ -14,7 +14,7 @@ const adapter = {
     }
 
     return fn(null, null);
-  }
+  },
 };
 
 export default adapter;

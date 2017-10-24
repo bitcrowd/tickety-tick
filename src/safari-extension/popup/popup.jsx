@@ -32,7 +32,7 @@ function load() {
 function onPopover(event) {
   if (event.target.identifier !== 'tickety-tick.popup') return;
   // TODO: check why dispatching 'get-tickets' again does not work, remove reload?
-  location.reload();
+  window.location.reload();
 }
 
 function onMessage(event) {

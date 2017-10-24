@@ -31,6 +31,6 @@ describe('header', () => {
 
   it('hides the summary button when no tickets are found', () => {
     const wrapper = shallow(<Header tickets={[]} />);
-    expect(wrapper.find(CopyButton).isEmpty()).toBe(true);
+    expect(wrapper.find(CopyButton).exists()).toBe(false);
   });
 });

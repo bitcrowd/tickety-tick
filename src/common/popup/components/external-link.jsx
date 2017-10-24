@@ -1,20 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ExternalLink(props, context) {
   const handler = (props.href && context.openext)
     ? () => context.openext(props.href)
     : () => true;
 
-  // eslint-disable-next-line jsx-a11y/anchor-has-content, jsx-a11y/no-static-element-interactions
-  return (<a {...props} target="_blank" rel="noopener noreferrer" onClick={handler} />);
+  const { children, href, ...other } = props;
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={handler}
+      onKeyDown={handler}
+      {...other}
+    >
+      {children}
+    </a>
+  );
 }
 
 ExternalLink.propTypes = {
-  href: React.PropTypes.string.isRequired
+  children: PropTypes.node.isRequired,
+  href: PropTypes.string.isRequired,
 };
 
 ExternalLink.contextTypes = {
-  openext: React.PropTypes.func
+  openext: PropTypes.func,
 };
 
 export default ExternalLink;

@@ -109,7 +109,7 @@ describe('github adapter', () => {
   it('extracts tickets from project pages', () => {
     const expected = [
       { id: '42', title: 'An Example Feature Ticket', type: 'feature' },
-      { id: '43', title: 'An Example Bug Ticket', type: 'bug' }
+      { id: '43', title: 'An Example Bug Ticket', type: 'bug' },
     ];
     adapter.inspect(null, dom(PROJECTPAGE), (err, res) => {
       expect(err).toBe(null);

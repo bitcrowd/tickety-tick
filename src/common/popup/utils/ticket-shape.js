@@ -1,9 +1,9 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
-const TicketShape = React.PropTypes.shape({
-  id: React.PropTypes.string.isRequired,
-  title: React.PropTypes.string.isRequired,
-  type: React.PropTypes.string
+const TicketShape = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string,
 });
 
 export default TicketShape;

@@ -12,7 +12,7 @@ const adapter = {
     const tickets = [{ id, title, type }];
 
     return fn(null, tickets);
-  }
+  },
 };
 
 export default adapter;

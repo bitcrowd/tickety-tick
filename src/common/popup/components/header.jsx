@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 import CopyButton from './copy-button';
@@ -21,6 +22,7 @@ function Header(props) {
     );
   })(props.tickets);
 
+  /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
     <div className="navbar navbar-light navbar-fixed-top navbar-tt">
       <ul className="nav navbar-nav pull-xs-right">
@@ -31,10 +33,11 @@ function Header(props) {
       {btn}
     </div>
   );
+  /* eslint-enable jsx-a11y/anchor-is-valid */
 }
 
 Header.propTypes = {
-  tickets: React.PropTypes.arrayOf(TicketShape).isRequired
+  tickets: PropTypes.arrayOf(TicketShape).isRequired, // eslint-disable react/no-typos
 };
 
 export default Header;

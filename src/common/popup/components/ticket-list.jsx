@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import octicons from 'octicons';
 
 import CopyButton from './copy-button';
@@ -9,9 +10,7 @@ const svg = name => ({ __html: octicons[name].toSVG() });
 
 /* eslint-disable jsx-a11y/tabindex-no-positive, react/no-danger */
 
-function TicketListItem(props) {
-  const ticket = props.ticket;
-
+function TicketListItem({ ticket }) {
   const commit = fmt.commit(ticket);
   const branch = fmt.branch(ticket);
   const command = fmt.command(ticket);
@@ -58,10 +57,10 @@ function TicketListItem(props) {
 /* eslint-enable jsx-a11y/tabindex-no-positive, react/no-danger */
 
 TicketListItem.propTypes = {
-  ticket: TicketShape.isRequired
+  ticket: TicketShape.isRequired, // eslint-disable-line react/no-typos
 };
 
-function TicketList(props) {
+function TicketList({ tickets }) {
   const item = ticket => (
     <TicketListItem key={ticket.id} ticket={ticket} />
   );
@@ -69,14 +68,14 @@ function TicketList(props) {
   return (
     <div>
       <ul className="list-group">
-        {props.tickets.map(item)}
+        {tickets.map(item)}
       </ul>
     </div>
   );
 }
 
 TicketList.propTypes = {
-  tickets: React.PropTypes.arrayOf(TicketShape).isRequired
+  tickets: PropTypes.arrayOf(TicketShape).isRequired,
 };
 
 export { TicketListItem };

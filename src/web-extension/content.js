@@ -5,12 +5,12 @@ import stdsearch from '../common/search';
 
 window.$$$ = $.noConflict(true);
 
-const runtime = chrome.runtime;
+const { runtime } = chrome;
 
-if (window === top) {
+if (window === window.top) {
   runtime.onMessage.addListener((req, sender, respond) => {
     if (req.tickets) {
-      stdsearch(location, document, respond);
+      stdsearch(window.location, document, respond);
     }
   });
 }
