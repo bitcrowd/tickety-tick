@@ -67,14 +67,14 @@ Navigate to the [chrome://extensions](chrome://extensions) page, enable
 
 ### Firefox
 
-For Firefox >48: Build the extensions with `WITH_ADDON_ID=true yarn build`
+For Firefox >=48: Build the extensions with `WITH_GECKO_ID=true yarn build`
 
 If you just want to try out and debug the extension, go to
 [about:debugging#addons](about:debugging#addons). Then press "Load Temporary
 Add-On" and select the `manifest.json` from the built extension directory.
 
-If you want to install this addon permanently goto [about:addons](about:addons)
-and klick on the small cogs icon. Select `Install Addon from file...` and choose
+If you want to install this addon permanently go to [about:addons](about:addons)
+and click on the small cog icon. Select `Install Add-on From File...` and choose
 `dist/web-extension.zip`.
 
 ### Opera

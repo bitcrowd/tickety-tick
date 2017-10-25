@@ -110,7 +110,7 @@ function manifest(version, pkginfo) {
       128: 'icons/icon-128.png',
     };
 
-    if (process.env.WITH_ADDON_ID) {
+    if (process.env.WITH_GECKO_ID) {
       mf.applications = {
         gecko: {
           id: 'tickety-tick@bitcrowd.net',
