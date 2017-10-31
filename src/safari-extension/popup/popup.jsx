@@ -2,6 +2,7 @@
 /* global safari */
 
 import render from '../../common/popup/render';
+import '../../common/popup/popup.scss';
 
 const app = safari.application;
 

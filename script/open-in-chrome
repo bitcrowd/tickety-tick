@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+
+// usage: open-in-chrome [extension-dir] [starting-url]
+
+const path = require('path');
+const launcher = require('chrome-launcher');
+
+const dir = process.argv[2] || path.join(__dirname, '..', 'dist', 'chrome');
+const url = process.argv[3] || 'https://github.com/bitcrowd/tickety-tick';
+
+const options = {
+  chromeFlags: [`--load-extension=${dir}`],
+  enableExtensions: true,
+  startingUrl: url,
+};
+
+launcher.launch(options).then((chrome) => {
+  console.log(`Chrome debugging port on ${chrome.port}`);
+});
+
+// vim: set filetype=javascript

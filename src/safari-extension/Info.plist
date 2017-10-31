@@ -22,7 +22,7 @@
 		<array>
 			<dict>
 				<key>Filename</key>
-				<string>popup/popup.html</string>
+				<string>popup.html</string>
 				<key>Height</key>
 				<real>240</real>
 				<key>Identifier</key>
@@ -37,7 +37,7 @@
 				<key>Identifier</key>
 				<string>popup</string>
 				<key>Image</key>
-				<string>icons/icon-64.png</string>
+				<string>icon-64.png</string>
 				<key>Include By Default</key>
 				<true/>
 				<key>Label</key>
