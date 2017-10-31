@@ -31,7 +31,7 @@ Currently, we support:
 
 - GitHub
 - GitLab
-- JIRA
+- Jira
 - Pivotal Tracker
 - Trello
 
@@ -50,12 +50,17 @@ In order to build the extension from source, run:
 
 ```shell
 yarn install
-yarn run build
-yarn run checks
+yarn checks
+yarn build
 ```
 
-For development use `yarn run watch`. This will watch the files and rebuild the
-extension whenever source files change.
+To only build for a specific browser, use:
+
+```shell
+yarn build:chrome
+yarn build:firefox
+yarn build:safari
+```
 
 ## Installing a custom-built version
 
@@ -63,19 +68,18 @@ extension whenever source files change.
 
 Navigate to the [chrome://extensions](chrome://extensions) page, enable
 "Developer mode" and press "Load unpacked extension". Point it to the
-`dist/web-extension` directory. Done.
+`dist/chrome` directory. Done.
 
 ### Firefox
-
-For Firefox >=48: Build the extensions with `WITH_GECKO_ID=true yarn build`
 
 If you just want to try out and debug the extension, go to
 [about:debugging#addons](about:debugging#addons). Then press "Load Temporary
 Add-On" and select the `manifest.json` from the built extension directory.
 
-If you want to install this addon permanently go to [about:addons](about:addons)
-and click on the small cog icon. Select `Install Add-on From File...` and choose
-`dist/web-extension.zip`.
+If you want to install this addon permanently, build with
+`yarn build:firefox-local`, then go to [about:addons](about:addons) and click
+on the small cog icon. Select `Install Add-on From File...` and choose
+`dist/firefox-local`.
 
 ### Opera
 
@@ -89,18 +93,33 @@ and add the `dist/tickety-tick.safariextension` that you just built.
 
 ## Development
 
+### Developing Tickety-Tick
+
+For development use `yarn watch:[browser]`. This will watch the files and
+rebuild the extension whenever source files change.
+
+To test-drive a development version, you can use:
+
+```shell
+yarn open:chrome
+yarn open:firefox
+```
+
+You can run both `watch:[browser]` and `open:[browser]` scripts in parallel to
+automatically rebuild and reload the extension as you make changes.
+
 ### Generating coverage reports
 
 In order to generate code coverage reports locally, just run:
 
 ```shell
-yarn run test:coverage
+yarn test:coverage
 ```
 
 Then, to generate and view HTML reports:
 
 ```shell
-./node_modules/.bin/nyc report --reporter lcov
+yarn run nyc report --reporter lcov
 open coverage/lcov-report/index.html
 ```
 

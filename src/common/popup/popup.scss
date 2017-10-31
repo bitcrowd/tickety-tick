@@ -2,26 +2,26 @@
 @import "styles/settings";
 
 // Core variables and mixins
-@import "bootstrap/scss/variables";
-@import "bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 // Reset and dependencies
-@import "bootstrap/scss/normalize";
+@import "~bootstrap/scss/normalize";
 
 // Core CSS
-@import "bootstrap/scss/reboot";
-@import "bootstrap/scss/type";
-@import "bootstrap/scss/images";
-@import "bootstrap/scss/grid";
-@import "bootstrap/scss/buttons";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/buttons";
 
 // Components
-@import "bootstrap/scss/nav";
-@import "bootstrap/scss/navbar";
-@import "bootstrap/scss/list-group";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/list-group";
 
 // Utility classes
-@import "bootstrap/scss/utilities";
+@import "~bootstrap/scss/utilities";
 
 // Popup style
 @import "styles/additions";

@@ -2,6 +2,7 @@
 /* global chrome */
 
 import render from '../../common/popup/render';
+import '../../common/popup/popup.scss';
 
 const { extension } = chrome;
 const background = extension.getBackgroundPage();
