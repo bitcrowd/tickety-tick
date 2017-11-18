@@ -1,9 +1,7 @@
-/* eslint-env browser, jquery */
+/* eslint-env browser */
 /* global safari */
 
 import stdsearch from '../common/search';
-
-window.$$$ = $.noConflict(true);
 
 function onMessage(event) {
   if (window.top === window) {

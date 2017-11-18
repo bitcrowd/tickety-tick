@@ -1,6 +1,7 @@
 import { $find, $has, $text, $attr } from './helpers';
 
 const TYPES = ['bug', 'chore'];
+
 const normalizeType = (type) => {
   const sanitizedType = type && type.toLowerCase();
   if (TYPES.indexOf(sanitizedType) > -1) return sanitizedType;
