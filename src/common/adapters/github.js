@@ -1,14 +1,15 @@
-import { $find, $has, $map, $text, $value } from './helpers';
+import { $all, $has, $text, $value } from './helpers';
 
 const adapter = {
   inspect(loc, doc, fn) {
     if ($has('.issues-listing .js-issue-row.selected', doc)) {
-      const issues = $find('.issues-listing .js-issue-row.selected', doc);
+      const issues = $all('.issues-listing .js-issue-row.selected', doc);
 
-      const tickets = $map(issues, (i, issue) => {
+      const tickets = issues.map((issue) => {
         const id = $value('input.js-issues-list-check', issue);
         const title = $text('a.js-navigation-open', issue);
-        const type = $has('.labels .label:contains(bug)', issue) ? 'bug' : 'feature';
+        const labels = $all('.labels .label', issue);
+        const type = labels.some(l => /bug/i.test(l.textContent)) ? 'bug' : 'feature';
 
         return { id, title, type };
       });
@@ -27,9 +28,9 @@ const adapter = {
     // github project
     if ($has('.project-columns .project-card', doc)) {
       const openProjectCardSelector = '.project-columns .project-card[data-card-state=\'["open"]\']';
-      const projectCards = $find(openProjectCardSelector, doc);
+      const projectCards = $all(openProjectCardSelector, doc);
 
-      const tickets = $map(projectCards, (_, card) => {
+      const tickets = projectCards.map((card) => {
         const id = JSON.parse(card.dataset.cardTitle).slice(-2, -1)[0];
         const title = $text('a.h5', card);
         const type = JSON.parse(card.dataset.cardLabel).includes('bug') ? 'bug' : 'feature';

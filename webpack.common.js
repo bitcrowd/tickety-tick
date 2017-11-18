@@ -99,10 +99,6 @@ config.plugin('extract')
 config.plugin('copy')
   .use(CopyWebpackPlugin, [[
     {
-      from: './node_modules/jquery/dist/jquery.js',
-      flatten: true,
-    },
-    {
       from: src.common('icons', '*.png'),
       flatten: true,
     },

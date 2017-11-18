@@ -1,53 +1,73 @@
-/* global $$$ */
-
 function trim(string) {
-  return string.replace(/^\s+|\s+$/g, '');
+  return string ? string.replace(/^\s+|\s+$/g, '') : null;
 }
 
-function $data(context, key) {
-  const node = $$$(context);
-  return node.data(key);
+// Finders
+
+function $find(selector, context) {
+  return context.querySelector(selector);
 }
+
+function $all(selector, context) {
+  return Array.from(context.querySelectorAll(selector));
+}
+
+// Traversal
+
+function $closest(selector, context) {
+  if (typeof context.closest !== 'function') {
+    // Shim Element.closest for browsers that do not support it (and jsdom):
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
+    let node = context;
+
+    while (node && node.nodeType === 1) {
+      if (node.matches(selector)) return node;
+      node = node.parentNode;
+    }
+
+    return null;
+  }
+
+  return context.closest(selector);
+}
+
+// Properties
 
 function $attr(selector, context, key) {
-  const node = $$$(selector, context);
-  return node.attr(key);
+  const node = $find(selector, context);
+  return node ? node.getAttribute(key) : null;
+}
+
+function $classed(node, cls) {
+  return node.classList.contains(cls);
+}
+
+function $data(node, key) {
+  return node.dataset[key];
 }
 
 function $has(selector, context) {
-  const nodes = $$$(selector, context);
-  return nodes.length > 0;
-}
-
-function $classed(context, cls) {
-  return $$$(context).hasClass(cls);
-}
-
-function $find(selector, context) {
-  return $$$(selector, context);
-}
-
-function $map(collection, fn) {
-  return $$$(collection).map(fn).get();
+  return $find(selector, context) !== null;
 }
 
 function $text(selector, context) {
-  const txt = $$$(selector, context).text();
-  return trim(txt);
+  const node = $find(selector, context);
+  return node ? trim(node.textContent) : null;
 }
 
 function $value(selector, context) {
-  const val = $$$(selector, context).val();
-  return trim(val);
+  const node = $find(selector, context);
+  return node ? trim(node.value || node.getAttribute('value')) : null;
 }
 
 export {
-  $data,
+  $all,
   $attr,
+  $classed,
+  $closest,
+  $data,
   $find,
   $has,
-  $classed,
-  $map,
   $text,
   $value,
   trim,

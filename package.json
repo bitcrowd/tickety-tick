@@ -63,7 +63,6 @@
   },
   "dependencies": {
     "bootstrap": "4.0.0-alpha.4",
-    "jquery": "3.2.1",
     "octicons": "7.0.1",
     "prop-types": "15.6.0",
     "react": "16.1.1",

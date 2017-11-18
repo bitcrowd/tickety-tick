@@ -19,10 +19,7 @@
        "http://*/*",
        "https://*/*"
      ],
-     "js": [
-       "jquery.js",
-       "content.js"
-     ]
+     "js": ["content.js"]
     }
   ],
   "web_accessible_resources": [
