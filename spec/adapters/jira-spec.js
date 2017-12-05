@@ -53,6 +53,35 @@ const STORYPAGE_TITLE_EDITED = `
 const CHOREPAGE = STORYPAGE.replace(/Story/gi, 'Chore');
 const BUGPAGE = STORYPAGE.replace(/Story/gi, 'Bug');
 
+const BOARD_STORY = `
+<div class="ghx-columns">
+  <div class="ghx-column">
+    <div class="ghx-issue ghx-selected">
+      <section class="ghx-summary" title="">A Random JIRA Board Issue</section>
+      <section class="ghx-extra-fields">
+        <div class="ghx-row"><span class="ghx-extra-field ghx-fa"><span class="ghx-extra-field-content">None</span></span></div>
+      </section>
+      <section class="ghx-stat-fields">
+        <div class="ghx-row ghx-stat-1">
+          <span class="ghx-field ghx-field-icon" data-tooltip="Story"><img src=""></span>
+          <span class="ghx-field ghx-field-icon" data-tooltip="Some other thing"><img src=""></span>
+          <span class="ghx-field"></span><span class="ghx-field"><img src="" class="ghx-avatar-img"></span></div>
+      <div class="ghx-row ghx-stat-2">
+          <span class="ghx-field"><img src="" class="ghx-avatar-img"></span>
+          <a href="/browse/UXPL-39" aria-label="UXPL-39" data-tooltip="UXPL-39" tabindex="-1" class="ghx-key">
+            <span class="ghx-issuekey-pkey js-key-link" aria-hidden="true">UXPL</span>
+            <span class="ghx-issuekey-number js-key-link" aria-hidden="true">39-</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+`;
+
+const BOARD_CHORE = BOARD_STORY.replace(/Story/gi, 'Chore');
+const BOARD_BUG = BOARD_STORY.replace(/Story/gi, 'Bug');
+
 describe('jira adapter', () => {
   function doc(body = '', id = 'jira') {
     const { window } = new JSDOM(`<html><body id="${id}">${body}</body></html>`);
@@ -117,6 +146,30 @@ describe('jira adapter', () => {
   it('extracts chore tickets from the sidebar', () => {
     const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Sidebar Issue', type: 'chore' }];
     adapter.inspect(null, doc(CHORE_SIDEBAR), (err, res) => {
+      expect(err).toBe(null);
+      expect(res).toEqual(expected);
+    });
+  });
+
+  it('extracts selected tickets from the board', () => {
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Board Issue', type: 'feature' }];
+    adapter.inspect(null, doc(BOARD_STORY), (err, res) => {
+      expect(err).toBe(null);
+      expect(res).toEqual(expected);
+    });
+  });
+
+  it('extracts selected bug tickets from the board', () => {
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Board Issue', type: 'bug' }];
+    adapter.inspect(null, doc(BOARD_BUG), (err, res) => {
+      expect(err).toBe(null);
+      expect(res).toEqual(expected);
+    });
+  });
+
+  it('extracts selected chore tickets from the board', () => {
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Board Issue', type: 'chore' }];
+    adapter.inspect(null, doc(BOARD_CHORE), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
     });
