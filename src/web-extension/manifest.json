@@ -34,5 +34,15 @@
     "default_icon": "icon-128.png",
     "default_popup": "popup.html"
   },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+T",
+        "mac": "MacCtrl+T",
+        "chromeos": "Ctrl+T",
+        "linux": "Ctrl+T"
+      }
+    }
+  },
   "content_security_policy": "default-src 'none'; style-src 'self'; script-src 'self';"
 }
