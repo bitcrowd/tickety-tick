@@ -30,7 +30,7 @@ const adapter = {
       const title = ticketPageTitle(issue);
       const type = normalizeType($text('#type-val', issue));
       return fn(null, [{ id, title, type }]);
-    } else if($has('.ghx-columns .ghx-issue.ghx-selected', doc)) { // Board view
+    } else if ($has('.ghx-columns .ghx-issue.ghx-selected', doc)) { // Board view
       const issue = $find('.ghx-columns .ghx-issue.ghx-selected', doc);
       const id = $attr('.ghx-key', issue, 'aria-label');
       const title = $text('.ghx-summary', issue);
