@@ -38,9 +38,7 @@
     "_execute_browser_action": {
       "suggested_key": {
         "default": "Ctrl+T",
-        "mac": "MacCtrl+T",
-        "chromeos": "Ctrl+T",
-        "linux": "Ctrl+T"
+        "mac": "MacCtrl+T"
       }
     }
   },
