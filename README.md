@@ -44,6 +44,12 @@ Tickety-Tick is available for every major browser:
 - [Opera](https://addons.opera.com/extensions/details/tickety-tick/)
 - For Safari, you need to build it yourself (see below)
 
+## Keyboard Shortcuts
+
+| Shortcut | Description                      |
+|----------|----------------------------------|
+| Ctrl + T | Open the extension's popup dialog |
+
 ## Building
 
 In order to build the extension from source, run:
