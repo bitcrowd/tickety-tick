@@ -1,5 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
+import path from 'path';
+import ZipWebpackPlugin from 'zip-webpack-plugin';
+
 import config, { src, dist } from './webpack.common';
 import pkg from './package.json';
 
@@ -43,5 +46,13 @@ config.plugin('copy').tap(([patterns]) => [[
     },
   },
 ]]);
+
+config.plugin('zip')
+  .use(ZipWebpackPlugin, [
+    {
+      path: path.join(__dirname, 'dist'),
+      filename: variant,
+    },
+  ]);
 
 export default config.toConfig();
