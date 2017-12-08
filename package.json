@@ -19,6 +19,8 @@
     "watch:safari": "npm run build:safari -- --watch",
     "open:chrome": "./script/open-in-chrome ./dist/chrome https://github.com/bitcrowd/tickety-tick",
     "open:firefox": "web-ext run --source-dir ./dist/firefox --pref startup.homepage_welcome_url=https://github.com/bitcrowd/tickety-tick",
+    "bundle:chrome": "cross-env BUNDLE=true npm run build:chrome",
+    "bundle:firefox": "cross-env BUNDLE=true npm run build:firefox",
     "lint": "eslint '**/*.{js,jsx}'",
     "test": "cross-env NODE_ENV=test jasmine",
     "test:coverage": "nyc npm test",
@@ -60,7 +62,7 @@
     "web-ext": "2.2.2",
     "webpack": "3.8.1",
     "webpack-chain": "4.4.2",
-    "zip-webpack-plugin": "^2.1.0"
+    "zip-webpack-plugin": "2.1.0"
   },
   "dependencies": {
     "bootstrap": "4.0.0-alpha.4",

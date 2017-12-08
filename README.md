@@ -99,6 +99,16 @@ and add the `dist/tickety-tick.safariextension` that you just built.
 
 ## Development
 
+### Building releases
+
+Chrome Web Store and Firefox Addons require you to submit extensions as a
+single zip archive. To build and zip the extension for a release, run:
+
+```shell
+yarn bundle:chrome
+yarn bundle:firefox
+```
+
 ### Developing Tickety-Tick
 
 For development use `yarn watch:[browser]`. This will watch the files and
