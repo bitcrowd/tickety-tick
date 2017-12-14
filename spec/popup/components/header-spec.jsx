@@ -4,10 +4,11 @@ import { shallow } from 'enzyme';
 
 import Header from '../../../src/common/popup/components/header';
 import CopyButton from '../../../src/common/popup/components/copy-button';
-import fmt from '../../../src/common/popup/utils/format';
+
+import { ticket as make } from '../../support/factories';
 
 describe('header', () => {
-  const tickets = ['jedan', 'dva', 'tri'].map((title, i) => ({ id: `${i + 1}`, title }));
+  const tickets = ['jedan', 'dva', 'tri'].map((title, i) => make({ id: `${i + 1}`, title }));
 
   it('renders a link to the about page', () => {
     const wrapper = shallow(<Header tickets={tickets} />);
@@ -24,7 +25,7 @@ describe('header', () => {
 
   it('renders a button for copying a summary of all tickets', () => {
     const wrapper = shallow(<Header tickets={tickets} />);
-    const value = tickets.map(fmt.commit).join(', ');
+    const value = tickets.map(ticket => ticket.fmt.commit).join(', ');
     const button = (<CopyButton value={value}>Summary</CopyButton>);
     expect(wrapper.containsMatchingElement(button)).toBe(true);
   });

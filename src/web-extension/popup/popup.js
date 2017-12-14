@@ -2,7 +2,10 @@
 /* global chrome */
 
 import render from '../../common/popup/render';
+import format from '../../common/format';
 import '../../common/popup/popup.scss';
+
+import store from '../store';
 
 const { extension } = chrome;
 const background = extension.getBackgroundPage();
@@ -30,8 +33,23 @@ function openext() {
 }
 
 function load() {
-  background.getTickets((tickets) => {
-    render(tickets, { grab, openext });
+  store.get(null, ({ templates }) => {
+    background.getTickets((tickets) => {
+      const fmt = format(templates);
+
+      const enhance = ticket => ({
+        fmt: {
+          branch: fmt.branch(ticket),
+          commit: fmt.commit(ticket),
+          command: fmt.command(ticket),
+        },
+        ...ticket,
+      });
+
+      const result = tickets ? tickets.map(enhance) : null;
+
+      render(result, { grab, openext });
+    });
   });
 }
 

@@ -118,7 +118,7 @@ To test-drive a development version, you can use:
 
 ```shell
 yarn open:chrome
-yarn open:firefox
+yarn open:firefox-local
 ```
 
 You can run both `watch:[browser]` and `open:[browser]` scripts in parallel to

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>DefaultValue</key>
+		<string></string>
+		<key>Key</key>
+		<string>commitMessageFormat</string>
+		<key>Title</key>
+		<string>Commit Message Format</string>
+		<key>Type</key>
+		<string>TextField</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string></string>
+		<key>Key</key>
+		<string>branchNameFormat</string>
+		<key>Title</key>
+		<string>Branch Name Format</string>
+		<key>Type</key>
+		<string>TextField</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string></string>
+		<key>Key</key>
+		<string>commandFormat</string>
+		<key>Title</key>
+		<string>Command Format</string>
+		<key>Type</key>
+		<string>TextField</string>
+	</dict>
+</array>
+</plist>

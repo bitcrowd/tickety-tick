@@ -1,7 +1,7 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class EnvProvider extends React.Component {
+class EnvProvider extends Component {
   getChildContext() {
     const { openext, grab } = this.props;
     return { openext, grab };

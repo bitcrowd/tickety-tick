@@ -9,7 +9,7 @@ const dir = process.argv[2] || path.join(__dirname, '..', 'dist', 'chrome');
 const url = process.argv[3] || 'https://github.com/bitcrowd/tickety-tick';
 
 const options = {
-  chromeFlags: [`--load-extension=${dir}`],
+  chromeFlags: ['--no-default-browser-check', `--load-extension=${dir}`],
   enableExtensions: true,
   startingUrl: url,
 };
