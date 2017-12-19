@@ -7105,6 +7105,14 @@ webidl-conversions@^4.0.1, webidl-conversions@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
 
+webpack-build-notifier@0.1.21:
+  version "0.1.21"
+  resolved "https://registry.yarnpkg.com/webpack-build-notifier/-/webpack-build-notifier-0.1.21.tgz#8970ff44a6a290fa636fb1385045ebd08a089ab0"
+  dependencies:
+    ansi-regex "^2.0.0"
+    node-notifier "5.1.2"
+    strip-ansi "^3.0.1"
+
 webpack-chain@4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/webpack-chain/-/webpack-chain-4.4.2.tgz#6234884f59c096ebd622535c6a69d31e8440ff99"

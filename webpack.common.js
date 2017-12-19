@@ -5,6 +5,7 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import NotifierPlugin from 'webpack-build-notifier';
 
 import Config from 'webpack-chain';
 
@@ -103,6 +104,11 @@ config.plugin('copy')
       flatten: true,
     },
   ]]);
+
+config.plugin('notifier')
+  .use(NotifierPlugin, [{
+    title: 'Tickety-Tick Build',
+  }]);
 
 config.devtool('source-map');
 
