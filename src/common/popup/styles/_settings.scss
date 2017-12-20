@@ -4,8 +4,10 @@ $enable-flex: true;
 
 // Typography
 
-$font-size-root: 12px;
+$font-size-base: 0.7rem;
 
 // Color
 
-$brand-primary: #c32f34;
+$primary: #c32f34;
+
+$navbar-padding-y: 5px;

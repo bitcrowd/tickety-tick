@@ -3,7 +3,6 @@
 .popup {
   width: 315px;
   min-height: 210px;
-  padding-top: 42px;
 }
 
 // Logos
@@ -22,8 +21,9 @@
 // Navs
 
 .navbar-tt {
-  border-bottom: 1px solid $gray-lighter;
+  border-bottom: 1px solid $gray-200;
   background: #fff;
+  margin-bottom: 5px;
 }
 
 .nav-text {

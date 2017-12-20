@@ -1,12 +1,11 @@
 // Customization
+
 @import "styles/settings";
 
 // Core variables and mixins
+@import '~bootstrap/scss/functions';
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
-
-// Reset and dependencies
-@import "~bootstrap/scss/normalize";
 
 // Core CSS
 @import "~bootstrap/scss/reboot";

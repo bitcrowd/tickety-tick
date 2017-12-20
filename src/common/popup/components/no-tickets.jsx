@@ -6,7 +6,7 @@ const href = 'https://github.com/bitcrowd/tickety-tick/issues';
 
 function NoTickets() {
   return (
-    <div className="text-xs-center m-b-2">
+    <div className="text-center m-b-2">
       <h5 className="m-t-2 m-b-2">No tickets found on this page.</h5>
       <h6>
         Did you select or open any tickets?
