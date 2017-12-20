@@ -61,6 +61,7 @@
     "sass-loader": "6.0.6",
     "web-ext": "2.2.2",
     "webpack": "3.8.1",
+    "webpack-build-notifier": "0.1.21",
     "webpack-chain": "4.4.2",
     "zip-webpack-plugin": "2.1.0"
   },
