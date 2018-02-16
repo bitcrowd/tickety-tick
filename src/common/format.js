@@ -29,18 +29,20 @@ const fallbacks = {
 };
 
 export default (templates = {}) => {
-  const renderer = name => (mapfn) => {
+  const renderer = (name) => {
     const render = compile(templates[name] || defaults[name], helpers);
-    return values => render(mapfn({ ...fallbacks, ...values }));
+    return values => render({ ...fallbacks, ...values });
   };
 
-  const commit = renderer('commit')(values => values);
-  const branch = renderer('branch')(values => values);
-  const command = renderer('command')(values => ({
+  const commit = renderer('commit');
+  const branch = renderer('branch');
+  const cmd = renderer('command');
+
+  const command = values => cmd({
     branch: branch(values),
     commit: commit(values),
     ...values,
-  }));
+  });
 
   return { branch, commit, command };
 };
