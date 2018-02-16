@@ -2,7 +2,7 @@
 /* global safari */
 
 import render from '../../common/popup/render';
-import format from '../../common/format';
+import enhance from '../../common/enhance';
 import '../../common/popup/popup.scss';
 
 const app = safari.application;
@@ -46,19 +46,8 @@ function onMessage(event) {
       command: settings.commandFormat,
     };
 
-    const fmt = format(templates);
-
-    const enhance = ticket => ({
-      fmt: {
-        branch: fmt.branch(ticket),
-        commit: fmt.commit(ticket),
-        command: fmt.command(ticket),
-      },
-      ...ticket,
-    });
-
     const tickets = event.message
-      ? event.message.map(enhance)
+      ? event.message.map(enhance(templates))
       : null;
 
     render(tickets, { grab, openext });

@@ -2,7 +2,7 @@
 /* global chrome */
 
 import render from '../../common/popup/render';
-import format from '../../common/format';
+import enhance from '../../common/enhance';
 import '../../common/popup/popup.scss';
 
 import store from '../store';
@@ -35,18 +35,9 @@ function openext() {
 function load() {
   store.get(null, ({ templates }) => {
     background.getTickets((tickets) => {
-      const fmt = format(templates);
-
-      const enhance = ticket => ({
-        fmt: {
-          branch: fmt.branch(ticket),
-          commit: fmt.commit(ticket),
-          command: fmt.command(ticket),
-        },
-        ...ticket,
-      });
-
-      const result = tickets ? tickets.map(enhance) : null;
+      const result = tickets
+        ? tickets.map(enhance(templates))
+        : null;
 
       render(result, { grab, openext });
     });
