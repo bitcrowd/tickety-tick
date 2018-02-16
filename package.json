@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "1.3.0",
+  "version": "2.0.0",
   "name": "tickety-tick",
   "description": "A browser extension that helps you to create commit messages and branch names from story trackers.",
   "author": "Bodo Tasche <bodo@bitcrowd.net>",
@@ -18,13 +18,13 @@
     "watch:firefox-local": "npm run build:firefox-local -- --watch",
     "watch:safari": "npm run build:safari -- --watch",
     "open:chrome": "./script/open-in-chrome ./dist/chrome https://github.com/bitcrowd/tickety-tick",
-    "open:firefox": "web-ext run --source-dir ./dist/firefox --pref startup.homepage_welcome_url=https://github.com/bitcrowd/tickety-tick",
+    "open:firefox-local": "web-ext run --source-dir ./dist/firefox-local --pref startup.homepage_welcome_url=https://github.com/bitcrowd/tickety-tick",
     "bundle:chrome": "cross-env BUNDLE=true npm run build:chrome",
     "bundle:firefox": "cross-env BUNDLE=true npm run build:firefox",
     "lint": "eslint '**/*.{js,jsx}'",
     "test": "cross-env NODE_ENV=test jasmine",
     "test:coverage": "nyc npm test",
-    "test:watch": "cross-env NODE_ENV=test nodemon --exec jasmine",
+    "test:watch": "cross-env NODE_ENV=test nodemon --ext js,jsx,json --exec jasmine",
     "checks": "npm run lint && npm run test"
   },
   "devDependencies": {

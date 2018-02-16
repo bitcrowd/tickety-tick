@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ZipWebpackPlugin from 'zip-webpack-plugin';
 
 import config, { src, dist } from './webpack.common';
@@ -12,7 +13,8 @@ const variant = process.env.VARIANT;
 
 // Configure separate entry points.
 
-config.entry('popup').add(src.webext('popup', 'popup.jsx'));
+config.entry('options').add(src.webext('options', 'options.jsx'));
+config.entry('popup').add(src.webext('popup', 'popup.js'));
 config.entry('content').add(src.webext('content.js'));
 config.entry('background').add(src.webext('background.js'));
 
@@ -20,7 +22,21 @@ config.entry('background').add(src.webext('background.js'));
 
 config.output.path(dist(variant));
 
-// Copy the manifest.json template in addition to default files.
+// Create the options.html in addition to common files.
+
+config.plugin('options-html')
+  .use(HtmlWebpackPlugin, [{
+    template: src.webext('options', 'options.html'),
+    filename: 'options.html',
+    chunks: ['options'],
+    inject: true,
+    minify: {
+      collapseWhitespace: true,
+      removeScriptTypeAttributes: true,
+    },
+  }]);
+
+// Copy the manifest.json template in addition to common files.
 
 config.plugin('copy').tap(([patterns]) => [[
   ...patterns,
@@ -39,6 +55,12 @@ config.plugin('copy').tap(([patterns]) => [[
             id: 'tickety-tick@bitcrowd.net',
           },
         };
+      }
+
+      if (['firefox', 'firefox-local'].includes(variant)) {
+        mf.options_ui.browser_style = true;
+      } else {
+        mf.options_ui.chrome_style = true;
       }
 
       return JSON.stringify(mf);

@@ -4,53 +4,46 @@ import octicons from 'octicons';
 
 import CopyButton from './copy-button';
 import TicketShape from '../utils/ticket-shape';
-import fmt from '../utils/format';
 
 const svg = name => ({ __html: octicons[name].toSVG() });
 
 /* eslint-disable jsx-a11y/tabindex-no-positive, react/no-danger */
 
 function TicketListItem({ ticket }) {
-  const commit = fmt.commit(ticket);
-  const branch = fmt.branch(ticket);
-  const command = fmt.command(ticket);
-
   return (
-    <li className="list-group-item list-group-item-tt">
-      <div className="container list-group-container">
-        <div className="row">
-          <div className="col-xs-7">
-            <h6 className="list-group-heading">{ticket.title}</h6>
-          </div>
-          <div className="col-xs-5 text-xs-right">
-            <CopyButton
-              className="btn btn-primary btn-sm"
-              title="Branch name"
-              value={branch}
-              tabIndex={1}
-            >
-              <span className="octicon octicon-sm" dangerouslySetInnerHTML={svg('git-branch')} />
-            </CopyButton>
-            <CopyButton
-              className="btn btn-primary btn-sm pq"
-              title="Commit message"
-              value={commit}
-              tabIndex={1}
-            >
-              <span className="octicon octicon-sm" dangerouslySetInnerHTML={svg('comment')} />
-            </CopyButton>
-            <CopyButton
-              className="btn btn-primary btn-sm pq"
-              title="CLI command"
-              value={command}
-              tabIndex={1}
-            >
-              <span className="octicon octicon-sm" dangerouslySetInnerHTML={svg('terminal')} />
-            </CopyButton>
-          </div>
+    <div className="container list-group-container">
+      <div className="row">
+        <div className="col-xs-7">
+          <h6 className="list-group-heading">{ticket.title}</h6>
+        </div>
+        <div className="col-xs-5 text-xs-right">
+          <CopyButton
+            className="btn btn-primary btn-sm"
+            title="Branch name"
+            value={ticket.fmt.branch}
+            tabIndex={1}
+          >
+            <span className="octicon octicon-sm" dangerouslySetInnerHTML={svg('git-branch')} />
+          </CopyButton>
+          <CopyButton
+            className="btn btn-primary btn-sm pq"
+            title="Commit message"
+            value={ticket.fmt.commit}
+            tabIndex={1}
+          >
+            <span className="octicon octicon-sm" dangerouslySetInnerHTML={svg('comment')} />
+          </CopyButton>
+          <CopyButton
+            className="btn btn-primary btn-sm pq"
+            title="CLI command"
+            value={ticket.fmt.command}
+            tabIndex={1}
+          >
+            <span className="octicon octicon-sm" dangerouslySetInnerHTML={svg('terminal')} />
+          </CopyButton>
         </div>
       </div>
-    </li>
+    </div>
   );
 }
 
@@ -61,14 +54,16 @@ TicketListItem.propTypes = {
 };
 
 function TicketList({ tickets }) {
-  const item = ticket => (
-    <TicketListItem key={ticket.id} ticket={ticket} />
+  const itemize = ticket => (
+    <li key={ticket.id} className="list-group-item list-group-item-tt">
+      <TicketListItem ticket={ticket} />
+    </li>
   );
 
   return (
     <div>
       <ul className="list-group">
-        {tickets.map(item)}
+        {tickets.map(itemize)}
       </ul>
     </div>
   );

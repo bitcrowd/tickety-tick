@@ -6,8 +6,10 @@ import TicketList from '../../../src/common/popup/components/ticket-list';
 import NoTickets from '../../../src/common/popup/components/no-tickets';
 import Header from '../../../src/common/popup/components/header';
 
+import { ticket as make } from '../../support/factories';
+
 describe('tool', () => {
-  const tickets = ['un', 'deux', 'trois'].map((title, i) => ({ id: `${i + 1}`, title }));
+  const tickets = ['un', 'deux', 'trois'].map((title, i) => make({ id: `${i + 1}`, title }));
 
   let wrapper;
 

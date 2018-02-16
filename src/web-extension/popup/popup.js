@@ -2,7 +2,10 @@
 /* global chrome */
 
 import render from '../../common/popup/render';
+import enhance from '../../common/enhance';
 import '../../common/popup/popup.scss';
+
+import store from '../store';
 
 const { extension } = chrome;
 const background = extension.getBackgroundPage();
@@ -30,8 +33,14 @@ function openext() {
 }
 
 function load() {
-  background.getTickets((tickets) => {
-    render(tickets, { grab, openext });
+  store.get(null, ({ templates }) => {
+    background.getTickets((tickets) => {
+      const result = tickets
+        ? tickets.map(enhance(templates))
+        : null;
+
+      render(result, { grab, openext });
+    });
   });
 }
 

@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Bitcrowd</string>
 	<key>Builder Version</key>
-	<string>10600.3.18</string>
+	<string>12604.4.7.1.4</string>
 	<key>CFBundleDisplayName</key>
 	<string>tickety-tick</string>
 	<key>CFBundleIdentifier</key>
@@ -64,7 +64,7 @@
 	<key>Description</key>
 	<string>Create branches and commits based on tickets</string>
 	<key>DeveloperIdentifier</key>
-	<string>G2U9HY25P2</string>
+	<string>0000000000</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>

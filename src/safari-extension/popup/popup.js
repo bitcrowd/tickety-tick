@@ -2,9 +2,11 @@
 /* global safari */
 
 import render from '../../common/popup/render';
+import enhance from '../../common/enhance';
 import '../../common/popup/popup.scss';
 
 const app = safari.application;
+const { settings } = safari.extension;
 
 function pbcopy(text) {
   prompt('Here you go:', text); // eslint-disable-line no-alert
@@ -38,7 +40,17 @@ function onPopover(event) {
 
 function onMessage(event) {
   if (event.name === 'tickets') {
-    render(event.message, { grab, openext });
+    const templates = {
+      commit: settings.commitMessageFormat,
+      branch: settings.branchNameFormat,
+      command: settings.commandFormat,
+    };
+
+    const tickets = event.message
+      ? event.message.map(enhance(templates))
+      : null;
+
+    render(tickets, { grab, openext });
   }
 }
 

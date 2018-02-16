@@ -29,9 +29,13 @@ export function dist(...p) {
 // - entry
 //   - popup entry point differs between web-extension browsers and safari
 //   - content script differs between web-extension browsers and safari
-//   - web-extension browsers include a background.js, safari does not
+//   - web-extension browsers include a background.js and options.js
 // - output.path: we create separate output directories for each browser
-// - copy-webpack-plugin copy patterns: manifest.json != Info.plist
+// - plugins:
+//   - copy:
+//     - web-extension browsers add manifest.json
+//     - safari adds Info.plist and Settings.plist
+//   - options-html: web-extension browsers add options.html
 
 const config = new Config();
 
@@ -94,7 +98,7 @@ config.plugin('html')
 
 config.plugin('extract')
   .use(ExtractTextPlugin, [{
-    filename: 'popup.css',
+    filename: '[name].css',
   }]);
 
 config.plugin('copy')

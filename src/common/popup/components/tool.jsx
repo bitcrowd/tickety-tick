@@ -6,14 +6,14 @@ import NoTickets from './no-tickets';
 import Header from './header';
 import TicketShape from '../utils/ticket-shape';
 
-function Tool(props) {
-  const content = (props.tickets && props.tickets.length > 0)
-    ? <TicketList tickets={props.tickets} />
+function Tool({ tickets }) {
+  const content = (tickets && tickets.length > 0)
+    ? <TicketList tickets={tickets} />
     : <NoTickets />;
 
   return (
     <div>
-      <Header tickets={props.tickets || []} />
+      <Header tickets={tickets || []} />
       <div className="content">{content}</div>
     </div>
   );
