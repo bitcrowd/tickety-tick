@@ -20,18 +20,22 @@ const adapter = {
   inspect(loc, doc, fn) {
     if (doc.body.id !== 'jira') return fn(null, null);
 
-    if ($has('.ghx-fieldname-issuekey a', doc)) { // JIRA sidebar
-      const id = $text('.ghx-fieldname-issuekey a', doc);
-      const title = $text('[data-field-id="summary"]', doc);
-      const type = normalizeType($attr(`[data-issue-key="${id}"] .ghx-type`, doc, 'title'));
+    if ($has('.ghx-backlog-column .ghx-backlog-card.ghx-selected', doc)) {
+      // ticket list with backlog and sprints
+      const issue = $find('.ghx-backlog-column .ghx-backlog-card.ghx-selected', doc);
+      const id = $text('.ghx-key', issue);
+      const title = $text('.ghx-summary .ghx-inner', issue);
+      const type = normalizeType($attr('.ghx-type', issue, 'title'));
       return fn(null, [{ id, title, type }]);
-    } else if ($has('#issue-content', doc)) { // JIRA ticket page
+    } else if ($has('#issue-content', doc)) {
+      // ticket show-page, when a single ticket is opened full-screen
       const issue = $find('#issue-content', doc);
       const id = $text('#key-val', issue);
       const title = ticketPageTitle(issue);
       const type = normalizeType($text('#type-val', issue));
       return fn(null, [{ id, title, type }]);
-    } else if ($has('.ghx-columns .ghx-issue.ghx-selected', doc)) { // Board view
+    } else if ($has('.ghx-columns .ghx-issue.ghx-selected', doc)) {
+      // Board view, when a ticket is opened in a modal window
       const issue = $find('.ghx-columns .ghx-issue.ghx-selected', doc);
       const id = $attr('.ghx-key', issue, 'aria-label');
       const title = $text('.ghx-summary', issue);
