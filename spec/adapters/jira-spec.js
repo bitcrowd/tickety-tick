@@ -2,6 +2,8 @@ import { JSDOM } from 'jsdom';
 
 import adapter from '../../src/common/adapters/jira';
 
+// parts of the dom of the jira backlog issue-list
+// contains two tickets - one of them being selected
 const BACKLOG = `
   <div class="ghx-backlog-column">
     <div class="ghx-backlog-card ghx-selected">
@@ -31,10 +33,38 @@ const BACKLOG = `
         </div>
       </div>
     </div>
+    <div class="ghx-backlog-card">
+      <div class="ghx-issue-content">
+        <div class="ghx-row ghx-plan-main-fields">
+          <span class="ghx-backlog-card-expander-spacer"></span>
+          <span class="ghx-type items-spacer" title="Bug">
+            <img src="https://someorg.atlassian.net/secure/viewavatar?size=xsmall&amp;avatarId=12345&amp;avatarType=issuetype">
+          </span>
+          <div class="ghx-summary" data-tooltip="A Random JIRA Bug Issue">
+            <span class="ghx-inner">A Random JIRA Bug Issue</span>
+          </div>
+        </div>
+        <div class="ghx-row ghx-end ghx-items-container">
+          <span class="aui-lozenge ghx-label ghx-label-single ghx-label-3" title="Chores" data-epickey="UXPL-123">
+            Chores
+          </span>
+          <span class="ghx-end ghx-items-container">
+            <a href="/browse/UXPL-47" title="UXPL-47" class="ghx-key js-key-link">
+              UXPL-47
+            </a>
+            <span class="ghx-priority" title="Low">
+              <img src="https://someorg.atlassian.net/images/icons/priorities/low.svg">
+            </span>
+            <span class="aui-badge ghx-spacer ghx-statistic-badge"></span>
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
 `;
 const BUG_BACKLOG = BACKLOG.replace(/Story/, 'Bug');
 const CHORE_BACKLOG = BACKLOG.replace(/Story/, 'Chore');
+const BACKLOG_TWO_TICKETS_SELECTED = BACKLOG.replace('<div class="ghx-backlog-card">', '<div class="ghx-backlog-card ghx-selected">');
 
 const STORYPAGE = `
   <div id="issue-content">
@@ -166,6 +196,17 @@ describe('jira adapter', () => {
   it('extracts chore tickets from the backlog', () => {
     const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'chore' }];
     adapter.inspect(null, doc(CHORE_BACKLOG), (err, res) => {
+      expect(err).toBe(null);
+      expect(res).toEqual(expected);
+    });
+  });
+
+  it('extracts tickets from the backlog when multiple tickets are selected', () => {
+    const expected = [
+      { id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'feature' },
+      { id: 'UXPL-47', title: 'A Random JIRA Bug Issue', type: 'bug' },
+    ];
+    adapter.inspect(null, doc(BACKLOG_TWO_TICKETS_SELECTED), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
     });

@@ -1,4 +1,4 @@
-import { $find, $has, $text, $attr } from './helpers';
+import { $all, $find, $has, $text, $attr } from './helpers';
 
 const TYPES = ['bug', 'chore'];
 
@@ -22,11 +22,14 @@ const adapter = {
 
     if ($has('.ghx-backlog-column .ghx-backlog-card.ghx-selected', doc)) {
       // ticket list with backlog and sprints
-      const issue = $find('.ghx-backlog-column .ghx-backlog-card.ghx-selected', doc);
-      const id = $text('.ghx-key', issue);
-      const title = $text('.ghx-summary .ghx-inner', issue);
-      const type = normalizeType($attr('.ghx-type', issue, 'title'));
-      return fn(null, [{ id, title, type }]);
+      const issueCssPath = '.ghx-backlog-column .ghx-backlog-card.ghx-selected';
+      const issues = $all(issueCssPath, doc).map((issue) => {
+        const id = $text('.ghx-key', issue);
+        const title = $text('.ghx-summary .ghx-inner', issue);
+        const type = normalizeType($attr('.ghx-type', issue, 'title'));
+        return { id, title, type };
+      });
+      return fn(null, issues);
     } else if ($has('#issue-content', doc)) {
       // ticket show-page, when a single ticket is opened full-screen
       const issue = $find('#issue-content', doc);
