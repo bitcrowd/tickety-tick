@@ -2,19 +2,69 @@ import { JSDOM } from 'jsdom';
 
 import adapter from '../../src/common/adapters/jira';
 
-const SIDEBAR = `
-  <div>
-    <div class="ghx-fieldname-issuekey">
-      <a href="#">UXPL-39</a>
+// parts of the dom of the jira backlog issue-list
+// contains two tickets - one of them being selected
+const BACKLOG = `
+  <div class="ghx-backlog-column">
+    <div class="ghx-backlog-card ghx-selected">
+      <div class="ghx-issue-content">
+        <div class="ghx-row ghx-plan-main-fields">
+          <span class="ghx-backlog-card-expander-spacer"></span>
+          <span class="ghx-type items-spacer" title="Story">
+            <img src="https://someorg.atlassian.net/secure/viewavatar?size=xsmall&amp;avatarId=12345&amp;avatarType=issuetype">
+          </span>
+          <div class="ghx-summary" data-tooltip="A Random JIRA Backlog Issue">
+            <span class="ghx-inner">A Random JIRA Backlog Issue</span>
+          </div>
+        </div>
+        <div class="ghx-row ghx-end ghx-items-container">
+          <span class="aui-lozenge ghx-label ghx-label-single ghx-label-3" title="Chores" data-epickey="UXPL-123">
+            Chores
+          </span>
+          <span class="ghx-end ghx-items-container">
+            <a href="/browse/UXPL-39" title="UXPL-39" class="ghx-key js-key-link">
+              UXPL-39
+            </a>
+            <span class="ghx-priority" title="Medium">
+              <img src="https://someorg.atlassian.net/images/icons/priorities/medium.svg">
+            </span>
+            <span class="aui-badge ghx-spacer ghx-statistic-badge"></span>
+          </span>
+        </div>
+      </div>
     </div>
-    <div data-field-id="summary">A Random JIRA Sidebar Issue</div>
-    <div data-issue-key="UXPL-39">
-      <span class="ghx-type" title="Story"></span>
+    <div class="ghx-backlog-card">
+      <div class="ghx-issue-content">
+        <div class="ghx-row ghx-plan-main-fields">
+          <span class="ghx-backlog-card-expander-spacer"></span>
+          <span class="ghx-type items-spacer" title="Bug">
+            <img src="https://someorg.atlassian.net/secure/viewavatar?size=xsmall&amp;avatarId=12345&amp;avatarType=issuetype">
+          </span>
+          <div class="ghx-summary" data-tooltip="A Random JIRA Bug Issue">
+            <span class="ghx-inner">A Random JIRA Bug Issue</span>
+          </div>
+        </div>
+        <div class="ghx-row ghx-end ghx-items-container">
+          <span class="aui-lozenge ghx-label ghx-label-single ghx-label-3" title="Chores" data-epickey="UXPL-123">
+            Chores
+          </span>
+          <span class="ghx-end ghx-items-container">
+            <a href="/browse/UXPL-47" title="UXPL-47" class="ghx-key js-key-link">
+              UXPL-47
+            </a>
+            <span class="ghx-priority" title="Low">
+              <img src="https://someorg.atlassian.net/images/icons/priorities/low.svg">
+            </span>
+            <span class="aui-badge ghx-spacer ghx-statistic-badge"></span>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 `;
-const BUG_SIDEBAR = SIDEBAR.replace(/Story/, 'Bug');
-const CHORE_SIDEBAR = SIDEBAR.replace(/Story/, 'Chore');
+const BUG_BACKLOG = BACKLOG.replace(/Story/, 'Bug');
+const CHORE_BACKLOG = BACKLOG.replace(/Story/, 'Chore');
+const BACKLOG_TWO_TICKETS_SELECTED = BACKLOG.replace('<div class="ghx-backlog-card">', '<div class="ghx-backlog-card ghx-selected">');
 
 const STORYPAGE = `
   <div id="issue-content">
@@ -127,25 +177,36 @@ describe('jira adapter', () => {
     });
   });
 
-  it('extracts tickets from the sidebar', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Sidebar Issue', type: 'feature' }];
-    adapter.inspect(null, doc(SIDEBAR), (err, res) => {
+  it('extracts tickets from the backlog', () => {
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'feature' }];
+    adapter.inspect(null, doc(BACKLOG), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
     });
   });
 
-  it('extracts bug tickets from the sidebar', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Sidebar Issue', type: 'bug' }];
-    adapter.inspect(null, doc(BUG_SIDEBAR), (err, res) => {
+  it('extracts bug tickets from the backlog', () => {
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'bug' }];
+    adapter.inspect(null, doc(BUG_BACKLOG), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
     });
   });
 
-  it('extracts chore tickets from the sidebar', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Sidebar Issue', type: 'chore' }];
-    adapter.inspect(null, doc(CHORE_SIDEBAR), (err, res) => {
+  it('extracts chore tickets from the backlog', () => {
+    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'chore' }];
+    adapter.inspect(null, doc(CHORE_BACKLOG), (err, res) => {
+      expect(err).toBe(null);
+      expect(res).toEqual(expected);
+    });
+  });
+
+  it('extracts tickets from the backlog when multiple tickets are selected', () => {
+    const expected = [
+      { id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'feature' },
+      { id: 'UXPL-47', title: 'A Random JIRA Bug Issue', type: 'bug' },
+    ];
+    adapter.inspect(null, doc(BACKLOG_TWO_TICKETS_SELECTED), (err, res) => {
       expect(err).toBe(null);
       expect(res).toEqual(expected);
     });
