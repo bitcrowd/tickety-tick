@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function ExternalLink(props, context) {
-  const handler = (props.href && context.openext)
-    ? () => context.openext(props.href)
-    : () => true;
-
   const { children, href, ...other } = props;
+  const { openext } = context;
+
+  const handler = (href && openext) ? () => openext(href) : () => true;
 
   return (
     <a

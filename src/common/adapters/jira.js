@@ -1,4 +1,10 @@
-import { $all, $find, $has, $text, $attr } from './helpers';
+import {
+  $all,
+  $find,
+  $has,
+  $text,
+  $attr,
+} from './helpers';
 
 const TYPES = ['bug', 'chore'];
 
@@ -30,14 +36,18 @@ const adapter = {
         return { id, title, type };
       });
       return fn(null, issues);
-    } else if ($has('#issue-content', doc)) {
+    }
+
+    if ($has('#issue-content', doc)) {
       // ticket show-page, when a single ticket is opened full-screen
       const issue = $find('#issue-content', doc);
       const id = $text('#key-val', issue);
       const title = ticketPageTitle(issue);
       const type = normalizeType($text('#type-val', issue));
       return fn(null, [{ id, title, type }]);
-    } else if ($has('.ghx-columns .ghx-issue.ghx-selected', doc)) {
+    }
+
+    if ($has('.ghx-columns .ghx-issue.ghx-selected', doc)) {
       // Board view, when a ticket is opened in a modal window
       const issue = $find('.ghx-columns .ghx-issue.ghx-selected', doc);
       const id = $attr('.ghx-key', issue, 'aria-label');
@@ -45,6 +55,7 @@ const adapter = {
       const type = normalizeType($attr('.ghx-field-icon', issue, 'data-tooltip'));
       return fn(null, [{ id, title, type }]);
     }
+
     return fn(null, null);
   },
 };

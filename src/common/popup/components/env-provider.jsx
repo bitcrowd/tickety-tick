@@ -8,7 +8,8 @@ class EnvProvider extends Component {
   }
 
   render() {
-    return (this.props.children);
+    const { children } = this.props;
+    return children;
   }
 }
 

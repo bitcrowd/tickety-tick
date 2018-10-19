@@ -5,7 +5,8 @@ import { mount, shallow } from 'enzyme';
 import EnvProvider from '../../../src/common/popup/components/env-provider';
 
 function EnvReceiver(props, ctx) {
-  props.received.context = ctx; // eslint-disable-line no-param-reassign
+  const { received } = props;
+  received.context = ctx; // eslint-disable-line no-param-reassign
   return (<div>context receiver</div>);
 }
 

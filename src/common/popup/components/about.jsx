@@ -19,7 +19,9 @@ function About() {
                 src="../icons/icon-32.png"
                 className="logo-sm"
                 alt=""
-              /> tickety-tick
+              />
+              {' '}
+              tickety-tick
             </h1>
             <h6>Usage:</h6>
             <ol className="m-t-1 p-l-2">
@@ -34,11 +36,13 @@ function About() {
             </ol>
             <p>
               <span>This extension is open-source software by the fellows at </span>
-              <ExternalLink href="http://bitcrowd.net">bitcrowd</ExternalLink>.
+              <ExternalLink href="http://bitcrowd.net">bitcrowd</ExternalLink>
+              .
             </p>
             <p>
               <span>The source code is available on </span>
-              <ExternalLink href="https://github.com/bitcrowd/tickety-tick">GitHub</ExternalLink>.
+              <ExternalLink href="https://github.com/bitcrowd/tickety-tick">GitHub</ExternalLink>
+              .
             </p>
             <p className="small">
               <span>Logo by </span>
