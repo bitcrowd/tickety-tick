@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function CopyButton(props, context) {
   const handler = () => context.grab(props.value);
-  return (<button {...props} onClick={handler} />);
+  return (<button type="button" {...props} onClick={handler} />);
 }
 
 CopyButton.propTypes = {

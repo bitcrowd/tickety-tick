@@ -12,7 +12,9 @@ const button = (tickets) => {
     <div>
       <CopyButton className="btn btn-secondary btn-sm" value={summary}>Summary</CopyButton>
       <span className="nav-text nav-text-sm">
-        {tickets.length} {tickets.length === 1 ? 'ticket' : 'tickets'}
+        {tickets.length}
+        {' '}
+        {tickets.length === 1 ? 'ticket' : 'tickets'}
       </span>
     </div>
   );

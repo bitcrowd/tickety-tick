@@ -68,13 +68,13 @@ config.plugin('copy').tap(([patterns]) => [[
   },
 ]]);
 
-config.when(process.env.BUNDLE === 'true', cfg =>
-  cfg.plugin('zip')
-    .use(ZipWebpackPlugin, [
-      {
-        path: dist(),
-        filename: variant,
-      },
-    ]));
+config.when(process.env.BUNDLE === 'true', cfg => cfg
+  .plugin('zip')
+  .use(ZipWebpackPlugin, [
+    {
+      path: dist(),
+      filename: variant,
+    },
+  ]));
 
 export default config.toConfig();

@@ -4,10 +4,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter as Router, Route } from 'react-router';
 
-import EnvProvider from '../../common/popup/components/env-provider';
-import App from '../../common/popup/components/app';
-import About from '../../common/popup/components/about';
-import Tool from '../../common/popup/components/tool';
+import EnvProvider from './components/env-provider';
+import App from './components/app';
+import About from './components/about';
+import Tool from './components/tool';
 
 function propped(Component, defaults) {
   const ProppedComponent = (more) => {

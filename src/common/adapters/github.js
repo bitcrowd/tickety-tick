@@ -1,4 +1,9 @@
-import { $all, $has, $text, $value } from './helpers';
+import {
+  $all,
+  $has,
+  $text,
+  $value,
+} from './helpers';
 
 const adapter = {
   inspect(loc, doc, fn) {

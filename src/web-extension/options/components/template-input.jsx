@@ -26,7 +26,9 @@ function TemplateInput(props) {
         onChange={onChange}
       />
       <small className="form-text text-muted">
-        Default: {fallback}
+        Default:
+        {' '}
+        {fallback}
       </small>
     </div>
   );

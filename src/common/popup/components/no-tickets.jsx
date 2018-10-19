@@ -12,7 +12,8 @@ function NoTickets() {
         Did you select or open any tickets?
       </h6>
       <p>
-        Tickety-Tick currently supports<br />
+        Tickety-Tick currently supports
+        <br />
         GitHub, GitLab, Jira, Pivotal and Trello.
       </p>
       <h6>
