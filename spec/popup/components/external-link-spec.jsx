@@ -10,6 +10,12 @@ describe('external-link', () => {
     const defaults = { children: 'link text', href: 'https://github.com/bitcrowd/tickety-tick' };
 
     const props = { ...defaults, ...overrides };
+
+    // Enzyme does not fully support the new React Context API at the moment.
+    // We work around this limitation by directly passing in the context value
+    // to the `EnvContext.Consumer` child function for rendering.
+    //
+    // See https://github.com/airbnb/enzyme/issues/1553.
     const outer = shallow(<ExternalLink {...props} />);
     const children = outer.find(EnvContext.Consumer).prop('children');
     const wrapper = shallow(children(env));
