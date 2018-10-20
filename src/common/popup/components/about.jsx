@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import ExternalLink from './external-link';
 
+import logo from '../../icons/icon-32.png';
+
 function About() {
   return (
     <div>
@@ -16,7 +18,7 @@ function About() {
           <div>
             <h1 className="h3 m-t-1 m-b-1">
               <img
-                src="../icons/icon-32.png"
+                src={logo}
                 className="logo-sm"
                 alt=""
               />
