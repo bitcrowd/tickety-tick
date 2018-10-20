@@ -79,7 +79,9 @@ config.module.rule('css')
 config.module.rule('images')
   .test(/\.png$/)
   .exclude.add(/node_modules/).end()
-  .use('images').loader('file-loader');
+  .use('images')
+  .loader('file-loader')
+  .options({ name: '[name].[hash].[ext]' });
 
 config.plugin('html')
   .use(HtmlWebpackPlugin, [{
