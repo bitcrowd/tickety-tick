@@ -3,7 +3,7 @@
 import path from 'path';
 
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import NotifierPlugin from 'webpack-build-notifier';
 
@@ -56,32 +56,24 @@ config.module.rule('js')
 config.module.rule('css')
   .test(/\.scss$/)
   .merge({
-    use: ExtractTextPlugin.extract([
+    use: [
+      {
+        loader: MiniCssExtractPlugin.loader,
+        options: { sourceMap: true },
+      },
       {
         loader: 'css-loader',
         options: { sourceMap: true },
       },
       {
         loader: 'postcss-loader',
-        options: {
-          sourceMap: true,
-          config: {
-            ctx: {
-              compat: [
-                'last 2 Chrome versions',
-                'last 2 Firefox versions',
-                'last 2 Opera versions',
-                'last 2 Safari versions',
-              ],
-            },
-          },
-        },
+        options: { sourceMap: true },
       },
       {
         loader: 'sass-loader',
         options: { sourceMap: true },
       },
-    ]),
+    ],
   });
 
 config.plugin('html')
@@ -97,7 +89,7 @@ config.plugin('html')
   }]);
 
 config.plugin('extract')
-  .use(ExtractTextPlugin, [{
+  .use(MiniCssExtractPlugin, [{
     filename: '[name].css',
   }]);
 
