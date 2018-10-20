@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import ExternalLink from './external-link';
 
+import logo from '../../icons/icon-32.png';
+
 function About() {
   return (
     <div>
@@ -15,7 +17,13 @@ function About() {
         <div className="container">
           <div>
             <h1 className="h3 m-t-1 m-b-1">
-              Tickety-Tick
+              <img
+                src={logo}
+                className="logo-sm"
+                alt=""
+              />
+              {' '}
+              tickety-tick
             </h1>
             <h6>Usage:</h6>
             <ol className="m-t-1 p-l-2">

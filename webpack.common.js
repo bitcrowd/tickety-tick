@@ -76,6 +76,11 @@ config.module.rule('css')
     ],
   });
 
+config.module.rule('images')
+  .test(/\.png$/)
+  .exclude.add(/node_modules/).end()
+  .use('images').loader('file-loader');
+
 config.plugin('html')
   .use(HtmlWebpackPlugin, [{
     template: src.common('popup', 'popup.html'),
