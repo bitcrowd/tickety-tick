@@ -1,13 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import octicons from 'octicons';
+import Octicon, { Comment, GitBranch, Terminal } from '@githubprimer/octicons-react';
 
 import CopyButton from './copy-button';
 import TicketShape from '../utils/ticket-shape';
 
-const svg = name => ({ __html: octicons[name].toSVG() });
+function ButtonIcon({ icon }) {
+  return (
+    <Octicon
+      icon={icon}
+      size="small"
+      width="16"
+      height="16"
+      verticalAlign="text-top"
+    />
+  );
+}
 
-/* eslint-disable jsx-a11y/tabindex-no-positive, react/no-danger */
+ButtonIcon.propTypes = {
+  icon: PropTypes.func.isRequired,
+};
+
+/* eslint-disable jsx-a11y/tabindex-no-positive */
 
 function TicketListItem({ ticket }) {
   return (
@@ -23,7 +37,7 @@ function TicketListItem({ ticket }) {
             value={ticket.fmt.branch}
             tabIndex={1}
           >
-            <span className="octicon octicon-sm" dangerouslySetInnerHTML={svg('git-branch')} />
+            <ButtonIcon icon={GitBranch} />
           </CopyButton>
           <CopyButton
             className="btn btn-primary btn-sm pq"
@@ -31,7 +45,7 @@ function TicketListItem({ ticket }) {
             value={ticket.fmt.commit}
             tabIndex={1}
           >
-            <span className="octicon octicon-sm" dangerouslySetInnerHTML={svg('comment')} />
+            <ButtonIcon icon={Comment} />
           </CopyButton>
           <CopyButton
             className="btn btn-primary btn-sm pq"
@@ -39,7 +53,7 @@ function TicketListItem({ ticket }) {
             value={ticket.fmt.command}
             tabIndex={1}
           >
-            <span className="octicon octicon-sm" dangerouslySetInnerHTML={svg('terminal')} />
+            <ButtonIcon icon={Terminal} />
           </CopyButton>
         </div>
       </div>
@@ -47,7 +61,7 @@ function TicketListItem({ ticket }) {
   );
 }
 
-/* eslint-enable jsx-a11y/tabindex-no-positive, react/no-danger */
+/* eslint-enable jsx-a11y/tabindex-no-positive */
 
 TicketListItem.propTypes = {
   ticket: TicketShape.isRequired, // eslint-disable-line react/no-typos
