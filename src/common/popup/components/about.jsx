@@ -15,13 +15,7 @@ function About() {
         <div className="container">
           <div>
             <h1 className="h3 m-t-1 m-b-1">
-              <img
-                src="../icons/icon-32.png"
-                className="logo-sm"
-                alt=""
-              />
-              {' '}
-              tickety-tick
+              Tickety-Tick
             </h1>
             <h6>Usage:</h6>
             <ol className="m-t-1 p-l-2">
