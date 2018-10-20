@@ -785,6 +785,13 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@githubprimer/octicons-react@^8.1.0":
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/@githubprimer/octicons-react/-/octicons-react-8.1.0.tgz#731c40b6b231dcee731f0f2d37c67e7ee857bd6a"
+  integrity sha512-BvUQWjXHTd6bFcibtFclmNrXd7FWnN3csvY7gZfPPr7plcHHPdgKoLNy1CwsCTVsNLL2jM4FkIvemBoFZeZn5w==
+  dependencies:
+    prop-types "^15.6.1"
+
 "@types/core-js@^0.9.41":
   version "0.9.46"
   resolved "https://registry.yarnpkg.com/@types/core-js/-/core-js-0.9.46.tgz#ea701ee34cbb6dfe6d100f1530319547c93c8d79"
@@ -6732,13 +6739,6 @@ object.values@^1.0.4:
     es-abstract "^1.6.1"
     function-bind "^1.1.0"
     has "^1.0.1"
-
-octicons@7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/octicons/-/octicons-7.0.1.tgz#2f8f8d71547213c50525b26684192d5e6be257fb"
-  integrity sha512-GGE+DQS0Htf1FQa9/PEuravY8b5t1o8Iby5/4Ij/s3DtqAzv3qXYaWn6W0w3jZoEvJmnruEeBJD0XjmC/T9H8Q==
-  dependencies:
-    object-assign "^4.1.1"
 
 once@^1.3.0, once@^1.3.1, once@^1.4.0:
   version "1.4.0"
