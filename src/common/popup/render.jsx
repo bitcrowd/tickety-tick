@@ -4,7 +4,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter as Router, Route } from 'react-router';
 
-import EnvProvider from './components/env-provider';
+import EnvContext from './env-context';
+
 import App from './components/app';
 import About from './components/about';
 import Tool from './components/tool';
@@ -22,14 +23,14 @@ function render(tickets, env) {
   const root = document.getElementById('popup-root');
 
   const element = (
-    <EnvProvider {...env}>
+    <EnvContext.Provider value={env}>
       <Router>
         <App>
           <Route exact path="/" component={propped(Tool, { tickets })} />
           <Route path="/about" component={About} />
         </App>
       </Router>
-    </EnvProvider>
+    </EnvContext.Provider>
   );
 
   ReactDOM.render(element, root);

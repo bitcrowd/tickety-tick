@@ -1,33 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ExternalLink(props, context) {
-  const { children, href, ...other } = props;
-  const { openext } = context;
+import EnvContext from '../env-context';
 
-  const handler = (href && openext) ? () => openext(href) : () => true;
+function ExternalLink(props) {
+  const { children, href, ...other } = props;
 
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={handler}
-      onKeyDown={handler}
-      {...other}
-    >
-      {children}
-    </a>
+    <EnvContext.Consumer>
+      {
+        ({ openext }) => {
+          const handler = () => openext(href);
+
+          return (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handler}
+              onKeyDown={handler}
+              {...other}
+            >
+              {children}
+            </a>
+          );
+        }
+      }
+    </EnvContext.Consumer>
   );
 }
 
 ExternalLink.propTypes = {
   children: PropTypes.node.isRequired,
   href: PropTypes.string.isRequired,
-};
-
-ExternalLink.contextTypes = {
-  openext: PropTypes.func,
 };
 
 export default ExternalLink;

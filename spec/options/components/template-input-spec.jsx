@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import TemplateInput from '../../../src/web-extension/options/components/template-input';
 
 describe('template-input', () => {
-  const render = (overrides) => {
+  function render(overrides) {
     const defaults = {
       id: 'template-input-id',
       name: 'template-input-name',
@@ -19,7 +19,7 @@ describe('template-input', () => {
     const wrapper = shallow(<TemplateInput {...props} />);
 
     return { wrapper, props };
-  };
+  }
 
   it('renders an input label', () => {
     const { wrapper } = render({ id: 'id-1', label: 'Awesome Template Label' });
