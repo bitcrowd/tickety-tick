@@ -1,5 +1,5 @@
-module.exports = ({ options }) => ({
+module.exports = {
   plugins: {
-    autoprefixer: { browsers: options.compat },
+    'postcss-preset-env': {},
   },
-});
+};
