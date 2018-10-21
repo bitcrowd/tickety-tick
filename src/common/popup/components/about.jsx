@@ -8,7 +8,7 @@ import logo from '../../icons/icon-32.png';
 function About() {
   return (
     <div>
-      <div className="navbar navbar-light navbar-fixed-top bg-white border-bottom">
+      <div className="navbar navbar-light fixed-top bg-white border-bottom">
         <ul className="nav navbar-nav">
           <li className="nav-item">
             <Link className="nav-link" to="/">&lt; back</Link>

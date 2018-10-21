@@ -22,7 +22,7 @@ const button = (tickets) => {
 
 function Header({ tickets }) {
   return (
-    <div className="navbar navbar-light navbar-fixed-top bg-white border-bottom">
+    <div className="navbar navbar-light fixed-top bg-white border-bottom">
       {tickets.length > 0 ? button(tickets) : null}
       <ul className="nav navbar-nav ml-auto">
         <li className="nav-item">
