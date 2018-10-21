@@ -11,3 +11,20 @@
   width: 16px;
   height: 16px;
 }
+
+// Octicons
+//
+// These styles are normally set directly on the SVG element by the official
+// React wrapper for Octicons. However, inline style attributes are blocked by
+// the extension's Content Security Policy — in Firefox at least. Therefore we
+// simply (re-)define them here so they are applied correctly.
+//
+// Source code reference: https://git.io/fxK7X
+// CSP: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src
+
+.octicon {
+  display: inline-block;
+  fill: currentColor;
+  user-select: none;
+  vertical-align: text-top;
+}
