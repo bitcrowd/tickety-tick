@@ -25,14 +25,14 @@ ButtonIcon.propTypes = {
 
 function TicketListItem({ ticket }) {
   return (
-    <div className="container list-group-container">
-      <div className="row">
-        <div className="col-xs-7">
-          <h6 className="list-group-heading">{ticket.title}</h6>
-        </div>
-        <div className="col-xs-5 text-xs-right">
+    <div className="d-flex">
+      <div className="flex-grow-1 pr-2">
+        <h6 className="list-group-heading">{ticket.title}</h6>
+      </div>
+      <div>
+        <div className="btn-group btn-group-sm" role="group">
           <CopyButton
-            className="btn btn-primary btn-sm"
+            className="btn btn-primary"
             title="Branch name"
             value={ticket.fmt.branch}
             tabIndex={1}
@@ -40,7 +40,7 @@ function TicketListItem({ ticket }) {
             <ButtonIcon icon={GitBranch} />
           </CopyButton>
           <CopyButton
-            className="btn btn-primary btn-sm pq"
+            className="btn btn-primary"
             title="Commit message"
             value={ticket.fmt.commit}
             tabIndex={1}
@@ -48,7 +48,7 @@ function TicketListItem({ ticket }) {
             <ButtonIcon icon={Comment} />
           </CopyButton>
           <CopyButton
-            className="btn btn-primary btn-sm pq"
+            className="btn btn-primary"
             title="CLI command"
             value={ticket.fmt.command}
             tabIndex={1}
@@ -69,14 +69,14 @@ TicketListItem.propTypes = {
 
 function TicketList({ tickets }) {
   const itemize = ticket => (
-    <li key={ticket.id} className="list-group-item list-group-item-tt">
+    <li key={ticket.id} className="list-group-item">
       <TicketListItem ticket={ticket} />
     </li>
   );
 
   return (
     <div>
-      <ul className="list-group">
+      <ul className="list-group list-group-flush">
         {tickets.map(itemize)}
       </ul>
     </div>

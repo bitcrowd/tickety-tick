@@ -14,7 +14,7 @@ function TemplateInput(props) {
 
   return (
     <div className="form-group">
-      <label className="d-inline-block font-weight-bold" htmlFor={id}>{label}</label>
+      <label className="font-weight-bold" htmlFor={id}>{label}</label>
       <input
         className="form-control"
         type="text"

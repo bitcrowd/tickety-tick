@@ -109,7 +109,7 @@ class Form extends Component {
           </ul>
         </div>
 
-        <div className="m-t-2">
+        <div className="mt-2">
           <button className="btn btn-outline-primary" type="submit" disabled={loading}>Save</button>
         </div>
       </form>

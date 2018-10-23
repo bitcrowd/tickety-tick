@@ -8,15 +8,17 @@ import logo from '../../icons/icon-32.png';
 function About() {
   return (
     <div>
-      <div className="navbar navbar-light navbar-fixed-top navbar-tt">
-        <div className="nav navbar-nav">
-          <Link className="nav-link" to="/">&lt; back</Link>
-        </div>
+      <div className="navbar navbar-light fixed-top bg-white border-bottom">
+        <ul className="nav navbar-nav">
+          <li className="nav-item">
+            <Link className="nav-link" to="/">&lt; back</Link>
+          </li>
+        </ul>
       </div>
       <div className="content">
         <div className="container">
           <div>
-            <h1 className="h3 m-t-1 m-b-1">
+            <h1 className="h3 mt-3 mb-3">
               <img
                 src={logo}
                 className="logo-sm"
@@ -26,7 +28,7 @@ function About() {
               tickety-tick
             </h1>
             <h6>Usage:</h6>
-            <ol className="m-t-1 p-l-2">
+            <ol className="mt-2 pl-3">
               <li>
                 Open one ore more tickets in your favourite ticket tracking system,
                 then click the extension icon.

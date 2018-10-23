@@ -1,17 +1,24 @@
-// Core variables and mixins
+// Customization
+@import "styles/settings";
+
+// Core functions, variables and mixins
+@import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
-// Reset and dependencies
-@import "~bootstrap/scss/normalize";
+// Root
+@import "~bootstrap/scss/root";
+
+// Reset
+@import "~bootstrap/scss/reboot";
 
 // Core CSS
 @import "~bootstrap/scss/type";
-@import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/utilities";
 
 // Form classes
+@import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/forms";
 
-// Popup style
+// Options style
 @import "styles/additions";

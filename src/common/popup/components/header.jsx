@@ -10,8 +10,8 @@ const button = (tickets) => {
 
   return (
     <div>
-      <CopyButton className="btn btn-secondary btn-sm" value={summary}>Summary</CopyButton>
-      <span className="nav-text nav-text-sm">
+      <CopyButton className="btn btn-sm btn-outline-secondary" value={summary}>Summary</CopyButton>
+      <span className="navbar-text ml-1 small">
         {tickets.length}
         {' '}
         {tickets.length === 1 ? 'ticket' : 'tickets'}
@@ -22,13 +22,13 @@ const button = (tickets) => {
 
 function Header({ tickets }) {
   return (
-    <div className="navbar navbar-light navbar-fixed-top navbar-tt">
-      <ul className="nav navbar-nav pull-xs-right">
-        <li className="nav-item text-xs-right">
+    <div className="navbar navbar-light fixed-top bg-white border-bottom">
+      {tickets.length > 0 ? button(tickets) : null}
+      <ul className="nav navbar-nav ml-auto">
+        <li className="nav-item">
           <Link className="nav-link" to="/about">Info</Link>
         </li>
       </ul>
-      {tickets.length > 0 ? button(tickets) : null}
     </div>
   );
 }

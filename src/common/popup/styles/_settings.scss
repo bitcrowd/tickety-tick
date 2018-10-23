@@ -1,11 +1,11 @@
-// Options
-
-$enable-flex: true;
-
 // Typography
 
-$font-size-root: 12px;
+$font-size-base: .75rem;
 
 // Color
 
-$brand-primary: #c32f34;
+$primary: #c32f34;
+
+// Nav
+
+$nav-link-padding-y: .25rem;

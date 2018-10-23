@@ -18,9 +18,9 @@ describe('header', () => {
 
   it('displays the number of found tickets', () => {
     const plural = shallow(<Header tickets={tickets} />);
-    expect(plural.find('.nav-text').text()).toBe(`${tickets.length} tickets`);
+    expect(plural.find('.navbar-text').text()).toBe(`${tickets.length} tickets`);
     const singular = shallow(<Header tickets={tickets.slice(0, 1)} />);
-    expect(singular.find('.nav-text').text()).toBe('1 ticket');
+    expect(singular.find('.navbar-text').text()).toBe('1 ticket');
   });
 
   it('renders a button for copying a summary of all tickets', () => {
