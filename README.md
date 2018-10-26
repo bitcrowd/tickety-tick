@@ -79,18 +79,18 @@ yarn build:safari
 
 ### Chrome
 
-Navigate to the [chrome://extensions](chrome://extensions) page, enable
+Navigate to the [chrome://extensions](//chrome://extensions) page, enable
 "Developer mode" and press "Load unpacked extension". Point it to the
 `dist/chrome` directory. Done.
 
 ### Firefox
 
 If you just want to try out and debug the extension, go to
-[about:debugging#addons](about:debugging#addons). Then press "Load Temporary
+[about:debugging#addons](//about:debugging#addons). Then press "Load Temporary
 Add-On" and select the `manifest.json` from the built extension directory.
 
 If you want to install this addon permanently, build with
-`yarn build:firefox-local`, then go to [about:addons](about:addons) and click
+`yarn build:firefox-local`, then go to [about:addons](//about:addons) and click
 on the small cog icon. Select `Install Add-on From File...` and choose
 `dist/firefox-local`.
 
