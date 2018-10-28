@@ -7,7 +7,7 @@ import TemplateInput from '../../../src/web-extension/options/components/templat
 import { defaults as fallbacks, helpers } from '../../../src/common/format';
 
 describe('form', () => {
-  const render = (overrides) => {
+  function render(overrides) {
     const store = jasmine.createSpyObj('store', ['get', 'set']);
     const defaults = { store };
 
@@ -16,7 +16,7 @@ describe('form', () => {
     const instance = wrapper.instance();
 
     return { wrapper, instance, props };
-  };
+  }
 
   const inputs = wrapper => wrapper.find(TemplateInput);
   const input = (wrapper, name) => inputs(wrapper).find({ name });
