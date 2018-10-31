@@ -88,7 +88,7 @@ If you want to install this addon permanently, go to [about:addons](//about:addo
 
 ### Opera
 
-Same process as in [Chrome](#chrome).
+Navigate to the [opera://extensions](//opera://extensions) page, enable "Developer mode" and press "Load unpacked extension". Point it to the `dist/chrome` directory. Done.
 
 ### Safari
 
