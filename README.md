@@ -177,6 +177,10 @@ In Chrome, open [chrome://extensions/](//chrome://extensions), click the "Detail
 
 ![Chrome preferences](./screenshots/chrome-preferences.png)
 
+In Opera, open [opera://extensions/](//opera://extensions), click the "Options" button on the Tickety-Tick tile.
+
+![Opera preferences](./screenshots/opera-preferences.png)
+
 In Safari, open "Preferences" (`cmd + ,`), then select "Extensions".
 
 ![Safari preferences](./screenshots/safari-preferences.png)
