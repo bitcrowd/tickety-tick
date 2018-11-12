@@ -41,7 +41,7 @@ Tickety-Tick is available for every major browser:
 
 - [Chrome/Chromium](https://chrome.google.com/webstore/detail/ciakolhgmfijpjbpcofoalfjiladihbg)
 - [Firefox](https://addons.mozilla.org/firefox/addon/tickety-tick/)
-- [Opera](https://addons.opera.com/extensions/details/tickety-tick/)
+- [Opera](./OPERA.md)
 - For Safari, you need to build it yourself ([see below](#safari))
 
 ## Keyboard Shortcuts
@@ -88,7 +88,7 @@ If you want to install this addon permanently, go to [about:addons](//about:addo
 
 ### Opera
 
-Same process as in [Chrome](#chrome).
+Navigate to the [opera://extensions](//opera://extensions) page, enable "Developer mode" and press "Load unpacked extension". Point it to the `dist/chrome` directory. Done.
 
 ### Safari
 
@@ -176,6 +176,10 @@ In Firefox, open [about:addons](//about:addons) and select the Tickety-Tick pref
 In Chrome, open [chrome://extensions/](//chrome://extensions), click the "Details" button on the Tickety-Tick tile and select "Extension options".
 
 ![Chrome preferences](./screenshots/chrome-preferences.png)
+
+In Opera, open [opera://extensions/](//opera://extensions), click the "Options" button on the Tickety-Tick tile.
+
+![Opera preferences](./screenshots/opera-preferences.png)
 
 In Safari, open "Preferences" (`cmd + ,`), then select "Extensions".
 
