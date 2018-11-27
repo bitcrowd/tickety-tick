@@ -1,10 +1,11 @@
 import GitHub from './adapters/github';
 import GitLab from './adapters/gitlab';
 import Jira from './adapters/jira';
+import Ora from './adapters/ora';
 import Pivotal from './adapters/pivotal';
 import Trello from './adapters/trello';
 
-const stdadapters = [GitHub, GitLab, Jira, Pivotal, Trello];
+const stdadapters = [GitHub, GitLab, Jira, Ora, Pivotal, Trello];
 
 function search(adapters, loc, doc, fn) {
   let pending = adapters.length;
