@@ -14,7 +14,7 @@ function NoTickets() {
       <p>
         Tickety-Tick currently supports
         <br />
-        GitHub, GitLab, Jira, Pivotal and Trello.
+        GitHub, GitLab, Jira, Pivotal, Trello, and Ora.
       </p>
       <h6>
         Missing anything or found a bug?
