@@ -29,11 +29,12 @@ Tickety-Tick helps you create branches and commits for a few ticket systems.
 
 Currently, we support:
 
-- GitHub
-- GitLab
-- Jira
-- Pivotal Tracker
-- Trello
+- [GitHub](https://github.com/)
+- [GitLab](https://gitlab.com/)
+- [Jira](https://www.atlassian.com/software/jira)
+- [Ora](https://ora.pm/)
+- [Pivotal Tracker](https://www.pivotaltracker.com/)
+- [Trello](https://trello.com/)
 
 ## Installation
 

@@ -48,7 +48,7 @@ const adapter = {
     }
 
     if ($has('.ghx-columns .ghx-issue.ghx-selected', doc)) {
-      // Board view, when a ticket is opened in a modal window
+      // board view, when a ticket is opened in a modal window
       const issue = $find('.ghx-columns .ghx-issue.ghx-selected', doc);
       const id = $attr('.ghx-key', issue, 'aria-label');
       const title = $text('.ghx-summary', issue);
