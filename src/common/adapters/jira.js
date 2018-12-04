@@ -4,6 +4,7 @@ import {
   $has,
   $text,
   $attr,
+  trim,
 } from './helpers';
 
 const TYPES = ['bug', 'chore'];
@@ -22,10 +23,31 @@ const ticketPageTitle = (issue) => {
   return $text('#summary-val', issue);
 };
 
+const ISSUE_PATH = /\/browse\/(.*-\d+)/;
+const getIssueIdFromUrl = url => url.match(ISSUE_PATH)[1];
+
+const tryParseBacklogIssue = (anchorNode) => {
+  const parent = anchorNode.parentElement;
+
+  if (parent.children[1]) { // There is a title candidate
+    const title = trim(parent.children[1].textContent);
+    const id = trim(anchorNode.textContent);
+
+    if (!title || title === id) return null; // Some problem
+
+    return { id, title, type: 'feature' };
+  }
+
+  return null;
+};
+
 const adapter = {
   inspect(loc, doc, fn) {
     if (doc.body.id !== 'jira') return fn(null, null);
 
+    /*
+      Old layout
+     */
     if ($has('.ghx-backlog-column .ghx-backlog-card.ghx-selected', doc)) {
       // ticket list with backlog and sprints
       const issueCssPath = '.ghx-backlog-column .ghx-backlog-card.ghx-selected';
@@ -54,6 +76,36 @@ const adapter = {
       const title = $text('.ghx-summary', issue);
       const type = normalizeType($attr('.ghx-field-icon', issue, 'data-tooltip'));
       return fn(null, [{ id, title, type }]);
+    }
+
+    /*
+      New layout
+     */
+    try {
+      // single issue page
+      if (ISSUE_PATH.test(loc)) {
+        const title = $text('h1', doc);
+        const id = getIssueIdFromUrl(loc.toString());
+        return fn(null, [{ id, title, type: 'feature' }]);
+      }
+
+      // board view with open issue dialog
+      if ($has('[role=dialog] a[href*="/browse/"]', doc)) {
+        const dialog = $find('[role=dialog]', doc);
+        const title = $text('h1', dialog);
+        const id = getIssueIdFromUrl($find('a', dialog).href);
+        return fn(null, [{ title, id, type: 'feature' }]);
+      }
+
+      // backlog view
+      const backlogIssues = $all('a[href*="/browse/"]', doc)
+        .map(tryParseBacklogIssue)
+        .filter(issue => issue !== null);
+      if (backlogIssues.length !== 0) {
+        return fn(null, backlogIssues);
+      }
+    } catch (error) {
+      return fn(error, null);
     }
 
     return fn(null, null);
