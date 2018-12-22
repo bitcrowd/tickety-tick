@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import adapter from '../../src/common/adapters/pivotal';
+import adapter from './pivotal';
 
 function selected({ id, title, type }) {
   return `

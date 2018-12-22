@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Tool from '../../../src/common/popup/components/tool';
-import TicketList from '../../../src/common/popup/components/ticket-list';
-import NoTickets from '../../../src/common/popup/components/no-tickets';
-import Header from '../../../src/common/popup/components/header';
+import Tool from './tool';
+import TicketList from './ticket-list';
+import NoTickets from './no-tickets';
+import Header from './header';
 
-import { ticket as make } from '../../support/factories';
+import { ticket as make } from '../../../../test/factories';
 
 describe('tool', () => {
   const tickets = ['un', 'deux', 'trois'].map((title, i) => make({ id: `${i + 1}`, title }));

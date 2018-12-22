@@ -1,10 +1,10 @@
-import { search } from '../src/common/search';
+import { search } from './search';
 
 describe('ticket search', () => {
   function mocks(results) {
-    return results.map((result, i) => {
-      const adapter = jasmine.createSpyObj(`adapter(${i})`, ['inspect']);
-      adapter.inspect.and.callFake((l, d, fn) => { fn(null, result); });
+    return results.map((result) => {
+      const adapter = { inspect: jest.fn() };
+      adapter.inspect.mockImplementation((l, d, fn) => { fn(null, result); });
       return adapter;
     });
   }
@@ -17,7 +17,7 @@ describe('ticket search', () => {
 
     search(adapters, loc, doc, () => {
       adapters.forEach((adapter) => {
-        expect(adapter.inspect).toHaveBeenCalledWith(loc, doc, jasmine.any(Function));
+        expect(adapter.inspect).toHaveBeenCalledWith(loc, doc, expect.any(Function));
       });
 
       done();

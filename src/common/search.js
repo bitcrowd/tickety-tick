@@ -5,9 +5,9 @@ import Ora from './adapters/ora';
 import Pivotal from './adapters/pivotal';
 import Trello from './adapters/trello';
 
-const stdadapters = [GitHub, GitLab, Jira, Ora, Pivotal, Trello];
+export const stdadapters = [GitHub, GitLab, Jira, Ora, Pivotal, Trello];
 
-function search(adapters, loc, doc, fn) {
+export function search(adapters, loc, doc, fn) {
   let pending = adapters.length;
   const results = [];
 
@@ -28,5 +28,4 @@ function search(adapters, loc, doc, fn) {
   });
 }
 
-export { search, stdadapters };
-export default (loc, doc, fn) => search(stdadapters, loc, doc, fn);
+export default search.bind(null, stdadapters);

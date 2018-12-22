@@ -127,18 +127,30 @@ To execute the automated source code checks, run:
 yarn checks
 ```
 
+Or, to run checks individually:
+
+```shell
+yarn lint
+yarn test
+```
+
+Hint: You can append `--watch` and other options supported by [Jest](https://jestjs.io/docs/en/cli) to the test command, e.g.:
+
+```shell
+yarn test --watch
+```
+
 ### Generating coverage reports
 
 In order to generate code coverage reports locally, just run:
 
 ```shell
-yarn test:coverage
+yarn test --coverage
 ```
 
-Then, to generate and view HTML reports:
+To view an HTML version of the report:
 
 ```shell
-yarn run nyc report --reporter lcov
 open coverage/lcov-report/index.html
 ```
 

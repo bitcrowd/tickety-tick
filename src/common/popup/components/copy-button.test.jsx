@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import EnvContext from '../../../src/common/popup/env-context';
+import EnvContext from '../env-context';
 
-import CopyButton from '../../../src/common/popup/components/copy-button';
+import CopyButton from './copy-button';
 
 describe('copy-button', () => {
   function render(overrides, env) {
@@ -26,7 +26,7 @@ describe('copy-button', () => {
   let grab;
 
   beforeEach(() => {
-    grab = jasmine.createSpy('grab');
+    grab = jest.fn();
   });
 
   it('calls the context grab function with the provided value on click', () => {

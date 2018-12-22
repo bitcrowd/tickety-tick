@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import adapter from '../../src/common/adapters/ora';
+import adapter from './ora';
 
 function task({ id, title, type }) {
   return `

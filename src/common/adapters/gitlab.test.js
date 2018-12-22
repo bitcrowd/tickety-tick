@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import adapter from '../../src/common/adapters/gitlab';
+import adapter from './gitlab';
 
 const ISSUEPAGE = `
   <div class="content">

@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import adapter from '../../src/common/adapters/trello';
+import adapter from './trello';
 
 const CARD = `
   <div class="card-detail-window">
