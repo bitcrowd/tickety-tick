@@ -1,4 +1,4 @@
-import compile from '../src/common/template';
+import compile from './template';
 
 describe('template', () => {
   it('replaces any value occurrences', () => {
@@ -15,8 +15,8 @@ describe('template', () => {
   });
 
   it('applies value transformations', () => {
-    const lowercase = jasmine.createSpy('lowercase').and.callFake(s => s.toLowerCase());
-    const dasherize = jasmine.createSpy('dasherize').and.callFake(s => s.replace(/\s+/g, '-'));
+    const lowercase = jest.fn().mockImplementation(s => s.toLowerCase());
+    const dasherize = jest.fn().mockImplementation(s => s.replace(/\s+/g, '-'));
     const transforms = { lowercase, dasherize };
 
     const render = compile('result: {title | lowercase | dasherize}', transforms);

@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import TicketList, { TicketListItem } from '../../../src/common/popup/components/ticket-list';
-import CopyButton from '../../../src/common/popup/components/copy-button';
+import TicketList, { TicketListItem } from './ticket-list';
+import CopyButton from './copy-button';
 
-import { ticket as make } from '../../support/factories';
+import { ticket as make } from '../../../../test/factories';
 
 describe('ticket-list', () => {
   const tickets = ['uno', 'due', 'tre'].map((title, i) => make({ id: `${i + 1}`, title }));

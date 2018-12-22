@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import TemplateInput from '../../../src/web-extension/options/components/template-input';
+import TemplateInput from './template-input';
 
 describe('template-input', () => {
   function render(overrides) {
@@ -12,7 +12,7 @@ describe('template-input', () => {
       value: 'template-value',
       fallback: 'template-fallback',
       disabled: false,
-      onChange: jasmine.createSpy('onChange'),
+      onChange: jest.fn(),
     };
 
     const props = { ...defaults, ...overrides };

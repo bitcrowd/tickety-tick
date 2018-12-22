@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { shallow } from 'enzyme';
 
-import Header from '../../../src/common/popup/components/header';
-import CopyButton from '../../../src/common/popup/components/copy-button';
+import Header from './header';
+import CopyButton from './copy-button';
 
-import { ticket as make } from '../../support/factories';
+import { ticket as make } from '../../../../test/factories';
 
 describe('header', () => {
   const tickets = ['jedan', 'dva', 'tri'].map((title, i) => make({ id: `${i + 1}`, title }));

@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import EnvContext from '../../../src/common/popup/env-context';
+import EnvContext from '../env-context';
 
-import ExternalLink from '../../../src/common/popup/components/external-link';
+import ExternalLink from './external-link';
 
 describe('external-link', () => {
   function render(overrides, env) {
@@ -26,7 +26,7 @@ describe('external-link', () => {
   let openext;
 
   beforeEach(() => {
-    openext = jasmine.createSpy('openext');
+    openext = jest.fn();
   });
 
   it('calls the context openext function with the provided href on click', () => {

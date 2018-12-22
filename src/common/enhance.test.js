@@ -1,5 +1,5 @@
-import enhance from '../src/common/enhance';
-import format, { defaults } from '../src/common/format';
+import enhance from './enhance';
+import format, { defaults } from './format';
 
 describe('ticket enhancer', () => {
   const ticket = {

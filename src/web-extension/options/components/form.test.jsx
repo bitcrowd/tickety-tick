@@ -1,14 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Form from '../../../src/web-extension/options/components/form';
-import TemplateInput from '../../../src/web-extension/options/components/template-input';
+import Form from './form';
+import TemplateInput from './template-input';
 
-import { defaults as fallbacks, helpers } from '../../../src/common/format';
+import { defaults as fallbacks, helpers } from '../../../common/format';
 
 describe('form', () => {
   function render(overrides) {
-    const store = jasmine.createSpyObj('store', ['get', 'set']);
+    const store = { get: jest.fn(), set: jest.fn() };
     const defaults = { store };
 
     const props = { ...defaults, ...overrides };
@@ -77,12 +77,12 @@ describe('form', () => {
   });
 
   it('loads stored templates on mount', () => {
-    const store = jasmine.createSpyObj('store', ['get', 'set']);
+    const store = { get: jest.fn(), set: jest.fn() };
     const data = { templates: { branch: 'a', commit: 'b', command: 'c' } };
-    store.get.and.callFake((_, fn) => fn(data));
+    store.get.mockImplementation((_, fn) => fn(data));
 
     const { instance } = render({ store });
-    spyOn(instance, 'handleLoaded');
+    jest.spyOn(instance, 'handleLoaded');
 
     instance.componentDidMount();
 
@@ -118,17 +118,17 @@ describe('form', () => {
   });
 
   it('stores templates on submit', () => {
-    const store = jasmine.createSpyObj('store', ['get', 'set']);
-    store.set.and.callFake((_, fn) => fn());
+    const store = { get: jest.fn(), set: jest.fn() };
+    store.set.mockImplementation((_, fn) => fn());
 
     const { wrapper, instance } = render({ store });
-    spyOn(instance, 'handleSaved');
+    jest.spyOn(instance, 'handleSaved').mockReturnValue();
 
     change(wrapper, instance, 'branch', 'branch++');
     change(wrapper, instance, 'commit', 'commit++');
     change(wrapper, instance, 'command', 'command++');
 
-    const event = { preventDefault: jasmine.createSpy('preventDefault') };
+    const event = { preventDefault: jest.fn() };
     wrapper.simulate('submit', event);
 
     expect(event.preventDefault).toHaveBeenCalled();

@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import adapter from '../../src/common/adapters/jira';
+import adapter from './jira';
 
 // parts of the dom of the jira backlog issue-list
 // contains two tickets - one of them being selected

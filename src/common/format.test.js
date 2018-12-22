@@ -1,4 +1,4 @@
-import format, { helpers } from '../src/common/format';
+import format, { helpers } from './format';
 
 describe('ticket formatting', () => {
   const ticket = {

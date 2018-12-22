@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import adapter from '../../src/common/adapters/github';
+import adapter from './github';
 
 const ISSUEPAGE = `
   <div class="issues-listing">

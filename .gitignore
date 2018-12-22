@@ -2,17 +2,16 @@
 npm-debug.log*
 
 # Dependency directories
-node_modules
+node_modules/
 
 # Optional npm cache directory
-.npm
+.npm/
 
 # Optional eslint cache
-.eslintcache
+.eslintcache/
 
 # Build output
-dist
+dist/
 
 # Test coverage reports
-.nyc_output/
 coverage/
