@@ -5,10 +5,9 @@ import stdsearch from '../common/search';
 const { runtime } = chrome;
 
 if (window === window.top) {
-  runtime.onMessage.addListener((req, sender, respond) => {
+  runtime.onMessage.addListener((req) => {
     if (req.tickets) {
-      stdsearch(window.location, document).then(respond);
-      return true;
+      return stdsearch(window.location, document);
     }
 
     return false;
