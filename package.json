@@ -61,7 +61,7 @@
     "rimraf": "2.6.2",
     "sass-loader": "7.1.0",
     "web-ext": "2.9.1",
-    "webpack": "4.21.0",
+    "webpack": "4.28.2",
     "webpack-build-notifier": "0.1.30",
     "webpack-chain": "5.0.1",
     "webpack-cli": "^3.1.2",
