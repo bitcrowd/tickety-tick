@@ -46,7 +46,7 @@ exports[`about renders 1`] = `
           className="mt-2 pl-3"
         >
           <li>
-            Open one ore more tickets in your favourite ticket tracking system, then click the extension icon.
+            Open one or more tickets in your favourite ticket tracking system, then click the extension icon.
           </li>
           <li>
             You can then select if you want to create a commit message or a branch name based on these tickets.
