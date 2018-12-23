@@ -3,8 +3,7 @@ import { search } from './search';
 describe('ticket search', () => {
   function mocks(results) {
     return results.map((result) => {
-      const adapter = { inspect: jest.fn() };
-      adapter.inspect.mockImplementation((l, d, fn) => { fn(null, result); });
+      const adapter = jest.fn().mockResolvedValue(result);
       return adapter;
     });
   }
@@ -16,8 +15,8 @@ describe('ticket search', () => {
     const adapters = mocks([null, null]);
 
     search(adapters, loc, doc, () => {
-      adapters.forEach((adapter) => {
-        expect(adapter.inspect).toHaveBeenCalledWith(loc, doc, expect.any(Function));
+      adapters.forEach((scan) => {
+        expect(scan).toHaveBeenCalledWith(loc, doc);
       });
 
       done();

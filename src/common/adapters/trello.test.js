@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import adapter from './trello';
+import scan from './trello';
 
 const CARD = `
   <div class="card-detail-window">
@@ -16,18 +16,13 @@ describe('trello adapter', () => {
     return window.document;
   }
 
-  it('returns null if it is on a different page', () => {
-    adapter.inspect({ host: 'other.com' }, doc(CARD), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toBe(null);
-    });
+  it('returns null if it is on a different page', async () => {
+    const result = await scan({ host: 'other.com' }, doc(CARD));
+    expect(result).toBe(null);
   });
 
-  it('extracts tickets from trello cards', () => {
-    const expected = [{ id: '89', title: 'A Trello Card', type: 'feature' }];
-    adapter.inspect(loc, doc(CARD), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts tickets from trello cards', async () => {
+    const result = await scan(loc, doc(CARD));
+    expect(result).toEqual([{ id: '89', title: 'A Trello Card', type: 'feature' }]);
   });
 });

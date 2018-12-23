@@ -9,20 +9,18 @@ function identifier(value) {
   return null;
 }
 
-const adapter = {
-  inspect(loc, doc, fn) {
-    if (loc.host !== 'ora.pm') return fn(null, null);
+async function scan(loc, doc) {
+  if (loc.host !== 'ora.pm') return null;
 
-    if ($has('#task-modal.single-task-modal', doc)) {
-      const task = $find('#task-modal.single-task-modal', doc);
-      const id = identifier($text('.task-id', task));
-      const title = $text('#task-title', task);
-      const type = $text('[data-ng-if="features[\'task_types\']"]', task) || 'feature';
-      return fn(null, [{ id, title, type }]);
-    }
+  if ($has('#task-modal.single-task-modal', doc)) {
+    const task = $find('#task-modal.single-task-modal', doc);
+    const id = identifier($text('.task-id', task));
+    const title = $text('#task-title', task);
+    const type = $text('[data-ng-if="features[\'task_types\']"]', task) || 'feature';
+    return [{ id, title, type }];
+  }
 
-    return fn(null, null);
-  },
-};
+  return null;
+}
 
-export default adapter;
+export default scan;

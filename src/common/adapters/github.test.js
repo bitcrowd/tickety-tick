@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import adapter from './github';
+import scan from './github';
 
 const ISSUEPAGE = `
   <div class="issues-listing">
@@ -75,45 +75,31 @@ describe('github adapter', () => {
     return window.document;
   }
 
-  it('returns null if it is on a different page', () => {
-    adapter.inspect(null, dom(), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toBe(null);
-    });
+  it('returns null if it is on a different page', async () => {
+    const result = await scan(null, dom());
+    expect(result).toBe(null);
   });
 
-  it('extracts tickets from issue pages', () => {
-    const expected = [{ id: '12', title: 'A Random GitHub Issue', type: 'feature' }];
-    adapter.inspect(null, dom(ISSUEPAGE), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts tickets from issue pages', async () => {
+    const result = await scan(null, dom(ISSUEPAGE));
+    expect(result).toEqual([{ id: '12', title: 'A Random GitHub Issue', type: 'feature' }]);
   });
 
-  it('recognizes issues labelled as bugs', () => {
-    const expected = [{ id: '12', title: 'A Random GitHub Issue', type: 'bug' }];
-    adapter.inspect(null, dom(BUGPAGE), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('recognizes issues labelled as bugs', async () => {
+    const result = await scan(null, dom(BUGPAGE));
+    expect(result).toEqual([{ id: '12', title: 'A Random GitHub Issue', type: 'bug' }]);
   });
 
-  it('extracts tickets from issues index pages', () => {
-    const expected = [{ id: '12', title: 'A Selected GitHub Issue', type: 'bug' }];
-    adapter.inspect(null, dom(INDEXPAGE), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts tickets from issues index pages', async () => {
+    const result = await scan(null, dom(INDEXPAGE));
+    expect(result).toEqual([{ id: '12', title: 'A Selected GitHub Issue', type: 'bug' }]);
   });
 
-  it('extracts tickets from project pages', () => {
-    const expected = [
+  it('extracts tickets from project pages', async () => {
+    const result = await scan(null, dom(PROJECTPAGE));
+    expect(result).toEqual([
       { id: '42', title: 'An Example Feature Ticket', type: 'feature' },
       { id: '43', title: 'An Example Bug Ticket', type: 'bug' },
-    ];
-    adapter.inspect(null, dom(PROJECTPAGE), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+    ]);
   });
 });
