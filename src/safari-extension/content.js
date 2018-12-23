@@ -1,4 +1,3 @@
-/* eslint-env browser */
 /* global safari */
 
 import stdsearch from '../common/search';
@@ -6,7 +5,7 @@ import stdsearch from '../common/search';
 function onMessage(event) {
   if (window.top === window) {
     if (event.name === 'get-tickets') {
-      stdsearch(window.location, document, (tickets) => {
+      stdsearch(window.location, document).then((tickets) => {
         safari.self.tab.dispatchMessage('tickets', tickets);
       });
     }

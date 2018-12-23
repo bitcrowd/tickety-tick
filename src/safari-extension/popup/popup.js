@@ -1,4 +1,3 @@
-/* eslint-env browser */
 /* global safari */
 
 import render from '../../common/popup/render';

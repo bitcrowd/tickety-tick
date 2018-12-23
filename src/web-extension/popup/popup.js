@@ -1,4 +1,3 @@
-/* eslint-env browser */
 /* global chrome */
 
 import render from '../../common/popup/render';

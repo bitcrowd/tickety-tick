@@ -11,34 +11,26 @@ describe('ticket search', () => {
   const doc = { title: 'dummy document' };
   const loc = { host: 'dummy.org' };
 
-  it('feeds the location and document to every adapter', (done) => {
+  it('feeds the location and document to every adapter', async () => {
     const adapters = mocks([null, null]);
 
-    search(adapters, loc, doc, () => {
-      adapters.forEach((scan) => {
-        expect(scan).toHaveBeenCalledWith(loc, doc);
-      });
+    await search(adapters, loc, doc);
 
-      done();
+    adapters.forEach((scan) => {
+      expect(scan).toHaveBeenCalledWith(loc, doc);
     });
   });
 
-  it('invokes the callback with the first non-null adapter result', (done) => {
+  it('invokes the callback with the first non-null adapter result', async () => {
     const result = [{ id: '1', title: 'true story' }];
     const adapters = mocks([null, result]);
 
-    search(adapters, loc, doc, (res) => {
-      expect(res).toBe(result);
-      done();
-    });
+    await expect(search(adapters, loc, doc)).resolves.toBe(result);
   });
 
-  it('invokes the callback with null when no adapter created any results', (done) => {
+  it('invokes the callback with null when no adapter created any results', async () => {
     const adapters = mocks([null, undefined]);
 
-    search(adapters, loc, doc, (res) => {
-      expect(res).toBe(null);
-      done();
-    });
+    await expect(search(adapters, loc, doc)).resolves.toBe(null);
   });
 });
