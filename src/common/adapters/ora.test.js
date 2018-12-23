@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import adapter from './ora';
+import scan from './ora';
 
 function task({ id, title, type }) {
   return `
@@ -52,34 +52,26 @@ describe('ora adapter', () => {
     return window.document;
   }
 
-  it('returns null if it is on a different page', () => {
-    adapter.inspect({ host: 'github.com' }, null, (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toBe(null);
-    });
+  it('returns null if it is on a different page', async () => {
+    const result = await scan({ host: 'github.com' }, null);
+    expect(result).toBe(null);
   });
 
-  it('extracts feature tickets', () => {
+  it('extracts feature tickets', async () => {
     const ticket = { id: 'ORA12', title: 'Random Ora task title', type: 'feature' };
-    adapter.inspect(loc, doc(task(ticket)), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual([ticket]);
-    });
+    const result = await scan(loc, doc(task(ticket)));
+    expect(result).toEqual([ticket]);
   });
 
-  it('extracts chore tickets', () => {
+  it('extracts chore tickets', async () => {
     const ticket = { id: 'ORA12', title: 'Random Ora task title', type: 'chore' };
-    adapter.inspect(loc, doc(task(ticket)), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual([ticket]);
-    });
+    const result = await scan(loc, doc(task(ticket)));
+    expect(result).toEqual([ticket]);
   });
 
-  it('extracts bug tickets', () => {
+  it('extracts bug tickets', async () => {
     const ticket = { id: 'ORA12', title: 'Random Ora task title', type: 'bug' };
-    adapter.inspect(loc, doc(task(ticket)), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual([ticket]);
-    });
+    const result = await scan(loc, doc(task(ticket)));
+    expect(result).toEqual([ticket]);
   });
 });

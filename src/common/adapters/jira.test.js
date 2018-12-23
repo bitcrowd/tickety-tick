@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import adapter from './jira';
+import scan from './jira';
 
 // parts of the dom of the jira backlog issue-list
 // contains two tickets - one of them being selected
@@ -138,101 +138,66 @@ describe('jira adapter', () => {
     return window.document;
   }
 
-  it('returns null if it is on a different page', () => {
-    adapter.inspect(null, doc(STORYPAGE, 'foo'), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toBe(null);
-    });
+  it('returns null if it is on a different page', async () => {
+    const result = await scan(null, doc(STORYPAGE, 'foo'));
+    expect(result).toBe(null);
   });
 
-  it('extracts story tickets from a ticket page', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'feature' }];
-    adapter.inspect(null, doc(STORYPAGE), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts story tickets from a ticket page', async () => {
+    const result = await scan(null, doc(STORYPAGE));
+    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'feature' }]);
   });
 
-  it('extracts story tickets from a ticket page even when the title is being edited', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'feature' }];
-    adapter.inspect(null, doc(STORYPAGE_TITLE_EDITED), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts story tickets from a ticket page even when the title is being edited', async () => {
+    const result = await scan(null, doc(STORYPAGE_TITLE_EDITED));
+    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'feature' }]);
   });
 
-  it('extracts bug tickets from a ticket page', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'bug' }];
-    adapter.inspect(null, doc(BUGPAGE), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts bug tickets from a ticket page', async () => {
+    const result = await scan(null, doc(BUGPAGE));
+    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'bug' }]);
   });
 
-  it('extracts chore tickets from a ticket page', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'chore' }];
-    adapter.inspect(null, doc(CHOREPAGE), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts chore tickets from a ticket page', async () => {
+    const result = await scan(null, doc(CHOREPAGE));
+    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'chore' }]);
   });
 
-  it('extracts tickets from the backlog', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'feature' }];
-    adapter.inspect(null, doc(BACKLOG), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts tickets from the backlog', async () => {
+    const result = await scan(null, doc(BACKLOG));
+    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'feature' }]);
   });
 
-  it('extracts bug tickets from the backlog', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'bug' }];
-    adapter.inspect(null, doc(BUG_BACKLOG), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts bug tickets from the backlog', async () => {
+    const result = await scan(null, doc(BUG_BACKLOG));
+    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'bug' }]);
   });
 
-  it('extracts chore tickets from the backlog', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'chore' }];
-    adapter.inspect(null, doc(CHORE_BACKLOG), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts chore tickets from the backlog', async () => {
+    const result = await scan(null, doc(CHORE_BACKLOG));
+    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'chore' }]);
   });
 
-  it('extracts tickets from the backlog when multiple tickets are selected', () => {
-    const expected = [
+  it('extracts tickets from the backlog when multiple tickets are selected', async () => {
+    const result = await scan(null, doc(BACKLOG_TWO_TICKETS_SELECTED));
+    expect(result).toEqual([
       { id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'feature' },
       { id: 'UXPL-47', title: 'A Random JIRA Bug Issue', type: 'bug' },
-    ];
-    adapter.inspect(null, doc(BACKLOG_TWO_TICKETS_SELECTED), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+    ]);
   });
 
-  it('extracts selected tickets from the board', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Board Issue', type: 'feature' }];
-    adapter.inspect(null, doc(BOARD_STORY), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts selected tickets from the board', async () => {
+    const result = await scan(null, doc(BOARD_STORY));
+    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Board Issue', type: 'feature' }]);
   });
 
-  it('extracts selected bug tickets from the board', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Board Issue', type: 'bug' }];
-    adapter.inspect(null, doc(BOARD_BUG), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts selected bug tickets from the board', async () => {
+    const result = await scan(null, doc(BOARD_BUG));
+    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Board Issue', type: 'bug' }]);
   });
 
-  it('extracts selected chore tickets from the board', () => {
-    const expected = [{ id: 'UXPL-39', title: 'A Random JIRA Board Issue', type: 'chore' }];
-    adapter.inspect(null, doc(BOARD_CHORE), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts selected chore tickets from the board', async () => {
+    const result = await scan(null, doc(BOARD_CHORE));
+    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Board Issue', type: 'chore' }]);
   });
 });

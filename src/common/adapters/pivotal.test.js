@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import adapter from './pivotal';
+import scan from './pivotal';
 
 function selected({ id, title, type }) {
   return `
@@ -58,38 +58,30 @@ describe('pivotal adapter', () => {
     return window.document;
   }
 
-  it('returns null if it is on a different page', () => {
+  it('returns null if it is on a different page', async () => {
     const doc = dom(selected({ id: '1', title: 'Foo' }), 'trello');
-    adapter.inspect(null, doc, (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toBe(null);
-    });
+    const result = await scan(null, doc);
+    expect(result).toBe(null);
   });
 
-  it('extracts tickets from selected stories', () => {
+  it('extracts tickets from selected stories', async () => {
     const expected = [{ id: '1231244', title: 'A Selected Pivotal Story', type: 'feature' }];
     const doc = dom(expected.map(selected).join(''));
-    adapter.inspect(null, doc, (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+    const result = await scan(null, doc);
+    expect(result).toEqual(expected);
   });
 
-  it('extracts tickets from opened stories', () => {
+  it('extracts tickets from opened stories', async () => {
     const expected = [{ id: '1231245', title: 'An Opened Pivotal Story', type: 'bug' }];
     const doc = dom(expected.map(opened).join(''));
-    adapter.inspect(null, doc, (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+    const result = await scan(null, doc);
+    expect(result).toEqual(expected);
   });
 
-  it('extracts tickets from maximized stories', () => {
+  it('extracts tickets from maximized stories', async () => {
     const expected = [{ id: '1231246', title: 'A Maximized Pivotal Story', type: 'chore' }];
     const doc = dom(expected.map(maximized).join(''));
-    adapter.inspect(null, doc, (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+    const result = await scan(null, doc);
+    expect(result).toEqual(expected);
   });
 });

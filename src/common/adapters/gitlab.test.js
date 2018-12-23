@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import adapter from './gitlab';
+import scan from './gitlab';
 
 const ISSUEPAGE = `
   <div class="content">
@@ -44,26 +44,18 @@ describe('gitlab adapter', () => {
     return window.document;
   }
 
-  it('returns null if it is on a different page', () => {
-    adapter.inspect(null, dom(), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toBe(null);
-    });
+  it('returns null if it is on a different page', async () => {
+    const result = await scan(null, dom());
+    expect(result).toBe(null);
   });
 
-  it('extracts tickets from issue pages', () => {
-    const expected = [{ id: '22578', title: 'A Random GitLab Issue', type: 'feature' }];
-    adapter.inspect(null, dom(ISSUEPAGE, 'projects:issues:show'), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('extracts tickets from issue pages', async () => {
+    const result = await scan(null, dom(ISSUEPAGE, 'projects:issues:show'));
+    expect(result).toEqual([{ id: '22578', title: 'A Random GitLab Issue', type: 'feature' }]);
   });
 
-  it('recognizes issues labelled as bugs', () => {
-    const expected = [{ id: '22578', title: 'A Random GitLab Issue', type: 'bug' }];
-    adapter.inspect(null, dom(BUGPAGE, 'projects:issues:show'), (err, res) => {
-      expect(err).toBe(null);
-      expect(res).toEqual(expected);
-    });
+  it('recognizes issues labelled as bugs', async () => {
+    const result = await scan(null, dom(BUGPAGE, 'projects:issues:show'));
+    expect(result).toEqual([{ id: '22578', title: 'A Random GitLab Issue', type: 'bug' }]);
   });
 });
