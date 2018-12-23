@@ -1,5 +1,3 @@
-/* eslint-env browser */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter as Router, Route } from 'react-router';

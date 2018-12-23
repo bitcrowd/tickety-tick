@@ -7,10 +7,9 @@ import Trello from './adapters/trello';
 
 export const stdadapters = [GitHub, GitLab, Jira, Ora, Pivotal, Trello];
 
-export function search(adapters, loc, doc, fn) {
-  Promise.all(adapters.map(scan => scan(loc, doc)))
-    .then(results => results.find(e => (e !== null)))
-    .then(result => fn(result || null));
+export async function search(adapters, loc, doc) {
+  const results = await Promise.all(adapters.map(scan => scan(loc, doc)));
+  return results.find(e => (e !== null)) || null;
 }
 
 export default search.bind(null, stdadapters);
