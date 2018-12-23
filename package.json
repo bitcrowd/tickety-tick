@@ -57,7 +57,7 @@
     "nyc": "13.1.0",
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "^6.5.0",
-    "react-test-renderer": "16.5.2",
+    "react-test-renderer": "16.7.0",
     "rimraf": "2.6.2",
     "sass-loader": "7.1.0",
     "web-ext": "2.9.1",
