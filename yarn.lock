@@ -10659,10 +10659,10 @@ webpack-build-notifier@0.1.30:
     node-notifier "5.2.1"
     strip-ansi "^3.0.1"
 
-webpack-chain@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/webpack-chain/-/webpack-chain-5.0.0.tgz#dfb05b05db92ca6afe56a30c9928b4a4e51d4761"
-  integrity sha512-JB6K933Apys95/4FPXvW7luLrBpK0MWJw71RYM9K/2jQLWKdN3PvTft5BQKnLTOPnp91MKHb/YOAcc//CyoUcA==
+webpack-chain@5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/webpack-chain/-/webpack-chain-5.0.1.tgz#549ec483f1bd6699ad4305b7892869cd619c1b62"
+  integrity sha512-RiMJSZ5bxURnRl1hLOjslWD9aqqBRjwLUFvYR1Nq7dxka4fYw/mLPS0X641qJd3f4SLuiZ7k8WSiss8XgTTl1w==
   dependencies:
     deepmerge "^1.5.2"
     javascript-stringify "^1.6.0"
