@@ -30,7 +30,7 @@ function About() {
             <h6>Usage:</h6>
             <ol className="mt-2 pl-3">
               <li>
-                Open one ore more tickets in your favourite ticket tracking system,
+                Open one or more tickets in your favourite ticket tracking system,
                 then click the extension icon.
               </li>
               <li>
