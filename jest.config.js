@@ -5,6 +5,7 @@ module.exports = {
   coverageDirectory: 'coverage',
   collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx}'],
   setupTestFrameworkScriptFile: '<rootDir>/test/setup.js',
+  snapshotSerializers: ['enzyme-to-json/serializer'],
   transform: {
     '^.+\\.jsx?$': 'babel-jest',
     '^.+\\.png$': '<rootDir>/test/transforms/file.js',
