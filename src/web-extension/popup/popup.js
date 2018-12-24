@@ -1,4 +1,4 @@
-/* global chrome */
+import browser from 'webextension-polyfill';
 
 import render from '../../common/popup/render';
 import enhance from '../../common/enhance';
@@ -6,8 +6,7 @@ import '../../common/popup/popup.scss';
 
 import store from '../store';
 
-const { extension } = chrome;
-const background = extension.getBackgroundPage();
+const background = browser.extension.getBackgroundPage();
 
 function pbcopy(text) {
   const input = document.createElement('textarea');
@@ -31,16 +30,15 @@ function openext() {
   return true;
 }
 
-function load() {
-  store.get(null, ({ templates }) => {
-    background.getTickets((tickets) => {
-      const result = tickets
-        ? tickets.map(enhance(templates))
-        : null;
+async function load() {
+  const { templates } = await store.get(null);
+  const tickets = await background.getTickets();
 
-      render(result, { grab, openext });
-    });
-  });
+  const result = tickets
+    ? tickets.map(enhance(templates))
+    : null;
+
+  render(result, { grab, openext });
 }
 
 window.onload = load;

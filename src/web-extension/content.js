@@ -1,11 +1,9 @@
-/* global chrome */
+import browser from 'webextension-polyfill';
 
 import stdsearch from '../common/search';
 
-const { runtime } = chrome;
-
 if (window === window.top) {
-  runtime.onMessage.addListener((req) => {
+  browser.runtime.onMessage.addListener((req) => {
     if (req.tickets) {
       return stdsearch(window.location, document);
     }
