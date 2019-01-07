@@ -23,7 +23,7 @@ class Form extends Component {
 
   componentDidMount() {
     const { store } = this.props;
-    store.get(null, this.handleLoaded);
+    store.get(null).then(this.handleLoaded);
   }
 
   handleLoaded(data) {
@@ -47,7 +47,7 @@ class Form extends Component {
     const templates = { branch, commit, command };
 
     this.setState(() => ({ loading: true }), () => {
-      store.set({ templates }, this.handleSaved);
+      store.set({ templates }).then(this.handleSaved);
     });
   }
 
