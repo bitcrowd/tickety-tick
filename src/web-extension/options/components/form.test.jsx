@@ -29,6 +29,8 @@ describe('form', () => {
 
   it('renders a template-input for the branch name format', () => {
     const wrapper = render({});
+    const instance = wrapper.instance();
+
     const field = input(wrapper, 'branch');
 
     expect(field.props()).toEqual({
@@ -38,12 +40,14 @@ describe('form', () => {
       value: '',
       fallback: fallbacks.branch,
       disabled: true,
-      onChange: expect.any(Function),
+      onChange: instance.handleChanged,
     });
   });
 
   it('renders a template-input for the commit message format', () => {
     const wrapper = render({});
+    const instance = wrapper.instance();
+
     const field = input(wrapper, 'commit');
 
     expect(field.props()).toEqual({
@@ -53,12 +57,14 @@ describe('form', () => {
       value: '',
       fallback: fallbacks.commit,
       disabled: true,
-      onChange: expect.any(Function),
+      onChange: instance.handleChanged,
     });
   });
 
   it('renders a template-input for the command format', () => {
     const wrapper = render({});
+    const instance = wrapper.instance();
+
     const field = input(wrapper, 'command');
 
     expect(field.props()).toEqual({
@@ -68,7 +74,7 @@ describe('form', () => {
       value: '',
       fallback: fallbacks.command,
       disabled: true,
-      onChange: expect.any(Function),
+      onChange: instance.handleChanged,
     });
   });
 
