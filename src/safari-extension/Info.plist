@@ -7,13 +7,13 @@
 	<key>Builder Version</key>
 	<string>12604.4.7.1.4</string>
 	<key>CFBundleDisplayName</key>
-	<string>tickety-tick</string>
+	<string><!-- name --></string>
 	<key>CFBundleIdentifier</key>
 	<string>net.bitcrowd.tickety-tick</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string><!-- version --></string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>Chrome</key>
