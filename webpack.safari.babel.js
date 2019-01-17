@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import config, { src, dist } from './webpack.common';
+import pkg from './package.json';
 
 // Configure separate entry points.
 
@@ -17,11 +18,13 @@ config.plugin('copy').tap(([patterns]) => [[
   ...patterns,
   {
     from: src.safari('Info.plist'),
-    flatten: true,
+    transform: (content) => {
+      const replacer = (match, field) => pkg[field] || match;
+      return content.toString().replace(/<!-- ([^ ]+) -->/g, replacer);
+    },
   },
   {
     from: src.safari('Settings.plist'),
-    flatten: true,
   },
 ]]);
 
