@@ -49,16 +49,13 @@ config.plugin('copy').tap(([patterns]) => [[
       mf.version = pkg.version;
       mf.description = pkg.description;
 
-      if (variant === 'firefox-local') {
+      if (['firefox', 'firefox-local'].includes(variant)) {
+        mf.options_ui.browser_style = true;
         mf.applications = {
           gecko: {
             id: 'tickety-tick@bitcrowd.net',
           },
         };
-      }
-
-      if (['firefox', 'firefox-local'].includes(variant)) {
-        mf.options_ui.browser_style = true;
       } else {
         mf.options_ui.chrome_style = true;
       }
