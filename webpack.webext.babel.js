@@ -53,7 +53,7 @@ config.plugin('copy').tap(([patterns]) => [[
         mf.options_ui.browser_style = true;
         mf.applications = {
           gecko: {
-            id: 'tickety-tick@bitcrowd.net',
+            id: 'jid1-ynkvezs8Qn2TJA@jetpack',
           },
         };
       } else {
