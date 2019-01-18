@@ -1,6 +1,7 @@
-import { createSlug } from 'speakingurl';
-
 import compile from './template';
+import * as helpers from './helpers';
+
+export { helpers };
 
 /* eslint-disable no-template-curly-in-string */
 export const defaults = {
@@ -9,20 +10,6 @@ export const defaults = {
   command: 'git checkout -b {branch | shellquote} && git commit --allow-empty -m {commit | shellquote}',
 };
 /* eslint-enable no-template-curly-in-string */
-
-const lowercase = s => s.toLowerCase();
-const shellquote = s => (typeof s === 'string' ? `'${s.replace(/'/g, '\'\\\'\'')}'` : '\'\'');
-const slugify = createSlug({ separator: '-' });
-const trim = s => s.replace(/^\s+|\s+$/g, '');
-const uppercase = s => s.toUpperCase();
-
-export const helpers = {
-  lowercase,
-  shellquote,
-  slugify,
-  trim,
-  uppercase,
-};
 
 const fallbacks = {
   type: 'feature',
