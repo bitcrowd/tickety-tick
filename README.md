@@ -77,15 +77,9 @@ Navigate to the [chrome://extensions](//chrome://extensions) page, enable "Devel
 
 ### Firefox
 
-Build the extension with:
+If you just want to try out and debug the extension, go to [about:debugging#addons](//about:debugging#addons). Then press "Load Temporary Add-On" and select the built `manifest.json` from the `dist/firefox` extension directory.
 
-```shell
-yarn build:firefox-local
-```
-
-If you just want to try out and debug the extension, go to [about:debugging#addons](//about:debugging#addons). Then press "Load Temporary Add-On" and select the `manifest.json` from the `dist/firefox-local` built extension directory.
-
-If you want to install this addon permanently, go to [about:addons](//about:addons) and click on the small cog icon. Select `Install Add-on From File...` and choose `dist/firefox-local`.
+If you want to install this addon permanently, go to [about:addons](//about:addons) and click on the small cog icon. Select `Install Add-on From File...` and choose `dist/firefox`.
 
 ### Opera
 
@@ -114,7 +108,7 @@ To test-drive a development version, you can use:
 
 ```shell
 yarn open:chrome
-yarn open:firefox-local
+yarn open:firefox
 ```
 
 You can run both `watch:[browser]` and `open:[browser]` scripts in parallel to automatically rebuild and reload the extension as you make changes.

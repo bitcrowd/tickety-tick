@@ -8,7 +8,7 @@ import pkg from './package.json';
 
 // Small variations between browsers supporting the WebExtensions API are
 // handled by setting the extension variant as an environment variable, for
-// instance: 'chrome', 'firefox', 'firefox-local' or 'opera'.
+// instance: 'chrome', 'firefox' or 'opera'.
 const variant = process.env.VARIANT;
 
 // Configure separate entry points.
@@ -49,16 +49,13 @@ config.plugin('copy').tap(([patterns]) => [[
       mf.version = pkg.version;
       mf.description = pkg.description;
 
-      if (variant === 'firefox-local') {
+      if (variant === 'firefox') {
+        mf.options_ui.browser_style = true;
         mf.applications = {
           gecko: {
-            id: 'tickety-tick@bitcrowd.net',
+            id: 'jid1-ynkvezs8Qn2TJA@jetpack',
           },
         };
-      }
-
-      if (['firefox', 'firefox-local'].includes(variant)) {
-        mf.options_ui.browser_style = true;
       } else {
         mf.options_ui.chrome_style = true;
       }
