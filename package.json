@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@githubprimer/octicons-react": "^8.2.0",
-    "bootstrap": "4.2.1",
+    "bootstrap": "4.3.1",
     "prop-types": "15.6.2",
     "react": "16.7.0",
     "react-dom": "16.7.0",
