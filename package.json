@@ -67,11 +67,13 @@
     "@githubprimer/octicons-react": "^8.2.0",
     "bootstrap": "4.3.1",
     "prop-types": "15.6.2",
+    "qs": "^6.6.0",
     "react": "16.7.0",
     "react-dom": "16.7.0",
     "react-router": "4.3.1",
     "react-router-dom": "4.3.1",
     "speakingurl": "14.0.1",
-    "webextension-polyfill": "^0.3.1"
+    "webextension-polyfill": "^0.3.1",
+    "whatwg-fetch": "^3.0.0"
   }
 }
