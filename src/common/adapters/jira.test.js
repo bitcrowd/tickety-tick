@@ -1,203 +1,96 @@
 import { JSDOM } from 'jsdom';
 
+import client from '../client';
 import scan from './jira';
 
-// parts of the dom of the jira backlog issue-list
-// contains two tickets - one of them being selected
-const BACKLOG = `
-  <div class="ghx-backlog-column">
-    <div class="ghx-backlog-card ghx-selected">
-      <div class="ghx-issue-content">
-        <div class="ghx-row ghx-plan-main-fields">
-          <span class="ghx-backlog-card-expander-spacer"></span>
-          <span class="ghx-type items-spacer" title="Story">
-            <img src="https://someorg.atlassian.net/secure/viewavatar?size=xsmall&amp;avatarId=12345&amp;avatarType=issuetype">
-          </span>
-          <div class="ghx-summary" data-tooltip="A Random JIRA Backlog Issue">
-            <span class="ghx-inner">A Random JIRA Backlog Issue</span>
-          </div>
-        </div>
-        <div class="ghx-row ghx-end ghx-items-container">
-          <span class="aui-lozenge ghx-label ghx-label-single ghx-label-3" title="Chores" data-epickey="UXPL-123">
-            Chores
-          </span>
-          <span class="ghx-end ghx-items-container">
-            <a href="/browse/UXPL-39" title="UXPL-39" class="ghx-key js-key-link">
-              UXPL-39
-            </a>
-            <span class="ghx-priority" title="Medium">
-              <img src="https://someorg.atlassian.net/images/icons/priorities/medium.svg">
-            </span>
-            <span class="aui-badge ghx-spacer ghx-statistic-badge"></span>
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="ghx-backlog-card">
-      <div class="ghx-issue-content">
-        <div class="ghx-row ghx-plan-main-fields">
-          <span class="ghx-backlog-card-expander-spacer"></span>
-          <span class="ghx-type items-spacer" title="Bug">
-            <img src="https://someorg.atlassian.net/secure/viewavatar?size=xsmall&amp;avatarId=12345&amp;avatarType=issuetype">
-          </span>
-          <div class="ghx-summary" data-tooltip="A Random JIRA Bug Issue">
-            <span class="ghx-inner">A Random JIRA Bug Issue</span>
-          </div>
-        </div>
-        <div class="ghx-row ghx-end ghx-items-container">
-          <span class="aui-lozenge ghx-label ghx-label-single ghx-label-3" title="Chores" data-epickey="UXPL-123">
-            Chores
-          </span>
-          <span class="ghx-end ghx-items-container">
-            <a href="/browse/UXPL-47" title="UXPL-47" class="ghx-key js-key-link">
-              UXPL-47
-            </a>
-            <span class="ghx-priority" title="Low">
-              <img src="https://someorg.atlassian.net/images/icons/priorities/low.svg">
-            </span>
-            <span class="aui-badge ghx-spacer ghx-statistic-badge"></span>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-`;
-const BUG_BACKLOG = BACKLOG.replace(/Story/, 'Bug');
-const CHORE_BACKLOG = BACKLOG.replace(/Story/, 'Chore');
-const BACKLOG_TWO_TICKETS_SELECTED = BACKLOG.replace('<div class="ghx-backlog-card">', '<div class="ghx-backlog-card ghx-selected">');
+jest.mock('../client', () => jest.fn());
 
-const STORYPAGE = `
-  <div id="issue-content">
-    <div class="issue-header-content">
-      <a class="issue-link" data-issue-key="UXPL-39" id="key-val">UXPL-39</a>
-      <h1 id="summary-val">A Random JIRA Issue</h1>
-    </div>
-    <div class="issue-body-content">
-      <span id="type-val" class="value editable-field inactive">
-        <img alt="" src="/" title="Story - A story"> Story
-      </span>
-    </div>
-  </div>
-`;
+const key = 'RC-654';
 
-const STORYPAGE_TITLE_EDITED = `
-  <div id="issue-content">
-    <div class="issue-header-content">
-      <a class="issue-link" data-issue-key="UXPL-39" id="key-val">UXPL-39</a>
-      <h1 id="summary-val" class="editable-field active">
-        <form id="summary-form">
-          <textarea id="summary">A Random JIRA Issue</textarea>
-          <button type="submit">Save</button>
-            <button type="cancel">Cancel</button>
-        </form>
-      </h1>
-    </div>
-    <div class="issue-body-content">
-      <span id="type-val" class="value editable-field inactive">
-        <img alt="" src="/" title="Story - A story"> Story
-      </span>
-    </div>
-  </div>
-`;
+const response = {
+  id: '10959',
+  fields: {
+    issuetype: { name: 'Story' },
+    summary: 'A quick summary of the ticket',
+  },
+  key,
+};
 
-const CHOREPAGE = STORYPAGE.replace(/Story/gi, 'Chore');
-const BUGPAGE = STORYPAGE.replace(/Story/gi, 'Bug');
-
-const BOARD_STORY = `
-<div class="ghx-columns">
-  <div class="ghx-column">
-    <div class="ghx-issue ghx-selected">
-      <section class="ghx-summary" title="">A Random JIRA Board Issue</section>
-      <section class="ghx-extra-fields">
-        <div class="ghx-row"><span class="ghx-extra-field ghx-fa"><span class="ghx-extra-field-content">None</span></span></div>
-      </section>
-      <section class="ghx-stat-fields">
-        <div class="ghx-row ghx-stat-1">
-          <span class="ghx-field ghx-field-icon" data-tooltip="Story"><img src=""></span>
-          <span class="ghx-field ghx-field-icon" data-tooltip="Some other thing"><img src=""></span>
-          <span class="ghx-field"></span><span class="ghx-field"><img src="" class="ghx-avatar-img"></span></div>
-      <div class="ghx-row ghx-stat-2">
-          <span class="ghx-field"><img src="" class="ghx-avatar-img"></span>
-          <a href="/browse/UXPL-39" aria-label="UXPL-39" data-tooltip="UXPL-39" tabindex="-1" class="ghx-key">
-            <span class="ghx-issuekey-pkey js-key-link" aria-hidden="true">UXPL</span>
-            <span class="ghx-issuekey-number js-key-link" aria-hidden="true">39-</span>
-          </a>
-        </div>
-      </section>
-    </div>
-  </div>
-</div>
-`;
-
-const BOARD_CHORE = BOARD_STORY.replace(/Story/gi, 'Chore');
-const BOARD_BUG = BOARD_STORY.replace(/Story/gi, 'Bug');
+const ticket = {
+  id: response.key,
+  title: response.fields.summary,
+  type: response.fields.issuetype.name.toLowerCase(),
+};
 
 describe('jira adapter', () => {
-  function doc(body = '', id = 'jira') {
-    const { window } = new JSDOM(`<html><body id="${id}">${body}</body></html>`);
-    return window.document;
+  function loc(host, pathname = '', params = null) {
+    const searchParams = new URLSearchParams(params || {});
+    const href = params
+      ? `https://${host}${pathname}?${searchParams}`
+      : `https://${host}${pathname}`;
+
+    return {
+      host,
+      href,
+      pathname,
+      search: searchParams.toString(),
+    };
   }
 
-  it('returns null if it is on a different page', async () => {
-    const result = await scan(null, doc(STORYPAGE, 'foo'));
+  const dom = new JSDOM('<html><body id="jira">…</body"</html>');
+  const doc = dom.window.document;
+
+  const api = { get: jest.fn() };
+
+  beforeEach(() => {
+    api.get.mockReturnValue({ json: () => response });
+    client.mockReturnValue(api);
+  });
+
+  afterEach(() => {
+    api.get.mockReset();
+    client.mockReset();
+  });
+
+  it('returns null when on a different host', async () => {
+    const result = await scan(loc('another-domain.com'), doc);
+    expect(api.get).not.toHaveBeenCalled();
     expect(result).toBe(null);
   });
 
-  it('extracts story tickets from a ticket page', async () => {
-    const result = await scan(null, doc(STORYPAGE));
-    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'feature' }]);
+  it('returns null when no issue is selected', async () => {
+    const result = await scan(loc('my-subdomain.atlassian.com'), doc);
+    expect(api.get).not.toHaveBeenCalled();
+    expect(result).toBe(null);
   });
 
-  it('extracts story tickets from a ticket page even when the title is being edited', async () => {
-    const result = await scan(null, doc(STORYPAGE_TITLE_EDITED));
-    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'feature' }]);
+  it('uses the endpoints for the current host', async () => {
+    await scan(loc('my-subdomain.atlassian.net', '', { selectedIssue: key }), doc);
+    expect(client).toHaveBeenCalledWith('https://my-subdomain.atlassian.net/rest/api/latest');
+    expect(api.get).toHaveBeenCalled();
   });
 
-  it('extracts bug tickets from a ticket page', async () => {
-    const result = await scan(null, doc(BUGPAGE));
-    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'bug' }]);
+  it('extracts tickets from the active sprints tab', async () => {
+    const result = await scan(loc('my-subdomain.atlassian.net', '', { selectedIssue: key }), doc);
+    expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
+    expect(result).toEqual([ticket]);
   });
 
-  it('extracts chore tickets from a ticket page', async () => {
-    const result = await scan(null, doc(CHOREPAGE));
-    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Issue', type: 'chore' }]);
+  it('extracts tickets from the issues tab', async () => {
+    const result = await scan(loc('my-subdomain.atlassian.net', `/projects/RC/issues/${key}`, { filter: 'something' }), doc);
+    expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
+    expect(result).toEqual([ticket]);
   });
 
-  it('extracts tickets from the backlog', async () => {
-    const result = await scan(null, doc(BACKLOG));
-    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'feature' }]);
+  it('extracts tickets when browsing an issue', async () => {
+    const result = await scan(loc('my-subdomain.atlassian.net', `/browse/${key}`), doc);
+    expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
+    expect(result).toEqual([ticket]);
   });
 
-  it('extracts bug tickets from the backlog', async () => {
-    const result = await scan(null, doc(BUG_BACKLOG));
-    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'bug' }]);
-  });
-
-  it('extracts chore tickets from the backlog', async () => {
-    const result = await scan(null, doc(CHORE_BACKLOG));
-    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'chore' }]);
-  });
-
-  it('extracts tickets from the backlog when multiple tickets are selected', async () => {
-    const result = await scan(null, doc(BACKLOG_TWO_TICKETS_SELECTED));
-    expect(result).toEqual([
-      { id: 'UXPL-39', title: 'A Random JIRA Backlog Issue', type: 'feature' },
-      { id: 'UXPL-47', title: 'A Random JIRA Bug Issue', type: 'bug' },
-    ]);
-  });
-
-  it('extracts selected tickets from the board', async () => {
-    const result = await scan(null, doc(BOARD_STORY));
-    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Board Issue', type: 'feature' }]);
-  });
-
-  it('extracts selected bug tickets from the board', async () => {
-    const result = await scan(null, doc(BOARD_BUG));
-    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Board Issue', type: 'bug' }]);
-  });
-
-  it('extracts selected chore tickets from the board', async () => {
-    const result = await scan(null, doc(BOARD_CHORE));
-    expect(result).toEqual([{ id: 'UXPL-39', title: 'A Random JIRA Board Issue', type: 'chore' }]);
+  it('extracts tickets on self-hosted instances', async () => {
+    const result = await scan(loc('jira.local', `/browse/${key}`), doc);
+    expect(client).toHaveBeenCalledWith('https://jira.local/rest/api/latest');
+    expect(result).toEqual([ticket]);
   });
 });
