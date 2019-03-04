@@ -41,7 +41,6 @@ async function scan(loc) {
   const { host } = loc;
   if (!host.endsWith(DOMAIN)) return null;
 
-  // Get the selected issue from the query string in the URL
   const issueKey = selectedIssue(loc);
   if (!issueKey) return null;
 
