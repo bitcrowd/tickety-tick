@@ -7,7 +7,7 @@
 
 import qs from 'qs';
 
-import jira from '../clients/jira';
+import Client from '../clients/jira';
 
 const DOMAIN = '.atlassian.net';
 
@@ -29,6 +29,14 @@ function selectedIssue({ pathname, search }) {
   return null;
 }
 
+function extractTicketInfo(response) {
+  const { key: id, fields } = response;
+  const { issuetype, summary: title } = fields;
+  const type = issuetype.name.toLowerCase();
+
+  return { id, title, type };
+}
+
 async function scan(loc) {
   const { host } = loc;
   if (!host.endsWith(DOMAIN)) return null;
@@ -37,13 +45,11 @@ async function scan(loc) {
   const issueKey = selectedIssue(loc);
   if (!issueKey) return null;
 
-  const response = await jira(host).request('GET', `issue/${issueKey}`);
+  const jiraClient = new Client(host);
+  const response = await jiraClient.request(`issue/${issueKey}`);
+  const ticketInfo = extractTicketInfo(response);
 
-  const { key: id, fields } = response;
-  const { issuetype, summary: title } = fields;
-  const type = issuetype.name.toLowerCase();
-
-  return [{ id, title, type }];
+  return [ticketInfo];
 }
 
 export default scan;

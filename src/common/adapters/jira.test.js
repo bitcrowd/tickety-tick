@@ -63,7 +63,7 @@ describe('jira adapter', () => {
     it('returns the ticket id, title and summary', async () => {
       const result = await scan(loc('my-subdomain.atlassian.net', '', { selectedIssue }));
 
-      expect(requestMock).toHaveBeenCalledWith('GET', `issue/${selectedIssue}`);
+      expect(requestMock).toHaveBeenCalledWith(`issue/${selectedIssue}`);
       expect(result).toEqual([{
         id: selectedIssue,
         title,
@@ -76,7 +76,7 @@ describe('jira adapter', () => {
     it('returns the ticket id, title and summary', async () => {
       const result = await scan(loc('my-subdomain.atlassian.net', `/projects/RC/issues/${selectedIssue}`, { filter: 'something' }));
 
-      expect(requestMock).toHaveBeenCalledWith('GET', `issue/${selectedIssue}`);
+      expect(requestMock).toHaveBeenCalledWith(`issue/${selectedIssue}`);
       expect(result).toEqual([{
         id: selectedIssue,
         title,
@@ -89,7 +89,7 @@ describe('jira adapter', () => {
     it('returns the ticket id, title and summary', async () => {
       const result = await scan(loc('my-subdomain.atlassian.net', `/browse/${selectedIssue}`));
 
-      expect(requestMock).toHaveBeenCalledWith('GET', `issue/${selectedIssue}`);
+      expect(requestMock).toHaveBeenCalledWith(`issue/${selectedIssue}`);
       expect(result).toEqual([{
         id: selectedIssue,
         title,

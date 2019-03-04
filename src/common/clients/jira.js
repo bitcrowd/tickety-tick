@@ -1,6 +1,13 @@
-import Client from '.';
+import request from './request';
 
-export default function jira(host) {
-  const apiBase = `https://${host}/rest/agile/1.0`;
-  return new Client(apiBase);
+class Client {
+  constructor(host) {
+    this.base = `https://${host}/rest/agile/1.0`;
+  }
+
+  request(endpoint, options = {}) {
+    return request(endpoint, { prefixUrl: this.base, ...options });
+  }
 }
+
+export default Client;
