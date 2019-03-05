@@ -9,27 +9,25 @@
 // * Issues and filters: https://<YOUR-SUBDOMAIN>.atlassian.net/projects/<PROJECT-KEY>/issues/<ISSUE-KEY>
 // * Issue view: https://<YOUR-SUBDOMAIN>.atlassian.net/browse/<ISSUE-KEY>
 
+import match from 'micro-match';
+
 import client from '../client';
 
 const DOMAIN = '.atlassian.net';
 
-const issuesTabPattern = /^\/projects\/[A-Za-z0-9\-_]+\/issues\/[A-Za-z0-9\-_]+$/;
-const browseIssuePattern = /^\/browse\/[A-Za-z0-9\-_]+$/;
-
-function lastSegment(pathname) {
-  return pathname.split('/').slice(-1)[0];
-}
+const issueTabMatch = '/projects/:project/issues/:id';
+const browseIssueMatch = '/browse/:id';
 
 function selectedIssue({ href, pathname }) {
-  if (issuesTabPattern.test(pathname) || browseIssuePattern.test(pathname)) {
-    return lastSegment(pathname);
-  }
+  let id = null;
 
   const { searchParams: params } = new URL(href);
-  const issueKey = params.get('selectedIssue');
-  if (issueKey) return issueKey;
+  id = params.get('selectedIssue');
+  if (id) return id;
 
-  return null;
+  ({ id } = { ...match(issueTabMatch, pathname), ...match(browseIssueMatch, pathname) });
+
+  return id;
 }
 
 function extractTicketInfo(response) {
