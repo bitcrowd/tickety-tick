@@ -10,5 +10,5 @@ module.exports = {
     '^.+\\.jsx?$': 'babel-jest',
     '^.+\\.png$': '<rootDir>/test/transforms/file.js',
   },
-  transformIgnorePatterns: ['node_modules/?!(ky)'],
+  transformIgnorePatterns: ['node_modules/(?!ky)'],
 };
