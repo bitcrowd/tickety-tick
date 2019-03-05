@@ -1,4 +1,4 @@
-import qs from 'qs';
+import { URLSearchParams } from 'whatwg-url';
 
 import jira from '../clients/jira';
 import scan from './jira';
@@ -23,17 +23,17 @@ const response = {
 const requestMock = jest.fn(() => response);
 
 describe('jira adapter', () => {
-  function loc(host, pathname = '', params = {}) {
-    const search = qs.stringify(params);
+  function loc(host, pathname = '', params = null) {
+    const searchParams = new URLSearchParams(params || {});
     const href = params
-      ? `https://${host}${pathname}?${search}`
+      ? `https://${host}${pathname}?${searchParams}`
       : `https://${host}${pathname}`;
 
     return {
       host,
       href,
       pathname,
-      search,
+      search: searchParams.toString(),
     };
   }
 
