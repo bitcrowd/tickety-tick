@@ -1,5 +1,3 @@
-import { URLSearchParams } from 'whatwg-url';
-
 import client from '../client';
 import scan from './jira';
 
