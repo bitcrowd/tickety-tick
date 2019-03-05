@@ -1,5 +1,9 @@
-// JIRA adapter
-// It gets the selected issue from the current URL and then it fetches the ticket info
+// Jira adapter
+//
+// This adapter extracts the identifier of the selected issue from the page URL
+// and uses the Jira API to retrieve the corresponding ticket information.
+//
+// https://developer.atlassian.com/cloud/jira/software/rest/
 //
 // * Backlog and Active Sprints: https://<YOUR-SUBDOMAIN>.atlassian.net/secure/RapidBoard.jspa?…&selectedIssue=<ISSUE-KEY>
 // * Issues and filters: https://<YOUR-SUBDOMAIN>.atlassian.net/projects/<PROJECT-KEY>/issues/<ISSUE-KEY>
