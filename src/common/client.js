@@ -9,7 +9,7 @@ const headers = {
 
 function client(base, options = {}) {
   return ky.extend({
-    credentials, headers, prefixUrl: base, ...options,
+    credentials, headers, prefixUrl: base, timeout: 1000, ...options,
   });
 }
 
