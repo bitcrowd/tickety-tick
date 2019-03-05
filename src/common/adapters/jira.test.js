@@ -3,6 +3,8 @@ import { JSDOM } from 'jsdom';
 import client from '../client';
 import scan from './jira';
 
+import loc from './__helpers__/location';
+
 jest.mock('../client', () => jest.fn());
 
 const key = 'RC-654';
@@ -23,17 +25,6 @@ const ticket = {
 };
 
 describe('jira adapter', () => {
-  function loc(host, pathname = '/', search = '') {
-    const href = `https://${host}${pathname}${search}`;
-
-    return {
-      host,
-      href,
-      pathname,
-      search,
-    };
-  }
-
   const dom = new JSDOM('<html><body id="jira">…</body"</html>');
   const doc = dom.window.document;
 
