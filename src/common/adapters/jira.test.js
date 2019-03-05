@@ -1,9 +1,7 @@
 import { URLSearchParams } from 'whatwg-url';
 
-import jira from '../clients/jira';
+import client from '../client';
 import scan from './jira';
-
-jest.mock('../clients/jira', () => jest.fn());
 
 const selectedIssue = 'RC-654';
 const issueType = 'Story';
@@ -20,7 +18,7 @@ const response = {
   },
 };
 
-const requestMock = jest.fn(() => response);
+jest.mock('../client', () => jest.fn());
 
 describe('jira adapter', () => {
   function loc(host, pathname = '', params = null) {
@@ -37,9 +35,13 @@ describe('jira adapter', () => {
     };
   }
 
+  const requestMock = jest.fn(() => ({
+    json: () => response,
+  }));
+
   beforeEach(() => {
-    jira.mockImplementation(() => ({
-      request: requestMock,
+    client.mockImplementation(() => ({
+      get: requestMock,
     }));
   });
 

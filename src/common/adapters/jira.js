@@ -5,7 +5,7 @@
 // * Issues and filters: https://<YOUR-SUBDOMAIN>.atlassian.net/projects/<PROJECT-KEY>/issues/<ISSUE-KEY>
 // * Issue view: https://<YOUR-SUBDOMAIN>.atlassian.net/browse/<ISSUE-KEY>
 
-import Client from '../clients/jira';
+import client from '../client';
 
 const DOMAIN = '.atlassian.net';
 
@@ -43,8 +43,8 @@ async function scan(loc) {
   const issueKey = selectedIssue(loc);
   if (!issueKey) return null;
 
-  const jiraClient = new Client(host);
-  const response = await jiraClient.request(`issue/${issueKey}`);
+  const jira = client(`https://${host}/rest/agile/1.0`);
+  const response = await jira.get(`issue/${issueKey}`).json();
   const ticketInfo = extractTicketInfo(response);
 
   return [ticketInfo];
