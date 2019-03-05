@@ -5,8 +5,6 @@
 // * Issues and filters: https://<YOUR-SUBDOMAIN>.atlassian.net/projects/<PROJECT-KEY>/issues/<ISSUE-KEY>
 // * Issue view: https://<YOUR-SUBDOMAIN>.atlassian.net/browse/<ISSUE-KEY>
 
-import qs from 'qs';
-
 import Client from '../clients/jira';
 
 const DOMAIN = '.atlassian.net';
@@ -18,12 +16,13 @@ function lastSegment(pathname) {
   return pathname.split('/').slice(-1)[0];
 }
 
-function selectedIssue({ pathname, search }) {
+function selectedIssue({ href, pathname }) {
   if (issuesTabPattern.test(pathname) || browseIssuePattern.test(pathname)) {
     return lastSegment(pathname);
   }
 
-  const { selectedIssue: issueKey } = search && qs.parse(search, { ignoreQueryPrefix: true });
+  const { searchParams: params } = new URL(href);
+  const issueKey = params.get('selectedIssue');
   if (issueKey) return issueKey;
 
   return null;
