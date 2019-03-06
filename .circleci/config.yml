@@ -1,0 +1,47 @@
+version: 2
+references:
+  base: &base
+    docker:
+      - image: circleci/node:10
+    working_directory: ~/tickety-tick
+jobs:
+  setup:
+    <<: *base
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - save_cache:
+          key: repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/tickety-tick
+  lint:
+    <<: *base
+    steps:
+      - restore_cache:
+          key: repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run: yarn lint
+  test:
+    <<: *base
+    steps:
+      - restore_cache:
+          key: repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run: yarn test
+workflows:
+  version: 2
+  checks:
+    jobs:
+      - setup
+      - lint:
+          requires:
+            - setup
+      - test:
+          requires:
+            - setup
