@@ -23,8 +23,8 @@ const ticket = {
 };
 
 describe('jira adapter', () => {
-  function loc(host, pathname = '', params = {}) {
-    const searchParams = new URLSearchParams(params);
+  function loc(host, pathname = '', params = null) {
+    const searchParams = new URLSearchParams(params || {});
     const href = params
       ? `https://${host}${pathname}?${searchParams}`
       : `https://${host}${pathname}`;
