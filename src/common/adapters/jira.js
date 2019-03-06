@@ -13,43 +13,36 @@ import match from 'micro-match';
 
 import client from '../client';
 
-const DOMAIN = '.atlassian.net';
-
-const issueTabMatch = '/projects/:project/issues/:id';
-const browseIssueMatch = '/browse/:id';
-
-function selectedIssue({ href, pathname }) {
-  let id = null;
-
+function getSelectedIssueId({ href, pathname }) {
   const { searchParams: params } = new URL(href);
-  id = params.get('selectedIssue');
-  if (id) return id;
 
-  ({ id } = { ...match(issueTabMatch, pathname), ...match(browseIssueMatch, pathname) });
+  if (params.has('selectedIssue')) return params.get('selectedIssue');
 
-  return id;
+  return ['/projects/:project/issues/:id', '/browse/:id']
+    .map(pattern => match(pattern, pathname).id)
+    .find(Boolean);
 }
 
 function extractTicketInfo(response) {
-  const { key: id, fields } = response;
-  const { issuetype, summary: title } = fields;
+  const { key: id, fields: { issuetype, summary: title } } = response;
   const type = issuetype.name.toLowerCase();
-
   return { id, title, type };
 }
 
 async function scan(loc) {
   const { host } = loc;
-  if (!host.endsWith(DOMAIN)) return null;
 
-  const issueKey = selectedIssue(loc);
-  if (!issueKey) return null;
+  if (!host.endsWith('.atlassian.net')) return null;
+
+  const id = getSelectedIssueId(loc);
+
+  if (!id) return null;
 
   const jira = client(`https://${host}/rest/agile/1.0`);
-  const response = await jira.get(`issue/${issueKey}`).json();
-  const ticketInfo = extractTicketInfo(response);
+  const response = await jira.get(`issue/${id}`).json();
+  const ticket = extractTicketInfo(response);
 
-  return [ticketInfo];
+  return [ticket];
 }
 
 export default scan;
