@@ -1,4 +1,4 @@
-# Tickety-Tick [![Build Status](https://travis-ci.org/bitcrowd/tickety-tick.svg?branch=master)](https://travis-ci.org/bitcrowd/tickety-tick)
+# Tickety-Tick [![Build Status](https://circleci.com/gh/bitcrowd/tickety-tick.svg?style=svg)](https://circleci.com/gh/bitcrowd/tickety-tick)
 
 > #### How do you name this branch? What is the message for that commit?
 > A browser extension to generate these for you, based on the ticket you're working on.
