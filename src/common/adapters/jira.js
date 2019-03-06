@@ -13,6 +13,12 @@ import match from 'micro-match';
 
 import client from '../client';
 
+function isJiraPage(loc, doc) {
+  if (loc.host.endsWith('.atlassian.net')) return true;
+  if (doc.body.id === 'jira') return true;
+  return false;
+}
+
 function getSelectedIssueId({ href, pathname }) {
   const { searchParams: params } = new URL(href);
 
@@ -29,10 +35,8 @@ function extractTicketInfo(response) {
   return { id, title, type };
 }
 
-async function scan(loc) {
-  const { host } = loc;
-
-  if (!host.endsWith('.atlassian.net')) return null;
+async function scan(loc, doc) {
+  if (!isJiraPage(loc, doc)) return null;
 
   const id = getSelectedIssueId(loc);
 
