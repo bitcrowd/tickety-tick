@@ -3,7 +3,7 @@
 // This adapter extracts the identifier of the selected issue from the page URL
 // and uses the Jira API to retrieve the corresponding ticket information.
 //
-// https://developer.atlassian.com/cloud/jira/software/rest/
+// https://developer.atlassian.com/server/jira/platform/rest-apis/
 //
 // * Backlog and Active Sprints: https://<YOUR-SUBDOMAIN>.atlassian.net/secure/RapidBoard.jspa?…&selectedIssue=<ISSUE-KEY>
 // * Issues and filters: https://<YOUR-SUBDOMAIN>.atlassian.net/projects/<PROJECT-KEY>/issues/<ISSUE-KEY>
@@ -45,7 +45,7 @@ async function scan(loc) {
   const issueKey = selectedIssue(loc);
   if (!issueKey) return null;
 
-  const jira = client(`https://${host}/rest/agile/1.0`);
+  const jira = client(`https://${host}/rest/api/latest`);
   const response = await jira.get(`issue/${issueKey}`).json();
   const ticketInfo = extractTicketInfo(response);
 
