@@ -33,7 +33,7 @@ jobs:
     steps:
       - restore_cache:
           key: repo-{{ .Environment.CIRCLE_SHA1 }}
-      - run: yarn test
+      - run: yarn test --maxWorkers=2
 workflows:
   version: 2
   checks:
