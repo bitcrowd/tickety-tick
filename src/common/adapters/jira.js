@@ -42,7 +42,7 @@ async function scan(loc, doc) {
 
   if (!id) return null;
 
-  const jira = client(`https://${host}/rest/api/latest`);
+  const jira = client(`https://${loc.host}/rest/api/latest`);
   const response = await jira.get(`issue/${id}`).json();
   const ticket = extractTicketInfo(response);
 

@@ -66,7 +66,7 @@ describe('jira adapter', () => {
 
   it('uses the endpoints for the current host', async () => {
     await scan(loc('my-subdomain.atlassian.net', '', { selectedIssue: key }), doc);
-    expect(client).toHaveBeenCalledWith('https://my-subdomain.atlassian.net/rest/agile/1.0');
+    expect(client).toHaveBeenCalledWith('https://my-subdomain.atlassian.net/rest/api/latest');
     expect(api.get).toHaveBeenCalled();
   });
 
@@ -90,7 +90,7 @@ describe('jira adapter', () => {
 
   it('extracts tickets on self-hosted instances', async () => {
     const result = await scan(loc('jira.local', `/browse/${key}`), doc);
-    expect(client).toHaveBeenCalledWith('https://jira.local/rest/agile/1.0');
+    expect(client).toHaveBeenCalledWith('https://jira.local/rest/api/latest');
     expect(result).toEqual([ticket]);
   });
 });
