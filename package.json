@@ -54,7 +54,7 @@
     "postcss-preset-env": "^6.5.0",
     "react-test-renderer": "16.7.0",
     "sass-loader": "7.1.0",
-    "web-ext": "2.9.3",
+    "web-ext": "3.0.0",
     "webpack": "4.29.6",
     "webpack-build-notifier": "0.1.30",
     "webpack-chain": "5.2.2",
@@ -70,6 +70,6 @@
     "react-router": "4.3.1",
     "react-router-dom": "4.3.1",
     "speakingurl": "14.0.1",
-    "webextension-polyfill": "^0.3.1"
+    "webextension-polyfill": "^0.4.0"
   }
 }
