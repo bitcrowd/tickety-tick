@@ -6,8 +6,7 @@
   "author": "Bodo Tasche <bodo@bitcrowd.net>",
   "license": "MIT",
   "scripts": {
-    "build": "npm-run-all -n build:chrome build:firefox build:safari",
-    "pack": "npm-run-all -n pack:chrome pack:firefox pack:safari",
+    "build": "run-s -n build:chrome build:firefox build:safari",
     "build:chrome": "cross-env VARIANT=chrome webpack --mode=production --config webpack.webext.babel.js",
     "build:firefox": "cross-env VARIANT=firefox webpack --mode=production --config webpack.webext.babel.js",
     "build:safari": "webpack --mode=production --config webpack.safari.babel.js",
@@ -20,7 +19,7 @@
     "bundle:firefox": "cross-env BUNDLE=true npm run build:firefox",
     "lint": "eslint --ext .js,.jsx .",
     "test": "jest",
-    "checks": "npm run lint && npm run test"
+    "checks": "run-s lint test"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
