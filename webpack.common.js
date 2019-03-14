@@ -2,9 +2,10 @@
 
 import path from 'path';
 
+import CleanWebpackPlugin from 'clean-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 import NotifierPlugin from 'webpack-build-notifier';
 
 import Config from 'webpack-chain';
@@ -94,6 +95,9 @@ config.plugin('html')
       removeScriptTypeAttributes: true,
     },
   }]);
+
+config.plugin('clean')
+  .use(CleanWebpackPlugin, []);
 
 config.plugin('extract')
   .use(MiniCssExtractPlugin, [{

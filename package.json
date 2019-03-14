@@ -6,7 +6,6 @@
   "author": "Bodo Tasche <bodo@bitcrowd.net>",
   "license": "MIT",
   "scripts": {
-    "clean": "rimraf dist",
     "build": "npm-run-all -n build:chrome build:firefox build:safari",
     "pack": "npm-run-all -n pack:chrome pack:firefox pack:safari",
     "build:chrome": "cross-env VARIANT=chrome webpack --mode=production --config webpack.webext.babel.js",
@@ -32,6 +31,7 @@
     "babel-jest": "^23.6.0",
     "babel-loader": "8.0.5",
     "chrome-launcher": "0.10.5",
+    "clean-webpack-plugin": "^2.0.1",
     "copy-webpack-plugin": "5.0.1",
     "cross-env": "5.2.0",
     "css-loader": "2.1.1",
@@ -54,7 +54,6 @@
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "^6.5.0",
     "react-test-renderer": "16.7.0",
-    "rimraf": "2.6.3",
     "sass-loader": "7.1.0",
     "web-ext": "2.9.3",
     "webpack": "4.29.6",
