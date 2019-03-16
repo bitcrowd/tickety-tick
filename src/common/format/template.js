@@ -4,6 +4,8 @@ const identity = x => x;
 function compile(template, transforms = {}) {
   const parts = template.match(/\{[^}]*\}|[^{]+/g);
 
+  if (!parts) return () => template;
+
   const fns = parts.map((part) => {
     if (part[0] === '{' && part[part.length - 1] === '}') {
       const [key, ...procs] = part
