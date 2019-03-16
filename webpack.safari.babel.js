@@ -14,7 +14,7 @@ config.output.path(dist('tickety-tick.safariextension'));
 
 // Copy Info.plist and Settings.plist in addition to the common files.
 
-config.plugin('copy').tap(([patterns]) => [[
+config.plugin('copy').tap(([patterns, options]) => [[
   ...patterns,
   {
     from: src.safari('Info.plist'),
@@ -26,6 +26,6 @@ config.plugin('copy').tap(([patterns]) => [[
   {
     from: src.safari('Settings.plist'),
   },
-]]);
+], options]);
 
 export default config.toConfig();

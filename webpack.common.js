@@ -84,6 +84,9 @@ config.module.rule('images')
   .loader('file-loader')
   .options({ name: '[name].[hash].[ext]' });
 
+config.plugin('clean')
+  .use(CleanWebpackPlugin, []);
+
 config.plugin('html')
   .use(HtmlWebpackPlugin, [{
     template: src.common('popup', 'popup.html'),
@@ -96,9 +99,6 @@ config.plugin('html')
     },
   }]);
 
-config.plugin('clean')
-  .use(CleanWebpackPlugin, []);
-
 config.plugin('extract')
   .use(MiniCssExtractPlugin, [{
     filename: '[name].css',
@@ -110,7 +110,9 @@ config.plugin('copy')
       from: src.common('icons', '*.png'),
       flatten: true,
     },
-  ]]);
+  ], {
+    copyUnmodified: true,
+  }]);
 
 config.plugin('notifier')
   .use(NotifierPlugin, [{
