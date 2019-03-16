@@ -34,11 +34,13 @@ describe('form', () => {
     const field = input(wrapper, 'branch');
 
     expect(field.props()).toEqual({
+      icon: expect.any(Object),
       label: 'Branch Name Format',
       id: 'branch-name-format',
       name: 'branch',
       value: '',
       fallback: fallbacks.branch,
+      preview: expect.any(String),
       disabled: true,
       onChange: instance.handleChanged,
     });
@@ -51,11 +53,13 @@ describe('form', () => {
     const field = input(wrapper, 'commit');
 
     expect(field.props()).toEqual({
+      icon: expect.any(Object),
       label: 'Commit Message Format',
       id: 'commit-message-format',
       name: 'commit',
       value: '',
       fallback: fallbacks.commit,
+      preview: expect.any(String),
       disabled: true,
       onChange: instance.handleChanged,
     });
@@ -68,11 +72,13 @@ describe('form', () => {
     const field = input(wrapper, 'command');
 
     expect(field.props()).toEqual({
+      icon: expect.any(Object),
       label: 'Command Format',
       id: 'command-format',
       name: 'command',
       value: '',
       fallback: fallbacks.command,
+      preview: expect.any(String),
       disabled: true,
       onChange: instance.handleChanged,
     });

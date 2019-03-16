@@ -1,8 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { defaults, helpers } from '../../../common/format';
+import Octicon, { Comment, GitBranch, Terminal } from '@githubprimer/octicons-react';
+
+import format, { defaults, helpers } from '../../../common/format';
 import TemplateInput from './template-input';
+
+const demo = {
+  id: '93',
+  title: 'Enhance commit messages',
+  type: 'story',
+};
+
+function InputIcon({ icon }) {
+  return (
+    <Octicon
+      icon={icon}
+      size="small"
+      width="16"
+      height="16"
+      verticalAlign="text-top"
+    />
+  );
+}
+
+InputIcon.propTypes = {
+  icon: PropTypes.func.isRequired,
+};
 
 class Form extends Component {
   constructor(props) {
@@ -56,34 +80,37 @@ class Form extends Component {
   }
 
   render() {
-    const {
-      branch,
-      commit,
-      command,
-      loading,
-    } = this.state;
+    const { loading, ...templates } = this.state;
+
+    const fmt = format(templates);
 
     const fields = [
       {
+        icon: <InputIcon icon={Comment} />,
         label: 'Commit Message Format',
         id: 'commit-message-format',
         name: 'commit',
-        value: commit,
+        value: templates.commit,
         fallback: defaults.commit,
+        preview: fmt.commit(demo),
       },
       {
+        icon: <InputIcon icon={GitBranch} />,
         label: 'Branch Name Format',
         id: 'branch-name-format',
         name: 'branch',
-        value: branch,
+        value: templates.branch,
         fallback: defaults.branch,
+        preview: fmt.branch(demo),
       },
       {
+        icon: <InputIcon icon={Terminal} />,
         label: 'Command Format',
         id: 'command-format',
         name: 'command',
-        value: command,
+        value: templates.command,
         fallback: defaults.command,
+        preview: fmt.command(demo),
       },
     ];
 
@@ -97,7 +124,7 @@ class Form extends Component {
     );
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="mx-2 my-3">
         {fields.map(input)}
 
         <hr />
@@ -110,7 +137,9 @@ class Form extends Component {
         </div>
 
         <div className="mt-2">
-          <button className="btn btn-outline-primary" type="submit" disabled={loading}>Save</button>
+          <button className="btn btn-outline-primary" type="submit" disabled={loading}>
+            Save
+          </button>
         </div>
       </form>
     );
