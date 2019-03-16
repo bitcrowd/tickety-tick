@@ -29,7 +29,9 @@ jobs:
           key: repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: Run Linter
-          command: yarn lint
+          command: yarn lint --format junit -o reports/eslint/results.xml
+      - store_test_results:
+          path: reports
   test:
     <<: *base
     steps:
