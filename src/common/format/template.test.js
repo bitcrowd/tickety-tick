@@ -39,4 +39,10 @@ describe('template', () => {
     const output = render({ a: 2 });
     expect(output).toBe('(2 * 3)**2 = 36');
   });
+
+  it('handles incomplete template expressions', () => {
+    const render = compile('{', {});
+    const output = render({});
+    expect(output).toBe('{');
+  });
 });
