@@ -9,10 +9,12 @@ describe('template-input', () => {
       id: 'template-input-id',
       name: 'template-input-name',
       label: 'template-label',
+      icon: <span>icon</span>,
       value: 'template-value',
       fallback: 'template-fallback',
       disabled: false,
       onChange: jest.fn(),
+      preview: 'template-preview',
     };
 
     const props = { ...defaults, ...overrides };
@@ -25,7 +27,15 @@ describe('template-input', () => {
     const wrapper = render({ id: 'id-1', label: 'Awesome Template Label' });
     const label = wrapper.find('label');
     expect(label.prop('htmlFor')).toBe('id-1');
-    expect(label.text()).toBe('Awesome Template Label');
+    expect(label.text()).toContain('Awesome Template Label');
+  });
+
+  it('renders an input label icon', () => {
+    const icon = <span>icon</span>;
+    const wrapper = render({ id: 'id-2', icon });
+    const label = wrapper.find('label');
+    expect(label.prop('htmlFor')).toBe('id-2');
+    expect(label.contains(icon)).toBe(true);
   });
 
   it('renders an input field', () => {
@@ -51,6 +61,7 @@ describe('template-input', () => {
 
   it('renders the default value used as a fallback', () => {
     const wrapper = render({ fallback: 'fbfbfb' });
-    expect(wrapper.text()).toContain('fbfbfb');
+    const input = wrapper.find('input');
+    expect(input.prop('placeholder')).toContain('fbfbfb');
   });
 });
