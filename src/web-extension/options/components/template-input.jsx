@@ -1,5 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TextareaAutosize from 'react-textarea-autosize';
+
+function TemplateInputElement({ multiline, ...props }) {
+  if (multiline) {
+    return <TextareaAutosize {...props} />;
+  }
+
+  return <input type="text" {...props} />;
+}
+
+TemplateInputElement.propTypes = {
+  multiline: PropTypes.bool.isRequired,
+};
 
 function TemplateInput(props) {
   const {
@@ -8,6 +21,7 @@ function TemplateInput(props) {
     label,
     icon,
     value,
+    multiline,
     fallback,
     disabled,
     onChange,
@@ -25,12 +39,12 @@ function TemplateInput(props) {
             </span>
           </label>
         </div>
-        <input
+        <TemplateInputElement
           className="form-control px-2 py-3"
-          type="text"
           id={id}
           name={name}
           value={value}
+          multiline={multiline}
           placeholder={fallback}
           disabled={disabled}
           onChange={onChange}
@@ -38,13 +52,16 @@ function TemplateInput(props) {
       </div>
       <div className="card">
         <div className="card-body">
-          <pre className="small text-muted w-100 m-0 overflow-auto">{preview}</pre>
+          <pre className="small text-muted mw-100 m-0 overflow-auto">{preview}</pre>
         </div>
       </div>
     </div>
   );
 }
 
+TemplateInput.defaultProps = {
+  multiline: false,
+};
 
 TemplateInput.propTypes = {
   disabled: PropTypes.bool.isRequired,
@@ -53,9 +70,11 @@ TemplateInput.propTypes = {
   label: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
+  multiline: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   preview: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
 };
 
+export { TemplateInputElement };
 export default TemplateInput;

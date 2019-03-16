@@ -8,8 +8,10 @@ const FmtShape = PropTypes.shape({
 
 const TicketShape = PropTypes.shape({
   id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
   type: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  url: PropTypes.string,
   fmt: FmtShape.isRequired,
 });
 
