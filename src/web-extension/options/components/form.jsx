@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import Octicon, { Comment, GitBranch, Terminal } from '@githubprimer/octicons-react';
 
-import format, { defaults, helpers } from '../../../common/format';
 import TemplateInput from './template-input';
 
-const demo = {
-  id: '93',
-  title: 'Enhance commit messages',
-  type: 'story',
-};
+import format, { defaults, helpers } from '../../../common/format';
+import example from './example';
 
 function InputIcon({ icon }) {
   return (
@@ -92,7 +87,8 @@ class Form extends Component {
         name: 'commit',
         value: templates.commit,
         fallback: defaults.commit,
-        preview: fmt.commit(demo),
+        preview: fmt.commit(example),
+        multiline: true,
       },
       {
         icon: <InputIcon icon={GitBranch} />,
@@ -101,7 +97,7 @@ class Form extends Component {
         name: 'branch',
         value: templates.branch,
         fallback: defaults.branch,
-        preview: fmt.branch(demo),
+        preview: fmt.branch(example),
       },
       {
         icon: <InputIcon icon={Terminal} />,
@@ -110,7 +106,7 @@ class Form extends Component {
         name: 'command',
         value: templates.command,
         fallback: defaults.command,
-        preview: fmt.command(demo),
+        preview: fmt.command(example),
       },
     ];
 
@@ -124,7 +120,7 @@ class Form extends Component {
     );
 
     return (
-      <form onSubmit={this.handleSubmit} className="mx-2 my-3">
+      <form onSubmit={this.handleSubmit} className="mw-100 mx-2 my-3">
         {fields.map(input)}
 
         <hr />
