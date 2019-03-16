@@ -27,13 +27,21 @@ jobs:
     steps:
       - restore_cache:
           key: repo-{{ .Environment.CIRCLE_SHA1 }}
-      - run: yarn lint
+      - run:
+          name: Run Linter
+          command: yarn lint
   test:
     <<: *base
     steps:
       - restore_cache:
           key: repo-{{ .Environment.CIRCLE_SHA1 }}
-      - run: yarn test --maxWorkers=2
+      - run:
+          name: Run Tests
+          command: yarn test --maxWorkers=2 --ci --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT: reports/jest/results.xml
+      - store_test_results:
+          path: reports
 workflows:
   version: 2
   checks:
