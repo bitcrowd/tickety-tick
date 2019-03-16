@@ -38,7 +38,7 @@ config.plugin('options-html')
 
 // Copy the manifest.json template in addition to common files.
 
-config.plugin('copy').tap(([patterns]) => [[
+config.plugin('copy').tap(([patterns, options]) => [[
   ...patterns,
   {
     from: src.webext('manifest.json'),
@@ -63,7 +63,7 @@ config.plugin('copy').tap(([patterns]) => [[
       return JSON.stringify(mf);
     },
   },
-]]);
+], options]);
 
 config.when(process.env.BUNDLE === 'true', cfg => cfg
   .plugin('zip')
