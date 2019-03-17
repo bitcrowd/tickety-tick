@@ -13,7 +13,7 @@ async function scan(loc, doc) {
     return tickets;
   }
 
-  return null;
+  return [];
 }
 
 export default scan;

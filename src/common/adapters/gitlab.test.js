@@ -44,9 +44,9 @@ describe('gitlab adapter', () => {
     return window.document;
   }
 
-  it('returns null if it is on a different page', async () => {
+  it('returns an empty array if it is on a different page', async () => {
     const result = await scan(null, dom());
-    expect(result).toBe(null);
+    expect(result).toEqual([]);
   });
 
   it('extracts tickets from issue pages', async () => {

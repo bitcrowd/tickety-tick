@@ -31,14 +31,12 @@ function openext() {
 }
 
 async function load() {
+  const { tickets, errors } = await background.getTickets();
   const { templates } = await store.get(null);
-  const tickets = await background.getTickets();
 
-  const result = tickets
-    ? tickets.map(enhance(templates))
-    : null;
+  const enhancer = enhance(templates);
 
-  render(result, { grab, openext });
+  render(tickets.map(enhancer), errors, { grab, openext });
 }
 
 window.onload = load;

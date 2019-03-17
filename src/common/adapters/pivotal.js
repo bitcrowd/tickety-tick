@@ -26,7 +26,7 @@ function multiple(elements, collapsed) {
 }
 
 async function scan(loc, doc) {
-  if (doc.body.id !== 'tracker') return null;
+  if (doc.body.id !== 'tracker') return [];
 
   if ($has('div.story .selector.selected', doc)) { // selected stories
     const selection = $all('div.story .selector.selected', doc).map(e => $closest('.story', e));
@@ -49,7 +49,7 @@ async function scan(loc, doc) {
     return tickets;
   }
 
-  return null;
+  return [];
 }
 
 export default scan;

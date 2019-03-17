@@ -39,17 +39,17 @@ function onPopover(event) {
 
 function onMessage(event) {
   if (event.name === 'tickets') {
+    const { tickets, errors } = event.message;
+
     const templates = {
       commit: settings.commitMessageFormat,
       branch: settings.branchNameFormat,
       command: settings.commandFormat,
     };
 
-    const tickets = event.message
-      ? event.message.map(enhance(templates))
-      : null;
+    const enhancer = enhance(templates);
 
-    render(tickets, { grab, openext });
+    render(tickets.map(enhancer), errors, { grab, openext });
   }
 }
 

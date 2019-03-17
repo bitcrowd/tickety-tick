@@ -32,11 +32,11 @@ function extractTicketInfo(response) {
 const requestOptions = { searchParams: { fields: 'name,desc,shortLink,shortUrl' } };
 
 async function scan(loc) {
-  if (loc.host !== 'trello.com') return null;
+  if (loc.host !== 'trello.com') return [];
 
   const { key } = match('/c/:key/:slug', loc.pathname);
 
-  if (!key) return null;
+  if (!key) return [];
 
   const trello = client('https://trello.com/1');
   const response = await trello.get(`cards/${key}`, requestOptions).json();

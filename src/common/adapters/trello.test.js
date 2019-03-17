@@ -41,16 +41,15 @@ describe('trello adapter', () => {
     client.mockReset();
   });
 
-  it('returns null when on a different host', async () => {
-    const result = await scan(loc('another-domain.com'));
-    expect(api.get).not.toHaveBeenCalled();
-    expect(result).toBe(null);
+  it('returns an empty array if it is on a different domain', async () => {
+    const result = await scan(loc('other.com', `/c/${key}/${slug}`));
+    expect(result).toEqual([]);
   });
 
-  it('returns null when on a different view', async () => {
+  it('returns an empty array if it is on a different path', async () => {
     const result = await scan(loc('trello.com', '/another/url'));
     expect(api.get).not.toHaveBeenCalled();
-    expect(result).toBe(null);
+    expect(result).toEqual([]);
   });
 
   it('uses the correct endpoint', async () => {

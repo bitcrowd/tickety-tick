@@ -52,9 +52,9 @@ describe('ora adapter', () => {
     return window.document;
   }
 
-  it('returns null if it is on a different page', async () => {
+  it('returns an empty array if it is on a different page', async () => {
     const result = await scan({ host: 'github.com' }, null);
-    expect(result).toBe(null);
+    expect(result).toEqual([]);
   });
 
   it('extracts feature tickets', async () => {

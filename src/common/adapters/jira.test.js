@@ -40,16 +40,16 @@ describe('jira adapter', () => {
     client.mockReset();
   });
 
-  it('returns null when on a different host', async () => {
+  it('returns an empty array when on a different host', async () => {
     const result = await scan(loc('another-domain.com'), doc);
     expect(api.get).not.toHaveBeenCalled();
-    expect(result).toBe(null);
+    expect(result).toEqual([]);
   });
 
   it('returns null when no issue is selected', async () => {
     const result = await scan(loc('my-subdomain.atlassian.com'), doc);
     expect(api.get).not.toHaveBeenCalled();
-    expect(result).toBe(null);
+    expect(result).toEqual([]);
   });
 
   it('uses the endpoints for the current host', async () => {

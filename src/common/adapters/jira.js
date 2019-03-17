@@ -44,12 +44,12 @@ function extractTicketInfo(response) {
 }
 
 async function scan(loc, doc) {
-  if (!isJiraPage(loc, doc)) return null;
+  if (!isJiraPage(loc, doc)) return [];
 
   const prefix = getPathPrefix(loc); // self-managed instances may host on a subpath
   const id = getSelectedIssueId(loc, prefix);
 
-  if (!id) return null;
+  if (!id) return [];
 
   const jira = client(`https://${loc.host}${prefix}/rest/api/latest`);
   const response = await jira.get(`issue/${id}`).json();
