@@ -5,7 +5,7 @@ import Octicon, { Comment, GitBranch, Terminal } from '@githubprimer/octicons-re
 import TemplateInput from './template-input';
 
 import format, { defaults, helpers } from '../../../common/format';
-import example from './example';
+import * as example from './example';
 
 function InputIcon({ icon }) {
   return (
@@ -120,16 +120,29 @@ class Form extends Component {
     );
 
     return (
-      <form onSubmit={this.handleSubmit} className="mw-100 mx-2 my-3">
+      <form onSubmit={this.handleSubmit} className="mw-100 px-2 py-3">
         {fields.map(input)}
 
         <hr />
 
-        <div className="small">
-          Available Helpers:
-          <ul className="list-unstyled text-muted">
-            {Object.keys(helpers).sort().map(name => <li key={name}>{name}</li>)}
-          </ul>
+        <div className="container-fluid px-0">
+          <div className="row no-gutters">
+            <div className="col small">
+              Template variables:
+              <ul className="list-unstyled text-muted">
+                {Object.keys(example).sort().map(name => <li key={name}>{name}</li>)}
+                <li>branch (only in command)</li>
+                <li>commit (only in command)</li>
+              </ul>
+            </div>
+
+            <div className="col small">
+              Available Helpers:
+              <ul className="list-unstyled text-muted">
+                {Object.keys(helpers).sort().map(name => <li key={name}>{name}</li>)}
+              </ul>
+            </div>
+          </div>
         </div>
 
         <div className="mt-2">
