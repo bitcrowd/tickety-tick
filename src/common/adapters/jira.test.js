@@ -23,17 +23,14 @@ const ticket = {
 };
 
 describe('jira adapter', () => {
-  function loc(host, pathname = '', params = null) {
-    const searchParams = new URLSearchParams(params || {});
-    const href = params
-      ? `https://${host}${pathname}?${searchParams}`
-      : `https://${host}${pathname}`;
+  function loc(host, pathname = '/', search = '') {
+    const href = `https://${host}${pathname}${search}`;
 
     return {
       host,
       href,
       pathname,
-      search: searchParams.toString(),
+      search,
     };
   }
 
@@ -65,19 +62,19 @@ describe('jira adapter', () => {
   });
 
   it('uses the endpoints for the current host', async () => {
-    await scan(loc('my-subdomain.atlassian.net', '', { selectedIssue: key }), doc);
+    await scan(loc('my-subdomain.atlassian.net', `/browse/${key}`), doc);
     expect(client).toHaveBeenCalledWith('https://my-subdomain.atlassian.net/rest/api/latest');
     expect(api.get).toHaveBeenCalled();
   });
 
   it('extracts tickets from the active sprints tab', async () => {
-    const result = await scan(loc('my-subdomain.atlassian.net', '', { selectedIssue: key }), doc);
+    const result = await scan(loc('my-subdomain.atlassian.net', '/', `?selectedIssue=${key}`), doc);
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
   });
 
   it('extracts tickets from the issues tab', async () => {
-    const result = await scan(loc('my-subdomain.atlassian.net', `/projects/RC/issues/${key}`, { filter: 'something' }), doc);
+    const result = await scan(loc('my-subdomain.atlassian.net', `/projects/TT/issues/${key}`, { filter: 'something' }), doc);
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
   });
@@ -88,9 +85,25 @@ describe('jira adapter', () => {
     expect(result).toEqual([ticket]);
   });
 
-  it('extracts tickets on self-hosted instances', async () => {
+  it('extracts tickets on self-managed instances', async () => {
     const result = await scan(loc('jira.local', `/browse/${key}`), doc);
     expect(client).toHaveBeenCalledWith('https://jira.local/rest/api/latest');
     expect(result).toEqual([ticket]);
+  });
+
+  it('extracts tickets on self-managed instances (with path prefix)', async () => {
+    const results = await Promise.all([
+      scan(loc('jira.local', '/prefix/secure/RapidBoard.jspa', `?selectedIssue=${key}`), doc),
+      scan(loc('jira.local', `/prefix/projects/TT/issues/${key}`), doc),
+      scan(loc('jira.local', `/prefix/browse/${key}`), doc),
+    ]);
+
+    const endpoint = 'https://jira.local/prefix/rest/api/latest';
+
+    expect(client).toHaveBeenNthCalledWith(1, endpoint);
+    expect(client).toHaveBeenNthCalledWith(2, endpoint);
+    expect(client).toHaveBeenNthCalledWith(3, endpoint);
+
+    expect(results).toEqual([[ticket], [ticket], [ticket]]);
   });
 });
