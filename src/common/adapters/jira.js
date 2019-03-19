@@ -15,17 +15,25 @@ import client from '../client';
 
 function isJiraPage(loc, doc) {
   if (loc.host.endsWith('.atlassian.net')) return true;
-  if (doc.body.id === 'jira') return true;
+  if (doc.body.id === 'jira') return true; // self-managed instance on different domain
   return false;
 }
 
-function getSelectedIssueId({ href, pathname }) {
-  const { searchParams: params } = new URL(href);
+const pathSuffixes = new RegExp('/(browse/[^/]+|projects/[^/]+/issues/[^/]+|secure/RapidBoard.jspa)$', 'g');
+
+function getPathPrefix(loc) {
+  return loc.pathname.replace(pathSuffixes, '');
+}
+
+function getSelectedIssueId(loc, prefix = '') {
+  const { searchParams: params } = new URL(loc.href);
 
   if (params.has('selectedIssue')) return params.get('selectedIssue');
 
+  const path = loc.pathname.substr(prefix.length); // strip path prefix
+
   return ['/projects/:project/issues/:id', '/browse/:id']
-    .map(pattern => match(pattern, pathname).id)
+    .map(pattern => match(pattern, path).id)
     .find(Boolean);
 }
 
@@ -38,11 +46,12 @@ function extractTicketInfo(response) {
 async function scan(loc, doc) {
   if (!isJiraPage(loc, doc)) return null;
 
-  const id = getSelectedIssueId(loc);
+  const prefix = getPathPrefix(loc); // self-managed instances may host on a subpath
+  const id = getSelectedIssueId(loc, prefix);
 
   if (!id) return null;
 
-  const jira = client(`https://${loc.host}/rest/api/latest`);
+  const jira = client(`https://${loc.host}${prefix}/rest/api/latest`);
   const response = await jira.get(`issue/${id}`).json();
   const ticket = extractTicketInfo(response);
 

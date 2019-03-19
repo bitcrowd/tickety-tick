@@ -7,9 +7,15 @@ const headers = {
   accept: 'application/json',
 };
 
+const timeout = 1000;
+
 function client(base, options = {}) {
   return ky.extend({
-    credentials, headers, prefixUrl: base, timeout: 1000, ...options,
+    prefixUrl: base,
+    credentials,
+    headers,
+    timeout,
+    ...options,
   });
 }
 
