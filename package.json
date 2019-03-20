@@ -68,6 +68,7 @@
     "bootstrap": "4.3.1",
     "ky": "^0.11.0",
     "micro-match": "^0.2.0",
+    "prettier": "^1.16.4",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
@@ -75,6 +76,7 @@
     "react-router-dom": "5.0.0",
     "react-textarea-autosize": "^7.1.0",
     "speakingurl": "14.0.1",
+    "strip-indent": "^2.0.0",
     "webextension-polyfill": "^0.4.0"
   }
 }
