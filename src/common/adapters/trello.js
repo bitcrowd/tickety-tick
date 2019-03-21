@@ -12,20 +12,35 @@ import match from 'micro-match';
 
 import client from '../client';
 
+function extractTicketInfo(response) {
+  const {
+    desc: description,
+    name: title,
+    shortLink: id,
+    shortUrl: url,
+  } = response;
+
+  return {
+    type: 'feature',
+    id,
+    title,
+    description,
+    url,
+  };
+}
+
+const requestOptions = { searchParams: { fields: 'name,desc,shortLink,shortUrl' } };
+
 async function scan(loc) {
-  const { host, pathname } = loc;
+  if (loc.host !== 'trello.com') return null;
 
-  if (host !== 'trello.com') return null;
-
-  const { key } = match('/c/:key/:slug', pathname);
+  const { key } = match('/c/:key/:slug', loc.pathname);
 
   if (!key) return null;
 
   const trello = client('https://trello.com/1');
-  const response = await trello.get(`cards/${key}`).json();
-
-  const { idShort: id, name: title } = response;
-  const ticket = { id, title, type: 'feature' };
+  const response = await trello.get(`cards/${key}`, requestOptions).json();
+  const ticket = extractTicketInfo(response);
 
   return [ticket];
 }
