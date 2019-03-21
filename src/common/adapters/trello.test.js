@@ -7,11 +7,26 @@ jest.mock('../client', () => jest.fn());
 
 const key = 'haKn65Sy';
 
-const idShort = '123';
+const shortLink = key;
 const name = 'A quick summary of the card';
-const slug = '123-a-quick-summary-of-the-card';
+const slug = '4-a-quick-summary-of-the-card';
+const desc = 'A detailed description of the card';
+const shortUrl = `https://trello.com/c/${shortLink}`;
 
-const response = { idShort, name };
+const response = {
+  desc,
+  name,
+  shortLink,
+  shortUrl,
+};
+
+const ticket = {
+  id: shortLink,
+  title: name,
+  description: desc,
+  url: shortUrl,
+  type: 'feature',
+};
 
 describe('trello adapter', () => {
   const api = { get: jest.fn() };
@@ -47,7 +62,9 @@ describe('trello adapter', () => {
   it('extracts tickets from the current card', async () => {
     const result = await scan(loc('trello.com', `/c/${key}/${slug}`));
     expect(client).toHaveBeenCalledWith('https://trello.com/1');
-    expect(api.get).toHaveBeenCalledWith(`cards/${key}`);
-    expect(result).toEqual([{ id: idShort, title: name, type: 'feature' }]);
+    expect(api.get).toHaveBeenCalledWith(`cards/${key}`, {
+      searchParams: { fields: 'name,desc,shortLink,shortUrl' },
+    });
+    expect(result).toEqual([ticket]);
   });
 });
