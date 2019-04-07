@@ -1,10 +1,13 @@
 {
   "root": true,
-  "extends": "airbnb",
+  "extends": ["airbnb", "plugin:jest/recommended"],
   "env": {
     "browser": true,
     "jest": true
   },
+  "plugins": [
+    "jest"
+  ],
   "rules": {
     "jsx-a11y/anchor-is-valid": ["error", {
       "specialLink": ["to"]
