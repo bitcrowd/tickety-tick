@@ -20,4 +20,8 @@ describe('serializable-errors', () => {
   it('includes the error message', () => {
     expect(representation.message).toBe(error.message);
   });
+
+  it('includes the error stack trace', () => {
+    expect(representation.stack).toBe(error.stack);
+  });
 });
