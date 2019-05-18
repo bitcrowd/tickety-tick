@@ -43,9 +43,7 @@ function Report({ errors }) {
         Tickety-Tick encountered
         {' '}
         <strong>
-          {errors.length}
-          {' '}
-          {errors.length === 1 ? 'error' : 'errors'}
+          {errors.length === 1 ? 'an error' : `${errors.length} errors`}
         </strong>
         <br />
         while scanning for tickets.
