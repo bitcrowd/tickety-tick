@@ -1,5 +1,9 @@
 import { search } from './search';
 
+import serializable from './utils/serializable-errors';
+
+jest.mock('./utils/serializable-errors', () => error => error.message);
+
 describe('ticket search', () => {
   function mock(result, index) {
     return jest
@@ -25,7 +29,7 @@ describe('ticket search', () => {
     });
   });
 
-  it('resolves with the aggregated tickets and errors', async () => {
+  it('resolves with the aggregated tickets and serializable errors', async () => {
     const tickets0 = [{ id: '0', title: 'true story', type: 'test' }];
     const tickets1 = [{ id: '1', title: 'yep', type: 'test' }];
 
@@ -44,7 +48,7 @@ describe('ticket search', () => {
 
     expect(results).toEqual({
       tickets: [...tickets0, ...tickets1],
-      errors: [error0, error1],
+      errors: [error0, error1].map(serializable),
     });
   });
 });

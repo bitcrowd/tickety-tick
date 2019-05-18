@@ -5,12 +5,14 @@ import Ora from './adapters/ora';
 import Pivotal from './adapters/pivotal';
 import Trello from './adapters/trello';
 
+import serializable from './utils/serializable-errors';
+
 async function attempt(scan, loc, doc) {
   try {
     const tickets = await scan(loc, doc);
     return { tickets };
   } catch (error) {
-    return { error };
+    return { error: serializable(error) };
   }
 }
 
