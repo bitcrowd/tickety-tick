@@ -76,6 +76,7 @@
     "react-router-dom": "5.0.0",
     "react-textarea-autosize": "^7.1.0",
     "speakingurl": "14.0.1",
+    "stacktrace-js": "^2.0.0",
     "strip-indent": "^2.0.0",
     "webextension-polyfill": "^0.4.0"
   }

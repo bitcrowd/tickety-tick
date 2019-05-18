@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ExternalLink from './external-link';
+import ErrorDetails from './error-details';
 
 import ErrorShape from '../utils/error-shape';
 
@@ -48,6 +49,9 @@ function Report({ errors }) {
         <br />
         while scanning for tickets.
       </p>
+      <p>
+        <ErrorDetails errors={errors} />
+      </p>
       <p className="pb-1">
         <IssueLink />
       </p>
@@ -68,7 +72,7 @@ function NoTickets({ errors }) {
 }
 
 NoTickets.propTypes = {
-  errors: PropTypes.arrayOf(ErrorShape).isRequired,
+  errors: PropTypes.arrayOf(ErrorShape.isRequired).isRequired,
 };
 
 export { Hint, Report };
