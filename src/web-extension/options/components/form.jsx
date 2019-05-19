@@ -29,6 +29,7 @@ class Form extends Component {
 
     this.state = {
       loading: true,
+      autofmt: true,
       branch: '',
       commit: '',
       command: '',
@@ -46,27 +47,44 @@ class Form extends Component {
   }
 
   handleLoaded(data) {
-    const { templates } = data || {};
+    const { options, templates } = data || {};
     this.setState(() => ({
       loading: false,
+      ...options,
       ...templates,
     }));
   }
 
-  handleChanged({ target }) {
-    const { name, value } = target;
-    this.setState({ [name]: value });
+  handleChanged(event) {
+    const {
+      name,
+      type,
+      value,
+      checked,
+    } = event.target;
+
+    this.setState({
+      [name]: type === 'checkbox' ? checked : value,
+    });
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
     const { store } = this.props;
-    const { branch, commit, command } = this.state;
+
+    const {
+      autofmt,
+      branch,
+      commit,
+      command,
+    } = this.state;
+
     const templates = { branch, commit, command };
+    const options = { autofmt };
 
     this.setState(() => ({ loading: true }), () => {
-      store.set({ templates }).then(this.handleSaved);
+      store.set({ templates, options }).then(this.handleSaved);
     });
   }
 
@@ -75,7 +93,7 @@ class Form extends Component {
   }
 
   render() {
-    const { loading, ...templates } = this.state;
+    const { loading, autofmt, ...templates } = this.state;
 
     const fmt = format(templates);
 
@@ -121,6 +139,22 @@ class Form extends Component {
 
     return (
       <form onSubmit={this.handleSubmit} className="mw-100 px-2 py-3">
+        <div className="form-group form-check">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="auto-format-commits"
+            name="autofmt"
+            checked={autofmt}
+            disabled={loading}
+            onChange={this.handleChanged}
+          />
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label className="form-check-label" htmlFor="auto-format-commits">
+            Auto-format commit messages
+          </label>
+        </div>
+
         {fields.map(input)}
 
         <hr />

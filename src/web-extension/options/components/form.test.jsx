@@ -23,7 +23,16 @@ describe('form', () => {
 
   const change = (wrapper, name, val) => {
     const event = { target: { name, value: val } };
-    const field = wrapper.find(TemplateInput).filter({ name });
+    const field = input(wrapper, name);
+    field.simulate('change', event);
+  };
+
+  const checkbox = (wrapper, name) => wrapper.find('input').find({ type: 'checkbox', name });
+  const checked = (wrapper, name) => checkbox(wrapper, name).prop('checked');
+
+  const toggle = (wrapper, name, check) => {
+    const event = { target: { type: 'checkbox', name, checked: check } };
+    const field = checkbox(wrapper, name);
     field.simulate('change', event);
   };
 
@@ -87,6 +96,20 @@ describe('form', () => {
     });
   });
 
+  it('renders a checkbox to toggle commit message auto-formatting', () => {
+    const wrapper = render({});
+    const instance = wrapper.instance();
+
+    const field = wrapper.find('input').find({ name: 'autofmt' });
+
+    expect(field.props()).toEqual(expect.objectContaining({
+      name: 'autofmt',
+      checked: true,
+      disabled: true,
+      onChange: instance.handleChanged,
+    }));
+  });
+
   it('renders the names of available template helpers', () => {
     const wrapper = render({});
     const text = wrapper.text();
@@ -96,7 +119,7 @@ describe('form', () => {
     });
   });
 
-  it('loads stored templates on mount and updates the form inputs', async () => {
+  it('loads stored templates and options on mount and updates the form inputs', async () => {
     const store = { get: jest.fn(), set: jest.fn() };
 
     let loaded;
@@ -113,8 +136,12 @@ describe('form', () => {
     expect(store.get).toHaveBeenCalledWith(null);
     expect(inputs(wrapper).every({ disabled: true })).toBe(true);
 
-    await loaded({ templates: { branch: 'a', commit: 'b', command: 'c' } });
+    await loaded({
+      templates: { branch: 'a', commit: 'b', command: 'c' },
+      options: { autofmt: false },
+    });
 
+    expect(checked(wrapper, 'autofmt')).toBe(false);
     expect(value(wrapper, 'branch')).toBe('a');
     expect(value(wrapper, 'commit')).toBe('b');
     expect(value(wrapper, 'command')).toBe('c');
@@ -124,6 +151,9 @@ describe('form', () => {
 
   it('updates the form inputs on changes', () => {
     const wrapper = render({});
+
+    toggle(wrapper, 'autofmt', false);
+    expect(checked(wrapper, 'autofmt')).toBe(false);
 
     change(wrapper, 'branch', 'branch++');
     expect(value(wrapper, 'branch')).toBe('branch++');
@@ -140,8 +170,12 @@ describe('form', () => {
 
     let saved;
 
-    const unchanged = { branch: 'branch', commit: 'commit', command: 'command' };
-    store.get.mockResolvedValue({ templates: unchanged });
+    const unchanged = {
+      templates: { branch: 'branch', commit: 'commit', command: 'command' },
+      options: { autofmt: true },
+    };
+
+    store.get.mockResolvedValue(unchanged);
     store.set.mockReturnValue(new Promise((resolve) => {
       // Create a new async function that resolves the promise returned from
       // calls to `store.set()` and returns a promise itself which we can wait
@@ -151,6 +185,7 @@ describe('form', () => {
 
     const wrapper = render({ store });
 
+    toggle(wrapper, 'autofmt', false);
     change(wrapper, 'branch', 'branch++');
     change(wrapper, 'commit', 'commit++');
     change(wrapper, 'command', 'command++');
@@ -160,15 +195,21 @@ describe('form', () => {
 
     expect(event.preventDefault).toHaveBeenCalled();
 
-    const changed = { branch: 'branch++', commit: 'commit++', command: 'command++' };
-    expect(store.set).toHaveBeenCalledWith({ templates: changed });
+    const changed = {
+      templates: { branch: 'branch++', commit: 'commit++', command: 'command++' },
+      options: { autofmt: false },
+    };
+
+    expect(store.set).toHaveBeenCalledWith(changed);
 
     expect(wrapper.find('button[type="submit"]').prop('disabled')).toBe(true);
+    expect(checkbox(wrapper, 'autofmt').prop('disabled')).toBe(true);
     expect(inputs(wrapper).every({ disabled: true })).toBe(true);
 
     await saved();
 
     expect(wrapper.find('button[type="submit"]').prop('disabled')).toBe(false);
+    expect(checkbox(wrapper, 'autofmt').prop('disabled')).toBe(false);
     expect(inputs(wrapper).every({ disabled: false })).toBe(true);
   });
 });
