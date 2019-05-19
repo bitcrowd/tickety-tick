@@ -77,6 +77,16 @@ exports[`about renders 1`] = `
         <p
           className="small"
         >
+          <ExternalLink
+            href="https://github.com/bitcrowd/tickety-tick/tree/test-commit-hash"
+            title="Browse source code for this version"
+          >
+            test-commit-hash
+          </ExternalLink>
+        </p>
+        <p
+          className="small"
+        >
           <span>
             Logo by 
           </span>

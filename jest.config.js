@@ -4,6 +4,9 @@
 module.exports = {
   coverageDirectory: 'coverage',
   collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx}'],
+  globals: {
+    COMMITHASH: 'test-commit-hash',
+  },
   setupFilesAfterEnv: ['<rootDir>/test/setup.js'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   transform: {
