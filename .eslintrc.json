@@ -5,6 +5,9 @@
     "browser": true,
     "jest": true
   },
+  "globals": {
+    "COMMITHASH": "readonly"
+  },
   "plugins": [
     "jest"
   ],

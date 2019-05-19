@@ -4548,6 +4548,11 @@ git-rev-sync@1.9.1:
     graceful-fs "4.1.11"
     shelljs "0.7.7"
 
+git-revision-webpack-plugin@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/git-revision-webpack-plugin/-/git-revision-webpack-plugin-3.0.3.tgz#f909949d7851d1039ed530518f73f5d46594e66f"
+  integrity sha512-B2ixM0fY7VgR61ZRSXYrh0R57Er7RY+CZb+fja5OFe21Y5o9GgzQanMgdlcBwWZ+LoOVqxBogbDutTTYMXQDWw==
+
 glob-parent@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"

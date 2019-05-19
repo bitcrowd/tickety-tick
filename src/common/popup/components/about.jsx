@@ -5,6 +5,9 @@ import ExternalLink from './external-link';
 
 import logo from '../../icons/icon-32.png';
 
+const repo = 'https://github.com/bitcrowd/tickety-tick';
+const tree = [repo, 'tree', COMMITHASH].join('/');
+
 function About() {
   return (
     <div>
@@ -45,8 +48,11 @@ function About() {
             </p>
             <p>
               <span>The source code is available on </span>
-              <ExternalLink href="https://github.com/bitcrowd/tickety-tick">GitHub</ExternalLink>
+              <ExternalLink href={repo}>GitHub</ExternalLink>
               .
+            </p>
+            <p className="small">
+              <ExternalLink href={tree} title="Browse source code for this version">{COMMITHASH}</ExternalLink>
             </p>
             <p className="small">
               <span>Logo by </span>
