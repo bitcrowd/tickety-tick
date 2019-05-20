@@ -1,33 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`about renders 1`] = `
+exports[`no-tickets with errors renders an error report 1`] = `
 <div
   className="text-center"
 >
-  <h5
-    className="mt-3 mb-3"
-  >
-    No tickets found on this page.
-  </h5>
-  <h6>
-    Did you select or open any tickets?
-  </h6>
-  <p>
-    Tickety-Tick currently supports
-    <br />
-    GitHub, GitLab, Jira, Pivotal, Trello, and Ora.
-  </p>
-  <h6>
-    Missing anything or found a bug?
-  </h6>
-  <p
-    className="pb-1"
-  >
-    <ExternalLink
-      href="https://github.com/bitcrowd/tickety-tick/issues"
-    >
-      Report an issue
-    </ExternalLink>
-  </p>
+  <Report
+    errors={
+      Array [
+        [Error: An error to test error reporting],
+      ]
+    }
+  />
+</div>
+`;
+
+exports[`no-tickets with no errors renders a hint 1`] = `
+<div
+  className="text-center"
+>
+  <Hint />
 </div>
 `;

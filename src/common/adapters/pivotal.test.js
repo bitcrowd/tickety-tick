@@ -58,10 +58,10 @@ describe('pivotal adapter', () => {
     return window.document;
   }
 
-  it('returns null if it is on a different page', async () => {
+  it('returns an empty array if it is on a different page', async () => {
     const doc = dom(selected({ id: '1', title: 'Foo' }), 'trello');
     const result = await scan(null, doc);
-    expect(result).toBe(null);
+    expect(result).toEqual([]);
   });
 
   it('extracts tickets from selected stories', async () => {

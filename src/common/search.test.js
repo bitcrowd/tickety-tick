@@ -1,18 +1,26 @@
 import { search } from './search';
 
+import serializable from './utils/serializable-errors';
+
+jest.mock('./utils/serializable-errors', () => error => error.message);
+
 describe('ticket search', () => {
+  function mock(result, index) {
+    return jest
+      .fn()
+      .mockName(`adapters[${index}]`)
+      .mockReturnValue(result);
+  }
+
   function mocks(results) {
-    return results.map((result) => {
-      const adapter = jest.fn().mockResolvedValue(result);
-      return adapter;
-    });
+    return results.map(mock);
   }
 
   const doc = { title: 'dummy document' };
   const loc = { host: 'dummy.org' };
 
   it('feeds the location and document to every adapter', async () => {
-    const adapters = mocks([null, null]);
+    const adapters = mocks([[], []].map(v => Promise.resolve(v)));
 
     await search(adapters, loc, doc);
 
@@ -21,16 +29,26 @@ describe('ticket search', () => {
     });
   });
 
-  it('invokes the callback with the first non-null adapter result', async () => {
-    const result = [{ id: '1', title: 'true story' }];
-    const adapters = mocks([null, result]);
+  it('resolves with the aggregated tickets and serializable errors', async () => {
+    const tickets0 = [{ id: '0', title: 'true story', type: 'test' }];
+    const tickets1 = [{ id: '1', title: 'yep', type: 'test' }];
 
-    await expect(search(adapters, loc, doc)).resolves.toBe(result);
-  });
+    const error0 = new Error('test error 0');
+    const error1 = new Error('test error 1');
 
-  it('invokes the callback with null when no adapter created any results', async () => {
-    const adapters = mocks([null, undefined]);
+    const adapters = mocks([
+      Promise.resolve(tickets0),
+      Promise.resolve(tickets1),
+      Promise.reject(error0),
+      Promise.resolve(null),
+      Promise.reject(error1),
+    ]);
 
-    await expect(search(adapters, loc, doc)).resolves.toBe(null);
+    const results = await search(adapters, loc, doc);
+
+    expect(results).toEqual({
+      tickets: [...tickets0, ...tickets1],
+      errors: [error0, error1].map(serializable),
+    });
   });
 });

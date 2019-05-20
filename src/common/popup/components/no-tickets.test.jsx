@@ -3,12 +3,23 @@ import { shallow } from 'enzyme';
 
 import NoTickets from './no-tickets';
 
-describe('about', () => {
-  function render(/* overrides */) {
-    return shallow(<NoTickets />);
+describe('no-tickets', () => {
+  function render(overrides) {
+    const defaults = { errors: [] };
+    const props = { ...defaults, ...overrides };
+    return shallow(<NoTickets {...props} />);
   }
 
-  it('renders', () => {
-    expect(render({})).toMatchSnapshot();
+  describe('with no errors', () => {
+    it('renders a hint', () => {
+      expect(render({ errors: [] })).toMatchSnapshot();
+    });
+  });
+
+  describe('with errors', () => {
+    it('renders an error report', () => {
+      const errors = [new Error('An error to test error reporting')];
+      expect(render({ errors })).toMatchSnapshot();
+    });
   });
 });

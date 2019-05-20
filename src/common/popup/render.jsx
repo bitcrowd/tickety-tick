@@ -17,14 +17,14 @@ function propped(Component, defaults) {
   return ProppedComponent;
 }
 
-function render(tickets, env) {
+function render(tickets, errors, env) {
   const root = document.getElementById('popup-root');
 
   const element = (
     <EnvContext.Provider value={env}>
       <Router>
         <App>
-          <Route exact path="/" component={propped(Tool, { tickets })} />
+          <Route exact path="/" component={propped(Tool, { tickets, errors })} />
           <Route path="/about" component={About} />
         </App>
       </Router>

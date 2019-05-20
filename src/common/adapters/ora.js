@@ -10,7 +10,7 @@ function identifier(value) {
 }
 
 async function scan(loc, doc) {
-  if (loc.host !== 'ora.pm') return null;
+  if (loc.host !== 'ora.pm') return [];
 
   if ($has('#task-modal.single-task-modal', doc)) {
     const task = $find('#task-modal.single-task-modal', doc);
@@ -20,7 +20,7 @@ async function scan(loc, doc) {
     return [{ id, title, type }];
   }
 
-  return null;
+  return [];
 }
 
 export default scan;
