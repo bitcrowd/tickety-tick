@@ -100,6 +100,14 @@ yarn bundle:chrome
 yarn bundle:firefox
 ```
 
+### Release a new version
+1. Tick the version with `yarn version` https://yarnpkg.com/en/docs/cli/version
+2. Push the tags with `git push --tags`
+3. Build releases for chrome, firefox and safari (see above)
+4. Draft a new release on github https://github.com/bitcrowd/tickety-tick/releases/new
+5. Add package bundles to your new release
+6. Publish release in Chrome and Mozilla stores
+
 ### Developing Tickety-Tick
 
 For development use `yarn watch:[browser]`. This will watch the files and rebuild the extension whenever source files change.
