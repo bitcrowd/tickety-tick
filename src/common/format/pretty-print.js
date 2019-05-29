@@ -11,7 +11,7 @@ function format(text, width) {
   return prettier.format(text, options);
 }
 
-function splitf(string, separator) {
+function split(string, separator) {
   const position = string.indexOf(separator);
 
   if (position < 0) return [string];
@@ -22,15 +22,15 @@ function splitf(string, separator) {
   return [head, tail];
 }
 
-function capitalizef(string) {
+function capitalize(string) {
   return string.replace(/[a-zA-Z]/, w => w.toUpperCase());
 }
 
 function gitsubject(string) {
-  const subject = capitalizef(string.trim());
+  const subject = capitalize(string.trim());
 
   if (subject.length > widths.subject) {
-    const [start, rest] = splitf(format(subject, widths.subject - 1), '\n');
+    const [start, rest] = split(format(subject, widths.subject - 1), '\n');
     return [`${start}…`, format(`…${rest}`, widths.body)].join('\n\n');
   }
 
@@ -48,7 +48,7 @@ function maybe(value, fn) {
 }
 
 function print(input) {
-  const [line0, rest] = splitf(input.trim(), '\n');
+  const [line0, rest] = split(input.trim(), '\n');
   const parts = [maybe(line0, gitsubject), maybe(rest, gitbody)];
   return parts.filter(Boolean).join('\n\n');
 }
