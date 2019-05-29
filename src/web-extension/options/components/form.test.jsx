@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import Form from './form';
+import CheckboxInput from './checkbox-input';
 import TemplateInput from './template-input';
 
 import { defaults as fallbacks, helpers } from '../../../common/format';
@@ -27,7 +28,7 @@ describe('form', () => {
     field.simulate('change', event);
   };
 
-  const checkbox = (wrapper, name) => wrapper.find('input').find({ type: 'checkbox', name });
+  const checkbox = (wrapper, name) => wrapper.find(CheckboxInput).find({ name });
   const checked = (wrapper, name) => checkbox(wrapper, name).prop('checked');
 
   const toggle = (wrapper, name, check) => {
@@ -100,7 +101,7 @@ describe('form', () => {
     const wrapper = render({});
     const instance = wrapper.instance();
 
-    const field = wrapper.find('input').find({ name: 'autofmt' });
+    const field = checkbox(wrapper, 'autofmt');
 
     expect(field.props()).toEqual(expect.objectContaining({
       name: 'autofmt',
