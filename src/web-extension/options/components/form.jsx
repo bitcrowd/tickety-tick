@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Octicon, { Comment, GitBranch, Terminal } from '@githubprimer/octicons-react';
 
+import CheckboxInput from './checkbox-input';
 import TemplateInput from './template-input';
 
 import format, { defaults, helpers } from '../../../common/format';
 import * as example from './example';
+
+const recommendation = 'https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html';
 
 function InputIcon({ icon }) {
   return (
@@ -139,21 +142,26 @@ class Form extends Component {
 
     return (
       <form onSubmit={this.handleSubmit} className="mw-100 px-2 py-3">
-        <div className="form-group form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            id="auto-format-commits"
-            name="autofmt"
-            checked={autofmt}
-            disabled={loading}
-            onChange={this.handleChanged}
-          />
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-          <label className="form-check-label" htmlFor="auto-format-commits">
-            Auto-format commit messages
-          </label>
-        </div>
+        <CheckboxInput
+          id="auto-format-commits"
+          name="autofmt"
+          checked={autofmt}
+          disabled={loading}
+          label={(
+            <>
+              Auto-format commit message – as per
+              {' '}
+              <a
+                href={recommendation}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                recommendation
+              </a>
+            </>
+          )}
+          onChange={this.handleChanged}
+        />
 
         {fields.map(input)}
 
