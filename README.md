@@ -200,3 +200,7 @@ In Opera, open [opera://extensions/](//opera://extensions), click the "Options" 
 In Safari, open "Preferences" (`cmd + ,`), then select "Extensions".
 
 ![Safari preferences](./screenshots/safari-preferences.png)
+
+### Auto-formatting of commit messages
+
+Tickety-Tick supports formatting generated commit messages according to [these recommendations](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) by [Tim Pope](https://github.com/tpope/). If you do not want this, you can disable this feature in the extension preferences (see above).
