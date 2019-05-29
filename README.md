@@ -91,24 +91,6 @@ Open Safari and enable the "Developer Menu" in the application preferences. Now 
 
 ## Development
 
-### Building releases
-
-Chrome Web Store and Firefox Addons require you to submit extensions as a single zip archive. To build and zip the extension for a release, run:
-
-```shell
-yarn bundle:chrome
-yarn bundle:firefox
-```
-
-### Releasing a new version
-
-1. Tick the version with [`yarn version`](https://yarnpkg.com/en/docs/cli/version) (creates a Git tag)
-2. Push the tag with `git push --tags`
-3. Build releases for Chrome, Firefox and Safari (see above)
-4. Draft a [new release on GitHub](https://github.com/bitcrowd/tickety-tick/releases/new)
-5. Add package bundles to your new release
-6. Publish release in Chrome and Mozilla stores
-
 ### Developing Tickety-Tick
 
 For development use `yarn watch:[browser]`. This will watch the files and rebuild the extension whenever source files change.
@@ -156,6 +138,24 @@ To view an HTML version of the report:
 ```shell
 open coverage/lcov-report/index.html
 ```
+
+### Building releases
+
+Chrome Web Store and Firefox Add-ons require you to submit extensions as a single zip archive. To build and zip the extension for a release, run:
+
+```shell
+yarn bundle:chrome
+yarn bundle:firefox
+```
+
+### Releasing a new version
+
+1. Tick the version with [`yarn version`](https://yarnpkg.com/en/docs/cli/version) (creates a Git tag)
+2. Push the tag with `git push --tags`
+3. Build releases for Chrome, Firefox and Safari (see above)
+4. Draft a [new release on GitHub](https://github.com/bitcrowd/tickety-tick/releases/new)
+5. Add package bundles to your new release
+6. Publish release in Chrome and Mozilla stores
 
 ## Insights
 
