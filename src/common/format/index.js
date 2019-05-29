@@ -1,7 +1,9 @@
 import compile from './template';
 import * as helpers from './helpers';
+import prettify from './pretty-print';
 
 export { helpers };
+export { prettify };
 
 /* eslint-disable no-template-curly-in-string */
 export const defaults = {

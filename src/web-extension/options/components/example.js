@@ -1,4 +1,4 @@
-export const id = '93';
+export const id = '9';
 
 export const type = 'story';
 
@@ -12,6 +12,6 @@ Write your commit message in the imperative: "Fix bug" and not "Fixed bug" or "F
 
 Further paragraphs come after blank lines.
 
-* Bullet points are okay, too
-* Typically a hyphen or asterisk is used for the bullet, followed by a single space, with blank lines in between, but conventions vary here
-* Use a hanging indent`;
+- Bullet points are okay, too
+- Typically a hyphen or asterisk is used for the bullet, followed by a single space, with blank lines in between, but conventions vary here
+- Use a hanging indent`;
