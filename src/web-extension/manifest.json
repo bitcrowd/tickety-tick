@@ -46,5 +46,5 @@
       }
     }
   },
-  "content_security_policy": "default-src 'none'; style-src 'self'; script-src 'self';"
+  "content_security_policy": "default-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self';"
 }
