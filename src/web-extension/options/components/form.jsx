@@ -5,7 +5,7 @@ import Octicon, { Comment, GitBranch, Terminal } from '@githubprimer/octicons-re
 import CheckboxInput from './checkbox-input';
 import TemplateInput from './template-input';
 
-import format, { defaults, helpers } from '../../../common/format';
+import format, { defaults, helpers, prettify } from '../../../common/format';
 import * as example from './example';
 
 const recommendation = 'https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html';
@@ -99,6 +99,7 @@ class Form extends Component {
     const { loading, autofmt, ...templates } = this.state;
 
     const fmt = format(templates);
+    const pprint = autofmt ? prettify : x => x;
 
     const fields = [
       {
@@ -108,7 +109,7 @@ class Form extends Component {
         name: 'commit',
         value: templates.commit,
         fallback: defaults.commit,
-        preview: fmt.commit(example),
+        preview: pprint(fmt.commit(example)),
         multiline: true,
       },
       {

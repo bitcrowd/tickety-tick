@@ -77,6 +77,8 @@ describe('form', () => {
     });
   });
 
+  it.todo('conditionally pretty-prints the commit message');
+
   it('renders a template-input for the command format', () => {
     const wrapper = render({});
     const instance = wrapper.instance();
