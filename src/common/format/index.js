@@ -5,7 +5,7 @@ export { helpers };
 
 /* eslint-disable no-template-curly-in-string */
 export const defaults = {
-  branch: '{type}/{id | slugify}-{title | slugify}',
+  branch: '{type | slugify}/{id | slugify}-{title | slugify}',
   commit: '[#{id}] {title}\n\n{description}\n\n{url}',
   command: 'git checkout -b {branch | shellquote} && git commit --allow-empty -m {commit | shellquote}',
 };

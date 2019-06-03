@@ -4,7 +4,7 @@ describe('ticket formatting', () => {
   const ticket = {
     id: 'BTC-042',
     title: 'Add more tests for src/common/format/index.js',
-    type: 'enhancement',
+    type: 'new enhancement',
   };
 
   describe('default format', () => {
@@ -22,7 +22,7 @@ describe('ticket formatting', () => {
 
       it('includes ticket type, id and title', () => {
         const formatted = fmt.branch(ticket);
-        expect(formatted).toBe(`${ticket.type}/${slugify(ticket.id)}-${slugify(ticket.title)}`);
+        expect(formatted).toBe(`${slugify(ticket.type)}/${slugify(ticket.id)}-${slugify(ticket.title)}`);
       });
 
       it('formats type to "feature" if not provided', () => {
