@@ -60,10 +60,66 @@ describe('template-input', () => {
     expect(input.prop('disabled')).toBe(true);
   });
 
-  it('renders the default value used as a fallback', () => {
+  it('renders the default value used as a placeholder', () => {
     const wrapper = render({ fallback: 'fbfbfb' });
     const input = wrapper.find(TemplateInputElement);
     expect(input.prop('placeholder')).toContain('fbfbfb');
+  });
+
+  it('populates an empty input with the fallback value on focus', () => {
+    const onChange = jest.fn();
+    const wrapper = render({
+      fallback: 'fb-value',
+      name: 'tpl',
+      value: '',
+      onChange,
+    });
+
+    const input = wrapper.find(TemplateInputElement);
+
+    input.simulate('focus');
+
+    expect(onChange).toHaveBeenCalledWith({
+      target: { name: 'tpl', value: 'fb-value' },
+    });
+  });
+
+  it('preserves non-empty values different from the fallback on focus', () => {
+    const onChange = jest.fn();
+    const wrapper = render({ fallback: 'fb', value: 'other', onChange });
+    const input = wrapper.find(TemplateInputElement);
+
+    input.simulate('focus');
+
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it('resets an input containing the fallback value on blur', () => {
+    const onChange = jest.fn();
+    const wrapper = render({
+      fallback: 'fb-value',
+      name: 'tpl',
+      value: 'fb-value',
+      onChange,
+    });
+
+    const input = wrapper.find(TemplateInputElement);
+
+    input.simulate('blur');
+
+    expect(onChange).toHaveBeenCalledWith({
+      target: { name: 'tpl', value: '' },
+    });
+  });
+
+  it('preserves non-empty values different from the fallback on blur', () => {
+    const onChange = jest.fn();
+    const wrapper = render({ fallback: 'fb', value: 'other', onChange });
+    const input = wrapper.find(TemplateInputElement);
+
+    input.simulate('blur');
+
+    expect(onChange).not.toHaveBeenCalled();
   });
 });
 
