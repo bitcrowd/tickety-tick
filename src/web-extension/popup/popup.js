@@ -32,9 +32,9 @@ function openext() {
 
 async function load() {
   const { tickets, errors } = await background.getTickets();
-  const { templates } = await store.get(null);
+  const { options, templates } = await store.get(null);
 
-  const enhancer = enhance(templates);
+  const enhancer = enhance(templates, options.autofmt);
 
   render(tickets.map(enhancer), errors, { grab, openext });
 }
