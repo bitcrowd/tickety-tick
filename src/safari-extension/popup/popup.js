@@ -47,7 +47,11 @@ function onMessage(event) {
       command: settings.commandFormat,
     };
 
-    const enhancer = enhance(templates);
+    const options = {
+      autofmt: settings.autoFormat,
+    };
+
+    const enhancer = enhance(templates, options.autofmt);
 
     render(tickets.map(enhancer), errors, { grab, openext });
   }

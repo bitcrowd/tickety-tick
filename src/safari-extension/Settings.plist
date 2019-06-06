@@ -4,6 +4,16 @@
 <array>
 	<dict>
 		<key>DefaultValue</key>
+        <true />
+		<key>Key</key>
+		<string>autoFormat</string>
+		<key>Title</key>
+		<string>Auto-format commit message</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
 		<string></string>
 		<key>Key</key>
 		<string>commitMessageFormat</string>
