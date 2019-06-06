@@ -14,6 +14,8 @@ TemplateInputElement.propTypes = {
   multiline: PropTypes.bool.isRequired,
 };
 
+const noop = () => {};
+
 function TemplateInput(props) {
   const {
     id,
@@ -27,6 +29,11 @@ function TemplateInput(props) {
     onChange,
     preview,
   } = props;
+
+  const setValue = newValue => onChange({ target: { name, value: newValue } });
+
+  const onFocus = value ? noop : () => setValue(fallback);
+  const onBlur = value === fallback ? () => setValue('') : noop;
 
   return (
     <div className="form-group mb-4">
@@ -47,6 +54,8 @@ function TemplateInput(props) {
           multiline={multiline}
           placeholder={fallback}
           disabled={disabled}
+          onFocus={onFocus}
+          onBlur={onBlur}
           onChange={onChange}
         />
       </div>
