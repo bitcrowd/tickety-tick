@@ -1,4 +1,7 @@
 import format, { helpers } from '.';
+import pprint from './pretty-print';
+
+jest.mock('./pretty-print', () => jest.fn());
 
 describe('ticket formatting', () => {
   const ticket = {
@@ -7,8 +10,12 @@ describe('ticket formatting', () => {
     type: 'new enhancement',
   };
 
+  beforeEach(() => {
+    pprint.mockClear();
+  });
+
   describe('default format', () => {
-    const fmt = format({});
+    const fmt = format({}, false);
 
     describe('commit', () => {
       it('includes ticket id and title', () => {
@@ -43,6 +50,21 @@ describe('ticket formatting', () => {
 
         expect(formatted).toBe(`git checkout -b ${shellquote(branch)}`
           + ` && git commit --allow-empty -m ${shellquote(commit)}`);
+      });
+    });
+  });
+
+  describe('with pretty-printing enabled', () => {
+    const stdfmt = format({}, false);
+    const fmt = format({}, true);
+
+    describe('commit', () => {
+      it('is pretty-printed', () => {
+        pprint.mockReturnValue('pretty-printed commit');
+        const original = stdfmt.commit(ticket);
+        const formatted = fmt.commit(ticket);
+        expect(pprint).toHaveBeenCalledWith(original);
+        expect(formatted).toBe('pretty-printed commit');
       });
     });
   });
