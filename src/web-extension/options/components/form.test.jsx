@@ -168,7 +168,7 @@ describe('form', () => {
     expect(value(wrapper, 'command')).toBe('command++');
   });
 
-  it('stores templates on submit and disables form elements while saving', async () => {
+  it('stores templates and options on submit and disables form elements while saving', async () => {
     const store = { get: jest.fn(), set: jest.fn() };
 
     let saved;
