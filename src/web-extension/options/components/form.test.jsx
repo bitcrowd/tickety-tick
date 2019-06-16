@@ -18,12 +18,12 @@ describe('form', () => {
   }
 
   const inputs = wrapper => wrapper.find(TemplateInput);
-  const input = (wrapper, name) => inputs(wrapper).find({ name });
+  const input = (wrapper, name) => inputs(wrapper).filter({ name });
   const value = (wrapper, name) => input(wrapper, name).prop('value');
 
   const change = (wrapper, name, val) => {
     const event = { target: { name, value: val } };
-    const field = wrapper.find(TemplateInput).find({ name });
+    const field = wrapper.find(TemplateInput).filter({ name });
     field.simulate('change', event);
   };
 
