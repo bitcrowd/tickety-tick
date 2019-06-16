@@ -4,7 +4,6 @@ import { MemoryRouter as Router, Route } from 'react-router';
 
 import EnvContext from './env-context';
 
-import App from './components/app';
 import About from './components/about';
 import Tool from './components/tool';
 
@@ -23,10 +22,8 @@ function render(tickets, errors, env) {
   const element = (
     <EnvContext.Provider value={env}>
       <Router>
-        <App>
-          <Route exact path="/" component={propped(Tool, { tickets, errors })} />
-          <Route path="/about" component={About} />
-        </App>
+        <Route exact path="/" component={propped(Tool, { tickets, errors })} />
+        <Route path="/about" component={About} />
       </Router>
     </EnvContext.Provider>
   );
