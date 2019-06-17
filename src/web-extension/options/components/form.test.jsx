@@ -5,7 +5,13 @@ import Form from './form';
 import CheckboxInput from './checkbox-input';
 import TemplateInput from './template-input';
 
-import { defaults as fallbacks, helpers } from '../../../common/format';
+import format, { defaults as fallbacks, helpers } from '../../../common/format';
+
+jest.mock('../../../common/format', () => {
+  const mockFormat = jest.fn();
+  const actual = jest.requireActual('../../../common/format');
+  return Object.assign(mockFormat, actual);
+});
 
 describe('form', () => {
   function render(overrides, options = {}) {
@@ -36,6 +42,18 @@ describe('form', () => {
     const field = checkbox(wrapper, name);
     field.simulate('change', event);
   };
+
+  beforeEach(() => {
+    format.mockImplementation((templates, autofmt) => ({
+      commit: () => `formatted-commit (${autofmt})`,
+      branch: () => `formatted-branch (${autofmt})`,
+      command: () => `formatted-command (${autofmt})`,
+    }));
+  });
+
+  afterEach(() => {
+    format.mockReset();
+  });
 
   it('renders a template-input for the branch name format', () => {
     const wrapper = render({});
@@ -77,7 +95,19 @@ describe('form', () => {
     });
   });
 
-  it.todo('conditionally pretty-prints the commit message');
+  it('conditionally pretty-prints the commit message', () => {
+    const wrapper = render({});
+    let field = input(wrapper, 'commit');
+
+    expect(format).toHaveBeenCalledWith(expect.any(Object), true);
+    expect(field.prop('preview')).toBe('formatted-commit (true)');
+
+    toggle(wrapper, 'autofmt', false);
+    field = input(wrapper, 'commit');
+
+    expect(format).toHaveBeenLastCalledWith(expect.any(Object), false);
+    expect(field.prop('preview')).toBe('formatted-commit (false)');
+  });
 
   it('renders a template-input for the command format', () => {
     const wrapper = render({});
