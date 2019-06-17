@@ -3,5 +3,6 @@
 export default function serializable(error) {
   return {
     message: error.message,
+    stack: error.stack,
   };
 }

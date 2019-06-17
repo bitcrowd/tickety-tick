@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`error-details renders a button to copy the error details 1`] = `
+"Tickety-Tick revision: test-commit-hash
+
+\`\`\`
+Boom!
+    at scan (src/common/adapters/github.js:74:8)
+    at attempt (src/common/search.js:12:26)
+    at search (src/common/search.js:27:45)
+    at search (src/common/search.js:27:25)
+    at browser.runtime.onMessage.addListener (src/web-extension/content.js:8:13)
+    at wrappedSendResponse (node_modules/webextension-polyfill/dist/browser-polyfill.js:1057:-)
+\`\`\`"
+`;
