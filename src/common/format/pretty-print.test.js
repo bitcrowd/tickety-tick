@@ -4,6 +4,7 @@ describe('pretty-print', () => {
   it('capitalizes subject lines', () => {
     expect(print('apply proper casing')).toBe('Apply proper casing');
     expect(print('[#42] capitalize subject')).toBe('[#42] Capitalize subject');
+    expect(print('[#lowercase-id] capitalize subject')).toBe('[#lowercase-id] Capitalize subject');
   });
 
   it('wraps overlong subject lines', () => {
@@ -35,16 +36,16 @@ single space, with blank lines in between, but conventions vary here
   it('strips leading and trailing blank lines and whitespace', () => {
     const input = `
 
-  Remove whitespace around subject line  
+  Remove whitespace around subject line
 
 
 Also, remove additional blank lines before and after body.
 
 Preserve blank lines between paragraphs of the body.
-  
+
 Strip whitespace on empty lines (see line above).
 
-Strip trailing whitespace (see end of this line).  
+Strip trailing whitespace (see end of this line).
 
     `;
 

@@ -23,7 +23,7 @@ function split(string, separator) {
 }
 
 function capitalize(string) {
-  return string.replace(/[a-zA-Z]/, w => w.toUpperCase());
+  return string.replace(/^[a-zA-Z]|\s[a-zA-Z]/, w => w.toUpperCase());
 }
 
 function gitsubject(string) {
