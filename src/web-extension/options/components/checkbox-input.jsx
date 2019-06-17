@@ -17,7 +17,7 @@ function CheckboxInput(props) {
         <div className="input-group-prepend">
           <div className="input-group-text">
             <input
-              className="form-check-input"
+              className="input-checkbox"
               type="checkbox"
               id={id}
               name={name}
