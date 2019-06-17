@@ -1,7 +1,7 @@
 import format from './format';
 
-export default (templates) => {
-  const fmt = format(templates);
+export default (templates, autofmt) => {
+  const fmt = format(templates, autofmt);
 
   const enhance = ticket => ({
     fmt: {
