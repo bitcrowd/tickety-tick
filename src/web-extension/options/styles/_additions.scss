@@ -2,3 +2,10 @@ body {
   padding: .5rem;
   max-width: 100vw;
 }
+
+// Input checkbox on the options page
+//
+// Firefox glitches if we don't set the margin manually.
+.input-checkbox {
+  margin: 0 2px !important;
+}
