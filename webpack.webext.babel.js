@@ -69,7 +69,7 @@ config.when(process.env.BUNDLE === 'true', cfg => cfg
   .plugin('zip')
   .use(ZipWebpackPlugin, [
     {
-      path: dist(),
+      path: dist('release'),
       filename: variant,
     },
   ]));

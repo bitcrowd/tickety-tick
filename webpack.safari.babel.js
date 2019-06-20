@@ -36,7 +36,7 @@ config.when(process.env.BUNDLE === 'true', cfg => cfg
   .plugin('zip')
   .use(ZipWebpackPlugin, [
     {
-      path: dist(),
+      path: dist('release'),
       pathPrefix: safariExtensionFolderName,
       filename: 'safari',
     },
