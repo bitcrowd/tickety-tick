@@ -169,12 +169,10 @@ yarn clean
 ### Releasing a new version
 
 1. Tick the version with [`yarn version`](https://yarnpkg.com/en/docs/cli/version) (creates a Git tag)
-2. Push the tag with `git push --tags`
-3. Do a `yarn clean`
-4. Build all bundles with `yarn bundle`
-5. Draft a [new release on GitHub](https://github.com/bitcrowd/tickety-tick/releases/new)
-6. Add package bundles to your new release
-7. Publish release in Chrome and Mozilla stores
+2. push the tag that was created eg. `git push origin v3.0.0` (pushing all tags does not work)
+3. Wait till CircleCI publishes a draft release
+4. Edit draft release with in github, to include some changelog
+5. Publish release in Chrome and Mozilla stores
 
 ## Insights
 
