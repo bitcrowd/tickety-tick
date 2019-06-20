@@ -18,6 +18,7 @@
     "bundle:chrome": "cross-env BUNDLE=true run-s build:chrome",
     "bundle:firefox": "cross-env BUNDLE=true run-s build:firefox",
     "bundle:safari": "cross-env BUNDLE=true run-s build:safari",
+    "bundle": "run-s -n bundle:chrome bundle:firefox bundle:safari",
     "lint": "eslint --ext .js,.jsx .",
     "test": "jest",
     "checks": "run-s lint test",
