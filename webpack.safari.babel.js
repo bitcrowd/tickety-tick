@@ -1,5 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
+import ZipWebpackPlugin from 'zip-webpack-plugin';
+
 import config, { src, dist } from './webpack.common';
 import pkg from './package.json';
 
@@ -10,7 +12,9 @@ config.entry('content').add(src.safari('content.js'));
 
 // Set browser-specific output path.
 
-config.output.path(dist('tickety-tick.safariextension'));
+const safariExtensionFolderName = 'tickety-tick.safariextension';
+
+config.output.path(dist(safariExtensionFolderName));
 
 // Copy Info.plist and Settings.plist in addition to the common files.
 
@@ -27,5 +31,15 @@ config.plugin('copy').tap(([patterns, options]) => [[
     from: src.safari('Settings.plist'),
   },
 ], options]);
+
+config.when(process.env.BUNDLE === 'true', cfg => cfg
+  .plugin('zip')
+  .use(ZipWebpackPlugin, [
+    {
+      path: dist(),
+      pathPrefix: safariExtensionFolderName,
+      filename: 'safari',
+    },
+  ]));
 
 export default config.toConfig();
