@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "3.1.0",
+  "version": "3.2.1",
   "name": "tickety-tick",
   "description": "A browser extension that helps you to create commit messages and branch names from story trackers.",
   "author": "Bodo Tasche <bodo@bitcrowd.net>",
