@@ -22,7 +22,9 @@
     "lint": "eslint --ext .js,.jsx .",
     "test": "jest",
     "checks": "run-s lint test",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "preversion": "./script/pre-version",
+    "postversion": "./script/post-version"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
