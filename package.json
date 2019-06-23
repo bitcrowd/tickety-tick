@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "3.1.0",
+  "version": "3.1.2",
   "name": "tickety-tick",
   "description": "A browser extension that helps you to create commit messages and branch names from story trackers.",
   "author": "Bodo Tasche <bodo@bitcrowd.net>",
@@ -23,7 +23,7 @@
     "test": "jest",
     "checks": "run-s lint test",
     "clean": "rimraf dist",
-    "preversion": "git log --no-decorate --pretty='format:- %s (#%h)' $npm_package_version..HEAD > .git/COMMIT_EDITMSG"
+    "preversion": "git log --no-decorate --pretty='format:- %s (#%h)' v$npm_package_version..HEAD > .git/COMMIT_EDITMSG"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
