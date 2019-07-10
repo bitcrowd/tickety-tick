@@ -13,6 +13,7 @@ const response = {
   fields: {
     issuetype: { name: 'Story' },
     summary: 'A quick summary of the ticket',
+    description: 'A long description of the ticket',
   },
   key,
 };
@@ -20,7 +21,9 @@ const response = {
 const ticket = {
   id: response.key,
   title: response.fields.summary,
+  description: response.fields.description,
   type: response.fields.issuetype.name.toLowerCase(),
+  url: `https://my-subdomain.atlassian.net/browse/${key}`,
 };
 
 describe('jira adapter', () => {
@@ -121,31 +124,36 @@ describe('jira adapter', () => {
   });
 
   it('extracts tickets on self-managed instances', async () => {
-    const result = await scan(loc('jira.local', `/browse/${key}`), doc);
+    const host = 'jira.local';
+    const result = await scan(loc(host, `/browse/${key}`), doc);
     expect(client).toHaveBeenCalledWith('https://jira.local/rest/api/latest');
-    expect(result).toEqual([ticket]);
+    expect(result).toEqual([
+      { ...ticket, url: `https://${host}/browse/${key}` },
+    ]);
   });
 
   it('extracts tickets on self-managed instances (with path prefix)', async () => {
+    const host = 'jira.local';
     const results = await Promise.all([
       scan(
-        loc(
-          'jira.local',
-          '/prefix/secure/RapidBoard.jspa',
-          `?selectedIssue=${key}`
-        ),
+        loc(host, '/prefix/secure/RapidBoard.jspa', `?selectedIssue=${key}`),
         doc
       ),
-      scan(loc('jira.local', `/prefix/projects/TT/issues/${key}`), doc),
-      scan(loc('jira.local', `/prefix/browse/${key}`), doc),
+      scan(loc(host, `/prefix/projects/TT/issues/${key}`), doc),
+      scan(loc(host, `/prefix/browse/${key}`), doc),
     ]);
 
     const endpoint = 'https://jira.local/prefix/rest/api/latest';
+    const expectedTicket = { ...ticket, url: `https://${host}/browse/${key}` };
 
     expect(client).toHaveBeenNthCalledWith(1, endpoint);
     expect(client).toHaveBeenNthCalledWith(2, endpoint);
     expect(client).toHaveBeenNthCalledWith(3, endpoint);
 
-    expect(results).toEqual([[ticket], [ticket], [ticket]]);
+    expect(results).toEqual([
+      [expectedTicket],
+      [expectedTicket],
+      [expectedTicket],
+    ]);
   });
 });

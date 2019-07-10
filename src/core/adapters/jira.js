@@ -42,13 +42,21 @@ function getSelectedIssueId(loc, prefix = '') {
     .find(Boolean);
 }
 
-function extractTicketInfo(response) {
+function extractTicketInfo(response, host) {
   const {
     key: id,
-    fields: { issuetype, summary: title },
+    fields: { issuetype, summary: title, description },
   } = response;
   const type = issuetype.name.toLowerCase();
-  return { id, title, type };
+  const url = `https://${host}/browse/${id}`;
+
+  return {
+    type,
+    id,
+    title,
+    description,
+    url,
+  };
 }
 
 async function scan(loc, doc) {
@@ -60,9 +68,10 @@ async function scan(loc, doc) {
 
   if (!id) return [];
 
-  const jira = client(`https://${loc.host}${prefix}/rest/api/latest`);
+  const { host } = loc;
+  const jira = client(`https://${host}${prefix}/rest/api/latest`);
   const response = await jira.get(`issue/${id}`).json();
-  const ticket = extractTicketInfo(response);
+  const ticket = extractTicketInfo(response, host);
 
   return [ticket];
 }
