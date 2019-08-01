@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# Generate a list of changes between two versions,
+# e.g. to use in a `preversion` script as per:
+# https://yarnpkg.com/en/docs/cli/version
+#
+# Usage: script/list-changes [from-revision] [to-revision]
+#
+# For details on specifying git revisions, check out:
+# https://git-scm.com/docs/revisions
+#
+#
+# Examples:
+#
+#   script/list-changes
+#   script/list-changes master
+#   script/list-changes v3.0.0
+#   script/list-changes v2.0.0 v3.0.0
+#
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+# To debug, uncomment:
+# set -o xtrace
+
+cd "$(dirname "$0")/.."
+
+pkgversion=$(node --print "require('./package.json').version")
+
+start="${1:-v$pkgversion}"
+end="${2:-HEAD}"
+
+exec git log --no-decorate --pretty='format:- %s (#%h)' "${start}..${end}"

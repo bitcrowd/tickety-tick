@@ -23,7 +23,7 @@
     "test": "jest",
     "checks": "run-s lint test",
     "clean": "rimraf dist",
-    "preversion": "./script/pre-version",
+    "preversion": "./script/list-changes > .VERSION_CHANGES",
     "postversion": "./script/post-version"
   },
   "devDependencies": {

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-git log --no-decorate --pretty='format:- %s (#%h)' v$npm_package_version..HEAD > .VERSION_CHANGES
