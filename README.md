@@ -160,21 +160,11 @@ Or just run the following to generate bundles for all browsers:
 yarn bundle
 ```
 
-### Clean build folder
-
-To clean the output build path and delete the artifacts of the project use:
-
-```shell
-yarn clean
-```
-
 ### Releasing a new version
 
-1. Tick the version with [`yarn version`](https://yarnpkg.com/en/docs/cli/version) (creates a Git tag)
-2. Push the tag that was created, e.g. `git push origin v3.0.0` ([pushing all tags does not currently work](https://support.circleci.com/hc/en-us/articles/115013854347-Jobs-builds-not-triggered-when-pushing-tag))
-3. Wait until CircleCI publishes a draft release
-4. Edit the draft release on GitHub to include additional information about the release
-5. Publish release in Chrome and Mozilla stores
+1. Run `yarn release`
+2. Edit the draft release on GitHub to include additional information about the release
+3. Publish release in Chrome and Mozilla stores
 
 ## Insights
 

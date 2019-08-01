@@ -1,6 +1,0 @@
-#!/bin/sh
-
-echo "v$npm_package_version\n" > .VERSION_ANNOTATION
-cat .VERSION_CHANGES >> .VERSION_ANNOTATION
-git tag -a v$npm_package_version -e -f -F .VERSION_ANNOTATION
-rm .VERSION_ANNOTATION .VERSION_CHANGES

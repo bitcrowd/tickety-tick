@@ -44,64 +44,14 @@ jobs:
             JEST_JUNIT_OUTPUT: reports/jest/results.xml
       - store_test_results:
           path: reports
-  bundle:
-    <<: *base
-    steps:
-      - restore_cache:
-          key: repo-{{ .Environment.CIRCLE_SHA1 }}
-      - run:
-          name: "Bundle all"
-          command: "yarn bundle"
-      - persist_to_workspace:
-          root: ~/tickety-tick
-          paths:
-            - dist/release
-  publish-github-release:
-    docker:
-      - image: cibuilds/github:0.10
-    steps:
-      - attach_workspace:
-          at: ~/tickety-tick
-      - run:
-          name: "Publish Release on GitHub"
-          command: |
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -replace -draft ${CIRCLE_TAG} ~/tickety-tick/dist/release
-
 workflows:
   version: 2
-  check_and_release:
+  checks:
     jobs:
-      - setup:
-          filters:
-            tags:
-              only: /^v.*/
+      - setup
       - lint:
           requires:
             - setup
-          filters:
-            tags:
-              only: /^v.*/
       - test:
           requires:
             - setup
-          filters:
-            tags:
-              only: /^v.*/
-      - bundle:
-          requires:
-            - setup
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
-      - publish-github-release:
-          requires:
-            - bundle
-            - lint
-            - test
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
