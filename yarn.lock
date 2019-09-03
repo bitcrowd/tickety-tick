@@ -2891,13 +2891,13 @@ chownr@^1.1.1:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.1.tgz#54726b8b8fff4df053c42187e801fb4412df1494"
   integrity sha512-j38EvO5+LHX84jlo6h4UzmOwi0UgW61WRyPtJz4qaadK5eY3BTS5TY/S1Stc3Uk2lIM6TPevAlULiEJwie860g==
 
-chrome-launcher@^0.10.7:
-  version "0.10.7"
-  resolved "https://registry.yarnpkg.com/chrome-launcher/-/chrome-launcher-0.10.7.tgz#5e2a9e99f212e0501d9c7024802acd01a812f5d5"
-  integrity sha512-IoQLp64s2n8OQuvKZwt77CscVj3UlV2Dj7yZtd1EBMld9mSdGcsGy9fN5hd/r4vJuWZR09it78n1+A17gB+AIQ==
+chrome-launcher@^0.11.2:
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/chrome-launcher/-/chrome-launcher-0.11.2.tgz#c9a248dbccd3a08565553acf61adff879bcc982c"
+  integrity sha512-jx0kJDCXdB2ARcDMwNCtrf04oY1Up4rOmVu+fqJ5MTPOOIG8EhRcEU9NZfXZc6dMw9FU8o1r21PNp8V2M0zQ+g==
   dependencies:
     "@types/node" "*"
-    is-wsl "^1.1.0"
+    is-wsl "^2.1.0"
     lighthouse-logger "^1.0.0"
     mkdirp "0.5.1"
     rimraf "^2.6.1"
@@ -6498,6 +6498,11 @@ is-wsl@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-wsl/-/is-wsl-1.1.0.tgz#1f16e4aa22b04d1336b66188a66af3c600c3a66d"
   integrity sha1-HxbkqiKwTRM2tmGIpmrzxgDDpm0=
+
+is-wsl@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/is-wsl/-/is-wsl-2.1.0.tgz#94369bbeb2249ef07b831b1b08590e686330ccbb"
+  integrity sha512-pFTjpv/x5HRj8kbZ/Msxi9VrvtOMRBqaDi3OIcbwPI3OuH+r3lLxVWukLITBaOGJIbA/w2+M1eVmVa4XNQlAmQ==
 
 is-yarn-global@^0.3.0:
   version "0.3.0"
