@@ -9,7 +9,7 @@ import {
   $value,
 } from './helpers';
 
-const cls = ctx => ['bug', 'chore', 'feature', 'release'].find(c => $classed(ctx, c));
+const cls = (ctx) => ['bug', 'chore', 'feature', 'release'].find((c) => $classed(ctx, c));
 
 function multiple(elements, collapsed) {
   return elements.map((story) => {
@@ -29,13 +29,13 @@ async function scan(loc, doc) {
   if (doc.body.id !== 'tracker') return [];
 
   if ($has('div.story .selector.selected', doc)) { // selected stories
-    const selection = $all('div.story .selector.selected', doc).map(e => $closest('.story', e));
+    const selection = $all('div.story .selector.selected', doc).map((e) => $closest('.story', e));
     const tickets = multiple(selection, true);
     return tickets;
   }
 
   if ($has('div.story .details', doc)) { // opened stories
-    const opened = $all('div.story .details', doc).map(e => $closest('.story', e));
+    const opened = $all('div.story .details', doc).map((e) => $closest('.story', e));
     const tickets = multiple(opened, false);
     return tickets;
   }

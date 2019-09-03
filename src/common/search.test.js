@@ -2,7 +2,7 @@ import { search } from './search';
 
 import serializable from './utils/serializable-errors';
 
-jest.mock('./utils/serializable-errors', () => error => error.message);
+jest.mock('./utils/serializable-errors', () => (error) => error.message);
 
 describe('ticket search', () => {
   function mock(result, index) {
@@ -20,7 +20,7 @@ describe('ticket search', () => {
   const loc = { host: 'dummy.org' };
 
   it('feeds the location and document to every adapter', async () => {
-    const adapters = mocks([[], []].map(v => Promise.resolve(v)));
+    const adapters = mocks([[], []].map((v) => Promise.resolve(v)));
 
     await search(adapters, loc, doc);
 

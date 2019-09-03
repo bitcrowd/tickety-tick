@@ -65,7 +65,7 @@ config.plugin('copy').tap(([patterns, options]) => [[
   },
 ], options]);
 
-config.when(process.env.BUNDLE === 'true', cfg => cfg
+config.when(process.env.BUNDLE === 'true', (cfg) => cfg
   .plugin('zip')
   .use(ZipWebpackPlugin, [
     {

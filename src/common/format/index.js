@@ -12,7 +12,7 @@ const fallbacks = {
 
 const renderer = (templates, name) => {
   const render = compile(templates[name] || defaults[name], helpers);
-  return values => render({ ...fallbacks, ...values }).trim();
+  return (values) => render({ ...fallbacks, ...values }).trim();
 };
 
 export default (templates = {}, prettify = true) => {
@@ -22,13 +22,13 @@ export default (templates = {}, prettify = true) => {
   const _commit = renderer(templates, 'commit');
 
   const commit = prettify
-    ? values => pprint(_commit(values))
+    ? (values) => pprint(_commit(values))
     : _commit;
 
   // eslint-disable-next-line no-underscore-dangle
   const _command = renderer(templates, 'command');
 
-  const command = values => _command({
+  const command = (values) => _command({
     branch: branch(values),
     commit: commit(values),
     ...values,

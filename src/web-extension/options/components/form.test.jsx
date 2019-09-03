@@ -24,7 +24,7 @@ describe('form', () => {
     return wrapper;
   }
 
-  const inputs = wrapper => wrapper.find(TemplateInput);
+  const inputs = (wrapper) => wrapper.find(TemplateInput);
   const input = (wrapper, name) => inputs(wrapper).filter({ name });
   const value = (wrapper, name) => input(wrapper, name).prop('value');
 

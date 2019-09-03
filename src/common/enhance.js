@@ -3,7 +3,7 @@ import format from './format';
 export default (templates, autofmt) => {
   const fmt = format(templates, autofmt);
 
-  const enhance = ticket => ({
+  const enhance = (ticket) => ({
     fmt: {
       branch: fmt.branch(ticket),
       commit: fmt.commit(ticket),

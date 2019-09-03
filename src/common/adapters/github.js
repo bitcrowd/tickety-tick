@@ -32,7 +32,7 @@ async function attempt(doc, selector) {
       const id = $value('input.js-issues-list-check', issue);
       const title = $text('a.js-navigation-open', issue);
       const labels = $all(selector.issuesPageLabel, issue);
-      const type = labels.some(l => /bug/i.test(l.textContent)) ? 'bug' : 'feature';
+      const type = labels.some((l) => /bug/i.test(l.textContent)) ? 'bug' : 'feature';
 
       return { id, title, type };
     });

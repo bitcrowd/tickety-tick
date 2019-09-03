@@ -8,15 +8,15 @@ describe('template', () => {
   });
 
   it('handles missing values', () => {
-    const transforms = { sparkle: s => `*${s}*` };
+    const transforms = { sparkle: (s) => `*${s}*` };
     const render = compile('--{nope | sparkle}', transforms);
     expect(render({})).toBe('--**');
     expect(render()).toBe('--**');
   });
 
   it('applies value transformations', () => {
-    const lowercase = jest.fn().mockImplementation(s => s.toLowerCase());
-    const dasherize = jest.fn().mockImplementation(s => s.replace(/\s+/g, '-'));
+    const lowercase = jest.fn().mockImplementation((s) => s.toLowerCase());
+    const dasherize = jest.fn().mockImplementation((s) => s.replace(/\s+/g, '-'));
     const transforms = { lowercase, dasherize };
 
     const render = compile('result: {title | lowercase | dasherize}', transforms);
@@ -34,7 +34,7 @@ describe('template', () => {
   });
 
   it('ignores whitespace within template expressions', () => {
-    const transforms = { triple: a => a * 3, square: a => a * a };
+    const transforms = { triple: (a) => a * 3, square: (a) => a * a };
     const render = compile('({ a } * 3)**2 = {  a  |  triple  |  square  }', transforms);
     const output = render({ a: 2 });
     expect(output).toBe('(2 * 3)**2 = 36');

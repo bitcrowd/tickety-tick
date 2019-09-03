@@ -30,7 +30,7 @@ function TemplateInput(props) {
     preview,
   } = props;
 
-  const setValue = newValue => onChange({ target: { name, value: newValue } });
+  const setValue = (newValue) => onChange({ target: { name, value: newValue } });
 
   const onFocus = value ? noop : () => setValue(fallback);
   const onBlur = value === fallback ? () => setValue('') : noop;

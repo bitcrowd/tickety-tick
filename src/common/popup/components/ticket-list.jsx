@@ -68,7 +68,7 @@ TicketListItem.propTypes = {
 };
 
 function TicketList({ tickets }) {
-  const itemize = ticket => (
+  const itemize = (ticket) => (
     <li key={ticket.id} className="list-group-item">
       <TicketListItem ticket={ticket} />
     </li>
