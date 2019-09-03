@@ -9,7 +9,7 @@ import Tool from './components/tool';
 
 function propped(Component, defaults) {
   const ProppedComponent = (more) => {
-    const props = Object.assign({}, defaults, more);
+    const props = { ...defaults, ...more };
     return (<Component {...props} />);
   };
 

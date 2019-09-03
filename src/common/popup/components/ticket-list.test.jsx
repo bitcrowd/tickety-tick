@@ -11,7 +11,7 @@ describe('ticket-list', () => {
 
   it('renders a list of tickets', () => {
     const wrapper = shallow(<TicketList tickets={tickets} />);
-    const items = tickets.map(t => (<TicketListItem ticket={t} />));
+    const items = tickets.map((t) => (<TicketListItem ticket={t} />));
     expect(wrapper.find('ul > li').containsAllMatchingElements(items)).toBe(true);
   });
 });
@@ -31,16 +31,16 @@ describe('ticket-list-item', () => {
 
   it('renders a copy-button for the commit messsage', () => {
     const buttons = wrapper.find(CopyButton);
-    expect(buttons.someWhere(b => b.prop('value') === ticket.fmt.commit)).toBe(true);
+    expect(buttons.someWhere((b) => b.prop('value') === ticket.fmt.commit)).toBe(true);
   });
 
   it('renders a copy-button for the branch name', () => {
     const buttons = wrapper.find(CopyButton);
-    expect(buttons.someWhere(b => b.prop('value') === ticket.fmt.branch)).toBe(true);
+    expect(buttons.someWhere((b) => b.prop('value') === ticket.fmt.branch)).toBe(true);
   });
 
   it('renders a copy-button for the git commands', () => {
     const buttons = wrapper.find(CopyButton);
-    expect(buttons.someWhere(b => b.prop('value') === ticket.fmt.command)).toBe(true);
+    expect(buttons.someWhere((b) => b.prop('value') === ticket.fmt.command)).toBe(true);
   });
 });

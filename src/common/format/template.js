@@ -1,5 +1,5 @@
-const trim = s => s.replace(/^\s+|\s+$/g, '');
-const identity = x => x;
+const trim = (s) => s.replace(/^\s+|\s+$/g, '');
+const identity = (x) => x;
 
 function compile(template, transforms = {}) {
   const parts = template.match(/\{[^}]*\}|[^{]+/g);
@@ -13,15 +13,15 @@ function compile(template, transforms = {}) {
         .split('|')
         .map(trim);
 
-      const pipeline = procs.map(name => transforms[name] || identity);
+      const pipeline = procs.map((name) => transforms[name] || identity);
 
-      return values => pipeline.reduce((v, fn) => fn(v), values[key] || '');
+      return (values) => pipeline.reduce((v, fn) => fn(v), values[key] || '');
     }
 
     return () => part;
   });
 
-  return (values = {}) => fns.map(fn => fn(values)).join('');
+  return (values = {}) => fns.map((fn) => fn(values)).join('');
 }
 
 export default compile;

@@ -24,7 +24,7 @@ function aggregate(results) {
 }
 
 export async function search(adapters, loc, doc) {
-  const scans = adapters.map(scan => attempt(scan, loc, doc));
+  const scans = adapters.map((scan) => attempt(scan, loc, doc));
   const results = await Promise.all(scans);
   return aggregate(results);
 }

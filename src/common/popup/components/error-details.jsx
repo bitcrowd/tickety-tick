@@ -32,8 +32,8 @@ class ErrorDetails extends Component {
     const { errors } = this.props;
 
     Promise.all(errors.map(trace))
-      .then(traces => this.setState({ traces }))
-      .catch(err => console.error(err));
+      .then((traces) => this.setState({ traces }))
+      .catch((err) => console.error(err));
   }
 
   render() {
@@ -42,7 +42,7 @@ class ErrorDetails extends Component {
     if (!traces) return null;
 
     const preamble = `Tickety-Tick revision: ${COMMITHASH}`;
-    const logs = traces.map(tr => ['```', tr, '```'].join('\n'));
+    const logs = traces.map((tr) => ['```', tr, '```'].join('\n'));
 
     const info = [preamble, ...logs].join('\n\n');
 

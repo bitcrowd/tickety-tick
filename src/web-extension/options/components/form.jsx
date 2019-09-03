@@ -131,7 +131,7 @@ class Form extends Component {
       },
     ];
 
-    const input = props => (
+    const input = (props) => (
       <TemplateInput
         key={props.id}
         disabled={loading}
@@ -172,7 +172,7 @@ class Form extends Component {
             <div className="col small">
               Template variables:
               <ul className="list-unstyled text-muted">
-                {Object.keys(example).sort().map(name => <li key={name}>{name}</li>)}
+                {Object.keys(example).sort().map((name) => <li key={name}>{name}</li>)}
                 <li>branch (only in command)</li>
                 <li>commit (only in command)</li>
               </ul>
@@ -181,7 +181,7 @@ class Form extends Component {
             <div className="col small">
               Available Helpers:
               <ul className="list-unstyled text-muted">
-                {Object.keys(helpers).sort().map(name => <li key={name}>{name}</li>)}
+                {Object.keys(helpers).sort().map((name) => <li key={name}>{name}</li>)}
               </ul>
             </div>
           </div>

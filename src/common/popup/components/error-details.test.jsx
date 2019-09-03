@@ -47,7 +47,7 @@ describe('error-details', () => {
       ['search', 'src/common/search.js', 27, 25],
       ['browser.runtime.onMessage.addListener', 'src/web-extension/content.js', 8, 13],
       ['wrappedSendResponse', 'node_modules/webextension-polyfill/dist/browser-polyfill.js', 1057, null],
-    ].map(args => new MockStackFrame(...args)));
+    ].map((args) => new MockStackFrame(...args)));
   });
 
   afterEach(() => {
@@ -56,7 +56,7 @@ describe('error-details', () => {
 
   it('renders a button to copy the error details', async () => {
     const wrapper = render({ errors: [new Error('Boom!')] });
-    await new Promise(resolve => setTimeout(resolve, 0)); // wait for stacktrace-js processing
+    await new Promise((resolve) => setTimeout(resolve, 0)); // wait for stacktrace-js processing
     expect(wrapper.find(CopyButton).prop('value')).toMatchSnapshot();
   });
 });
