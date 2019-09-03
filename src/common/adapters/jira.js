@@ -9,7 +9,7 @@
 // * Issues and filters: https://<YOUR-SUBDOMAIN>.atlassian.net/projects/<PROJECT-KEY>/issues/<ISSUE-KEY>
 // * Issue view: https://<YOUR-SUBDOMAIN>.atlassian.net/browse/<ISSUE-KEY>
 
-import match from 'micro-match';
+import { match } from 'micro-match';
 
 import client from '../client';
 

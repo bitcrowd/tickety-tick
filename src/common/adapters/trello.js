@@ -8,7 +8,7 @@
 //
 // Card view: https://trello.com/c/<SHORT-LINK>/1-ticket-title
 
-import match from 'micro-match';
+import { match } from 'micro-match';
 
 import client from '../client';
 

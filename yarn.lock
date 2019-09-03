@@ -7257,10 +7257,10 @@ kleur@^3.0.2:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.2.tgz#83c7ec858a41098b613d5998a7b653962b504f68"
   integrity sha512-3h7B2WRT5LNXOtQiAaWonilegHcPSf9nLVXlSTci8lu1dZUuui61+EsPEZqSVxY7rXYmB2DVKMQILxaO5WL61Q==
 
-ky@^0.11.1:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/ky/-/ky-0.11.1.tgz#0bdffb441eb92ac910124ac6cd63088db9e66b5f"
-  integrity sha512-ppp6nrKXRTCMVsWP0sDDdLJXXNnH+5defcpQNiNE712/KpdGwG87290ldFAGsx4CAI/F2eVg3Exql0Oo/eGU5A==
+ky@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/ky/-/ky-0.13.0.tgz#354c3d209f26d772415cbfe4f5d02ccbcb5ed536"
+  integrity sha512-qmyUE2IvwLveZEHiLmFzUIrW4EsSX18ItZgEfgx8JXFxSEPKrnXvWrjQDP6zi4mwcie3MWBEHyUg0aNF8OS9oA==
 
 latest-version@^3.0.0:
   version "3.1.0"
@@ -7742,10 +7742,10 @@ merge-stream@^2.0.0:
   resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-2.0.0.tgz#52823629a14dd00c9770fb6ad47dc6310f2c1f60"
   integrity sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==
 
-micro-match@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/micro-match/-/micro-match-0.2.0.tgz#56c260bf9a3a34f42bc9db613de62cbdd1df5774"
-  integrity sha512-BcxPv/ocMU12ObTOiGRAc5xP4HfkpWrWpldNJzmpJpkLhQ9VJr8dSCN/iz2RYIKT2vJkVP8jdyEmCNA2n000dQ==
+micro-match@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/micro-match/-/micro-match-1.0.1.tgz#45af5023dcb32a4224884a4c3fa0f3997708885d"
+  integrity sha512-AlXuPU2Un4fF38AdRCTeMNKQKJghqYsayWoAdCmlffghFsEt0AzIpvIN6YbttujAtLAvqrjZNChlXm0N3FCKeQ==
 
 micromatch@^3.0.4, micromatch@^3.1.10, micromatch@^3.1.4:
   version "3.1.10"
