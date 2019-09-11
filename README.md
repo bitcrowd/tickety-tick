@@ -47,9 +47,9 @@ Tickety-Tick is available for every major browser:
 
 ## Keyboard Shortcuts
 
-| Shortcut | Description                       |
-|----------|-----------------------------------|
-| Ctrl + T | Open the extension's popup dialog |
+| Shortcut                       | Description                       |
+|--------------------------------|-----------------------------------|
+| <kbd>Ctrl</kbd> + <kbd>T</kbd> | Open the extension's popup dialog |
 
 ## Building
 
