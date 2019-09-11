@@ -49,7 +49,7 @@ Tickety-Tick is available for every major browser:
 
 | Shortcut                       | Description                       |
 |--------------------------------|-----------------------------------|
-| <kbd>Ctrl</kbd> + <kbd>T</kbd> | Open the extension's popup dialog |
+| <kbd>Ctrl</kbd> + <kbd>t</kbd> | Open the extension's popup dialog |
 
 ## Building
 
