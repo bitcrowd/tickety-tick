@@ -31,7 +31,7 @@
     "chrome-launcher": "^0.11.2",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "5.0.4",
-    "cross-env": "5.2.1",
+    "cross-env": "6.0.0",
     "css-loader": "3.2.0",
     "cssnano": "^4.1.8",
     "enzyme": "3.10.0",
