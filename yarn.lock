@@ -7835,9 +7835,9 @@ merge-stream@^2.0.0:
   integrity sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==
 
 micro-match@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/micro-match/-/micro-match-1.0.1.tgz#45af5023dcb32a4224884a4c3fa0f3997708885d"
-  integrity sha512-AlXuPU2Un4fF38AdRCTeMNKQKJghqYsayWoAdCmlffghFsEt0AzIpvIN6YbttujAtLAvqrjZNChlXm0N3FCKeQ==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/micro-match/-/micro-match-1.0.2.tgz#598bf8728b1cf6b8116876e9d24eb6cd6cc9829b"
+  integrity sha512-XulFrfikQbCL4/IrgOzsgNboYqAvIsD16z2t8Gp7LW1fDfBrPkAcersScieMlZzy14b4hwBOVLZpmBpNNnODzg==
 
 micromatch@^3.0.4, micromatch@^3.1.10, micromatch@^3.1.4:
   version "3.1.10"
