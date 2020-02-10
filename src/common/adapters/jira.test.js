@@ -106,6 +106,4 @@ describe('jira adapter', () => {
 
     expect(results).toEqual([[ticket], [ticket], [ticket]]);
   });
-
-
 });
