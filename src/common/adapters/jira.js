@@ -19,8 +19,7 @@ function isJiraPage(loc, doc) {
   return false;
 }
 
-const pathSuffixes = new RegExp('/(browse/[^/]+|projects/[^/]+/issues/[^/]+|secure/RapidBoard.jspa)$', 'g');
-
+const pathSuffixes = new RegExp('/(browse/[^/]+|projects/[^/]+/issues/[^/]+|secure/RapidBoard.jspa|jira/software/projects/[^/]+/boards/[^/]+/)$', 'g');
 function getPathPrefix(loc) {
   return loc.pathname.replace(pathSuffixes, '');
 }
@@ -32,13 +31,16 @@ function getSelectedIssueId(loc, prefix = '') {
 
   const path = loc.pathname.substr(prefix.length); // strip path prefix
 
-  return ['/projects/:project/issues/:id', '/browse/:id']
+  return (['/projects/:project/issues/:id', '/browse/:id']
     .map((pattern) => match(pattern, path).id)
-    .find(Boolean);
+    .find(Boolean));
 }
 
 function extractTicketInfo(response) {
-  const { key: id, fields: { issuetype, summary: title } } = response;
+  const {
+    key: id,
+    fields: { issuetype, summary: title },
+  } = response;
   const type = issuetype.name.toLowerCase();
   return { id, title, type };
 }
@@ -47,6 +49,7 @@ async function scan(loc, doc) {
   if (!isJiraPage(loc, doc)) return [];
 
   const prefix = getPathPrefix(loc); // self-managed instances may host on a subpath
+
   const id = getSelectedIssueId(loc, prefix);
 
   if (!id) return [];
