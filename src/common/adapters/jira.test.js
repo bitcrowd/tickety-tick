@@ -78,7 +78,7 @@ describe('jira adapter', () => {
 
 
   it('extracts tickets from new generation software projects', async () => {
-    const result = await scan(loc('my-subdomain.atlassian.net', `/jira/software/projects/TT/boards/8/backlog?selectedIssue=${key}`), doc);
+    const result = await scan(loc('my-subdomain.atlassian.net', '/jira/software/projects/TT/boards/8/backlog', `?selectedIssue=${key}`), doc);
 
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
