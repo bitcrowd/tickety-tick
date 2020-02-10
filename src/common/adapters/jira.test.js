@@ -76,6 +76,15 @@ describe('jira adapter', () => {
     expect(result).toEqual([ticket]);
   });
 
+
+  it('extracts tickets from new generation software projects', async () => {
+    const result = await scan(loc('my-subdomain.atlassian.net', `/jira/software/projects/TT/boards/8/backlog?selectedIssue=${key}`), doc);
+
+    expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
+    expect(result).toEqual([ticket]);
+  });
+
+
   it('extracts tickets on self-managed instances', async () => {
     const result = await scan(loc('jira.local', `/browse/${key}`), doc);
     expect(client).toHaveBeenCalledWith('https://jira.local/rest/api/latest');
@@ -97,4 +106,6 @@ describe('jira adapter', () => {
 
     expect(results).toEqual([[ticket], [ticket], [ticket]]);
   });
+
+
 });

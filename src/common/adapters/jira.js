@@ -9,36 +9,42 @@
 // * Issues and filters: https://<YOUR-SUBDOMAIN>.atlassian.net/projects/<PROJECT-KEY>/issues/<ISSUE-KEY>
 // * Issue view: https://<YOUR-SUBDOMAIN>.atlassian.net/browse/<ISSUE-KEY>
 
-import { match } from 'micro-match';
+import { match } from "micro-match";
 
-import client from '../client';
+import client from "../client";
 
 function isJiraPage(loc, doc) {
-  if (loc.host.endsWith('.atlassian.net')) return true;
-  if (doc.body.id === 'jira') return true; // self-managed instance on different domain
+  if (loc.host.endsWith(".atlassian.net")) return true;
+  if (doc.body.id === "jira") return true; // self-managed instance on different domain
   return false;
 }
 
-const pathSuffixes = new RegExp('/(browse/[^/]+|projects/[^/]+/issues/[^/]+|secure/RapidBoard.jspa)|(jira/software/projects/[^/]+/boards/[^/]+/)$', 'g');
+const pathSuffixes = new RegExp(
+  "/(browse/[^/]+|projects/[^/]+/issues/[^/]+|secure/RapidBoard.jspa)|(jira/software/projects/[^/]+/boards/[^/]+/)$",
+  "g"
+);
 
 function getPathPrefix(loc) {
-  return loc.pathname.replace(pathSuffixes, '');
+  return loc.pathname.replace(pathSuffixes, "");
 }
 
-function getSelectedIssueId(loc, prefix = '') {
+function getSelectedIssueId(loc, prefix = "") {
   const { searchParams: params } = new URL(loc.href);
 
-  if (params.has('selectedIssue')) return params.get('selectedIssue');
+  if (params.has("selectedIssue")) return params.get("selectedIssue");
 
   const path = loc.pathname.substr(prefix.length); // strip path prefix
 
-  return ['/projects/:project/issues/:id', '/browse/:id']
-    .map((pattern) => match(pattern, path).id)
+  return ["/projects/:project/issues/:id", "/browse/:id"]
+    .map(pattern => match(pattern, path).id)
     .find(Boolean);
 }
 
 function extractTicketInfo(response) {
-  const { key: id, fields: { issuetype, summary: title } } = response;
+  const {
+    key: id,
+    fields: { issuetype, summary: title }
+  } = response;
   const type = issuetype.name.toLowerCase();
   return { id, title, type };
 }
@@ -47,6 +53,7 @@ async function scan(loc, doc) {
   if (!isJiraPage(loc, doc)) return [];
 
   const prefix = getPathPrefix(loc); // self-managed instances may host on a subpath
+
   const id = getSelectedIssueId(loc, prefix);
 
   if (!id) return [];
