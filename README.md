@@ -5,7 +5,7 @@
 
 ![Tickety-Tick's user interface](./screenshots/interface.png)
 
-At bitcrowd we love conventions. One of them is how we name branches and commits. This makes it easy to relate a particular branch or commit to a certain ticket.
+At [bitcrowd](https://bitcrowd.net/) we love conventions. One of them is how we name branches and commits. This makes it easy to relate a particular branch or commit to a certain ticket.
 
 **Branches** follow the format `type/id-title` by default, where:
 
@@ -33,8 +33,9 @@ Currently, we support:
 - [GitLab](https://gitlab.com/)
 - [Jira](https://www.atlassian.com/software/jira)
 - [Ora](https://ora.pm/)
-- [Pivotal Tracker](https://www.pivotaltracker.com/)
 - [Trello](https://trello.com/)
+
+Your ticket system is missing? Go ahead and implement an adapter for it! We are always happy about contributions and here to support you 👋.
 
 ## Installation
 

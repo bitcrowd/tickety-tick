@@ -2,7 +2,6 @@ import GitHub from './adapters/github';
 import GitLab from './adapters/gitlab';
 import Jira from './adapters/jira';
 import Ora from './adapters/ora';
-import Pivotal from './adapters/pivotal';
 import Trello from './adapters/trello';
 
 import serializable from './utils/serializable-errors';
@@ -17,10 +16,13 @@ async function attempt(scan, loc, doc) {
 }
 
 function aggregate(results) {
-  return results.reduce(({ tickets, errors }, result) => ({
-    errors: errors.concat(result.error ? [result.error] : []),
-    tickets: tickets.concat(result.tickets || []),
-  }), { tickets: [], errors: [] });
+  return results.reduce(
+    ({ tickets, errors }, result) => ({
+      errors: errors.concat(result.error ? [result.error] : []),
+      tickets: tickets.concat(result.tickets || []),
+    }),
+    { tickets: [], errors: [] },
+  );
 }
 
 export async function search(adapters, loc, doc) {
@@ -29,6 +31,6 @@ export async function search(adapters, loc, doc) {
   return aggregate(results);
 }
 
-export const stdadapters = [GitHub, GitLab, Jira, Ora, Pivotal, Trello];
+export const stdadapters = [GitHub, GitLab, Jira, Ora, Trello];
 
 export default search.bind(null, stdadapters);
