@@ -5,6 +5,7 @@ export default (templates, autofmt) => {
 
   const enhance = (ticket) => ({
     fmt: {
+      summary: fmt.summary(ticket),
       branch: fmt.branch(ticket),
       commit: fmt.commit(ticket),
       command: fmt.command(ticket),

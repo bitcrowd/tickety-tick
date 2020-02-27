@@ -16,6 +16,7 @@ describe('ticket enhancer', () => {
 
     expect(enhancer(ticket)).toEqual({
       fmt: {
+        summary: formatter.summary(ticket),
         branch: formatter.branch(ticket),
         commit: formatter.commit(ticket),
         command: formatter.command(ticket),

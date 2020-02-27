@@ -25,7 +25,7 @@ describe('header', () => {
 
   it('renders a button for copying a summary of all tickets', () => {
     const wrapper = shallow(<Header tickets={tickets} />);
-    const value = tickets.map((ticket) => ticket.fmt.commit).join(', ');
+    const value = tickets.map((ticket) => ticket.fmt.summary).join(', ');
     const button = (<CopyButton value={value}>Summary</CopyButton>);
     expect(wrapper.containsMatchingElement(button)).toBe(true);
   });
