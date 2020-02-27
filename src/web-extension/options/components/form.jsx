@@ -137,7 +137,7 @@ class Form extends Component {
       },
       {
         icon: <InputIcon icon={Inbox} />,
-        label: 'Summary',
+        label: 'Summary Format',
         id: 'summary-format',
         name: 'summary',
         value: templates.summary,
@@ -147,36 +147,40 @@ class Form extends Component {
     ];
 
     const input = (props) => (
-      <TemplateInput
-        key={props.id}
-        disabled={loading}
-        onChange={this.handleChanged}
-        {...props}
-      />
+      <React.Fragment key={props.id}>
+        <h3 className="h5 mt-4 pt-2 pb-1">{props.label}</h3>
+        <TemplateInput
+          disabled={loading}
+          onChange={this.handleChanged}
+          {...props}
+        />
+      </React.Fragment>
     );
 
     return (
       <form onSubmit={this.handleSubmit} className="mw-100 px-2 py-3">
-        <CheckboxInput
-          id="auto-format-commits"
-          name="autofmt"
-          checked={autofmt}
-          disabled={loading}
-          label={(
-            <>
-              Auto-format commit message – as per
-              {' '}
-              <a
-                href={recommendation}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                recommendation
-              </a>
-            </>
-          )}
-          onChange={this.handleChanged}
-        />
+        <div className="mt-4">
+          <CheckboxInput
+            id="auto-format-commits"
+            name="autofmt"
+            checked={autofmt}
+            disabled={loading}
+            label={(
+              <>
+                Auto-format commit message – as per
+                {' '}
+                <a
+                  href={recommendation}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  recommendation
+                </a>
+              </>
+            )}
+            onChange={this.handleChanged}
+          />
+        </div>
 
         {fields.map(input)}
 

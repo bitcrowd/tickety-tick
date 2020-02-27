@@ -186,21 +186,15 @@ This approach works nicely with our Git workflow, for which the above assumption
 
 If you have different conventions regarding commit messages, branch names or you're just using a different source code management tool, Tickety-Tick allows you to customize the output format for all of these.
 
-In Firefox, open [about:addons](//about:addons) and select the Tickety-Tick preferences and scroll to the bottom of the page.
+In **Firefox**, open [about:addons](//about:addons) and select the Tickety-Tick preferences and scroll to the bottom of the page.
 
 ![Firefox preferences](./screenshots/firefox-preferences.png)
 
-In Chrome, open [chrome://extensions/](//chrome://extensions), click the "Details" button on the Tickety-Tick tile and select "Extension options".
+In **Chrome**, open [chrome://extensions/](//chrome://extensions), click the "Details" button on the Tickety-Tick tile and select "Extension options".
 
-![Chrome preferences](./screenshots/chrome-preferences.png)
+In **Opera**, open [opera://extensions/](//opera://extensions), click the "Options" button on the Tickety-Tick tile.
 
-In Opera, open [opera://extensions/](//opera://extensions), click the "Options" button on the Tickety-Tick tile.
-
-![Opera preferences](./screenshots/opera-preferences.png)
-
-In Safari, open "Preferences" (`cmd + ,`), then select "Extensions".
-
-![Safari preferences](./screenshots/safari-preferences.png)
+In **Safari**, open "Preferences" (`cmd + ,`), then select "Extensions".
 
 ### Auto-formatting of commit messages
 
