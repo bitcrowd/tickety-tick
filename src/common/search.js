@@ -1,7 +1,6 @@
 import GitHub from './adapters/github';
 import GitLab from './adapters/gitlab';
 import Jira from './adapters/jira';
-import Ora from './adapters/ora';
 import Trello from './adapters/trello';
 
 import serializable from './utils/serializable-errors';
@@ -31,6 +30,6 @@ export async function search(adapters, loc, doc) {
   return aggregate(results);
 }
 
-export const stdadapters = [GitHub, GitLab, Jira, Ora, Trello];
+export const stdadapters = [GitHub, GitLab, Jira, Trello];
 
 export default search.bind(null, stdadapters);
