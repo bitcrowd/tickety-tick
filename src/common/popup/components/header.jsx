@@ -6,7 +6,7 @@ import CopyButton from './copy-button';
 import TicketShape from '../utils/ticket-shape';
 
 const button = (tickets) => {
-  const summary = tickets.map((ticket) => ticket.fmt.commit).join(', ');
+  const summary = tickets.map((ticket) => ticket.fmt.summary).join(', ');
 
   return (
     <div>

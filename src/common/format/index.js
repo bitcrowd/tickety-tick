@@ -16,6 +16,7 @@ const renderer = (templates, name) => {
 };
 
 export default (templates = {}, prettify = true) => {
+  const summary = renderer(templates, 'summary');
   const branch = renderer(templates, 'branch');
 
   // eslint-disable-next-line no-underscore-dangle
@@ -34,5 +35,7 @@ export default (templates = {}, prettify = true) => {
     ...values,
   });
 
-  return { branch, command, commit };
+  return {
+    summary, branch, command, commit,
+  };
 };

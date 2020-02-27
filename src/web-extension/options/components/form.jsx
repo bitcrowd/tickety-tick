@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Octicon, { Comment, GitBranch, Terminal } from '@githubprimer/octicons-react';
+import Octicon, {
+  Comment, GitBranch, Inbox, Terminal,
+} from '@githubprimer/octicons-react';
 
 import CheckboxInput from './checkbox-input';
 import TemplateInput from './template-input';
@@ -33,6 +35,7 @@ class Form extends Component {
     this.state = {
       loading: true,
       autofmt: true,
+      summary: '',
       branch: '',
       commit: '',
       command: '',
@@ -78,12 +81,15 @@ class Form extends Component {
 
     const {
       autofmt,
+      summary,
       branch,
       commit,
       command,
     } = this.state;
 
-    const templates = { branch, commit, command };
+    const templates = {
+      summary, branch, commit, command,
+    };
     const options = { autofmt };
 
     this.setState(() => ({ loading: true }), () => {
@@ -128,6 +134,15 @@ class Form extends Component {
         value: templates.command,
         fallback: defaults.command,
         preview: fmt.command(example),
+      },
+      {
+        icon: <InputIcon icon={Inbox} />,
+        label: 'Summary',
+        id: 'summary-format',
+        name: 'summary',
+        value: templates.summary,
+        fallback: defaults.summary,
+        preview: fmt.summary(example),
       },
     ];
 
