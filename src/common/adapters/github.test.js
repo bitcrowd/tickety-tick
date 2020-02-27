@@ -132,6 +132,7 @@ const pages = {
 Object.keys(selectors).forEach((variant) => {
   const html = pages[variant];
 
+  // eslint-disable-next-line jest/valid-describe
   describe(`github adapter (${variant})`, () => {
     function dom(body = '') {
       const { window } = new JSDOM(`<html><body>${body}</body></html>`);
