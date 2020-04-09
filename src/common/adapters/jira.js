@@ -19,7 +19,10 @@ function isJiraPage(loc, doc) {
   return false;
 }
 
-const pathSuffixes = new RegExp('/(browse/[^/]+|projects/[^/]+/issues/[^/]+|secure/RapidBoard.jspa|jira/software/projects/[^/]+/boards/[^/]+/)$', 'g');
+const pathSuffixes = new RegExp(
+  '/(browse/[^/]+|projects/[^/]+/issues/[^/]+|secure/RapidBoard.jspa|jira/software/projects/[^/]+/boards/.*)$',
+  'g',
+);
 function getPathPrefix(loc) {
   return loc.pathname.replace(pathSuffixes, '');
 }
