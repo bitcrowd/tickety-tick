@@ -34,9 +34,9 @@ function getSelectedIssueId(loc, prefix = '') {
 
   const path = loc.pathname.substr(prefix.length); // strip path prefix
 
-  return (['/projects/:project/issues/:id', '/browse/:id']
+  return ['/projects/:project/issues/:id', '/browse/:id']
     .map((pattern) => match(pattern, path).id)
-    .find(Boolean));
+    .find(Boolean);
 }
 
 function extractTicketInfo(response) {

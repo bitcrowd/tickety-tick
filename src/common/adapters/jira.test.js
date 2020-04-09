@@ -54,35 +54,72 @@ describe('jira adapter', () => {
 
   it('uses the endpoints for the current host', async () => {
     await scan(loc('my-subdomain.atlassian.net', `/browse/${key}`), doc);
-    expect(client).toHaveBeenCalledWith('https://my-subdomain.atlassian.net/rest/api/latest');
+    expect(client).toHaveBeenCalledWith(
+      'https://my-subdomain.atlassian.net/rest/api/latest',
+    );
     expect(api.get).toHaveBeenCalled();
   });
 
   it('extracts tickets from the active sprints tab', async () => {
-    const result = await scan(loc('my-subdomain.atlassian.net', '/', `?selectedIssue=${key}`), doc);
+    const result = await scan(
+      loc('my-subdomain.atlassian.net', '/', `?selectedIssue=${key}`),
+      doc,
+    );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
   });
 
   it('extracts tickets from the issues tab', async () => {
-    const result = await scan(loc('my-subdomain.atlassian.net', `/projects/TT/issues/${key}`, { filter: 'something' }), doc);
+    const result = await scan(
+      loc('my-subdomain.atlassian.net', `/projects/TT/issues/${key}`, {
+        filter: 'something',
+      }),
+      doc,
+    );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
   });
 
   it('extracts tickets when browsing an issue', async () => {
-    const result = await scan(loc('my-subdomain.atlassian.net', `/browse/${key}`), doc);
+    const result = await scan(
+      loc('my-subdomain.atlassian.net', `/browse/${key}`),
+      doc,
+    );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
   });
-
 
   it('extracts tickets from new generation software projects', async () => {
-    const result = await scan(loc('my-subdomain.atlassian.net', '/jira/software/projects/TT/boards/8/backlog', `?selectedIssue=${key}`), doc);
+    const result = await scan(
+      loc(
+        'my-subdomain.atlassian.net',
+        '/jira/software/projects/TT/boards/8',
+        `?selectedIssue=${key}`,
+      ),
+      doc,
+    );
+    expect(client).toHaveBeenCalledWith(
+      'https://my-subdomain.atlassian.net/rest/api/latest',
+    );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
   });
 
+  it('extracts tickets from new generation software projects from the board-URL', async () => {
+    const result = await scan(
+      loc(
+        'my-subdomain.atlassian.net',
+        '/jira/software/projects/TT/boards/7/backlog',
+        `?selectedIssue=${key}`,
+      ),
+      doc,
+    );
+    expect(client).toHaveBeenCalledWith(
+      'https://my-subdomain.atlassian.net/rest/api/latest',
+    );
+    expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
+    expect(result).toEqual([ticket]);
+  });
 
   it('extracts tickets on self-managed instances', async () => {
     const result = await scan(loc('jira.local', `/browse/${key}`), doc);
@@ -92,7 +129,14 @@ describe('jira adapter', () => {
 
   it('extracts tickets on self-managed instances (with path prefix)', async () => {
     const results = await Promise.all([
-      scan(loc('jira.local', '/prefix/secure/RapidBoard.jspa', `?selectedIssue=${key}`), doc),
+      scan(
+        loc(
+          'jira.local',
+          '/prefix/secure/RapidBoard.jspa',
+          `?selectedIssue=${key}`,
+        ),
+        doc,
+      ),
       scan(loc('jira.local', `/prefix/projects/TT/issues/${key}`), doc),
       scan(loc('jira.local', `/prefix/browse/${key}`), doc),
     ]);
