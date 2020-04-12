@@ -1,7 +1,7 @@
-import compile from './template';
 import * as defaults from './defaults';
 import * as helpers from './helpers';
 import pprint from './pretty-print';
+import compile from './template';
 
 export { defaults };
 export { helpers };
@@ -22,20 +22,22 @@ export default (templates = {}, prettify = true) => {
   // eslint-disable-next-line no-underscore-dangle
   const _commit = renderer(templates, 'commit');
 
-  const commit = prettify
-    ? (values) => pprint(_commit(values))
-    : _commit;
+  const commit = prettify ? (values) => pprint(_commit(values)) : _commit;
 
   // eslint-disable-next-line no-underscore-dangle
   const _command = renderer(templates, 'command');
 
-  const command = (values) => _command({
-    branch: branch(values),
-    commit: commit(values),
-    ...values,
-  });
+  const command = (values) =>
+    _command({
+      branch: branch(values),
+      commit: commit(values),
+      ...values,
+    });
 
   return {
-    summary, branch, command, commit,
+    summary,
+    branch,
+    command,
+    commit,
   };
 };

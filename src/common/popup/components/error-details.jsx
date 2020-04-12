@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import StackTrace from 'stacktrace-js';
 
-import CopyButton from './copy-button';
-
 import ErrorShape from '../utils/error-shape';
+import CopyButton from './copy-button';
 
 function framefmt(stackframe) {
   const name = stackframe.getFunctionName() || '<anonymous>';

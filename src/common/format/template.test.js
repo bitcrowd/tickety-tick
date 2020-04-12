@@ -16,10 +16,15 @@ describe('template', () => {
 
   it('applies value transformations', () => {
     const lowercase = jest.fn().mockImplementation((s) => s.toLowerCase());
-    const dasherize = jest.fn().mockImplementation((s) => s.replace(/\s+/g, '-'));
+    const dasherize = jest
+      .fn()
+      .mockImplementation((s) => s.replace(/\s+/g, '-'));
     const transforms = { lowercase, dasherize };
 
-    const render = compile('result: {title | lowercase | dasherize}', transforms);
+    const render = compile(
+      'result: {title | lowercase | dasherize}',
+      transforms
+    );
     const output = render({ title: 'A B C' });
 
     expect(lowercase).toHaveBeenCalledWith('A B C');
@@ -35,7 +40,10 @@ describe('template', () => {
 
   it('ignores whitespace within template expressions', () => {
     const transforms = { triple: (a) => a * 3, square: (a) => a * a };
-    const render = compile('({ a } * 3)**2 = {  a  |  triple  |  square  }', transforms);
+    const render = compile(
+      '({ a } * 3)**2 = {  a  |  triple  |  square  }',
+      transforms
+    );
     const output = render({ a: 2 });
     expect(output).toBe('(2 * 3)**2 = 36');
   });

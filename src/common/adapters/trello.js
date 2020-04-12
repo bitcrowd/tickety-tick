@@ -29,7 +29,9 @@ function extractTicketInfo(response) {
   };
 }
 
-const requestOptions = { searchParams: { fields: 'name,desc,shortLink,shortUrl' } };
+const requestOptions = {
+  searchParams: { fields: 'name,desc,shortLink,shortUrl' },
+};
 
 async function scan(loc) {
   if (loc.host !== 'trello.com') return [];

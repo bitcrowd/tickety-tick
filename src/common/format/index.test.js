@@ -29,13 +29,19 @@ describe('ticket formatting', () => {
 
       it('includes ticket type, id and title', () => {
         const formatted = fmt.branch(ticket);
-        expect(formatted).toBe(`${slugify(ticket.type)}/${slugify(ticket.id)}-${slugify(ticket.title)}`);
+        expect(formatted).toBe(
+          `${slugify(ticket.type)}/${slugify(ticket.id)}-${slugify(
+            ticket.title
+          )}`
+        );
       });
 
       it('formats type to "feature" if not provided', () => {
         const typeless = { id: ticket.id, title: ticket.title };
         const formatted = fmt.branch(typeless);
-        expect(formatted).toBe(`feature/${slugify(ticket.id)}-${slugify(ticket.title)}`);
+        expect(formatted).toBe(
+          `feature/${slugify(ticket.id)}-${slugify(ticket.title)}`
+        );
       });
     });
 
@@ -48,8 +54,10 @@ describe('ticket formatting', () => {
 
         const formatted = fmt.command(ticket);
 
-        expect(formatted).toBe(`git checkout -b ${shellquote(branch)}`
-          + ` && git commit --allow-empty -m ${shellquote(commit)}`);
+        expect(formatted).toBe(
+          `git checkout -b ${shellquote(branch)}` +
+            ` && git commit --allow-empty -m ${shellquote(commit)}`
+        );
       });
     });
   });

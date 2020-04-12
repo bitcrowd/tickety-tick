@@ -2,15 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter as Router, Route } from 'react-router';
 
-import EnvContext from './env-context';
-
 import About from './components/about';
 import Tool from './components/tool';
+import EnvContext from './env-context';
 
 function propped(Component, defaults) {
   const ProppedComponent = (more) => {
     const props = { ...defaults, ...more };
-    return (<Component {...props} />);
+    return <Component {...props} />;
   };
 
   return ProppedComponent;
