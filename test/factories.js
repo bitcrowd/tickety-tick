@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-export const ticket = (overrides = {}) => {
+export function ticket(overrides = {}) {
   const defaults = { id: '1', title: 'ticket title', type: 'feature' };
 
   const base = { ...defaults, ...overrides };
@@ -12,4 +12,4 @@ export const ticket = (overrides = {}) => {
   const fmt = { branch, commit, command };
 
   return { ...base, fmt };
-};
+}

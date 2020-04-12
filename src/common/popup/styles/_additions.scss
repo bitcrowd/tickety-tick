@@ -1,21 +1,23 @@
 // Popup
 
 .popup {
-  width: 315px;
-  min-height: 210px;
+  width: 290px;
 }
 
-// Content
+// Buttons
 
-.content {
-  padding-top: 43px;
-}
+.btn {
+  .btn-label {}
 
-// Logos
+  .btn-label-conceal {
+    display: none;
+  }
 
-.logo-sm {
-  width: 16px;
-  height: 16px;
+  &:active .btn-label-conceal,
+  &:focus .btn-label-conceal,
+  &:hover .btn-label-conceal {
+    display: initial;
+  }
 }
 
 // Octicons
