@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
 function TemplateInputElement({ multiline, ...props }) {
@@ -30,7 +30,8 @@ function TemplateInput(props) {
     preview,
   } = props;
 
-  const setValue = (newValue) => onChange({ target: { name, value: newValue } });
+  const setValue = (newValue) =>
+    onChange({ target: { name, value: newValue } });
 
   const onFocus = value ? noop : () => setValue(fallback);
   const onBlur = value === fallback ? () => setValue('') : noop;
@@ -61,7 +62,9 @@ function TemplateInput(props) {
       </div>
       <div className="card">
         <div className="card-body">
-          <pre className="small text-muted mw-100 m-0 overflow-auto">{preview}</pre>
+          <pre className="small text-muted mw-100 m-0 overflow-auto">
+            {preview}
+          </pre>
         </div>
       </div>
     </div>

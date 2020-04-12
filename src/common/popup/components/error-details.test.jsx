@@ -1,9 +1,9 @@
-import React from 'react';
 import { shallow } from 'enzyme';
+import React from 'react';
 import StackTrace from 'stacktrace-js';
 
-import CopyErrorDetails from './error-details';
 import CopyButton from './copy-button';
+import CopyErrorDetails from './error-details';
 
 jest.mock('stacktrace-js', () => ({ fromError: jest.fn() }));
 
@@ -40,14 +40,26 @@ describe('error-details', () => {
   }
 
   beforeEach(() => {
-    StackTrace.fromError.mockResolvedValue([
-      ['scan', 'src/common/adapters/github.js', 74, 8],
-      ['attempt', 'src/common/search.js', 12, 26],
-      ['search', 'src/common/search.js', 27, 45],
-      ['search', 'src/common/search.js', 27, 25],
-      ['browser.runtime.onMessage.addListener', 'src/web-extension/content.js', 8, 13],
-      ['wrappedSendResponse', 'node_modules/webextension-polyfill/dist/browser-polyfill.js', 1057, null],
-    ].map((args) => new MockStackFrame(...args)));
+    StackTrace.fromError.mockResolvedValue(
+      [
+        ['scan', 'src/common/adapters/github.js', 74, 8],
+        ['attempt', 'src/common/search.js', 12, 26],
+        ['search', 'src/common/search.js', 27, 45],
+        ['search', 'src/common/search.js', 27, 25],
+        [
+          'browser.runtime.onMessage.addListener',
+          'src/web-extension/content.js',
+          8,
+          13,
+        ],
+        [
+          'wrappedSendResponse',
+          'node_modules/webextension-polyfill/dist/browser-polyfill.js',
+          1057,
+          null,
+        ],
+      ].map((args) => new MockStackFrame(...args))
+    );
   });
 
   afterEach(() => {

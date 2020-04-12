@@ -26,88 +26,84 @@ exports[`about renders 1`] = `
     <div
       className="container"
     >
-      <div>
-        <h1
-          className="h3 mt-3 mb-3"
+      <h1
+        className="h3 mt-3 mb-3"
+      >
+        <img
+          alt=""
+          className="logo-sm"
+          src="icon-32.png"
+        />
+         
+        tickety-tick
+      </h1>
+      <h6>
+        Usage:
+      </h6>
+      <ol
+        className="mt-2 pl-3"
+      >
+        <li>
+          Open one or more tickets in your favourite ticket tracking system, then click the extension icon.
+        </li>
+        <li>
+          You can then select if you want to create a commit message or a branch name based on these tickets.
+        </li>
+      </ol>
+      <p>
+        This extension is open-source software by the fellows at
+         
+        <ExternalLink
+          href="http://bitcrowd.net"
         >
-          <img
-            alt=""
-            className="logo-sm"
-            src="icon-32.png"
-          />
-           
-          tickety-tick
-        </h1>
-        <h6>
-          Usage:
-        </h6>
-        <ol
-          className="mt-2 pl-3"
+          bitcrowd
+        </ExternalLink>
+        .
+      </p>
+      <p>
+        The source code is available on
+         
+        <ExternalLink
+          href="https://github.com/bitcrowd/tickety-tick"
         >
-          <li>
-            Open one or more tickets in your favourite ticket tracking system, then click the extension icon.
-          </li>
-          <li>
-            You can then select if you want to create a commit message or a branch name based on these tickets.
-          </li>
-        </ol>
-        <p>
-          <span>
-            This extension is open-source software by the fellows at 
-          </span>
-          <ExternalLink
-            href="http://bitcrowd.net"
-          >
-            bitcrowd
-          </ExternalLink>
-          .
-        </p>
-        <p>
-          <span>
-            The source code is available on 
-          </span>
-          <ExternalLink
-            href="https://github.com/bitcrowd/tickety-tick"
-          >
-            GitHub
-          </ExternalLink>
-          .
-        </p>
-        <p
-          className="small"
+          GitHub
+        </ExternalLink>
+        .
+      </p>
+      <p
+        className="small"
+      >
+        <ExternalLink
+          href="https://github.com/bitcrowd/tickety-tick/tree/test-commit-hash"
+          title="Browse source code for this version"
         >
-          <ExternalLink
-            href="https://github.com/bitcrowd/tickety-tick/tree/test-commit-hash"
-            title="Browse source code for this version"
-          >
-            test-commit-hash
-          </ExternalLink>
-        </p>
-        <p
-          className="small"
+          test-commit-hash
+        </ExternalLink>
+      </p>
+      <p
+        className="small"
+      >
+        <span>
+          Logo by 
+        </span>
+        <ExternalLink
+          href="http://thenounproject.com/term/ticket/92194/"
         >
-          <span>
-            Logo by 
-          </span>
-          <ExternalLink
-            href="http://thenounproject.com/term/ticket/92194/"
-          >
-            Ramón G.
-          </ExternalLink>
-          <span>
-             under CC-BY 3.0
-          </span>
-          <br />
-          <span>
-            Other icons from 
-          </span>
-          <ExternalLink
-            href="https://octicons.github.com/"
-          >
-            GitHub Octicons
-          </ExternalLink>
-        </p>
-      </div>
+          Ramón G.
+        </ExternalLink>
+        <span>
+           under CC-BY 3.0
+        </span>
+        <br />
+        <span>
+          Other icons from 
+        </span>
+        <ExternalLink
+          href="https://octicons.github.com/"
+        >
+          GitHub Octicons
+        </ExternalLink>
+      </p>
     </div>
   </div>
 </div>

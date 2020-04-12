@@ -1,10 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-
-import ExternalLink from './external-link';
-import ErrorDetails from './error-details';
+import React from 'react';
 
 import ErrorShape from '../utils/error-shape';
+import ErrorDetails from './error-details';
+import ExternalLink from './external-link';
 
 function IssueLink() {
   return (
@@ -18,17 +17,13 @@ function Hint() {
   return (
     <>
       <h5 className="mt-3 mb-3">No tickets found on this page.</h5>
-      <h6>
-        Did you select or open any tickets?
-      </h6>
+      <h6>Did you select or open any tickets?</h6>
       <p>
         Tickety-Tick currently supports
         <br />
         GitHub, GitLab, Jira and Trello.
       </p>
-      <h6>
-        Missing anything or found a bug?
-      </h6>
+      <h6>Missing anything or found a bug?</h6>
       <p className="pb-1">
         <IssueLink />
       </p>
@@ -41,6 +36,7 @@ function Report({ errors }) {
     <>
       <h5 className="mt-3 mb-3">Houston, we have a problem.</h5>
       <p>
+        {/* eslint-disable-next-line prettier/prettier */}
         Tickety-Tick encountered
         {' '}
         <strong>

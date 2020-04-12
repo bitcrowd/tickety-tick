@@ -1,13 +1,15 @@
-import React from 'react';
 import { shallow } from 'enzyme';
+import React from 'react';
 
 import EnvContext from '../env-context';
-
 import ExternalLink from './external-link';
 
 describe('external-link', () => {
   function render(overrides, env) {
-    const defaults = { children: 'link text', href: 'https://github.com/bitcrowd/tickety-tick' };
+    const defaults = {
+      children: 'link text',
+      href: 'https://github.com/bitcrowd/tickety-tick',
+    };
 
     const props = { ...defaults, ...overrides };
 

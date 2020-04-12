@@ -21,7 +21,7 @@ function isJiraPage(loc, doc) {
 
 const pathSuffixes = new RegExp(
   '/(browse/[^/]+|projects/[^/]+/issues/[^/]+|secure/RapidBoard.jspa|jira/software/projects/[^/]+/boards/.*)$',
-  'g',
+  'g'
 );
 function getPathPrefix(loc) {
   return loc.pathname.replace(pathSuffixes, '');

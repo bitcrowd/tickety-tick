@@ -2,7 +2,6 @@ import GitHub from './adapters/github';
 import GitLab from './adapters/gitlab';
 import Jira from './adapters/jira';
 import Trello from './adapters/trello';
-
 import serializable from './utils/serializable-errors';
 
 async function attempt(scan, loc, doc) {
@@ -20,7 +19,7 @@ function aggregate(results) {
       errors: errors.concat(result.error ? [result.error] : []),
       tickets: tickets.concat(result.tickets || []),
     }),
-    { tickets: [], errors: [] },
+    { tickets: [], errors: [] }
   );
 }
 

@@ -24,7 +24,10 @@ describe('client', () => {
   });
 
   it('sets custom options', () => {
-    const instance = client('https://example.io/api', { credentials: 'same-origin', timeout: 1000 });
+    const instance = client('https://example.io/api', {
+      credentials: 'same-origin',
+      timeout: 1000,
+    });
     expect(ky.extend.mock.calls).toMatchSnapshot();
     expect(instance).toBe(mock);
   });

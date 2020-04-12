@@ -1,15 +1,16 @@
-import React from 'react';
 import { shallow } from 'enzyme';
-
-import Tool from './tool';
-import TicketList from './ticket-list';
-import NoTickets from './no-tickets';
-import Header from './header';
+import React from 'react';
 
 import { ticket as make } from '../../../../test/factories';
+import Header from './header';
+import NoTickets from './no-tickets';
+import TicketList from './ticket-list';
+import Tool from './tool';
 
 describe('tool', () => {
-  const tickets = ['un', 'deux', 'trois'].map((title, i) => make({ id: `${i + 1}`, title }));
+  const tickets = ['un', 'deux', 'trois'].map((title, i) =>
+    make({ id: `${i + 1}`, title })
+  );
   const errors = [new Error('ouch')];
 
   let wrapper;

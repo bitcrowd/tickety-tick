@@ -18,7 +18,7 @@ describe('format helpers', () => {
 
     it('escapes any single-quotes in the input', () => {
       const input = 'you\'; echo aren\'t "pwned"';
-      const quoted = '\'you\'\\\'\'; echo aren\'\\\'\'t "pwned"\'';
+      const quoted = "'you'\\''; echo aren'\\''t \"pwned\"'";
       expect(shellquote(input)).toBe(quoted);
     });
   });

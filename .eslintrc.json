@@ -1,14 +1,22 @@
 {
   "root": true,
-  "extends": ["airbnb", "plugin:jest/recommended"],
   "env": {
     "browser": true,
     "jest": true
   },
+  "extends": [
+    "airbnb",
+    "plugin:jest/recommended",
+    "plugin:prettier/recommended"
+  ],
   "globals": {
     "COMMITHASH": "readonly"
   },
-  "plugins": ["jest"],
+  "plugins": [
+    "jest",
+    "prettier",
+    "simple-import-sort"
+  ],
   "rules": {
     "jsx-a11y/anchor-is-valid": [
       "error",
@@ -16,6 +24,8 @@
         "specialLink": ["to"]
       }
     ],
-    "react/jsx-props-no-spreading": ["off"]
+    "react/jsx-props-no-spreading": "off",
+    "prettier/prettier": "error",
+    "simple-import-sort/sort": "error"
   }
 }
