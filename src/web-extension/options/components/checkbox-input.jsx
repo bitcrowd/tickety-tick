@@ -1,15 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 function CheckboxInput(props) {
-  const {
-    checked,
-    disabled,
-    id,
-    label,
-    name,
-    onChange,
-  } = props;
+  const { checked, disabled, id, label, name, onChange } = props;
 
   return (
     <div className="form-group">
@@ -28,9 +21,7 @@ function CheckboxInput(props) {
           </div>
         </div>
         <div className="form-control px-2">
-          <label htmlFor={id}>
-            {label}
-          </label>
+          <label htmlFor={id}>{label}</label>
         </div>
       </div>
     </div>

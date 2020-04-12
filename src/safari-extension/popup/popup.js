@@ -1,8 +1,9 @@
 /* global safari */
 
-import render from '../../common/popup/render';
-import enhance from '../../common/enhance';
 import '../../common/popup/popup.scss';
+
+import enhance from '../../common/enhance';
+import render from '../../common/popup/render';
 
 const app = safari.application;
 const { settings } = safari.extension;
@@ -27,7 +28,8 @@ function openext(url) {
 }
 
 function load() {
-  const page = app.activeBrowserWindow && app.activeBrowserWindow.activeTab.page;
+  const page =
+    app.activeBrowserWindow && app.activeBrowserWindow.activeTab.page;
   if (page) page.dispatchMessage('get-tickets');
 }
 

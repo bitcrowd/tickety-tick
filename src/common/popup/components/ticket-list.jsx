@@ -1,9 +1,13 @@
-import React from 'react';
+import Octicon, {
+  Comment,
+  GitBranch,
+  Terminal,
+} from '@githubprimer/octicons-react';
 import PropTypes from 'prop-types';
-import Octicon, { Comment, GitBranch, Terminal } from '@githubprimer/octicons-react';
+import React from 'react';
 
-import CopyButton from './copy-button';
 import TicketShape from '../utils/ticket-shape';
+import CopyButton from './copy-button';
 
 function ButtonIcon({ icon }) {
   return (
@@ -76,9 +80,7 @@ function TicketList({ tickets }) {
 
   return (
     <div>
-      <ul className="list-group list-group-flush">
-        {tickets.map(itemize)}
-      </ul>
+      <ul className="list-group list-group-flush">{tickets.map(itemize)}</ul>
     </div>
   );
 }

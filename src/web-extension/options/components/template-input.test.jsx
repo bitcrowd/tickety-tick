@@ -1,5 +1,5 @@
-import React from 'react';
 import { shallow } from 'enzyme';
+import React from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import TemplateInput, { TemplateInputElement } from './template-input';
@@ -143,25 +143,29 @@ describe('template-input-element', () => {
   it('renders a text input for single-line values', () => {
     const wrapper = render({ multiline: false });
     const input = wrapper.find('input');
-    expect(input.props()).toEqual(expect.objectContaining({
-      type: 'text',
-      name: 'test-input-name',
-      value: 'test-input-value',
-      placeholder: 'test-placeholder',
-      disabled: false,
-      onChange: expect.any(Function),
-    }));
+    expect(input.props()).toEqual(
+      expect.objectContaining({
+        type: 'text',
+        name: 'test-input-name',
+        value: 'test-input-value',
+        placeholder: 'test-placeholder',
+        disabled: false,
+        onChange: expect.any(Function),
+      })
+    );
   });
 
   it('renders a textarea for multi-line values', () => {
     const wrapper = render({ multiline: true });
     const textarea = wrapper.find(TextareaAutosize);
-    expect(textarea.props()).toEqual(expect.objectContaining({
-      name: 'test-input-name',
-      value: 'test-input-value',
-      placeholder: 'test-placeholder',
-      disabled: false,
-      onChange: expect.any(Function),
-    }));
+    expect(textarea.props()).toEqual(
+      expect.objectContaining({
+        name: 'test-input-name',
+        value: 'test-input-value',
+        placeholder: 'test-placeholder',
+        disabled: false,
+        onChange: expect.any(Function),
+      })
+    );
   });
 });

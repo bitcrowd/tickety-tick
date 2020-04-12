@@ -1,11 +1,10 @@
-import React from 'react';
 import { shallow } from 'enzyme';
-
-import Form from './form';
-import CheckboxInput from './checkbox-input';
-import TemplateInput from './template-input';
+import React from 'react';
 
 import format, { defaults as fallbacks, helpers } from '../../../common/format';
+import CheckboxInput from './checkbox-input';
+import Form from './form';
+import TemplateInput from './template-input';
 
 jest.mock('../../../common/format', () => {
   const mockFormat = jest.fn();
@@ -15,8 +14,12 @@ jest.mock('../../../common/format', () => {
 
 describe('form', () => {
   function render(overrides, options = {}) {
-    const store = { get: jest.fn().mockResolvedValue({}), set: jest.fn().mockResolvedValue({}) };
-    const defaults = { store };
+    const defaults = {
+      store: {
+        get: jest.fn().mockResolvedValue({}),
+        set: jest.fn().mockResolvedValue({}),
+      },
+    };
 
     const props = { ...defaults, ...overrides };
     const wrapper = shallow(<Form {...props} />, options);
@@ -34,7 +37,8 @@ describe('form', () => {
     field.simulate('change', event);
   };
 
-  const checkbox = (wrapper, name) => wrapper.find(CheckboxInput).find({ name });
+  const checkbox = (wrapper, name) =>
+    wrapper.find(CheckboxInput).find({ name });
   const checked = (wrapper, name) => checkbox(wrapper, name).prop('checked');
 
   const toggle = (wrapper, name, check) => {
@@ -136,12 +140,14 @@ describe('form', () => {
 
     const field = checkbox(wrapper, 'autofmt');
 
-    expect(field.props()).toEqual(expect.objectContaining({
-      name: 'autofmt',
-      checked: true,
-      disabled: true,
-      onChange: instance.handleChanged,
-    }));
+    expect(field.props()).toEqual(
+      expect.objectContaining({
+        name: 'autofmt',
+        checked: true,
+        disabled: true,
+        onChange: instance.handleChanged,
+      })
+    );
   });
 
   it('renders the names of available template helpers', () => {
@@ -158,12 +164,16 @@ describe('form', () => {
 
     let loaded;
 
-    store.get.mockReturnValue(new Promise((resolve) => {
-      // Create a new async function that resolves the promise returned from
-      // calls to `store.get()` and returns a promise itself which we can wait
-      // on to ensure the store results have been handled.
-      loaded = async function load(data) { resolve(data); };
-    }));
+    store.get.mockReturnValue(
+      new Promise((resolve) => {
+        // Create a new async function that resolves the promise returned from
+        // calls to `store.get()` and returns a promise itself which we can wait
+        // on to ensure the store results have been handled.
+        loaded = async function load(data) {
+          resolve(data);
+        };
+      })
+    );
 
     const wrapper = render({ store });
 
@@ -206,18 +216,25 @@ describe('form', () => {
 
     const unchanged = {
       templates: {
-        summary: 'summary', branch: 'branch', commit: 'commit', command: 'command',
+        summary: 'summary',
+        branch: 'branch',
+        commit: 'commit',
+        command: 'command',
       },
       options: { autofmt: true },
     };
 
     store.get.mockResolvedValue(unchanged);
-    store.set.mockReturnValue(new Promise((resolve) => {
-      // Create a new async function that resolves the promise returned from
-      // calls to `store.set()` and returns a promise itself which we can wait
-      // on to ensure data saving has been handled.
-      saved = async function save() { resolve(); };
-    }));
+    store.set.mockReturnValue(
+      new Promise((resolve) => {
+        // Create a new async function that resolves the promise returned from
+        // calls to `store.set()` and returns a promise itself which we can wait
+        // on to ensure data saving has been handled.
+        saved = async function save() {
+          resolve();
+        };
+      })
+    );
 
     const wrapper = render({ store });
 
@@ -234,7 +251,10 @@ describe('form', () => {
 
     const changed = {
       templates: {
-        summary: 'summary++', branch: 'branch++', commit: 'commit++', command: 'command++',
+        summary: 'summary++',
+        branch: 'branch++',
+        commit: 'commit++',
+        command: 'command++',
       },
       options: { autofmt: false },
     };

@@ -1,16 +1,15 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
+// eslint-disable-next-line simple-import-sort/sort
 import path from 'path';
-
-import { DefinePlugin } from 'webpack';
 
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import GitRevisionPlugin from 'git-revision-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { DefinePlugin } from 'webpack';
 import NotifierPlugin from 'webpack-build-notifier';
-
 import Config from 'webpack-chain';
 
 // Path helpers
@@ -47,17 +46,18 @@ config.context(__dirname);
 
 config.output.filename('[name].js');
 
-config.resolve.extensions
-  .add('.js')
-  .add('.jsx')
-  .add('.json');
+config.resolve.extensions.add('.js').add('.jsx').add('.json');
 
-config.module.rule('js')
+config.module
+  .rule('js')
   .test(/\.jsx?$/)
-  .exclude.add(/node_modules/).end()
-  .use('babel').loader('babel-loader');
+  .exclude.add(/node_modules/)
+  .end()
+  .use('babel')
+  .loader('babel-loader');
 
-config.module.rule('css')
+config.module
+  .rule('css')
   .test(/\.scss$/)
   .merge({
     use: [
@@ -80,18 +80,19 @@ config.module.rule('css')
     ],
   });
 
-config.module.rule('images')
+config.module
+  .rule('images')
   .test(/\.png$/)
-  .exclude.add(/node_modules/).end()
+  .exclude.add(/node_modules/)
+  .end()
   .use('images')
   .loader('file-loader')
   .options({ name: '[name].[hash].[ext]' });
 
-config.plugin('clean')
-  .use(CleanWebpackPlugin, []);
+config.plugin('clean').use(CleanWebpackPlugin, []);
 
-config.plugin('html')
-  .use(HtmlWebpackPlugin, [{
+config.plugin('html').use(HtmlWebpackPlugin, [
+  {
     template: src.common('popup', 'popup.html'),
     filename: 'popup.html',
     chunks: ['popup'],
@@ -100,38 +101,45 @@ config.plugin('html')
       collapseWhitespace: true,
       removeScriptTypeAttributes: true,
     },
-  }]);
+  },
+]);
 
-config.plugin('extract')
-  .use(MiniCssExtractPlugin, [{
+config.plugin('extract').use(MiniCssExtractPlugin, [
+  {
     filename: '[name].css',
-  }]);
+  },
+]);
 
-config.plugin('copy')
-  .use(CopyWebpackPlugin, [[
+config.plugin('copy').use(CopyWebpackPlugin, [
+  [
     {
       from: src.common('icons', '*.png'),
       flatten: true,
     },
-  ], {
+  ],
+  {
     copyUnmodified: true,
-  }]);
+  },
+]);
 
 const revision = new GitRevisionPlugin();
 
-config.plugin('revision')
-  .use(revision);
+config.plugin('revision').use(revision);
 
-config.plugin('define')
+config
+  .plugin('define')
   .after('revision')
-  .use(DefinePlugin, [{
-    COMMITHASH: JSON.stringify(revision.commithash()),
-  }]);
+  .use(DefinePlugin, [
+    {
+      COMMITHASH: JSON.stringify(revision.commithash()),
+    },
+  ]);
 
-config.plugin('notifier')
-  .use(NotifierPlugin, [{
+config.plugin('notifier').use(NotifierPlugin, [
+  {
     title: 'Tickety-Tick Build',
-  }]);
+  },
+]);
 
 config.devtool('source-map');
 

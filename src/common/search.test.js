@@ -1,15 +1,11 @@
 import { search } from './search';
-
 import serializable from './utils/serializable-errors';
 
 jest.mock('./utils/serializable-errors', () => (error) => error.message);
 
 describe('ticket search', () => {
   function mock(result, index) {
-    return jest
-      .fn()
-      .mockName(`adapters[${index}]`)
-      .mockReturnValue(result);
+    return jest.fn().mockName(`adapters[${index}]`).mockReturnValue(result);
   }
 
   function mocks(results) {

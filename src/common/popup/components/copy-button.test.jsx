@@ -1,8 +1,7 @@
-import React from 'react';
 import { shallow } from 'enzyme';
+import React from 'react';
 
 import EnvContext from '../env-context';
-
 import CopyButton from './copy-button';
 
 describe('copy-button', () => {
@@ -37,7 +36,10 @@ describe('copy-button', () => {
   });
 
   it('passes on any other properties to the rendered button', () => {
-    const wrapper = render({ value: '0x2a', 'data-weirdo': 'yes, please' }, { grab });
+    const wrapper = render(
+      { value: '0x2a', 'data-weirdo': 'yes, please' },
+      { grab }
+    );
     expect(wrapper.find('button').prop('data-weirdo')).toBe('yes, please');
   });
 });

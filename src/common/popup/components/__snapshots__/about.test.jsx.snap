@@ -52,9 +52,8 @@ exports[`about renders 1`] = `
           </li>
         </ol>
         <p>
-          <span>
-            This extension is open-source software by the fellows at 
-          </span>
+          This extension is open-source software by the fellows at
+           
           <ExternalLink
             href="http://bitcrowd.net"
           >
@@ -63,9 +62,8 @@ exports[`about renders 1`] = `
           .
         </p>
         <p>
-          <span>
-            The source code is available on 
-          </span>
+          The source code is available on
+           
           <ExternalLink
             href="https://github.com/bitcrowd/tickety-tick"
           >

@@ -1,9 +1,8 @@
 import { JSDOM } from 'jsdom';
 
 import client from '../client';
-import scan from './jira';
-
 import loc from './__helpers__/location';
+import scan from './jira';
 
 jest.mock('../client', () => jest.fn());
 
@@ -55,7 +54,7 @@ describe('jira adapter', () => {
   it('uses the endpoints for the current host', async () => {
     await scan(loc('my-subdomain.atlassian.net', `/browse/${key}`), doc);
     expect(client).toHaveBeenCalledWith(
-      'https://my-subdomain.atlassian.net/rest/api/latest',
+      'https://my-subdomain.atlassian.net/rest/api/latest'
     );
     expect(api.get).toHaveBeenCalled();
   });
@@ -63,7 +62,7 @@ describe('jira adapter', () => {
   it('extracts tickets from the active sprints tab', async () => {
     const result = await scan(
       loc('my-subdomain.atlassian.net', '/', `?selectedIssue=${key}`),
-      doc,
+      doc
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -74,7 +73,7 @@ describe('jira adapter', () => {
       loc('my-subdomain.atlassian.net', `/projects/TT/issues/${key}`, {
         filter: 'something',
       }),
-      doc,
+      doc
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -83,7 +82,7 @@ describe('jira adapter', () => {
   it('extracts tickets when browsing an issue', async () => {
     const result = await scan(
       loc('my-subdomain.atlassian.net', `/browse/${key}`),
-      doc,
+      doc
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -94,12 +93,12 @@ describe('jira adapter', () => {
       loc(
         'my-subdomain.atlassian.net',
         '/jira/software/projects/TT/boards/8',
-        `?selectedIssue=${key}`,
+        `?selectedIssue=${key}`
       ),
-      doc,
+      doc
     );
     expect(client).toHaveBeenCalledWith(
-      'https://my-subdomain.atlassian.net/rest/api/latest',
+      'https://my-subdomain.atlassian.net/rest/api/latest'
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -110,12 +109,12 @@ describe('jira adapter', () => {
       loc(
         'my-subdomain.atlassian.net',
         '/jira/software/projects/TT/boards/7/backlog',
-        `?selectedIssue=${key}`,
+        `?selectedIssue=${key}`
       ),
-      doc,
+      doc
     );
     expect(client).toHaveBeenCalledWith(
-      'https://my-subdomain.atlassian.net/rest/api/latest',
+      'https://my-subdomain.atlassian.net/rest/api/latest'
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -133,9 +132,9 @@ describe('jira adapter', () => {
         loc(
           'jira.local',
           '/prefix/secure/RapidBoard.jspa',
-          `?selectedIssue=${key}`,
+          `?selectedIssue=${key}`
         ),
-        doc,
+        doc
       ),
       scan(loc('jira.local', `/prefix/projects/TT/issues/${key}`), doc),
       scan(loc('jira.local', `/prefix/browse/${key}`), doc),

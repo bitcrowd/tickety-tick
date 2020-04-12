@@ -1,4 +1,5 @@
 import { JSDOM } from 'jsdom';
+
 import scan, { selectors } from './github';
 
 const pages = {

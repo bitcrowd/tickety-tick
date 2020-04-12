@@ -3,8 +3,8 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ZipWebpackPlugin from 'zip-webpack-plugin';
 
-import config, { src, dist } from './webpack.common';
 import pkg from './package.json';
+import config, { dist, src } from './webpack.common';
 
 // Small variations between browsers supporting the WebExtensions API are
 // handled by setting the extension variant as an environment variable, for
@@ -24,8 +24,8 @@ config.output.path(dist(variant));
 
 // Create the options.html in addition to common files.
 
-config.plugin('options-html')
-  .use(HtmlWebpackPlugin, [{
+config.plugin('options-html').use(HtmlWebpackPlugin, [
+  {
     template: src.webext('options', 'options.html'),
     filename: 'options.html',
     chunks: ['options'],
@@ -34,44 +34,48 @@ config.plugin('options-html')
       collapseWhitespace: true,
       removeScriptTypeAttributes: true,
     },
-  }]);
+  },
+]);
 
 // Copy the manifest.json template in addition to common files.
 
-config.plugin('copy').tap(([patterns, options]) => [[
-  ...patterns,
-  {
-    from: src.webext('manifest.json'),
-    transform: (content) => {
-      const mf = JSON.parse(content);
+config.plugin('copy').tap(([patterns, options]) => [
+  [
+    ...patterns,
+    {
+      from: src.webext('manifest.json'),
+      transform: (content) => {
+        const mf = JSON.parse(content);
 
-      mf.name = pkg.name;
-      mf.version = pkg.version;
-      mf.description = pkg.description;
+        mf.name = pkg.name;
+        mf.version = pkg.version;
+        mf.description = pkg.description;
 
-      if (variant === 'firefox') {
-        mf.options_ui.browser_style = true;
-        mf.applications = {
-          gecko: {
-            id: 'jid1-ynkvezs8Qn2TJA@jetpack',
-          },
-        };
-      } else {
-        mf.options_ui.chrome_style = true;
-      }
+        if (variant === 'firefox') {
+          mf.options_ui.browser_style = true;
+          mf.applications = {
+            gecko: {
+              id: 'jid1-ynkvezs8Qn2TJA@jetpack',
+            },
+          };
+        } else {
+          mf.options_ui.chrome_style = true;
+        }
 
-      return JSON.stringify(mf);
+        return JSON.stringify(mf);
+      },
     },
-  },
-], options]);
+  ],
+  options,
+]);
 
-config.when(process.env.BUNDLE === 'true', (cfg) => cfg
-  .plugin('zip')
-  .use(ZipWebpackPlugin, [
+config.when(process.env.BUNDLE === 'true', (cfg) =>
+  cfg.plugin('zip').use(ZipWebpackPlugin, [
     {
       path: dist(),
       filename: variant,
     },
-  ]));
+  ])
+);
 
 export default config.toConfig();

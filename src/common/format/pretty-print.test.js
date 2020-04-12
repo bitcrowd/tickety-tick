@@ -4,11 +4,14 @@ describe('pretty-print', () => {
   it('capitalizes subject lines', () => {
     expect(print('apply proper casing')).toBe('Apply proper casing');
     expect(print('[#42] capitalize subject')).toBe('[#42] Capitalize subject');
-    expect(print('[#lowercase-id] capitalize subject')).toBe('[#lowercase-id] Capitalize subject');
+    expect(print('[#lowercase-id] capitalize subject')).toBe(
+      '[#lowercase-id] Capitalize subject'
+    );
   });
 
   it('wraps overlong subject lines', () => {
-    const input = 'Wrap commit subject lines with more than 50 characters and insert one blank line before the remaining subject text. Wrap the remaining subject text to 72 characters.';
+    const input =
+      'Wrap commit subject lines with more than 50 characters and insert one blank line before the remaining subject text. Wrap the remaining subject text to 72 characters.';
     expect(print(input)).toMatchSnapshot();
   });
 

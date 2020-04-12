@@ -1,18 +1,21 @@
-import React from 'react';
 import { shallow } from 'enzyme';
-
-import TicketList, { TicketListItem } from './ticket-list';
-import CopyButton from './copy-button';
+import React from 'react';
 
 import { ticket as make } from '../../../../test/factories';
+import CopyButton from './copy-button';
+import TicketList, { TicketListItem } from './ticket-list';
 
 describe('ticket-list', () => {
-  const tickets = ['uno', 'due', 'tre'].map((title, i) => make({ id: `${i + 1}`, title }));
+  const tickets = ['uno', 'due', 'tre'].map((title, i) =>
+    make({ id: `${i + 1}`, title })
+  );
 
   it('renders a list of tickets', () => {
     const wrapper = shallow(<TicketList tickets={tickets} />);
-    const items = tickets.map((t) => (<TicketListItem ticket={t} />));
-    expect(wrapper.find('ul > li').containsAllMatchingElements(items)).toBe(true);
+    const items = tickets.map((t) => <TicketListItem ticket={t} />);
+    expect(wrapper.find('ul > li').containsAllMatchingElements(items)).toBe(
+      true
+    );
   });
 });
 
@@ -31,16 +34,22 @@ describe('ticket-list-item', () => {
 
   it('renders a copy-button for the commit messsage', () => {
     const buttons = wrapper.find(CopyButton);
-    expect(buttons.someWhere((b) => b.prop('value') === ticket.fmt.commit)).toBe(true);
+    expect(
+      buttons.someWhere((b) => b.prop('value') === ticket.fmt.commit)
+    ).toBe(true);
   });
 
   it('renders a copy-button for the branch name', () => {
     const buttons = wrapper.find(CopyButton);
-    expect(buttons.someWhere((b) => b.prop('value') === ticket.fmt.branch)).toBe(true);
+    expect(
+      buttons.someWhere((b) => b.prop('value') === ticket.fmt.branch)
+    ).toBe(true);
   });
 
   it('renders a copy-button for the git commands', () => {
     const buttons = wrapper.find(CopyButton);
-    expect(buttons.someWhere((b) => b.prop('value') === ticket.fmt.command)).toBe(true);
+    expect(
+      buttons.someWhere((b) => b.prop('value') === ticket.fmt.command)
+    ).toBe(true);
   });
 });

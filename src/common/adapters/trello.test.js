@@ -1,7 +1,6 @@
 import client from '../client';
-import scan from './trello';
-
 import loc from './__helpers__/location';
+import scan from './trello';
 
 jest.mock('../client', () => jest.fn());
 

@@ -40,7 +40,9 @@ const BUGPAGE = `
 
 describe('gitlab adapter', () => {
   function dom(body = '', dataPage = '') {
-    const { window } = new JSDOM(`<html><body data-page="${dataPage}">${body}</body></html>`);
+    const { window } = new JSDOM(
+      `<html><body data-page="${dataPage}">${body}</body></html>`
+    );
     return window.document;
   }
 
@@ -51,11 +53,15 @@ describe('gitlab adapter', () => {
 
   it('extracts tickets from issue pages', async () => {
     const result = await scan(null, dom(ISSUEPAGE, 'projects:issues:show'));
-    expect(result).toEqual([{ id: '22578', title: 'A Random GitLab Issue', type: 'feature' }]);
+    expect(result).toEqual([
+      { id: '22578', title: 'A Random GitLab Issue', type: 'feature' },
+    ]);
   });
 
   it('recognizes issues labelled as bugs', async () => {
     const result = await scan(null, dom(BUGPAGE, 'projects:issues:show'));
-    expect(result).toEqual([{ id: '22578', title: 'A Random GitLab Issue', type: 'bug' }]);
+    expect(result).toEqual([
+      { id: '22578', title: 'A Random GitLab Issue', type: 'bug' },
+    ]);
   });
 });

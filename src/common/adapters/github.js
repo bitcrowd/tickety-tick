@@ -1,9 +1,4 @@
-import {
-  $all,
-  $has,
-  $text,
-  $value,
-} from './helpers';
+import { $all, $has, $text, $value } from './helpers';
 
 // Element classes on GitHub have slightly changed over time.
 // To maintain support for some older GitHub Enterprise instances,
@@ -32,7 +27,9 @@ async function attempt(doc, selector) {
       const id = $value('input.js-issues-list-check', issue);
       const title = $text('a.js-navigation-open', issue);
       const labels = $all(selector.issuesPageLabel, issue);
-      const type = labels.some((l) => /bug/i.test(l.textContent)) ? 'bug' : 'feature';
+      const type = labels.some((l) => /bug/i.test(l.textContent))
+        ? 'bug'
+        : 'feature';
 
       return { id, title, type };
     });
@@ -51,7 +48,8 @@ async function attempt(doc, selector) {
 
   // project page
   if ($has('.project-columns .project-card', doc)) {
-    const openProjectCardSelector = '.project-columns .project-card[data-card-state=\'["open"]\']';
+    const openProjectCardSelector =
+      '.project-columns .project-card[data-card-state=\'["open"]\']';
     const projectCards = $all(openProjectCardSelector, doc);
 
     const tickets = projectCards.map((card) => {
