@@ -17,7 +17,7 @@ function Tool({ tickets, errors }) {
 
   return (
     <div>
-      <Header tickets={tickets} />
+      <Header />
       <div className="content">{content}</div>
     </div>
   );

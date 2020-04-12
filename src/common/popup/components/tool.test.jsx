@@ -20,8 +20,8 @@ describe('tool', () => {
       wrapper = shallow(<Tool tickets={tickets} errors={errors} />);
     });
 
-    it('renders the header and passes on the tickets', () => {
-      expect(wrapper.find(Header).prop('tickets')).toBe(tickets);
+    it('renders the header', () => {
+      expect(wrapper.find(Header).exists()).toBe(true);
     });
 
     it('renders a ticket list', () => {
@@ -35,7 +35,7 @@ describe('tool', () => {
     });
 
     it('renders the header', () => {
-      expect(wrapper.find(Header).prop('tickets')).toEqual([]);
+      expect(wrapper.find(Header).exists()).toBe(true);
     });
 
     it('renders the "no tickets" notification', () => {
@@ -50,7 +50,7 @@ describe('tool', () => {
     });
 
     it('renders the header', () => {
-      expect(wrapper.find(Header).prop('tickets')).toEqual([]);
+      expect(wrapper.find(Header).exists()).toBe(true);
     });
 
     it('renders the "no tickets" notification', () => {
