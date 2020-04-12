@@ -3,7 +3,7 @@
   "version": "3.2.0",
   "name": "tickety-tick",
   "description": "A browser extension that helps you to create commit messages and branch names from story trackers.",
-  "author": "Developers of bitcrowd.net <tickety-tick@bitcrowd.net>",
+  "author": "bitcrowd <tickety-tick@bitcrowd.net>",
   "license": "MIT",
   "scripts": {
     "build": "run-s -n build:chrome build:firefox build:safari",
