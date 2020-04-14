@@ -61,6 +61,12 @@ yarn checks
 yarn build
 ```
 
+To build an [un-optimized version for development or debugging](https://webpack.js.org/configuration/mode/), use:
+
+```shell
+yarn build --mode=development
+```
+
 To only build for a specific browser, use:
 
 ```shell
