@@ -14,16 +14,16 @@ import { match } from 'micro-match';
 import client from '../client';
 
 /**
- * Turns a page ID without dashes into a dasherized RFC 4122 UUID.
+ * Turns a slugged page ID without dashes into a dasherized RFC 4122 UUID.
  * UUID-Format: 96ec637d-e4b0-4a5e-acf3-8d4d9a1b2e4b
  */
-function uuid(string) {
+function uuid(slugId) {
   return [
-    string.substring(0, 8),
-    string.substring(8, 12),
-    string.substring(12, 16),
-    string.substring(16, 20),
-    string.substring(20),
+    slugId.substring(0, 8),
+    slugId.substring(8, 12),
+    slugId.substring(12, 16),
+    slugId.substring(16, 20),
+    slugId.substring(20),
   ].join('-');
 }
 
@@ -37,10 +37,10 @@ function getPageFromPath(path) {
 function getSelectedPageId(loc) {
   const { pathname: path, searchParams: params } = new URL(loc.href);
   const isPageModal = params.has('p');
-  const id = isPageModal ? params.get('p') : getPageFromPath(path);
+  const slugId = isPageModal ? params.get('p') : getPageFromPath(path);
 
-  if (!id) return null;
-  return uuid(id);
+  if (!slugId) return null;
+  return uuid(slugId);
 }
 
 function extractTicketInfo(result) {
