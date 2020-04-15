@@ -101,6 +101,7 @@ config.plugin('html').use(HtmlWebpackPlugin, [
       collapseWhitespace: true,
       removeScriptTypeAttributes: true,
     },
+    cache: false,
   },
 ]);
 

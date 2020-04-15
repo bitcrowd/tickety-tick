@@ -34,6 +34,7 @@ config.plugin('options-html').use(HtmlWebpackPlugin, [
       collapseWhitespace: true,
       removeScriptTypeAttributes: true,
     },
+    cache: false,
   },
 ]);
 
