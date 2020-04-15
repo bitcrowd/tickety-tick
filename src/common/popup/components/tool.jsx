@@ -13,7 +13,8 @@ function Tool({ tickets, errors }) {
   return (
     <>
       <Navbar>
-        <ul className="nav navbar-nav ml-auto">
+        <span className="navbar-brand">Tickety-Tick</span>
+        <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <Link className="nav-link" to="/about">
               Usage / Info

@@ -13,7 +13,7 @@ function About() {
   return (
     <>
       <Navbar>
-        <ul className="nav navbar-nav">
+        <ul className="navbar-nav">
           <li className="nav-item">
             <Link className="nav-link" to="/">
               &lt; Back
@@ -22,14 +22,14 @@ function About() {
         </ul>
       </Navbar>
       <Content>
-        <h1 className="h3 mb-3">
+        <h1 className="d-flex align-items-center h3 mb-3">
           {/* eslint-disable-next-line prettier/prettier */}
-          <img src={logo} className="logo-sm" alt="" />
+          <img src={logo} className="logo mr-1" alt="" />
           {' '}
-          tickety-tick
+          Tickety-Tick
         </h1>
         <h6>Usage:</h6>
-        <ol className="mt-2 pl-3">
+        <ol className="pl-3">
           <li>Open a ticket in your favourite issue tracking system.</li>
           <li>Click the extension icon.</li>
           <li>
