@@ -48,7 +48,7 @@ function Report({ errors }) {
       <p>
         <ErrorDetails errors={errors} />
       </p>
-      <p className="pb-1">
+      <p>
         <IssueLink />
       </p>
     </>

@@ -9,12 +9,13 @@ import React from 'react';
 import TicketShape from '../utils/ticket-shape';
 import CopyButton from './copy-button';
 
-function TicketCopyButton({ icon, label, title, value }) {
+function TicketCopyButton({ icon, label, title, value, ...rest }) {
   return (
     <CopyButton
       className="d-flex justify-content-center align-items-center btn btn-primary"
       title={title}
       value={value}
+      {...rest}
     >
       <Octicon icon={icon} width="18" height="18" />
       <span className="pl-1 small btn-label btn-label-conceal">{label}</span>
@@ -29,6 +30,8 @@ TicketCopyButton.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
+/* eslint-disable jsx-a11y/tabindex-no-positive */
+
 function TicketControls({ tickets }) {
   const ticket = tickets[0];
 
@@ -40,24 +43,28 @@ function TicketControls({ tickets }) {
           label="Branch"
           title="Copy branch name"
           value={ticket.fmt.branch}
+          tabIndex={1}
         />
         <TicketCopyButton
           icon={Comment}
           label="Message"
           title="Copy commit message"
           value={ticket.fmt.commit}
+          tabIndex={1}
         />
         <TicketCopyButton
           icon={Terminal}
           label="Command"
           title="Copy CLI command"
           value={ticket.fmt.command}
+          tabIndex={1}
         />
       </div>
       <div>
         <select
           className="form-control form-control-sm"
           disabled={tickets.length < 2}
+          tabIndex={1}
         >
           <option>{tickets[0].title}</option>
         </select>
@@ -65,6 +72,8 @@ function TicketControls({ tickets }) {
     </form>
   );
 }
+
+/* eslint-enable jsx-a11y/tabindex-no-positive */
 
 TicketControls.propTypes = {
   tickets: PropTypes.arrayOf(TicketShape.isRequired).isRequired,
