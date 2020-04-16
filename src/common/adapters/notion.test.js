@@ -85,6 +85,22 @@ describe('notion adapter', () => {
     expect(result).toEqual([]);
   });
 
+  it('returns an empty one if the page id does not match the requested one', async () => {
+    const otherId = '7c1e7ee7-9107-4890-b2ec-83175b8edv99';
+    const otherSlugId = otherId.replace(/-/g, '');
+
+    const location = loc(
+      'www.notion.so',
+      `/notionuser/Some-ticket-${otherSlugId}`
+    );
+    const result = await scan(location);
+    const request = { requests: [{ table: 'block', id: otherId }] };
+    expect(api.post).toHaveBeenCalledWith('api/v3/getRecordValues', {
+      json: request,
+    });
+    expect(result).toEqual([]);
+  });
+
   it('extracts tickets from page modals (board view)', async () => {
     const location = loc(
       'www.notion.so',

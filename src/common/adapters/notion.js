@@ -54,9 +54,11 @@ function extractTicketInfo(result) {
   return { id, title, type };
 }
 
-function getTickets(response) {
-  const { results = [] } = response;
-  return results.map(extractTicketInfo).filter(Boolean);
+function getTickets(response, id) {
+  return (response.results || [])
+    .map(extractTicketInfo)
+    .filter(Boolean)
+    .filter((t) => t.id === id);
 }
 
 async function scan(loc) {
@@ -70,7 +72,7 @@ async function scan(loc) {
   const request = { json: { requests: [{ table: 'block', id }] } };
   const response = await api.post('api/v3/getRecordValues', request).json();
 
-  return getTickets(response);
+  return getTickets(response, id);
 }
 
 export default scan;
