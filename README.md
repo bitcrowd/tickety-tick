@@ -32,8 +32,8 @@ Currently, we support:
 - [GitHub](https://github.com/)
 - [GitLab](https://gitlab.com/)
 - [Jira](https://www.atlassian.com/software/jira)
-- [Trello](https://trello.com/)
 - [Notion](https://www.notion.so/)
+- [Trello](https://trello.com/)
 
 Your ticket system is missing? Go ahead and implement an adapter for it! We are always happy about contributions and here to support you 👋.
 

@@ -30,6 +30,6 @@ export async function search(adapters, loc, doc) {
   return aggregate(results);
 }
 
-export const stdadapters = [GitHub, GitLab, Jira, Trello, Notion];
+export const stdadapters = [GitHub, GitLab, Jira, Notion, Trello];
 
 export default search.bind(null, stdadapters);
