@@ -6,6 +6,7 @@ import Octicon, {
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import useInput from '../../hooks/use-input';
 import TicketShape from '../utils/ticket-shape';
 import CopyButton from './copy-button';
 
@@ -33,7 +34,9 @@ TicketCopyButton.propTypes = {
 /* eslint-disable jsx-a11y/tabindex-no-positive */
 
 function TicketControls({ tickets }) {
-  const ticket = tickets[0];
+  const select = useInput(0);
+
+  const ticket = tickets[select.value];
 
   return (
     <form>
@@ -65,8 +68,14 @@ function TicketControls({ tickets }) {
           className="form-control form-control-sm"
           disabled={tickets.length < 2}
           tabIndex={1}
+          {...select}
         >
-          <option>{tickets[0].title}</option>
+          {tickets.map((t, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <option key={index} value={index}>
+              {t.title}
+            </option>
+          ))}
         </select>
       </div>
     </form>
