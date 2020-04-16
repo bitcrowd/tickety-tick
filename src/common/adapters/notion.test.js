@@ -85,7 +85,7 @@ describe('notion adapter', () => {
     expect(result).toEqual([]);
   });
 
-  it('returns an empty one if the page id does not match the requested one', async () => {
+  it('returns an empty array if the page id does not match the requested one', async () => {
     const otherId = '7c1e7ee7-9107-4890-b2ec-83175b8edv99';
     const otherSlugId = otherId.replace(/-/g, '');
 
