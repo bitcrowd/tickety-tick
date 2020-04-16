@@ -1,31 +1,32 @@
 import { shallow } from 'enzyme';
-import React from 'react';
+import React, { useContext } from 'react';
 
 import EnvContext from '../env-context';
 import CopyButton from './copy-button';
 
+jest.mock('react', () => ({
+  ...jest.requireActual('react'),
+  useContext: jest.fn(),
+}));
+
 describe('copy-button', () => {
   function render(overrides, env) {
+    useContext.mockReturnValue(env);
     const defaults = { value: 'copy text' };
-
     const props = { ...defaults, ...overrides };
-
-    // Enzyme does not fully support the new React Context API at the moment.
-    // We work around this limitation by directly passing in the context value
-    // to the `EnvContext.Consumer` child function for rendering.
-    //
-    // See https://github.com/airbnb/enzyme/issues/1553.
-    const outer = shallow(<CopyButton {...props} />);
-    const children = outer.find(EnvContext.Consumer).prop('children');
-    const wrapper = shallow(children(env));
-
-    return wrapper;
+    return shallow(<CopyButton {...props} />);
   }
 
   let grab;
 
   beforeEach(() => {
+    useContext.mockReset();
     grab = jest.fn();
+  });
+
+  it('uses the env context', () => {
+    render({}, { grab }); // render to check use of context
+    expect(useContext).toHaveBeenCalledWith(EnvContext);
   });
 
   it('calls the context grab function with the provided value on click', () => {

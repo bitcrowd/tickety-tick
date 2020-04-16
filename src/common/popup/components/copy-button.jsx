@@ -1,17 +1,12 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useCallback, useContext } from 'react';
 
 import EnvContext from '../env-context';
 
-function CopyButton(props) {
-  return (
-    <EnvContext.Consumer>
-      {({ grab }) => {
-        const handler = () => grab(props.value);
-        return <button type="button" onClick={handler} {...props} />;
-      }}
-    </EnvContext.Consumer>
-  );
+function CopyButton({ value, ...rest }) {
+  const { grab } = useContext(EnvContext);
+  const handler = useCallback(() => grab(value), [grab, value]);
+  return <button type="button" {...rest} onClick={handler} />;
 }
 
 CopyButton.propTypes = {
