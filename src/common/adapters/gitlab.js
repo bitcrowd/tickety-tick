@@ -1,3 +1,9 @@
+/**
+ * Gitlab adapter
+ *
+ * The adapter uses the DOM to extract information about tickets.
+ */
+
 import { $has, $text } from './helpers';
 
 async function scan(loc, doc) {

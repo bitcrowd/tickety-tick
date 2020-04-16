@@ -1,13 +1,16 @@
-// Jira adapter
-//
-// This adapter extracts the identifier of the selected issue from the page URL
-// and uses the Jira API to retrieve the corresponding ticket information.
-//
-// https://developer.atlassian.com/server/jira/platform/rest-apis/
-//
-// * Backlog and Active Sprints: https://<YOUR-SUBDOMAIN>.atlassian.net/secure/RapidBoard.jspa?…&selectedIssue=<ISSUE-KEY>
-// * Issues and filters: https://<YOUR-SUBDOMAIN>.atlassian.net/projects/<PROJECT-KEY>/issues/<ISSUE-KEY>
-// * Issue view: https://<YOUR-SUBDOMAIN>.atlassian.net/browse/<ISSUE-KEY>
+/**
+ * Jira adapter
+ *
+ * The adapter extracts the identifier of the selected issue from the page URL
+ * and uses the Jira API to retrieve the corresponding ticket information.
+ *
+ * https://developer.atlassian.com/server/jira/platform/rest-apis/
+ *
+ * Supported page URLs:
+ * - Backlog and Active Sprints: https://<YOUR-SUBDOMAIN>.atlassian.net/secure/RapidBoard.jspa?…&selectedIssue=<ISSUE-KEY>
+ * - Issues and filters: https://<YOUR-SUBDOMAIN>.atlassian.net/projects/<PROJECT-KEY>/issues/<ISSUE-KEY>
+ * - Issue view: https://<YOUR-SUBDOMAIN>.atlassian.net/browse/<ISSUE-KEY>
+ */
 
 import { match } from 'micro-match';
 

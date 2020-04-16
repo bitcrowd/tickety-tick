@@ -1,8 +1,18 @@
+/**
+ * GitHub and GitHub Enterprise adapter
+ *
+ * The adapter uses the DOM to extract ticket information from issues.
+ */
+
 import { $all, $has, $text, $value } from './helpers';
 
-// Element classes on GitHub have slightly changed over time.
-// To maintain support for some older GitHub Enterprise instances,
-// the adapter will attempt different versions of selectors.
+/**
+ * DOM selectors
+ *
+ * Element classes on GitHub have slightly changed over time.
+ * To maintain support for some older GitHub Enterprise instances, the adapter
+ * will attempt different versions of selectors.
+ */
 export const selectors = {
   default: {
     issuesPage: '.js-check-all-container .js-issue-row.selected',
