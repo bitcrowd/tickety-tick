@@ -2,7 +2,7 @@ import client from '../client';
 import loc from './__helpers__/location';
 import scan from './trello';
 
-jest.mock('../client', () => jest.fn());
+jest.mock('../client');
 
 const key = 'haKn65Sy';
 

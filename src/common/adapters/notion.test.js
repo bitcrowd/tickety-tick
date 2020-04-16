@@ -2,7 +2,7 @@ import client from '../client';
 import loc from './__helpers__/location';
 import scan from './notion';
 
-jest.mock('../client', () => jest.fn());
+jest.mock('../client');
 
 describe('notion adapter', () => {
   const id = '5b1d7dd7-9107-4890-b2ec-83175b8eda83';

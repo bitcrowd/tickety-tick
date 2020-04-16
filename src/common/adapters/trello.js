@@ -1,12 +1,14 @@
-// Trello adapter
-//
-// This adapter extracts the identifier of the selected card (short link) from
-// the page URL and uses the Trello API to retrieve the corresponding card
-// information.
-//
-// https://developers.trello.com/v1.0/reference#introduction
-//
-// Card view: https://trello.com/c/<SHORT-LINK>/1-ticket-title
+/**
+ * Trello adapter
+ *
+ * The adapter extracts the identifier of the selected card (short link) from
+ * the page URL and uses the Trello API to retrieve the corresponding card
+ * information.
+ *
+ * https://developers.trello.com/v1.0/reference#introduction
+ *
+ * Card view: https://trello.com/c/<SHORT-LINK>/1-ticket-title
+ */
 
 import { match } from 'micro-match';
 
