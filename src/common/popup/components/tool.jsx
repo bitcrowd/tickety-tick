@@ -17,7 +17,7 @@ function Tool({ tickets, errors }) {
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <Link className="nav-link" to="/about">
-              Usage / Info
+              Help
             </Link>
           </li>
         </ul>
