@@ -1,3 +1,4 @@
+import Octicon, { ChevronLeft } from '@githubprimer/octicons-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -16,7 +17,13 @@ function About() {
         <ul className="navbar-nav">
           <li className="nav-item">
             <Link className="nav-link" to="/">
-              &lt; Back
+              <Octicon
+                icon={ChevronLeft}
+                width={7}
+                height={14}
+                className="mr-1"
+              />
+              Back
             </Link>
           </li>
         </ul>
