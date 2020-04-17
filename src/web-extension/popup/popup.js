@@ -21,11 +21,6 @@ function close() {
   window.close();
 }
 
-function grab(text) {
-  pbcopy(text);
-  close();
-}
-
 function openext() {
   return true;
 }
@@ -36,7 +31,7 @@ async function load() {
 
   const enhancer = enhance(templates, options.autofmt);
 
-  render(tickets.map(enhancer), errors, { grab, openext });
+  render(tickets.map(enhancer), errors, { close, openext, pbcopy });
 }
 
 window.onload = load;

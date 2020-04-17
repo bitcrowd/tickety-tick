@@ -1,4 +1,5 @@
 import Octicon, {
+  Check,
   Comment,
   GitBranch,
   Terminal,
@@ -18,8 +19,14 @@ function TicketCopyButton({ icon, label, title, value, ...rest }) {
       value={value}
       {...rest}
     >
-      <Octicon icon={icon} width={18} height={18} />
-      <span className="pl-1 small btn-label btn-label-conceal">{label}</span>
+      {(copied) => (
+        <>
+          <Octicon icon={copied ? Check : icon} width={18} height={18} />
+          <span className="pl-1 small btn-label btn-label-conceal">
+            {copied ? 'Copied' : label}
+          </span>
+        </>
+      )}
     </CopyButton>
   );
 }
