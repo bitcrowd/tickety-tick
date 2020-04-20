@@ -6,6 +6,9 @@
 #                     Running this script requires `inkscape` and `pngcrush`
 #                     executables in your PATH.
 
+set -o errexit
+set -o nounset
+
 dir="$(realpath "$(dirname "$0")/../src/common/icons")"
 dark_src="${dir}/icon.svg"
 light_src="${dir}/icon-light.svg"
