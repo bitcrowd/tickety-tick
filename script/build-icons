@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# script/build-icons: Build optimized png icons in all required sizes and
+#                     colors from the svg icons.
+#
+#                     Running this script requires `inkscape` and `pngcrush`
+#                     executables in your PATH.
+
 dir="$(realpath "$(dirname "$0")/../src/common/icons")"
 dark_src="${dir}/icon.svg"
 light_src="${dir}/icon-light.svg"
