@@ -32,13 +32,27 @@
   ],
   "browser_action": {
     "default_title": "Git Branch/Message",
-    "default_icon": "icon-128.png",
     "default_popup": "popup.html",
+    "default_icon": {
+      "64": "icon-64.png",
+      "32": "icon-32.png",
+      "16": "icon-16.png"
+    },
     "theme_icons": [
       {
-        "light": "icon-light-128.png",
-        "dark": "icon-128.png",
-        "size": 128
+        "light": "icon-light-64.png",
+        "dark": "icon-64.png",
+        "size": 64
+      },
+      {
+        "light": "icon-light-32.png",
+        "dark": "icon-32.png",
+        "size": 32
+      },
+      {
+        "light": "icon-light-16.png",
+        "dark": "icon-16.png",
+        "size": 16
       }
     ]
   },
