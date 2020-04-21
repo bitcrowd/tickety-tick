@@ -1,11 +1,29 @@
 #!/bin/sh
 
-dir=$(cd $(dirname $0) && cd "../src/common/icons" && pwd)
-src="${dir}/icon.svg"
+# script/build-icons: Build optimized png icons in all required sizes and
+#                     colors from the svg icons.
+#
+#                     Running this script requires `inkscape` and `pngcrush`
+#                     executables in your PATH.
+
+set -o errexit
+set -o nounset
+
+dir="$(realpath "$(dirname "$0")/../src/common/icons")"
+dark_src="${dir}/icon.svg"
+light_src="${dir}/icon-light.svg"
+
+export_png_icon() {
+  src=$1 dest=$2 size=$3
+
+  inkscape -z -o "$dest" -D -w "$size" "$src" # export
+  convert "$dest" -background none -gravity center -extent "${size}x${size}" "$dest" # pad
+  pngcrush -brute -ow "$dest" # reduce
+}
 
 for s in 16 32 48 64 128; do
-  dest="${dir}/icon-${s}.png"
-  inkscape -z -e $dest -D -w $s $src # export
-  convert $dest -background none -gravity center -extent "${s}x${s}" $dest # pad
-  pngcrush -brute -ow $dest # reduce
+  dark_dest="${dir}/icon-${s}.png"
+  light_dest="${dir}/icon-light-${s}.png"
+  export_png_icon "$dark_src" "$dark_dest" "$s"
+  export_png_icon "$light_src" "$light_dest" "$s"
 done
