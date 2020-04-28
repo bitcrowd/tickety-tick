@@ -17,29 +17,29 @@ describe('copy-button', () => {
     return shallow(<CopyButton {...props} />);
   }
 
-  let grab;
+  let pbcopy;
 
   beforeEach(() => {
     useContext.mockReset();
-    grab = jest.fn();
+    pbcopy = jest.fn();
   });
 
   it('uses the env context', () => {
-    render({}, { grab }); // render to check use of context
+    render({}, { pbcopy }); // render to check use of context
     expect(useContext).toHaveBeenCalledWith(EnvContext);
   });
 
-  it('calls the context grab function with the provided value on click', () => {
+  it('calls the context pbcopy function with the provided value on click', () => {
     const value = 'a lot of value for such a small button';
-    const wrapper = render({ value }, { grab });
+    const wrapper = render({ value }, { pbcopy });
     wrapper.simulate('click');
-    expect(grab).toHaveBeenCalledWith(value);
+    expect(pbcopy).toHaveBeenCalledWith(value);
   });
 
   it('passes on any other properties to the rendered button', () => {
     const wrapper = render(
       { value: '0x2a', 'data-weirdo': 'yes, please' },
-      { grab }
+      { pbcopy }
     );
     expect(wrapper.find('button').prop('data-weirdo')).toBe('yes, please');
   });
