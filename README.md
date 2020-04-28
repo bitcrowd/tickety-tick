@@ -111,6 +111,10 @@ yarn open:firefox
 
 You can run both `watch:[browser]` and `open:[browser]` scripts in parallel to automatically rebuild and reload the extension as you make changes.
 
+#### Tips & Tricks 🎩
+
+Use the Firefox developer tools to [debug the extension](https://extensionworkshop.com/documentation/develop/debugging/).
+
 ### Running automated checks
 
 To execute the automated source code checks, run:
