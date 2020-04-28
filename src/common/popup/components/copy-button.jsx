@@ -27,7 +27,7 @@ function useDelayed(fn, ms) {
     callback.current = fn;
   }, [fn]);
 
-  useEffect(() => clear, []);
+  useEffect(() => clear, [clear]);
 
   return run;
 }
