@@ -1,5 +1,5 @@
 .spinner {
-  margin: 4rem auto 0;
+  margin: 2rem auto 2rem;
   width: 4rem;
   text-align: center;
 }
@@ -32,11 +32,11 @@
 }
 
 @keyframes spinner-bouncedelay {
-  0%, 80%, 100% { 
+  0%, 80%, 100% {
     -webkit-transform: scale(0);
     transform: scale(0);
   }
-  40% { 
+  40% {
     -webkit-transform: scale(1.0);
     transform: scale(1.0);
   }
