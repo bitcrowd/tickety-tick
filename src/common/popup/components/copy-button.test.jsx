@@ -66,7 +66,7 @@ describe('copy-button', () => {
     expect(pbcopy).toHaveBeenCalledWith(value);
     expect(close).not.toHaveBeenCalled();
 
-    jest.advanceTimersByTime(700);
+    jest.runOnlyPendingTimers();
     expect(close).toHaveBeenCalled();
   });
 
