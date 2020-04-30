@@ -1,31 +1,41 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import ErrorShape from '../utils/error-shape';
 import TicketShape from '../utils/ticket-shape';
-import Header from './header';
+import Content from './content';
+import Navbar from './navbar';
 import NoTickets from './no-tickets';
-import TicketList from './ticket-list';
+import TicketControls from './ticket-controls';
 
 function Tool({ tickets, errors }) {
-  const content =
-    tickets.length > 0 ? (
-      <TicketList tickets={tickets} />
-    ) : (
-      <NoTickets errors={errors} />
-    );
-
   return (
-    <div>
-      <Header tickets={tickets} />
-      <div className="content">{content}</div>
-    </div>
+    <>
+      <Navbar>
+        <span className="navbar-brand">Tickety-Tick</span>
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link className="nav-link" to="/about">
+              Help
+            </Link>
+          </li>
+        </ul>
+      </Navbar>
+      <Content>
+        {tickets.length > 0 ? (
+          <TicketControls tickets={tickets} />
+        ) : (
+          <NoTickets errors={errors} />
+        )}
+      </Content>
+    </>
   );
 }
 
 Tool.propTypes = {
   tickets: PropTypes.arrayOf(TicketShape.isRequired).isRequired,
-  errors: PropTypes.arrayOf(ErrorShape).isRequired,
+  errors: PropTypes.arrayOf(ErrorShape.isRequired).isRequired,
 };
 
 export default Tool;

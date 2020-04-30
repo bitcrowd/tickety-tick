@@ -4,8 +4,8 @@ import React from 'react';
 import About from './about';
 
 describe('about', () => {
-  function render(/* overrides */) {
-    return shallow(<About />);
+  function render(props) {
+    return shallow(<About {...props} />);
   }
 
   it('renders', () => {

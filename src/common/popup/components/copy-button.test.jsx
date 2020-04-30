@@ -1,44 +1,79 @@
 import { shallow } from 'enzyme';
-import React from 'react';
+import React, { useContext } from 'react';
 
 import EnvContext from '../env-context';
 import CopyButton from './copy-button';
 
+jest.mock('react', () => ({
+  ...jest.requireActual('react'),
+  useContext: jest.fn(),
+}));
+jest.useFakeTimers();
+
 describe('copy-button', () => {
   function render(overrides, env) {
+    useContext.mockReturnValue(env);
     const defaults = { value: 'copy text' };
-
     const props = { ...defaults, ...overrides };
-
-    // Enzyme does not fully support the new React Context API at the moment.
-    // We work around this limitation by directly passing in the context value
-    // to the `EnvContext.Consumer` child function for rendering.
-    //
-    // See https://github.com/airbnb/enzyme/issues/1553.
-    const outer = shallow(<CopyButton {...props} />);
-    const children = outer.find(EnvContext.Consumer).prop('children');
-    const wrapper = shallow(children(env));
-
-    return wrapper;
+    return shallow(<CopyButton {...props} />);
   }
 
-  let grab;
+  let pbcopy;
+  let close;
 
   beforeEach(() => {
-    grab = jest.fn();
+    useContext.mockReset();
+    pbcopy = jest.fn();
+    close = jest.fn();
   });
 
-  it('calls the context grab function with the provided value on click', () => {
-    const value = 'a lot of value for such a small button';
-    const wrapper = render({ value }, { grab });
+  afterEach(() => {
+    jest.clearAllTimers();
+  });
+
+  it('uses the env context', () => {
+    render({}, { pbcopy }); // render to check use of context
+    expect(useContext).toHaveBeenCalledWith(EnvContext);
+  });
+
+  it('renders its children', () => {
+    const children = 'button content';
+    const wrapper = render({ children }, { pbcopy });
+    expect(wrapper.contains(children)).toBe(true);
+  });
+
+  it('passes the "copied" state to its children if they are a function', () => {
+    const children = jest.fn();
+    const wrapper = render({ children }, { pbcopy });
+    expect(children).toHaveBeenNthCalledWith(1, false);
+
     wrapper.simulate('click');
-    expect(grab).toHaveBeenCalledWith(value);
+
+    expect(children).toHaveBeenNthCalledWith(2, true);
+  });
+
+  it('calls the context pbcopy function with the provided value on click', () => {
+    const value = 'a lot of value for such a small button';
+    const wrapper = render({ value }, { pbcopy });
+    wrapper.simulate('click');
+    expect(pbcopy).toHaveBeenCalledWith(value);
+  });
+
+  it('calls the context close function delayed after the value was copied', () => {
+    const value = 'a lot of value for such a small button';
+    const wrapper = render({ value }, { pbcopy, close });
+    wrapper.simulate('click');
+    expect(pbcopy).toHaveBeenCalledWith(value);
+    expect(close).not.toHaveBeenCalled();
+
+    jest.runOnlyPendingTimers();
+    expect(close).toHaveBeenCalled();
   });
 
   it('passes on any other properties to the rendered button', () => {
     const wrapper = render(
       { value: '0x2a', 'data-weirdo': 'yes, please' },
-      { grab }
+      { pbcopy }
     );
     expect(wrapper.find('button').prop('data-weirdo')).toBe('yes, please');
   });

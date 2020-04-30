@@ -20,8 +20,8 @@ function InputIcon({ icon }) {
     <Octicon
       icon={icon}
       size="small"
-      width="16"
-      height="16"
+      width={16}
+      height={16}
       verticalAlign="text-top"
     />
   );

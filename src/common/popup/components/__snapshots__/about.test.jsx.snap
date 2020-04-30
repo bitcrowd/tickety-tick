@@ -1,12 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`about renders 1`] = `
-<div>
-  <div
-    className="navbar navbar-light fixed-top bg-white border-bottom"
-  >
+<Fragment>
+  <Navbar>
     <ul
-      className="nav navbar-nav"
+      className="navbar-nav"
     >
       <li
         className="nav-item"
@@ -15,96 +13,101 @@ exports[`about renders 1`] = `
           className="nav-link"
           to="/"
         >
-          &lt; back
+          <Octicon
+            className="mr-1"
+            height={14}
+            icon={[Function]}
+            size={16}
+            verticalAlign="text-bottom"
+            width={7}
+          />
+          Back
         </Link>
       </li>
     </ul>
-  </div>
-  <div
-    className="content"
-  >
-    <div
-      className="container"
+  </Navbar>
+  <Content>
+    <h1
+      className="d-flex align-items-center h3 mb-3"
     >
-      <h1
-        className="h3 mt-3 mb-3"
+      <img
+        alt=""
+        className="logo mr-1"
+        src="icon-32.png"
+      />
+       
+      Tickety-Tick
+    </h1>
+    <h6>
+      Usage:
+    </h6>
+    <ol
+      className="pl-3"
+    >
+      <li>
+        Open a ticket in your favourite issue tracking system.
+      </li>
+      <li>
+        Click the extension icon.
+      </li>
+      <li>
+        Use the buttons to create a commit message, branch name or CLI command.
+      </li>
+    </ol>
+    <p>
+      This extension is open-source software by the fellows at
+       
+      <ExternalLink
+        href="http://bitcrowd.net"
       >
-        <img
-          alt=""
-          className="logo-sm"
-          src="icon-32.png"
-        />
-         
-        tickety-tick
-      </h1>
-      <h6>
-        Usage:
-      </h6>
-      <ol
-        className="mt-2 pl-3"
+        bitcrowd
+      </ExternalLink>
+      .
+    </p>
+    <p>
+      The source code is available on
+       
+      <ExternalLink
+        href="https://github.com/bitcrowd/tickety-tick"
       >
-        <li>
-          Open one or more tickets in your favourite ticket tracking system, then click the extension icon.
-        </li>
-        <li>
-          You can then select if you want to create a commit message or a branch name based on these tickets.
-        </li>
-      </ol>
-      <p>
-        This extension is open-source software by the fellows at
-         
-        <ExternalLink
-          href="http://bitcrowd.net"
-        >
-          bitcrowd
-        </ExternalLink>
-        .
-      </p>
-      <p>
-        The source code is available on
-         
-        <ExternalLink
-          href="https://github.com/bitcrowd/tickety-tick"
-        >
-          GitHub
-        </ExternalLink>
-        .
-      </p>
-      <p
-        className="small"
+        GitHub
+      </ExternalLink>
+      .
+    </p>
+    <p
+      className="small"
+    >
+      <ExternalLink
+        href="https://github.com/bitcrowd/tickety-tick/tree/test-commit-hash"
+        title="Browse source code for this version"
       >
-        <ExternalLink
-          href="https://github.com/bitcrowd/tickety-tick/tree/test-commit-hash"
-          title="Browse source code for this version"
-        >
-          test-commit-hash
-        </ExternalLink>
-      </p>
-      <p
-        className="small"
+        test-commit-hash
+      </ExternalLink>
+    </p>
+    <p
+      className="small mb-0"
+    >
+      <span>
+        Logo by 
+      </span>
+      <ExternalLink
+        href="http://thenounproject.com/term/ticket/92194/"
       >
-        <span>
-          Logo by 
-        </span>
-        <ExternalLink
-          href="http://thenounproject.com/term/ticket/92194/"
-        >
-          Ramón G.
-        </ExternalLink>
-        <span>
-           under CC-BY 3.0
-        </span>
-        <br />
-        <span>
-          Other icons from 
-        </span>
-        <ExternalLink
-          href="https://octicons.github.com/"
-        >
-          GitHub Octicons
-        </ExternalLink>
-      </p>
-    </div>
-  </div>
-</div>
+        Ramón G.
+      </ExternalLink>
+      <span>
+         under CC-BY 3.0
+      </span>
+      <br />
+      <span>
+        Other icons from 
+      </span>
+      <ExternalLink
+        href="https://octicons.github.com/"
+      >
+        GitHub Octicons
+      </ExternalLink>
+    </p>
+  </Content>
+</Fragment>
 `;

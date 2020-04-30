@@ -16,11 +16,6 @@ function close() {
   safari.self.hide();
 }
 
-function grab(text) {
-  pbcopy(text);
-  close();
-}
-
 function openext(url) {
   app.activeBrowserWindow.openTab().url = url;
   setTimeout(close, 100);
@@ -55,7 +50,7 @@ function onMessage(event) {
 
     const enhancer = enhance(templates, options.autofmt);
 
-    render(tickets.map(enhancer), errors, { grab, openext });
+    render(tickets.map(enhancer), errors, { close, openext, pbcopy });
   }
 }
 
