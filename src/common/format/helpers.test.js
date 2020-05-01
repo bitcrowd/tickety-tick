@@ -70,6 +70,19 @@ describe('format helpers', () => {
       const formatted = slugify('##23 #hashtag');
       expect(formatted).toBe('23-hashtag');
     });
+
+    it('accepts a custom separator', () => {
+      const formatted = helpers.slugify('_')('##23 #hashtag');
+      expect(formatted).toBe('23_hashtag');
+    });
+  });
+
+  describe('substring', () => {
+    const substring = helpers.substring(3, 6);
+
+    it('returns the specified slice of a string', () => {
+      expect(substring('abcdefghi')).toBe('def');
+    });
   });
 
   describe('trim', () => {
@@ -77,6 +90,18 @@ describe('format helpers', () => {
 
     it('removes leading and trailing whitespace', () => {
       expect(trim('\t  black\t\t  ')).toBe('black');
+    });
+  });
+
+  describe('truncate', () => {
+    const truncate = helpers.truncate(3);
+
+    it('truncates strings longer than the limit', () => {
+      expect(truncate('abcd')).toBe('ab…');
+    });
+
+    it('returns short strings unchanged', () => {
+      expect(truncate('abc')).toBe('abc');
     });
   });
 
