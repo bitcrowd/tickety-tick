@@ -1,6 +1,53 @@
-const trim = (s) => s.replace(/^\s+|\s+$/g, '');
-const identity = (x) => x;
+const trim = (s) => s.trim();
 
+function safe(fn) {
+  return function wrapped(...args) {
+    try {
+      return fn(...args);
+    } catch (err) {
+      return `!!(${err.message})`;
+    }
+  };
+}
+
+function raise(message) {
+  return function raises() {
+    throw new Error(message);
+  };
+}
+
+// Turn an expression into a pipeline function.
+//
+// Example expressions:
+//
+//   'lowercase'
+//   'lowercase()'
+//   'substring(3)'
+//   'substring(0, 10)'
+//
+function make(expr, transforms = {}) {
+  const [, name, , argstr = ''] = expr.match(/^([^()]+)(\((.+)\))?$/) || [];
+
+  const fn = transforms[name];
+
+  if (typeof fn !== 'function') return raise(`no helper named "${name}"`);
+
+  try {
+    const args = JSON.parse(`[${argstr}]`);
+    return fn(...args);
+  } catch (_) {
+    return raise(`invalid parameters provided to "${name}": ${argstr}`);
+  }
+}
+
+// Compile a template string into a render function.
+//
+// Example strings:
+//
+//   'a = {v}'
+//   'b = {v | lowercase}'
+//   'c = {v | lowercase | substring(0, 3)}'
+//
 function compile(template, transforms = {}) {
   const parts = template.match(/\{[^}]*\}|[^{]+/g);
 
@@ -13,7 +60,7 @@ function compile(template, transforms = {}) {
         .split('|')
         .map(trim);
 
-      const pipeline = procs.map((name) => transforms[name] || identity);
+      const pipeline = procs.map((expr) => safe(make(expr, transforms)));
 
       return (values) => pipeline.reduce((v, fn) => fn(v), values[key] || '');
     }

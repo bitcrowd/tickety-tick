@@ -2,7 +2,7 @@ import * as helpers from './helpers';
 
 describe('format helpers', () => {
   describe('lowercase', () => {
-    const { lowercase } = helpers;
+    const lowercase = helpers.lowercase();
 
     it('lowercases strings', () => {
       expect(lowercase('QUIET')).toBe('quiet');
@@ -10,7 +10,7 @@ describe('format helpers', () => {
   });
 
   describe('shellquote', () => {
-    const { shellquote } = helpers;
+    const shellquote = helpers.shellquote();
 
     it('wraps the input in single-quotes', () => {
       expect(shellquote('echo "pwned"')).toBe('\'echo "pwned"\'');
@@ -24,7 +24,7 @@ describe('format helpers', () => {
   });
 
   describe('slugify', () => {
-    const { slugify } = helpers;
+    const slugify = helpers.slugify();
 
     it('formats normal strings', () => {
       const formatted = slugify('hello');
@@ -73,7 +73,7 @@ describe('format helpers', () => {
   });
 
   describe('trim', () => {
-    const { trim } = helpers;
+    const trim = helpers.trim();
 
     it('removes leading and trailing whitespace', () => {
       expect(trim('\t  black\t\t  ')).toBe('black');
@@ -81,7 +81,7 @@ describe('format helpers', () => {
   });
 
   describe('uppercase', () => {
-    const { uppercase } = helpers;
+    const uppercase = helpers.uppercase();
 
     it('uppercases strings', () => {
       expect(uppercase('loud')).toBe('LOUD');
