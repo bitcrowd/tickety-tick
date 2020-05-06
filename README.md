@@ -1,4 +1,6 @@
-# Tickety-Tick [![Build Status](https://circleci.com/gh/bitcrowd/tickety-tick.svg?style=svg)](https://circleci.com/gh/bitcrowd/tickety-tick)
+# ![ticket icon](./src/common/icons/icon-32.png) Tickety-Tick
+
+[![Build Status](https://circleci.com/gh/bitcrowd/tickety-tick.svg?style=svg)](https://circleci.com/gh/bitcrowd/tickety-tick)
 
 > #### How do you name this branch? What is the message for that commit?
 > A browser extension to generate these for you, based on the ticket you're working on.
@@ -86,7 +88,15 @@ Navigate to the [chrome://extensions](//chrome://extensions) page, enable "Devel
 
 If you just want to try out and debug the extension, go to [about:debugging#addons](//about:debugging#addons). Then press "Load Temporary Add-On" and select the built `manifest.json` from the `dist/firefox` extension directory.
 
-If you want to install this addon permanently, go to [about:addons](//about:addons) and click on the small cog icon. Select `Install Add-on From File...` and choose `dist/firefox`.
+If you want to install the extension permanently, you have two options:
+
+1. Install a self-signed add-on
+
+  Get a `tickety_tick-<version>.xpi` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases) or [signing by a maintainer](./MAINTAINERS.md#sign-add-on-for-firefox). Then go to [about:addons](//about:addons), click on the small cog icon, select `Install Add-on From File...` and choose your `.xpi` file.
+
+2. Install an unsigned add-on
+
+  Enable [unsigned add-ons](https://support.mozilla.org/en-US/kb/add-on-signing-in-firefox#w_what-are-my-options-if-i-want-to-use-an-unsigned-add-on-advanced-users). Then go to [about:addons](//about:addons), click on the small cog icon, select `Install Add-on From File…` and choose `dist/firefox`.
 
 ### Opera
 
