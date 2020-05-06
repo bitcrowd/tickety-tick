@@ -150,12 +150,12 @@ describe('form', () => {
     );
   });
 
-  it('renders the names of available template helpers', () => {
+  it('renders the names & descriptions of available template helpers', () => {
     const wrapper = render({});
     const text = wrapper.text();
 
-    Object.keys(helpers).forEach((name) => {
-      expect(text).toContain(name);
+    Object.values(helpers).forEach((fn) => {
+      expect(text).toContain(fn.name || fn.description);
     });
   });
 

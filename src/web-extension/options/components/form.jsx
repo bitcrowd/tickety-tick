@@ -203,9 +203,10 @@ class Form extends Component {
               <ul className="list-unstyled text-muted">
                 {Object.keys(helpers)
                   .sort()
-                  .map((name) => (
-                    <li key={name}>{name}</li>
-                  ))}
+                  .map((name) => {
+                    const { description } = helpers[name];
+                    return <li key={name}>{description || name}</li>;
+                  })}
               </ul>
             </div>
           </div>
