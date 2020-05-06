@@ -25,7 +25,7 @@ describe('ticket formatting', () => {
     });
 
     describe('branch', () => {
-      const { slugify } = helpers;
+      const slugify = helpers.slugify();
 
       it('includes ticket type, id and title', () => {
         const formatted = fmt.branch(ticket);
@@ -46,7 +46,7 @@ describe('ticket formatting', () => {
     });
 
     describe('command', () => {
-      const { shellquote } = helpers;
+      const shellquote = helpers.shellquote();
 
       it('includes the quoted branch name and commit message', () => {
         const branch = fmt.branch(ticket);
