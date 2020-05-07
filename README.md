@@ -92,7 +92,7 @@ If you want to install the extension permanently, you have two options:
 
 1. Install a self-signed add-on
 
-  Get a `tickety_tick-<version>.xpi` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases) or [signing by a maintainer](./MAINTAINERS.md#sign-add-on-for-firefox). Then go to [about:addons](//about:addons), click on the small cog icon, select `Install Add-on From File...` and choose your `.xpi` file.
+  Get a `tickety_tick-<version>.xpi` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases) or sign a build yourself as per our [maintainer guide](./MAINTAINERS.md#sign-add-on-for-firefox). Then go to [about:addons](//about:addons), click on the small cog icon, select `Install Add-on From File…` and choose your `.xpi` file.
 
 2. Install an unsigned add-on
 

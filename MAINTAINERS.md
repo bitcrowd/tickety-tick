@@ -6,8 +6,8 @@ Tips & tricks for maintainers of Tickety-Tick.
 
 Offering a (beta-) version for download requires self-signing the add-on through [addons.mozilla.org](https://extensionworkshop.com/documentation/publish/#distribute-your-signed-extension). This generates a `.xpi` for installing the extension in Firefox.
 
-Find the API credentials in 1password and run:
+Find the API credentials in 1Password and run:
 
-```
+```shell
 yarn build:firefox && yarn sign 
 ```
