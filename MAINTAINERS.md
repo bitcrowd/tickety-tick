@@ -9,5 +9,5 @@ Offering a (beta-) version for download requires self-signing the add-on through
 Find the API credentials in 1Password and run:
 
 ```shell
-yarn build:firefox && yarn sign 
+WEB_EXT_API_KEY=xxx WEB_EXT_API_SECRET=xxx yarn build:firefox && yarn sign
 ```

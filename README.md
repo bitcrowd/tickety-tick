@@ -48,11 +48,32 @@ Tickety-Tick is available for every major browser:
 - [Opera](./OPERA.md)
 - For Safari, you need to build it yourself ([see below](#safari))
 
+### Manual Installation
+
+Manually install the extension if you want to use an older version or a beta version.
+
+<details>
+<summary>Click here for instructions</summary>
+
+#### Chrome
+
+Download and unpack a `chrome.zip` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases). Then navigate to the [chrome://extensions](//chrome://extensions) page, enable "Developer mode", press "Load unpacked extension" and point to the unpacked folder.
+
+#### Firefox
+
+Get a `tickety_tick-<version>.xpi` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases) or sign a build yourself as per our [maintainer guide](./MAINTAINERS.md#sign-add-on-for-firefox). Then go to [about:addons](//about:addons), click on the small cog icon, select `Install Add-on From File…` and choose your `.xpi` file.
+
+#### Opera
+
+Download and unpack a `chrome.zip` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases). Then navigate to the [opera://extensions](//opera://extensions) page, enable "Developer mode", press "Load unpacked extension" and point to the unpacked folder.
+</details>
+
 ## Keyboard Shortcuts
 
 | Shortcut                       | Description                       |
 |--------------------------------|-----------------------------------|
 | <kbd>Ctrl</kbd> + <kbd>t</kbd> | Open the extension's popup dialog |
+
 
 ## Building
 
@@ -88,15 +109,7 @@ Navigate to the [chrome://extensions](//chrome://extensions) page, enable "Devel
 
 If you just want to try out and debug the extension, go to [about:debugging#addons](//about:debugging#addons). Then press "Load Temporary Add-On" and select the built `manifest.json` from the `dist/firefox` extension directory.
 
-If you want to install the extension permanently, you have two options:
-
-1. Install a self-signed add-on
-
-  Get a `tickety_tick-<version>.xpi` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases) or sign a build yourself as per our [maintainer guide](./MAINTAINERS.md#sign-add-on-for-firefox). Then go to [about:addons](//about:addons), click on the small cog icon, select `Install Add-on From File…` and choose your `.xpi` file.
-
-2. Install an unsigned add-on
-
-  Enable [unsigned add-ons](https://support.mozilla.org/en-US/kb/add-on-signing-in-firefox#w_what-are-my-options-if-i-want-to-use-an-unsigned-add-on-advanced-users). Then go to [about:addons](//about:addons), click on the small cog icon, select `Install Add-on From File…` and choose `dist/firefox`.
+If you want to install the extension permanently, you need to [enable unsigned add-ons](https://support.mozilla.org/en-US/kb/add-on-signing-in-firefox#w_what-are-my-options-if-i-want-to-use-an-unsigned-add-on-advanced-users). Then go to [about:addons](//about:addons), click on the small cog icon, select `Install Add-on From File…` and choose `dist/firefox`.
 
 ### Opera
 
