@@ -17,6 +17,7 @@
     "open:firefox": "web-ext run --source-dir ./dist/firefox --pref startup.homepage_welcome_url=https://github.com/bitcrowd/tickety-tick",
     "bundle:chrome": "cross-env BUNDLE=true run-s build:chrome",
     "bundle:firefox": "cross-env BUNDLE=true run-s build:firefox",
+    "sign": "web-ext sign --source-dir ./dist/firefox --artifacts-dir ./dist --channel=unlisted",
     "lint": "eslint --ignore-path .gitignore --ext .js,.jsx .",
     "test": "jest",
     "checks": "run-s lint test"
