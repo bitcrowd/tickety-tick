@@ -46,7 +46,6 @@ Tickety-Tick is available for every major browser:
 - [Chrome/Chromium](https://chrome.google.com/webstore/detail/ciakolhgmfijpjbpcofoalfjiladihbg)
 - [Firefox](https://addons.mozilla.org/firefox/addon/tickety-tick/)
 - [Opera](./OPERA.md)
-- For Safari, you need to build it yourself ([see below](#safari))
 
 ### Manual Installation
 
@@ -96,7 +95,6 @@ To only build for a specific browser, use:
 ```shell
 yarn build:chrome
 yarn build:firefox
-yarn build:safari
 ```
 
 ## Installing a custom-built version
@@ -114,10 +112,6 @@ If you want to install the extension permanently, you need to [enable unsigned a
 ### Opera
 
 Navigate to the [opera://extensions](//opera://extensions) page, enable "Developer mode" and press "Load unpacked extension". Point it to the `dist/chrome` directory. Done.
-
-### Safari
-
-Open Safari and enable the "Developer Menu" in the application preferences. Now go to the developer menu and open the "Extension Builder". Press the "+" button and add the `dist/tickety-tick.safariextension` that you just built.
 
 ## Development
 
@@ -186,7 +180,7 @@ yarn bundle:firefox
 
 1. Tick the version with [`yarn version`](https://yarnpkg.com/en/docs/cli/version) (creates a Git tag)
 2. Push the tag with `git push --tags`
-3. Build releases for Chrome, Firefox and Safari (see above)
+3. Build releases for Chrome and Firefox (see above)
 4. Draft a [new release on GitHub](https://github.com/bitcrowd/tickety-tick/releases/new)
 5. Add package bundles to your new release
 6. Publish release in Chrome and Mozilla stores
@@ -226,8 +220,6 @@ In **Firefox**, open [about:addons](//about:addons) and select the Tickety-Tick 
 In **Chrome**, open [chrome://extensions/](//chrome://extensions), click the "Details" button on the Tickety-Tick tile and select "Extension options".
 
 In **Opera**, open [opera://extensions/](//opera://extensions), click the "Options" button on the Tickety-Tick tile.
-
-In **Safari**, open "Preferences" (`cmd + ,`), then select "Extensions".
 
 ### Auto-formatting of commit messages
 

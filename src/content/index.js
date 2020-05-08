@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill';
 
-import stdsearch from '../common/search';
+import stdsearch from '../core/search';
 
 if (window === window.top) {
   browser.runtime.onMessage.addListener((req) => {
