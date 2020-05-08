@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const EnvContext = createContext({ close: null, openext: null, pbcopy: null });
+const EnvContext = createContext({ close: null, pbcopy: null });
 
 export default EnvContext;
