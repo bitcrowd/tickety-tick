@@ -49,7 +49,6 @@ describe('form', () => {
 
   beforeEach(() => {
     format.mockImplementation((templates, autofmt) => ({
-      summary: () => `formatted-summary (${autofmt})`,
       commit: () => `formatted-commit (${autofmt})`,
       branch: () => `formatted-branch (${autofmt})`,
       command: () => `formatted-command (${autofmt})`,
@@ -216,7 +215,6 @@ describe('form', () => {
 
     const unchanged = {
       templates: {
-        summary: 'summary',
         branch: 'branch',
         commit: 'commit',
         command: 'command',
@@ -239,7 +237,6 @@ describe('form', () => {
     const wrapper = render({ store });
 
     toggle(wrapper, 'autofmt', false);
-    change(wrapper, 'summary', 'summary++');
     change(wrapper, 'branch', 'branch++');
     change(wrapper, 'commit', 'commit++');
     change(wrapper, 'command', 'command++');
@@ -251,7 +248,6 @@ describe('form', () => {
 
     const changed = {
       templates: {
-        summary: 'summary++',
         branch: 'branch++',
         commit: 'commit++',
         command: 'command++',
