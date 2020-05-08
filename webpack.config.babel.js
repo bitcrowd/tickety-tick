@@ -10,7 +10,15 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { DefinePlugin } from 'webpack';
 import NotifierPlugin from 'webpack-build-notifier';
+import ZipWebpackPlugin from 'zip-webpack-plugin';
 import Config from 'webpack-chain';
+
+import pkg from './package.json';
+
+// Small variations between browsers supporting the WebExtensions API are
+// handled by setting the extension variant as an environment variable, for
+// instance: 'chrome', 'firefox' or 'opera'.
+const variant = process.env.VARIANT;
 
 // Path helpers
 
@@ -18,33 +26,30 @@ export function src(...p) {
   return path.join(__dirname, 'src', ...p);
 }
 
-src.common = src.bind(null, 'common');
-src.webext = src.bind(null, 'web-extension');
-src.safari = src.bind(null, 'safari-extension');
-
 export function dist(...p) {
   return path.join(__dirname, 'dist', ...p);
 }
 
-// Common build options for all browsers are set below. Browser-specific
-// settings and overrides are defined in separate files, specifically:
-//
-// - entry
-//   - popup entry point differs between web-extension browsers and safari
-//   - content script differs between web-extension browsers and safari
-//   - web-extension browsers include a background.js and options.js
-// - output.path: we create separate output directories for each browser
-// - plugins:
-//   - copy:
-//     - web-extension browsers add manifest.json
-//     - safari adds Info.plist and Settings.plist
-//   - options-html: web-extension browsers add options.html
+// Create a configuration.
 
 const config = new Config();
 
 config.context(__dirname);
 
+// Configure separate entry points.
+
+config.entry('background').add(src('background', 'index.js'));
+config.entry('content').add(src('content', 'index.js'));
+config.entry('options').add(src('options', 'index.jsx'));
+config.entry('popup').add(src('popup', 'index.js'));
+
+// Set browser-specific output path.
+
+config.output.path(dist(variant));
+
 config.output.filename('[name].js');
+
+// Configure module/import resolution.
 
 config.resolve.extensions.add('.js').add('.jsx').add('.json');
 
@@ -89,11 +94,15 @@ config.module
   .loader('file-loader')
   .options({ name: '[name].[hash].[ext]' });
 
+// Clean up output directory before building.
+
 config.plugin('clean').use(CleanWebpackPlugin, []);
+
+// Create the popup.html.
 
 config.plugin('html').use(HtmlWebpackPlugin, [
   {
-    template: src.common('popup', 'popup.html'),
+    template: src('popup', 'index.html'),
     filename: 'popup.html',
     chunks: ['popup'],
     inject: true,
@@ -105,23 +114,68 @@ config.plugin('html').use(HtmlWebpackPlugin, [
   },
 ]);
 
+// Create the options.html.
+
+config.plugin('options-html').use(HtmlWebpackPlugin, [
+  {
+    template: src('options', 'index.html'),
+    filename: 'options.html',
+    chunks: ['options'],
+    inject: true,
+    minify: {
+      collapseWhitespace: true,
+      removeScriptTypeAttributes: true,
+    },
+    cache: false,
+  },
+]);
+
+// Extract CSS into a separate file per entry.
+
 config.plugin('extract').use(MiniCssExtractPlugin, [
   {
     filename: '[name].css',
   },
 ]);
 
+// Copy extension icons and the manifest.json template.
+
 config.plugin('copy').use(CopyWebpackPlugin, [
   [
     {
-      from: src.common('icons', '*.png'),
+      from: src('icons', '*.png'),
       flatten: true,
+    },
+    {
+      from: src('manifest.json'),
+      transform: (content) => {
+        const mf = JSON.parse(content);
+
+        mf.name = pkg.name;
+        mf.version = pkg.version;
+        mf.description = pkg.description;
+
+        if (variant === 'firefox') {
+          mf.options_ui.browser_style = true;
+          mf.applications = {
+            gecko: {
+              id: 'jid1-ynkvezs8Qn2TJA@jetpack',
+            },
+          };
+        } else {
+          mf.options_ui.chrome_style = true;
+        }
+
+        return JSON.stringify(mf);
+      },
     },
   ],
   {
     copyUnmodified: true,
   },
 ]);
+
+// Inject Git revision information.
 
 const revision = new GitRevisionPlugin();
 
@@ -136,12 +190,27 @@ config
     },
   ]);
 
+// Show build notifications.
+
 config.plugin('notifier').use(NotifierPlugin, [
   {
     title: 'Tickety-Tick Build',
   },
 ]);
 
+// Configure source-maps.
+
 config.devtool('source-map');
 
-export default config;
+// Create ZIP bundles if requested.
+
+config.when(process.env.BUNDLE === 'true', (cfg) =>
+  cfg.plugin('zip').use(ZipWebpackPlugin, [
+    {
+      path: dist(),
+      filename: variant,
+    },
+  ])
+);
+
+export default config.toConfig();

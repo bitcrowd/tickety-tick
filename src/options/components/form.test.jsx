@@ -1,14 +1,14 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import format, { defaults as fallbacks, helpers } from '../../../common/format';
+import format, { defaults as fallbacks, helpers } from '../../core/format';
 import CheckboxInput from './checkbox-input';
 import Form from './form';
 import TemplateInput from './template-input';
 
-jest.mock('../../../common/format', () => {
+jest.mock('../../core/format', () => {
   const mockFormat = jest.fn();
-  const actual = jest.requireActual('../../../common/format');
+  const actual = jest.requireActual('../../core/format');
   return Object.assign(mockFormat, actual);
 });
 

@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import { ticket as make } from '../../../../test/factories';
+import { ticket as make } from '../../../test/factories';
 import NoTickets from './no-tickets';
 import TicketControls from './ticket-controls';
 import Tool from './tool';

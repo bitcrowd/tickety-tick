@@ -7,7 +7,7 @@ import Octicon, {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import useInput from '../../hooks/use-input';
+import useInput from '../hooks/use-input';
 import TicketShape from '../utils/ticket-shape';
 import CopyButton from './copy-button';
 

@@ -1,10 +1,10 @@
-import '../../common/popup/popup.scss';
+import './index.scss';
 
 import browser from 'webextension-polyfill';
 
-import enhance from '../../common/enhance';
-import render from '../../common/popup/render';
+import enhance from '../core/enhance';
 import store from '../store';
+import render from './render';
 
 const background = browser.extension.getBackgroundPage();
 

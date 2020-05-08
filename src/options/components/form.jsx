@@ -7,7 +7,7 @@ import Octicon, {
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import format, { defaults, helpers } from '../../../common/format';
+import format, { defaults, helpers } from '../../core/format';
 import CheckboxInput from './checkbox-input';
 import * as example from './example';
 import TemplateInput from './template-input';

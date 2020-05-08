@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import { ticket as make } from '../../../../test/factories';
+import { ticket as make } from '../../../test/factories';
 import TicketControls from './ticket-controls';
 
 describe('ticket-controls', () => {
