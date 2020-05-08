@@ -1,7 +1,6 @@
 import Octicon, {
   Comment,
   GitBranch,
-  Inbox,
   Terminal,
 } from '@githubprimer/octicons-react';
 import PropTypes from 'prop-types';
@@ -38,7 +37,6 @@ class Form extends Component {
     this.state = {
       loading: true,
       autofmt: true,
-      summary: '',
       branch: '',
       commit: '',
       command: '',
@@ -77,15 +75,10 @@ class Form extends Component {
 
     const { store } = this.props;
 
-    const { autofmt, summary, branch, commit, command } = this.state;
+    const { autofmt, branch, commit, command } = this.state;
 
     const options = { autofmt };
-    const templates = {
-      summary,
-      branch,
-      commit,
-      command,
-    };
+    const templates = { branch, commit, command };
 
     this.setState({ loading: true }, () => {
       store.set({ templates, options }).then(this.handleSaved);
@@ -129,15 +122,6 @@ class Form extends Component {
         value: templates.command,
         fallback: defaults.command,
         preview: fmt.command(example),
-      },
-      {
-        icon: <InputIcon icon={Inbox} />,
-        label: 'Summary Format',
-        id: 'summary-format',
-        name: 'summary',
-        value: templates.summary,
-        fallback: defaults.summary,
-        preview: fmt.summary(example),
       },
     ];
 

@@ -1,5 +1,3 @@
-export const summary = '[#{id}] {title}';
-
 export const branch = '{type | slugify}/{id | slugify}-{title | slugify}';
 
 export const commit = '[#{id}] {title}\n\n{description}\n\n{url}';
