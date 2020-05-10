@@ -69,9 +69,9 @@
   "dependencies": {
     "@githubprimer/octicons-react": "^8.5.0",
     "bootstrap": "4.4.1",
-    "ky": "^0.19.0",
+    "ky": "^0.19.1",
     "micro-match": "^1.0.1",
-    "prettier": "^2.0.4",
+    "prettier": "^2.0.5",
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
