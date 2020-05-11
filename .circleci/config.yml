@@ -2,7 +2,7 @@ version: 2
 references:
   base: &base
     docker:
-      - image: circleci/node:13
+      - image: circleci/node:14.2.0
     working_directory: ~/tickety-tick
 jobs:
   setup:
