@@ -32,6 +32,16 @@ jobs:
           command: yarn lint --format junit -o reports/eslint/results.xml
       - store_test_results:
           path: reports
+  stylelint:
+    <<: *base
+    steps:
+      - restore_cache:
+          key: repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Run SCSS Linter
+          command: mkdir -p reports/stylelint && yarn stylelint --custom-formatter node_modules/stylelint-junit-formatter -o reports/stylelint/results.xml
+      - store_test_results:
+          path: reports
   test:
     <<: *base
     steps:
@@ -50,6 +60,9 @@ workflows:
     jobs:
       - setup
       - lint:
+          requires:
+            - setup
+      - stylelint:
           requires:
             - setup
       - test:

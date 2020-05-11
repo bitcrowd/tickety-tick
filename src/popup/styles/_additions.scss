@@ -7,7 +7,9 @@
 // Buttons
 
 .btn {
-  .btn-label {}
+  // stylelint-disable-next-line block-no-empty
+  .btn-label {
+  }
 
   .btn-label-conceal {
     display: none;

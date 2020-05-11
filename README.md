@@ -143,6 +143,7 @@ yarn checks
 Or, to run checks individually:
 
 ```shell
+yarn stylelint
 yarn lint
 yarn test
 ```
@@ -151,6 +152,13 @@ Hint: You can append `--watch` and other options supported by [Jest](https://jes
 
 ```shell
 yarn test --watch
+```
+
+The lint commands accept options supported by [ESLint](https://eslint.org/docs/user-guide/command-line-interface) and [stylelint](https://stylelint.io/user-guide/usage/options), e.g.:
+
+```shell
+yarn lint --fix
+yarn stylelint --fix
 ```
 
 ### Generating coverage reports
