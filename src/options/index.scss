@@ -1,27 +1,27 @@
 // Customization
-@import "styles/settings";
+@import 'styles/settings';
 
 // Core functions, variables and mixins
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
 
 // Root
-@import "~bootstrap/scss/root";
+@import '~bootstrap/scss/root';
 
 // Reset
-@import "~bootstrap/scss/reboot";
+@import '~bootstrap/scss/reboot';
 
 // Core CSS
-@import "~bootstrap/scss/grid";
-@import "~bootstrap/scss/type";
-@import "~bootstrap/scss/utilities";
+@import '~bootstrap/scss/grid';
+@import '~bootstrap/scss/type';
+@import '~bootstrap/scss/utilities';
 
 // Basic components
-@import "~bootstrap/scss/buttons";
-@import "~bootstrap/scss/card";
-@import "~bootstrap/scss/forms";
-@import "~bootstrap/scss/input-group";
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/card';
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/input-group';
 
 // Options style
-@import "styles/additions";
+@import 'styles/additions';

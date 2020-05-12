@@ -17,8 +17,9 @@
     "bundle:firefox": "cross-env BUNDLE=true run-s build:firefox",
     "sign": "web-ext sign --source-dir ./dist/firefox --artifacts-dir ./dist --channel=unlisted",
     "lint": "eslint --ignore-path .gitignore --ext .js,.jsx .",
+    "stylelint": "stylelint --ignore-path .gitignore --syntax scss 'src/**/*.scss'",
     "test": "jest",
-    "checks": "run-s lint test"
+    "checks": "run-s stylelint lint test"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
@@ -59,6 +60,10 @@
     "postcss-preset-env": "^6.7.0",
     "react-test-renderer": "16.13.1",
     "sass-loader": "8.0.2",
+    "stylelint": "^13.3.3",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-junit-formatter": "^0.2.2",
+    "stylelint-prettier": "^1.1.2",
     "web-ext": "4.2.0",
     "webpack": "4.43.0",
     "webpack-build-notifier": "2.0.0",
