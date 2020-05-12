@@ -1,4 +1,4 @@
-# ![ticket icon](./src/common/icons/icon-32.png) Tickety-Tick
+# ![ticket icon](./src/icons/icon-32.png) Tickety-Tick
 
 [![Build Status](https://circleci.com/gh/bitcrowd/tickety-tick.svg?style=svg)](https://circleci.com/gh/bitcrowd/tickety-tick)
 
