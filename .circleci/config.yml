@@ -1,52 +1,79 @@
-version: 2
-references:
-  base: &base
+version: "2.1"
+
+definitions:
+  pwd: &pwd ~/tickety-tick
+
+executors:
+  base:
     docker:
       - image: circleci/node:14.2.0
-    working_directory: ~/tickety-tick
+    working_directory: *pwd
+
+commands:
+  restore_pwd:
+    description: Restore working directory
+    steps:
+      - restore_cache:
+          key: pwd-{{ .Environment.CIRCLE_SHA1 }}
+
+  save_pwd:
+    description: Save working directory
+    steps:
+      - save_cache:
+          key: pwd-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - *pwd
+
+  restore_deps:
+    description: Restore dependencies
+    steps:
+      - restore_cache:
+          key: dependency-cache-{{ arch }}-{{ checksum "yarn.lock" }}
+
+  save_deps:
+    description: Save dependencies
+    steps:
+      - save_cache:
+          key: dependency-cache-{{ arch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+
 jobs:
   setup:
-    <<: *base
+    executor: base
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}-{{ arch }}
+      - restore_deps
       - run:
           name: Install dependencies
           command: yarn install --frozen-lockfile
-      - save_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}-{{ arch }}
-          paths:
-            - node_modules
-      - save_cache:
-          key: repo-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - ~/tickety-tick
+      - save_deps
+      - save_pwd
+
   lint:
-    <<: *base
+    executor: base
     steps:
-      - restore_cache:
-          key: repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_pwd
       - run:
           name: Run Linter
           command: yarn lint --format junit -o reports/eslint/results.xml
       - store_test_results:
           path: reports
+
   stylelint:
-    <<: *base
+    executor: base
     steps:
-      - restore_cache:
-          key: repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_pwd
       - run:
           name: Run SCSS Linter
           command: mkdir -p reports/stylelint && yarn stylelint --custom-formatter node_modules/stylelint-junit-formatter -o reports/stylelint/results.xml
       - store_test_results:
           path: reports
+
   test:
-    <<: *base
+    executor: base
     steps:
-      - restore_cache:
-          key: repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_pwd
       - run:
           name: Run Tests
           command: yarn test --maxWorkers=2 --ci --reporters=default --reporters=jest-junit
@@ -54,8 +81,9 @@ jobs:
             JEST_JUNIT_OUTPUT: reports/jest/results.xml
       - store_test_results:
           path: reports
+
 workflows:
-  version: 2
+  version: 2.1
   checks:
     jobs:
       - setup
