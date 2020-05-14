@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# Format code and fix issues if possible
+# Usage: scripts/format
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+SCRIPTDIR=$(cd "$(dirname "$0")"; pwd)
+
+cd "$SCRIPTDIR/.."
+
+if [ -z "${GITHUB_TOKEN:-}" ]; then
+  echo "Please set GITHUB_TOKEN."
+  exit 1
+fi
+
+if [ -z "${WEB_EXT_API_KEY:-}" ] || [ -z "${WEB_EXT_API_SECRET:-}" ]; then
+  echo "Please set WEB_EXT_API_KEY and WEB_EXT_API_SECRET environment variables."
+  exit 1
+fi
+
+CHANGELOG=$(./script/list-changes)
+yarn run checks
+yarn run np --any-branch --no-tests --no-cleanup --no-release-draft --no-publish
+yarn run bundle:chrome
+yarn run bundle:firefox
+yarn run sign
+
+NEW_TAG=$(git describe --abbrev=0 --tags)
+RELEASE_DIR="./dist/$NEW_TAG"
+mkdir "$RELEASE_DIR"
+cp ./dist/chrome.zip "$RELEASE_DIR"
+cp ./dist/*.xpi "$RELEASE_DIR"
+
+ghr -t "$GITHUB_TOKEN" -b "$CHANGELOG" -delete -replace "$NEW_TAG" "$RELEASE_DIR"
+
