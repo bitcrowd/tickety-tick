@@ -6,8 +6,6 @@ import enhance from '../core/enhance';
 import store from '../store';
 import render from './render';
 
-const background = browser.extension.getBackgroundPage();
-
 function pbcopy(text) {
   const input = document.createElement('textarea');
   input.textContent = text;
@@ -22,6 +20,7 @@ function close() {
 }
 
 async function load() {
+  const background = browser.extension.getBackgroundPage();
   const { tickets, errors } = await background.getTickets();
   const { options = {}, templates } = await store.get(null);
 

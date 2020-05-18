@@ -11,7 +11,7 @@ module.exports = {
   snapshotSerializers: ['enzyme-to-json/serializer'],
   transform: {
     '^.+\\.jsx?$': 'babel-jest',
-    '^.+\\.png$': '<rootDir>/test/transforms/file.js',
+    '(?!^.+\\.jsx?$)': '<rootDir>/test/transforms/file.js',
   },
   transformIgnorePatterns: ['node_modules/(?!ky)'],
 };
