@@ -13,6 +13,7 @@
   "globals": {
     "COMMITHASH": "readonly"
   },
+  "parser": "babel-eslint",
   "plugins": [
     "jest",
     "prettier",

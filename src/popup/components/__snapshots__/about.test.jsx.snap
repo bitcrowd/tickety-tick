@@ -13,13 +13,11 @@ exports[`about renders 1`] = `
           className="nav-link"
           to="/"
         >
-          <Octicon
-            className="mr-1"
-            height={14}
-            icon={[Function]}
-            size={16}
-            verticalAlign="text-bottom"
-            width={7}
+          <gh-octicon
+            class="mr-1"
+            height="14"
+            icon="chevron-left"
+            width="7"
           />
           Back
         </Link>

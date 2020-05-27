@@ -1,9 +1,3 @@
-import Octicon, {
-  Check,
-  Comment,
-  GitBranch,
-  Terminal,
-} from '@githubprimer/octicons-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -21,7 +15,7 @@ function TicketCopyButton({ icon, label, title, value, ...rest }) {
     >
       {(copied) => (
         <>
-          <Octicon icon={copied ? Check : icon} width={18} height={18} />
+          <gh-octicon icon={copied ? 'check' : icon} width="18" height="18" />
           <span className="pl-1 small btn-label btn-label-conceal">
             {copied ? 'Copied' : label}
           </span>
@@ -49,21 +43,21 @@ function TicketControls({ tickets }) {
     <form>
       <div className="d-flex flex-row mb-2 btn-group btn-group-lg" role="group">
         <TicketCopyButton
-          icon={GitBranch}
+          icon="git-branch"
           label="Branch"
           title="Copy branch name"
           value={ticket.fmt.branch}
           tabIndex={1}
         />
         <TicketCopyButton
-          icon={Comment}
+          icon="comment"
           label="Message"
           title="Copy commit message"
           value={ticket.fmt.commit}
           tabIndex={1}
         />
         <TicketCopyButton
-          icon={Terminal}
+          icon="terminal"
           label="Command"
           title="Copy CLI command"
           value={ticket.fmt.command}

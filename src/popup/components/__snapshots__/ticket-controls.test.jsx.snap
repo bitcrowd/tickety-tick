@@ -7,21 +7,21 @@ exports[`ticket-controls renders for a single ticket 1`] = `
     role="group"
   >
     <TicketCopyButton
-      icon={[Function]}
+      icon="git-branch"
       label="Branch"
       tabIndex={1}
       title="Copy branch name"
       value="branch-1"
     />
     <TicketCopyButton
-      icon={[Function]}
+      icon="comment"
       label="Message"
       tabIndex={1}
       title="Copy commit message"
       value="commit-1"
     />
     <TicketCopyButton
-      icon={[Function]}
+      icon="terminal"
       label="Command"
       tabIndex={1}
       title="Copy CLI command"
@@ -54,21 +54,21 @@ exports[`ticket-controls renders for multiple tickets 1`] = `
     role="group"
   >
     <TicketCopyButton
-      icon={[Function]}
+      icon="git-branch"
       label="Branch"
       tabIndex={1}
       title="Copy branch name"
       value="branch-1"
     />
     <TicketCopyButton
-      icon={[Function]}
+      icon="comment"
       label="Message"
       tabIndex={1}
       title="Copy commit message"
       value="commit-1"
     />
     <TicketCopyButton
-      icon={[Function]}
+      icon="terminal"
       label="Command"
       tabIndex={1}
       title="Copy CLI command"

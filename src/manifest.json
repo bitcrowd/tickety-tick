@@ -67,5 +67,5 @@
       }
     }
   },
-  "content_security_policy": "default-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self';"
+  "content_security_policy": "default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self';"
 }

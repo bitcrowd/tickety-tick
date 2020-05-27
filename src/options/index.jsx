@@ -1,3 +1,4 @@
+import '../shared/web-components/octicon';
 import './index.scss';
 
 import React from 'react';
