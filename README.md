@@ -3,6 +3,7 @@
 [![Build Status](https://circleci.com/gh/bitcrowd/tickety-tick.svg?style=svg)](https://circleci.com/gh/bitcrowd/tickety-tick)
 
 > #### How do you name this branch? What is the message for that commit?
+>
 > A browser extension to generate these for you, based on the ticket you're working on.
 
 ![Tickety-Tick's user interface](./screenshots/interface.png)
@@ -56,7 +57,7 @@ Manually install the extension if you want to use an older version or a beta ver
 
 #### Chrome
 
-Download and unpack a `chrome.zip` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases). Then navigate to the [chrome://extensions](//chrome://extensions) page, enable "Developer mode", press "Load unpacked extension" and point to the unpacked folder.
+Download and unpack a `chrome.zip` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases). Then navigate to the [chrome://extensions](chrome://extensions) page, enable "Developer mode", press "Load unpacked extension" and point to the unpacked folder.
 
 #### Firefox
 
@@ -64,15 +65,15 @@ Get a `tickety_tick-<version>.xpi` file from the [releases](https://github.com/b
 
 #### Opera
 
-Download and unpack a `chrome.zip` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases). Then navigate to the [opera://extensions](//opera://extensions) page, enable "Developer mode", press "Load unpacked extension" and point to the unpacked folder.
+Download and unpack a `chrome.zip` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases). Then navigate to the [opera://extensions](opera://extensions) page, enable "Developer mode", press "Load unpacked extension" and point to the unpacked folder.
+
 </details>
 
 ## Keyboard Shortcuts
 
 | Shortcut                       | Description                       |
-|--------------------------------|-----------------------------------|
+| ------------------------------ | --------------------------------- |
 | <kbd>Ctrl</kbd> + <kbd>t</kbd> | Open the extension's popup dialog |
-
 
 ## Building
 
@@ -101,7 +102,7 @@ yarn build:firefox
 
 ### Chrome
 
-Navigate to the [chrome://extensions](//chrome://extensions) page, enable "Developer mode" and press "Load unpacked extension". Point it to the `dist/chrome` directory. Done.
+Navigate to the [chrome://extensions](chrome://extensions) page, enable "Developer mode" and press "Load unpacked extension". Point it to the `dist/chrome` directory. Done.
 
 ### Firefox
 
@@ -111,7 +112,7 @@ If you want to install the extension permanently, you need to [enable unsigned a
 
 ### Opera
 
-Navigate to the [opera://extensions](//opera://extensions) page, enable "Developer mode" and press "Load unpacked extension". Point it to the `dist/chrome` directory. Done.
+Navigate to the [opera://extensions](opera://extensions) page, enable "Developer mode" and press "Load unpacked extension". Point it to the `dist/chrome` directory. Done.
 
 ## Development
 
