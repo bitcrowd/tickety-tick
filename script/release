@@ -21,6 +21,11 @@ if [ -z "${WEB_EXT_API_KEY:-}" ] || [ -z "${WEB_EXT_API_SECRET:-}" ]; then
   exit 1
 fi
 
+if ! type "ghr" >/dev/null 2>&1; then
+  echo "Please install ghr, e.g. brew install ghr (https://github.com/tcnksm/ghr)."
+  exit 1
+fi
+
 CHANGELOG=$(./script/list-changes)
 yarn run checks
 yarn run np --any-branch --no-tests --no-cleanup --no-release-draft --no-publish
@@ -35,4 +40,3 @@ cp ./dist/chrome.zip "$RELEASE_DIR"
 cp ./dist/*.xpi "$RELEASE_DIR"
 
 ghr -t "$GITHUB_TOKEN" -b "$CHANGELOG" -delete -replace "$NEW_TAG" "$RELEASE_DIR"
-
