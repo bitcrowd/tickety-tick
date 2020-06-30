@@ -20,6 +20,10 @@ import pkg from './package.json';
 // instance: 'chrome', 'firefox' or 'opera'.
 const variant = process.env.VARIANT;
 
+// Check whether we are signing for local installs (channel "unlisted") or for
+// submitting to the Mozilla web store (channel not set).
+const channel = process.env.CHANNEL;
+
 // Path helpers
 
 export function src(...p) {
@@ -152,7 +156,7 @@ config.plugin('copy').use(CopyWebpackPlugin, [
         const mf = JSON.parse(content);
 
         mf.name = pkg.name;
-        mf.version = pkg.version;
+        mf.version = `${pkg.version}${channel}`;
         mf.description = pkg.description;
 
         if (variant === 'firefox') {

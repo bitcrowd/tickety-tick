@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Format code and fix issues if possible
-# Usage: scripts/format
+# Create a GitHub release with artifacts (signed)
+# Usage: scripts/release
 
 set -o errexit
 set -o pipefail
@@ -29,6 +29,10 @@ fi
 CHANGELOG=$(./script/list-changes)
 yarn run checks
 yarn run np --any-branch --no-tests --no-cleanup --no-release-draft --no-publish
+
+CHANNEL=unlisted
+export CHANNEL
+
 yarn run bundle:chrome
 yarn run bundle:firefox
 yarn run sign

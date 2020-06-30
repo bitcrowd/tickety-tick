@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Submit a release to Mozilla and Chrome web stores
+# Usage: scripts/submit
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+SCRIPTDIR=$(cd "$(dirname "$0")"; pwd)
+
+cd "$SCRIPTDIR/.."
+
+if [ -z "${WEB_EXT_API_KEY:-}" ] || [ -z "${WEB_EXT_API_SECRET:-}" ]; then
+  echo "Please set WEB_EXT_API_KEY and WEB_EXT_API_SECRET environment variables."
+  exit 1
+fi
+
+unset CHANNEL
+
+yarn run checks
+# TODO: Automate submission to Chrome Web Store
+# yarn run bundle:chrome
+# yarn run submit:chrome
+yarn run bundle:firefox
+yarn run submit:firefox
