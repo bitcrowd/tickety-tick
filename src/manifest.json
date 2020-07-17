@@ -11,7 +11,7 @@
     "128": "icon-128.png"
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["background/index.js"]
   },
   "content_scripts": [
     {
@@ -19,7 +19,7 @@
        "http://*/*",
        "https://*/*"
      ],
-     "js": ["content.js"]
+     "js": ["content/index.js"]
     }
   ],
   "web_accessible_resources": [
@@ -32,7 +32,7 @@
   ],
   "browser_action": {
     "default_title": "Git Branch/Message",
-    "default_popup": "popup.html",
+    "default_popup": "popup/index.html",
     "default_icon": {
       "64": "icon-64.png",
       "32": "icon-32.png",
@@ -57,7 +57,7 @@
     ]
   },
   "options_ui": {
-    "page": "options.html"
+    "page": "options/index.html"
   },
   "commands": {
     "_execute_browser_action": {

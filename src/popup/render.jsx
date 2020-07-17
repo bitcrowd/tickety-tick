@@ -16,7 +16,10 @@ function propped(Component, defaults) {
 }
 
 function render(tickets, errors, env) {
-  const root = document.getElementById('popup-root');
+  const root = document.createElement('div');
+  root.className = 'popup';
+
+  document.body.appendChild(root);
 
   const element = (
     <EnvContext.Provider value={env}>
