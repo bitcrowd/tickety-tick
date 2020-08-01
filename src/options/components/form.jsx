@@ -1,8 +1,8 @@
-import Octicon, {
-  Comment,
-  GitBranch,
-  Terminal,
-} from '@githubprimer/octicons-react';
+import {
+  CommentIcon,
+  GitBranchIcon,
+  TerminalIcon,
+} from '@primer/octicons-react';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
@@ -14,20 +14,12 @@ import TemplateInput from './template-input';
 const recommendation =
   'https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html';
 
-function InputIcon({ icon }) {
-  return (
-    <Octicon
-      icon={icon}
-      size="small"
-      width={16}
-      height={16}
-      verticalAlign="text-top"
-    />
-  );
+function InputIcon({ icon: IconComponent }) {
+  return <IconComponent size={16} verticalAlign="text-top" />;
 }
 
 InputIcon.propTypes = {
-  icon: PropTypes.func.isRequired,
+  icon: PropTypes.elementType.isRequired,
 };
 
 class Form extends Component {
@@ -96,7 +88,7 @@ class Form extends Component {
 
     const fields = [
       {
-        icon: <InputIcon icon={Comment} />,
+        icon: <InputIcon icon={CommentIcon} />,
         label: 'Commit Message Format',
         id: 'commit-message-format',
         name: 'commit',
@@ -106,7 +98,7 @@ class Form extends Component {
         multiline: true,
       },
       {
-        icon: <InputIcon icon={GitBranch} />,
+        icon: <InputIcon icon={GitBranchIcon} />,
         label: 'Branch Name Format',
         id: 'branch-name-format',
         name: 'branch',
@@ -115,7 +107,7 @@ class Form extends Component {
         preview: fmt.branch(example),
       },
       {
-        icon: <InputIcon icon={Terminal} />,
+        icon: <InputIcon icon={TerminalIcon} />,
         label: 'Command Format',
         id: 'command-format',
         name: 'command',

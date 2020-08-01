@@ -13,13 +13,10 @@ exports[`about renders 1`] = `
           className="nav-link"
           to="/"
         >
-          <Octicon
-            className="mr-1"
-            height={14}
-            icon={[Function]}
-            size={16}
+          <ChevronLeftIcon
+            className="octicon-nav"
+            size={14}
             verticalAlign="text-bottom"
-            width={7}
           />
           Back
         </Link>
