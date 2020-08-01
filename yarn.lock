@@ -3213,10 +3213,10 @@ chrome-launcher@0.13.1:
     mkdirp "^0.5.3"
     rimraf "^3.0.2"
 
-chrome-launcher@^0.13.2:
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/chrome-launcher/-/chrome-launcher-0.13.2.tgz#d61a94c33d616ff027b346ac20dad50d1209f8f7"
-  integrity sha512-zWD9RVVKd8Nx2xKGY4G08lb3nCD+2hmICxovvRE9QjBKQzHFvCYqGlsw15b4zUxLKq3wXEwVbR/yLtMbfk7JbQ==
+chrome-launcher@^0.13.4:
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/chrome-launcher/-/chrome-launcher-0.13.4.tgz#4c7d81333c98282899c4e38256da23e00ed32f73"
+  integrity sha512-nnzXiDbGKjDSK6t2I+35OAPBy5Pw/39bgkb/ZAFwMhwJbdYBp6aH+vW28ZgtjdU890Q7D+3wN/tB8N66q5Gi2A==
   dependencies:
     "@types/node" "*"
     escape-string-regexp "^1.0.5"
