@@ -141,37 +141,36 @@ config.plugin('extract').use(MiniCssExtractPlugin, [
 // Copy extension icons and the manifest.json template.
 
 config.plugin('copy').use(CopyWebpackPlugin, [
-  [
-    {
-      from: src('icons', '*.png'),
-      flatten: true,
-    },
-    {
-      from: src('manifest.json'),
-      transform: (content) => {
-        const mf = JSON.parse(content);
-
-        mf.name = pkg.name;
-        mf.version = pkg.version;
-        mf.description = pkg.description;
-
-        if (variant === 'firefox') {
-          mf.options_ui.browser_style = true;
-          mf.applications = {
-            gecko: {
-              id: 'jid1-ynkvezs8Qn2TJA@jetpack',
-            },
-          };
-        } else {
-          mf.options_ui.chrome_style = true;
-        }
-
-        return JSON.stringify(mf);
-      },
-    },
-  ],
   {
-    copyUnmodified: true,
+    patterns: [
+      {
+        from: src('icons', '*.png'),
+        flatten: true,
+      },
+      {
+        from: src('manifest.json'),
+        transform: (content) => {
+          const mf = JSON.parse(content);
+
+          mf.name = pkg.name;
+          mf.version = pkg.version;
+          mf.description = pkg.description;
+
+          if (variant === 'firefox') {
+            mf.options_ui.browser_style = true;
+            mf.applications = {
+              gecko: {
+                id: 'jid1-ynkvezs8Qn2TJA@jetpack',
+              },
+            };
+          } else {
+            mf.options_ui.chrome_style = true;
+          }
+
+          return JSON.stringify(mf);
+        },
+      },
+    ],
   },
 ]);
 
