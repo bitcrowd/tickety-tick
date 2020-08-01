@@ -82,7 +82,7 @@
     "react-dom": "16.13.1",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
-    "react-textarea-autosize": "^7.1.0",
+    "react-textarea-autosize": "^8.2.0",
     "speakingurl": "14.0.1",
     "stacktrace-js": "^2.0.0",
     "strip-indent": "^3.0.0",
