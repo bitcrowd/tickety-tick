@@ -1,9 +1,9 @@
-import Octicon, {
-  Check,
-  Comment,
-  GitBranch,
-  Terminal,
-} from '@githubprimer/octicons-react';
+import {
+  CheckIcon,
+  CommentIcon,
+  GitBranchIcon,
+  TerminalIcon,
+} from '@primer/octicons-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -19,14 +19,18 @@ function TicketCopyButton({ icon, label, title, value, ...rest }) {
       value={value}
       {...rest}
     >
-      {(copied) => (
-        <>
-          <Octicon icon={copied ? Check : icon} width={18} height={18} />
-          <span className="pl-1 small btn-label btn-label-conceal">
-            {copied ? 'Copied' : label}
-          </span>
-        </>
-      )}
+      {(copied) => {
+        const IconComponent = copied ? CheckIcon : icon;
+
+        return (
+          <>
+            <IconComponent size={18} />
+            <span className="pl-1 small btn-label btn-label-conceal">
+              {copied ? 'Copied' : label}
+            </span>
+          </>
+        );
+      }}
     </CopyButton>
   );
 }
@@ -49,21 +53,21 @@ function TicketControls({ tickets }) {
     <form>
       <div className="d-flex flex-row mb-2 btn-group btn-group-lg" role="group">
         <TicketCopyButton
-          icon={GitBranch}
+          icon={GitBranchIcon}
           label="Branch"
           title="Copy branch name"
           value={ticket.fmt.branch}
           tabIndex={1}
         />
         <TicketCopyButton
-          icon={Comment}
+          icon={CommentIcon}
           label="Message"
           title="Copy commit message"
           value={ticket.fmt.commit}
           tabIndex={1}
         />
         <TicketCopyButton
-          icon={Terminal}
+          icon={TerminalIcon}
           label="Command"
           title="Copy CLI command"
           value={ticket.fmt.command}
