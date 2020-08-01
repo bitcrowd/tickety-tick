@@ -28,7 +28,7 @@
     "@babel/register": "^7.10.5",
     "babel-jest": "^26.2.2",
     "babel-loader": "8.1.0",
-    "chrome-launcher": "^0.13.2",
+    "chrome-launcher": "^0.13.4",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "6.0.3",
     "cross-env": "7.0.2",
