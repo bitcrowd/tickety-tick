@@ -18,6 +18,7 @@ jest.mock('../core/enhance', () => jest.fn(() => jest.fn()));
 
 jest.mock('../store', () => ({ get: jest.fn().mockResolvedValue({}) }));
 
+jest.mock('./observe-media');
 jest.mock('./render');
 
 describe('popup', () => {
