@@ -27,10 +27,9 @@ exports[`about renders 1`] = `
     <h1
       className="d-flex align-items-center h3 mb-3"
     >
-      <img
-        alt=""
+      <Logo
         className="logo mr-1"
-        src="icon-32.png"
+        wrapper="span"
       />
        
       Tickety-Tick

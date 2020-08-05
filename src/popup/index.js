@@ -1,9 +1,11 @@
 import './index.scss';
+import './index-dark.scss';
 
 import browser from 'webextension-polyfill';
 
 import enhance from '../core/enhance';
 import store from '../store';
+import onmedia from './observe-media';
 import render from './render';
 
 function pbcopy(text) {
@@ -30,3 +32,13 @@ async function load() {
 }
 
 window.onload = load;
+
+onmedia('(prefers-color-scheme: dark)', (matches) => {
+  const { classList } = document.documentElement;
+
+  if (matches) {
+    classList.add('dark');
+  } else {
+    classList.remove('dark');
+  }
+});

@@ -82,6 +82,7 @@
     "react-dom": "16.13.1",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
+    "react-svg": "^11.0.33",
     "react-textarea-autosize": "^8.2.0",
     "speakingurl": "14.0.1",
     "stacktrace-js": "^2.0.0",

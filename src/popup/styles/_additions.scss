@@ -25,7 +25,14 @@
 // Logo
 
 .logo {
-  height: 1em;
+  svg {
+    height: 1em;
+
+    path {
+      fill: currentColor !important;
+      fill-opacity: 1 !important;
+    }
+  }
 }
 
 // Octicons

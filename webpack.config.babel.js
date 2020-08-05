@@ -87,7 +87,7 @@ config.module
 
 config.module
   .rule('images')
-  .test(/\.png$/)
+  .test(/\.(png|svg)$/)
   .exclude.add(/node_modules/)
   .end()
   .use('images')
