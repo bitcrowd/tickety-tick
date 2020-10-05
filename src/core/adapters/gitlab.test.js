@@ -3,6 +3,18 @@ import { JSDOM } from 'jsdom';
 import scan from './gitlab';
 
 const ISSUEPAGE = `
+  <body data-page-type-id="22578">
+    <div class="content">
+      <div class="issue-details">
+        <div class="detail-page-description">
+          <h2 class="title">A Random GitLab Issue</h2>
+        </div>
+      </div>
+    </div>
+  </body>
+`;
+
+const LEGACYISSUE = `
   <div class="content">
     <div class="issue-details">
       <script id="js-issuable-app-initial-data" type="application/json">
@@ -53,6 +65,13 @@ describe('gitlab adapter', () => {
 
   it('extracts tickets from issue pages', async () => {
     const result = await scan(null, dom(ISSUEPAGE, 'projects:issues:show'));
+    expect(result).toEqual([
+      { id: '22578', title: 'A Random GitLab Issue', type: 'feature' },
+    ]);
+  });
+
+  it('extracts tickets from legacy issue pages', async () => {
+    const result = await scan(null, dom(LEGACYISSUE, 'projects:issues:show'));
     expect(result).toEqual([
       { id: '22578', title: 'A Random GitLab Issue', type: 'feature' },
     ]);
