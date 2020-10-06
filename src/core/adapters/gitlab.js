@@ -7,19 +7,21 @@
 import { $has, $text } from './helpers';
 
 function findTicketId(doc) {
-  const initialDataEl = doc.getElementById('js-issuable-app-initial-data');
+  const ticketId = doc.body.dataset.pageTypeId;
 
-  if (initialDataEl !== null) {
-    // Legacy approach of extracting the ticket id, left in place to support
-    // older self-hosted GitLab installations
-    const initialData = JSON.parse(
-      initialDataEl.innerHTML.replace(/&quot;/g, '"')
-    );
-
-    return initialData.issuableRef.match(/#(\d+)/)[1];
+  if (ticketId) {
+    return ticketId;
   }
 
-  return doc.body.dataset.pageTypeId;
+  const initialDataEl = doc.getElementById('js-issuable-app-initial-data');
+
+  // Legacy approach of extracting the ticket id, left in place to support
+  // older self-hosted GitLab installations
+  const initialData = JSON.parse(
+    initialDataEl.innerHTML.replace(/&quot;/g, '"')
+  );
+
+  return initialData.issuableRef.match(/#(\d+)/)[1];
 }
 
 async function scan(loc, doc) {
