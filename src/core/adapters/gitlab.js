@@ -13,10 +13,9 @@ function findTicketId(doc) {
     return ticketId;
   }
 
-  const initialDataEl = doc.getElementById('js-issuable-app-initial-data');
-
   // Legacy approach of extracting the ticket id, left in place to support
   // older self-hosted GitLab installations
+  const initialDataEl = doc.getElementById('js-issuable-app-initial-data');
   const initialData = JSON.parse(
     initialDataEl.innerHTML.replace(/&quot;/g, '"')
   );
