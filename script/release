@@ -40,7 +40,7 @@ yarn run sign
 NEW_TAG=$(git describe --abbrev=0 --tags)
 RELEASE_DIR="./dist/$NEW_TAG"
 mkdir "$RELEASE_DIR"
-cp ./dist/chrome.zip "$RELEASE_DIR"
-cp ./dist/*.xpi "$RELEASE_DIR"
+cp "./dist/chrome.zip" "$RELEASE_DIR"
+cp "./dist/*$NEW_TAG$CHANNEL*.xpi" "$RELEASE_DIR"
 
 ghr -t "$GITHUB_TOKEN" -b "$CHANGELOG" -delete -replace "$NEW_TAG" "$RELEASE_DIR"

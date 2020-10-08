@@ -157,7 +157,7 @@ config.plugin('copy').use(CopyWebpackPlugin, [
           const mf = JSON.parse(content);
 
           mf.name = pkg.name;
-          mf.version = `${pkg.version}${channel}`;
+          mf.version = `${pkg.version}${channel || ''}`;
           mf.description = pkg.description;
 
           if (variant === 'firefox') {
