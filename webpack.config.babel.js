@@ -166,8 +166,8 @@ config.plugin('copy').use(CopyWebpackPlugin, [
               gecko: {
                 id: 'jid1-ynkvezs8Qn2TJA@jetpack',
               },
-            mf.version += channel || '';
             };
+            mf.version += channel || '';
           } else {
             mf.options_ui.chrome_style = true;
           }
