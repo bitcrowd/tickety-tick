@@ -92,7 +92,7 @@ config.module
   .end()
   .use('images')
   .loader('file-loader')
-  .options({ name: '[name].[hash].[ext]' });
+  .options({ name: '[name].[contenthash].[ext]' });
 
 // Clean up output directory before building.
 
