@@ -75,9 +75,9 @@
   "dependencies": {
     "@primer/octicons-react": "^11.0.0",
     "bootstrap": "4.5.0",
-    "ky": "^0.23.0",
+    "ky": "^0.24.0",
     "micro-match": "^1.0.1",
-    "prettier": "^2.0.5",
+    "prettier": "^2.1.2",
     "prop-types": "15.7.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
