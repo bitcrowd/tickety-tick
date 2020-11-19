@@ -25,17 +25,13 @@ function isModalView(doc) {
 }
 
 function extractDescription(doc) {
-  const description = [];
   const editorRootNodes = $all('.DraftEditor-root', doc);
 
   if (isModalView(doc)) editorRootNodes.shift(); // Skip project information editor node
 
   const textNodes = $all('span[data-text="true"]', editorRootNodes[0]);
-  textNodes.forEach((node) => {
-    description.push(node.textContent);
-  });
 
-  return description.join('\n');
+  return textNodes.map((node) => node.textContent).join('\n');
 }
 
 async function scan(loc, doc) {
