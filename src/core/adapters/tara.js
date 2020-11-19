@@ -1,13 +1,13 @@
 /**
  * tara.ai adapter
  *
- * The adapter extracts the current task's identifier from the page url
+ * The adapter extracts the current task's identifier from the page URL
  * and uses the DOM to retrieve information for the corresponding ticket.
- * Page urls follow the pattern:
+ * Page URLs follow the pattern:
  *
  *   https://app.tara.ai/<workspace-name>/tasks/<id>
  *
- * Each workspace has multiple projects (called "requirements"), task ids
+ * Each workspace has multiple projects (called "requirements"), task IDs
  * always start with `TASK-` followed by a 1-based index unique within the
  * given workspace.
  */
@@ -17,7 +17,7 @@ import { match } from 'micro-match';
 import { $all, $has, $text } from './helpers';
 
 /**
- * Tara has two ticket views, one in a modal-like overlay, one in full page view.
+ * Tara has two ticket views, one in a modal-like overlay, one in full-page view.
  */
 function isModalView(doc) {
   const modalViewSelector = 'input[data-cy="requirement-detail-name-input"]';
