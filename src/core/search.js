@@ -2,6 +2,7 @@ import GitHub from './adapters/github';
 import GitLab from './adapters/gitlab';
 import Jira from './adapters/jira';
 import Notion from './adapters/notion';
+import Tara from './adapters/tara';
 import Trello from './adapters/trello';
 import serializable from './utils/serializable-errors';
 
@@ -30,6 +31,6 @@ export async function search(adapters, loc, doc) {
   return aggregate(results);
 }
 
-export const stdadapters = [GitHub, GitLab, Jira, Notion, Trello];
+export const stdadapters = [GitHub, GitLab, Jira, Notion, Tara, Trello];
 
 export default search.bind(null, stdadapters);
