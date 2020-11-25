@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+CERT_NAME='Apple Development'
+
+exec security find-certificate -a -c "$CERT_NAME" -p | keytool -printcert | grep 'Owner: ' | ruby -e 'print STDIN.readline.sub("Owner: ", "").split(", ").map { |p| p.split("=") }.to_h["OU"]'
