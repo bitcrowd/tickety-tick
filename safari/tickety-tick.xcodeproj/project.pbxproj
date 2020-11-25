@@ -1,0 +1,610 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AD655773256EF255004BE3B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD655772256EF255004BE3B4 /* AppDelegate.swift */; };
+		AD655776256EF255004BE3B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD655774256EF255004BE3B4 /* Main.storyboard */; };
+		AD655778256EF255004BE3B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD655777256EF255004BE3B4 /* ViewController.swift */; };
+		AD65577A256EF256004BE3B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD655779256EF256004BE3B4 /* Assets.xcassets */; };
+		AD655781256EF256004BE3B4 /* tickety-tick Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AD655780256EF256004BE3B4 /* tickety-tick Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AD655786256EF256004BE3B4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD655785256EF256004BE3B4 /* Cocoa.framework */; };
+		AD655789256EF256004BE3B4 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD655788256EF256004BE3B4 /* SafariWebExtensionHandler.swift */; };
+		AD6557B5256EF257004BE3B4 /* COMMITHASH in Resources */ = {isa = PBXBuildFile; fileRef = AD655796256EF256004BE3B4 /* COMMITHASH */; };
+		AD6557B6256EF257004BE3B4 /* icon-light-128.png in Resources */ = {isa = PBXBuildFile; fileRef = AD655797256EF256004BE3B4 /* icon-light-128.png */; };
+		AD6557B7256EF257004BE3B4 /* icon-16.png in Resources */ = {isa = PBXBuildFile; fileRef = AD655798256EF256004BE3B4 /* icon-16.png */; };
+		AD6557B8256EF257004BE3B4 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = AD655799256EF256004BE3B4 /* popup.js */; };
+		AD6557B9256EF257004BE3B4 /* icon-light-32.png in Resources */ = {isa = PBXBuildFile; fileRef = AD65579B256EF256004BE3B4 /* icon-light-32.png */; };
+		AD6557BA256EF257004BE3B4 /* popup.js.LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = AD65579D256EF256004BE3B4 /* popup.js.LICENSE.txt */; };
+		AD6557BB256EF257004BE3B4 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = AD65579E256EF256004BE3B4 /* background.js */; };
+		AD6557BC256EF257004BE3B4 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = AD65579F256EF256004BE3B4 /* popup.html */; };
+		AD6557BD256EF257004BE3B4 /* options.js.LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = AD6557A0256EF256004BE3B4 /* options.js.LICENSE.txt */; };
+		AD6557BE256EF257004BE3B4 /* icon-48.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6557A1256EF256004BE3B4 /* icon-48.png */; };
+		AD6557BF256EF257004BE3B4 /* options.js in Resources */ = {isa = PBXBuildFile; fileRef = AD6557A2256EF257004BE3B4 /* options.js */; };
+		AD6557C0256EF257004BE3B4 /* icon-64.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6557A3256EF257004BE3B4 /* icon-64.png */; };
+		AD6557C1256EF257004BE3B4 /* icon-light-48.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6557A5256EF257004BE3B4 /* icon-light-48.png */; };
+		AD6557C2256EF257004BE3B4 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = AD6557A7256EF257004BE3B4 /* VERSION */; };
+		AD6557C3256EF257004BE3B4 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = AD6557A8256EF257004BE3B4 /* manifest.json */; };
+		AD6557C4256EF257004BE3B4 /* icon-light-64.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6557A9256EF257004BE3B4 /* icon-light-64.png */; };
+		AD6557C5256EF257004BE3B4 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = AD6557AA256EF257004BE3B4 /* options.html */; };
+		AD6557C6256EF257004BE3B4 /* icon-light-16.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6557AB256EF257004BE3B4 /* icon-light-16.png */; };
+		AD6557C7256EF257004BE3B4 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = AD6557AC256EF257004BE3B4 /* popup.css */; };
+		AD6557C8256EF257004BE3B4 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = AD6557AD256EF257004BE3B4 /* content.js */; };
+		AD6557C9256EF257004BE3B4 /* icon-128.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6557AF256EF257004BE3B4 /* icon-128.png */; };
+		AD6557CA256EF257004BE3B4 /* content.js.LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = AD6557B0256EF257004BE3B4 /* content.js.LICENSE.txt */; };
+		AD6557CB256EF257004BE3B4 /* icon-32.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6557B1256EF257004BE3B4 /* icon-32.png */; };
+		AD6557CC256EF257004BE3B4 /* options.css in Resources */ = {isa = PBXBuildFile; fileRef = AD6557B2256EF257004BE3B4 /* options.css */; };
+		AD6557CD256EF257004BE3B4 /* icon.f4b2e8179274dcab5752932748889870.svg in Resources */ = {isa = PBXBuildFile; fileRef = AD6557B3256EF257004BE3B4 /* icon.f4b2e8179274dcab5752932748889870.svg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AD655782256EF256004BE3B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD655766256EF255004BE3B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD65577F256EF256004BE3B4;
+			remoteInfo = "tickety-tick Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AD655791256EF256004BE3B4 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AD655781256EF256004BE3B4 /* tickety-tick Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AD65576E256EF255004BE3B4 /* tickety-tick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tickety-tick.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD655771256EF255004BE3B4 /* tickety_tick.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tickety_tick.entitlements; sourceTree = "<group>"; };
+		AD655772256EF255004BE3B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AD655775256EF255004BE3B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AD655777256EF255004BE3B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AD655779256EF256004BE3B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AD65577B256EF256004BE3B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD655780256EF256004BE3B4 /* tickety-tick Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "tickety-tick Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD655785256EF256004BE3B4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		AD655788256EF256004BE3B4 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		AD65578A256EF256004BE3B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD65578B256EF256004BE3B4 /* tickety_tick_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tickety_tick_Extension.entitlements; sourceTree = "<group>"; };
+		AD655796256EF256004BE3B4 /* COMMITHASH */ = {isa = PBXFileReference; lastKnownFileType = text; name = COMMITHASH; path = ../../dist/chrome/COMMITHASH; sourceTree = "<group>"; };
+		AD655797256EF256004BE3B4 /* icon-light-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-light-128.png"; path = "../../dist/chrome/icon-light-128.png"; sourceTree = "<group>"; };
+		AD655798256EF256004BE3B4 /* icon-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-16.png"; path = "../../dist/chrome/icon-16.png"; sourceTree = "<group>"; };
+		AD655799256EF256004BE3B4 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = popup.js; path = ../../dist/chrome/popup.js; sourceTree = "<group>"; };
+		AD65579A256EF256004BE3B4 /* options.css.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = options.css.map; path = ../../dist/chrome/options.css.map; sourceTree = "<group>"; };
+		AD65579B256EF256004BE3B4 /* icon-light-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-light-32.png"; path = "../../dist/chrome/icon-light-32.png"; sourceTree = "<group>"; };
+		AD65579C256EF256004BE3B4 /* popup.js.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = popup.js.map; path = ../../dist/chrome/popup.js.map; sourceTree = "<group>"; };
+		AD65579D256EF256004BE3B4 /* popup.js.LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = popup.js.LICENSE.txt; path = ../../dist/chrome/popup.js.LICENSE.txt; sourceTree = "<group>"; };
+		AD65579E256EF256004BE3B4 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = ../../dist/chrome/background.js; sourceTree = "<group>"; };
+		AD65579F256EF256004BE3B4 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = popup.html; path = ../../dist/chrome/popup.html; sourceTree = "<group>"; };
+		AD6557A0256EF256004BE3B4 /* options.js.LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = options.js.LICENSE.txt; path = ../../dist/chrome/options.js.LICENSE.txt; sourceTree = "<group>"; };
+		AD6557A1256EF256004BE3B4 /* icon-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-48.png"; path = "../../dist/chrome/icon-48.png"; sourceTree = "<group>"; };
+		AD6557A2256EF257004BE3B4 /* options.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = options.js; path = ../../dist/chrome/options.js; sourceTree = "<group>"; };
+		AD6557A3256EF257004BE3B4 /* icon-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-64.png"; path = "../../dist/chrome/icon-64.png"; sourceTree = "<group>"; };
+		AD6557A4256EF257004BE3B4 /* options.js.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = options.js.map; path = ../../dist/chrome/options.js.map; sourceTree = "<group>"; };
+		AD6557A5256EF257004BE3B4 /* icon-light-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-light-48.png"; path = "../../dist/chrome/icon-light-48.png"; sourceTree = "<group>"; };
+		AD6557A6256EF257004BE3B4 /* content.js.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = content.js.map; path = ../../dist/chrome/content.js.map; sourceTree = "<group>"; };
+		AD6557A7256EF257004BE3B4 /* VERSION */ = {isa = PBXFileReference; lastKnownFileType = text; name = VERSION; path = ../../dist/chrome/VERSION; sourceTree = "<group>"; };
+		AD6557A8256EF257004BE3B4 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../dist/chrome/manifest.json; sourceTree = "<group>"; };
+		AD6557A9256EF257004BE3B4 /* icon-light-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-light-64.png"; path = "../../dist/chrome/icon-light-64.png"; sourceTree = "<group>"; };
+		AD6557AA256EF257004BE3B4 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = options.html; path = ../../dist/chrome/options.html; sourceTree = "<group>"; };
+		AD6557AB256EF257004BE3B4 /* icon-light-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-light-16.png"; path = "../../dist/chrome/icon-light-16.png"; sourceTree = "<group>"; };
+		AD6557AC256EF257004BE3B4 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = popup.css; path = ../../dist/chrome/popup.css; sourceTree = "<group>"; };
+		AD6557AD256EF257004BE3B4 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = content.js; path = ../../dist/chrome/content.js; sourceTree = "<group>"; };
+		AD6557AE256EF257004BE3B4 /* background.js.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = background.js.map; path = ../../dist/chrome/background.js.map; sourceTree = "<group>"; };
+		AD6557AF256EF257004BE3B4 /* icon-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-128.png"; path = "../../dist/chrome/icon-128.png"; sourceTree = "<group>"; };
+		AD6557B0256EF257004BE3B4 /* content.js.LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = content.js.LICENSE.txt; path = ../../dist/chrome/content.js.LICENSE.txt; sourceTree = "<group>"; };
+		AD6557B1256EF257004BE3B4 /* icon-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-32.png"; path = "../../dist/chrome/icon-32.png"; sourceTree = "<group>"; };
+		AD6557B2256EF257004BE3B4 /* options.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = options.css; path = ../../dist/chrome/options.css; sourceTree = "<group>"; };
+		AD6557B3256EF257004BE3B4 /* icon.f4b2e8179274dcab5752932748889870.svg */ = {isa = PBXFileReference; lastKnownFileType = text; name = icon.f4b2e8179274dcab5752932748889870.svg; path = ../../dist/chrome/icon.f4b2e8179274dcab5752932748889870.svg; sourceTree = "<group>"; };
+		AD6557B4256EF257004BE3B4 /* popup.css.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = popup.css.map; path = ../../dist/chrome/popup.css.map; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AD65576B256EF255004BE3B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD65577D256EF256004BE3B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD655786256EF256004BE3B4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AD655765256EF255004BE3B4 = {
+			isa = PBXGroup;
+			children = (
+				AD655770256EF255004BE3B4 /* tickety-tick */,
+				AD655787256EF256004BE3B4 /* tickety-tick Extension */,
+				AD655784256EF256004BE3B4 /* Frameworks */,
+				AD65576F256EF255004BE3B4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AD65576F256EF255004BE3B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AD65576E256EF255004BE3B4 /* tickety-tick.app */,
+				AD655780256EF256004BE3B4 /* tickety-tick Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AD655770256EF255004BE3B4 /* tickety-tick */ = {
+			isa = PBXGroup;
+			children = (
+				AD655771256EF255004BE3B4 /* tickety_tick.entitlements */,
+				AD655772256EF255004BE3B4 /* AppDelegate.swift */,
+				AD655774256EF255004BE3B4 /* Main.storyboard */,
+				AD655777256EF255004BE3B4 /* ViewController.swift */,
+				AD655779256EF256004BE3B4 /* Assets.xcassets */,
+				AD65577B256EF256004BE3B4 /* Info.plist */,
+			);
+			path = "tickety-tick";
+			sourceTree = "<group>";
+		};
+		AD655784256EF256004BE3B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AD655785256EF256004BE3B4 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD655787256EF256004BE3B4 /* tickety-tick Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AD655795256EF256004BE3B4 /* Resources */,
+				AD655788256EF256004BE3B4 /* SafariWebExtensionHandler.swift */,
+				AD65578A256EF256004BE3B4 /* Info.plist */,
+				AD65578B256EF256004BE3B4 /* tickety_tick_Extension.entitlements */,
+			);
+			path = "tickety-tick Extension";
+			sourceTree = "<group>";
+		};
+		AD655795256EF256004BE3B4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AD655796256EF256004BE3B4 /* COMMITHASH */,
+				AD655797256EF256004BE3B4 /* icon-light-128.png */,
+				AD655798256EF256004BE3B4 /* icon-16.png */,
+				AD655799256EF256004BE3B4 /* popup.js */,
+				AD65579A256EF256004BE3B4 /* options.css.map */,
+				AD65579B256EF256004BE3B4 /* icon-light-32.png */,
+				AD65579C256EF256004BE3B4 /* popup.js.map */,
+				AD65579D256EF256004BE3B4 /* popup.js.LICENSE.txt */,
+				AD65579E256EF256004BE3B4 /* background.js */,
+				AD65579F256EF256004BE3B4 /* popup.html */,
+				AD6557A0256EF256004BE3B4 /* options.js.LICENSE.txt */,
+				AD6557A1256EF256004BE3B4 /* icon-48.png */,
+				AD6557A2256EF257004BE3B4 /* options.js */,
+				AD6557A3256EF257004BE3B4 /* icon-64.png */,
+				AD6557A4256EF257004BE3B4 /* options.js.map */,
+				AD6557A5256EF257004BE3B4 /* icon-light-48.png */,
+				AD6557A6256EF257004BE3B4 /* content.js.map */,
+				AD6557A7256EF257004BE3B4 /* VERSION */,
+				AD6557A8256EF257004BE3B4 /* manifest.json */,
+				AD6557A9256EF257004BE3B4 /* icon-light-64.png */,
+				AD6557AA256EF257004BE3B4 /* options.html */,
+				AD6557AB256EF257004BE3B4 /* icon-light-16.png */,
+				AD6557AC256EF257004BE3B4 /* popup.css */,
+				AD6557AD256EF257004BE3B4 /* content.js */,
+				AD6557AE256EF257004BE3B4 /* background.js.map */,
+				AD6557AF256EF257004BE3B4 /* icon-128.png */,
+				AD6557B0256EF257004BE3B4 /* content.js.LICENSE.txt */,
+				AD6557B1256EF257004BE3B4 /* icon-32.png */,
+				AD6557B2256EF257004BE3B4 /* options.css */,
+				AD6557B3256EF257004BE3B4 /* icon.f4b2e8179274dcab5752932748889870.svg */,
+				AD6557B4256EF257004BE3B4 /* popup.css.map */,
+			);
+			name = Resources;
+			path = "tickety-tick Extension";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AD65576D256EF255004BE3B4 /* tickety-tick */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD655792256EF256004BE3B4 /* Build configuration list for PBXNativeTarget "tickety-tick" */;
+			buildPhases = (
+				AD65576A256EF255004BE3B4 /* Sources */,
+				AD65576B256EF255004BE3B4 /* Frameworks */,
+				AD65576C256EF255004BE3B4 /* Resources */,
+				AD655791256EF256004BE3B4 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD655783256EF256004BE3B4 /* PBXTargetDependency */,
+			);
+			name = "tickety-tick";
+			productName = "tickety-tick";
+			productReference = AD65576E256EF255004BE3B4 /* tickety-tick.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AD65577F256EF256004BE3B4 /* tickety-tick Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD65578E256EF256004BE3B4 /* Build configuration list for PBXNativeTarget "tickety-tick Extension" */;
+			buildPhases = (
+				AD65577C256EF256004BE3B4 /* Sources */,
+				AD65577D256EF256004BE3B4 /* Frameworks */,
+				AD65577E256EF256004BE3B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "tickety-tick Extension";
+			productName = "tickety-tick Extension";
+			productReference = AD655780256EF256004BE3B4 /* tickety-tick Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AD655766256EF255004BE3B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					AD65576D256EF255004BE3B4 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					AD65577F256EF256004BE3B4 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = AD655769256EF255004BE3B4 /* Build configuration list for PBXProject "tickety-tick" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AD655765256EF255004BE3B4;
+			productRefGroup = AD65576F256EF255004BE3B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AD65576D256EF255004BE3B4 /* tickety-tick */,
+				AD65577F256EF256004BE3B4 /* tickety-tick Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AD65576C256EF255004BE3B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD65577A256EF256004BE3B4 /* Assets.xcassets in Resources */,
+				AD655776256EF255004BE3B4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD65577E256EF256004BE3B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD6557C1256EF257004BE3B4 /* icon-light-48.png in Resources */,
+				AD6557CA256EF257004BE3B4 /* content.js.LICENSE.txt in Resources */,
+				AD6557C2256EF257004BE3B4 /* VERSION in Resources */,
+				AD6557BE256EF257004BE3B4 /* icon-48.png in Resources */,
+				AD6557CD256EF257004BE3B4 /* icon.f4b2e8179274dcab5752932748889870.svg in Resources */,
+				AD6557BA256EF257004BE3B4 /* popup.js.LICENSE.txt in Resources */,
+				AD6557C8256EF257004BE3B4 /* content.js in Resources */,
+				AD6557C5256EF257004BE3B4 /* options.html in Resources */,
+				AD6557C0256EF257004BE3B4 /* icon-64.png in Resources */,
+				AD6557BC256EF257004BE3B4 /* popup.html in Resources */,
+				AD6557BF256EF257004BE3B4 /* options.js in Resources */,
+				AD6557C6256EF257004BE3B4 /* icon-light-16.png in Resources */,
+				AD6557C3256EF257004BE3B4 /* manifest.json in Resources */,
+				AD6557C9256EF257004BE3B4 /* icon-128.png in Resources */,
+				AD6557B5256EF257004BE3B4 /* COMMITHASH in Resources */,
+				AD6557CC256EF257004BE3B4 /* options.css in Resources */,
+				AD6557C4256EF257004BE3B4 /* icon-light-64.png in Resources */,
+				AD6557BB256EF257004BE3B4 /* background.js in Resources */,
+				AD6557C7256EF257004BE3B4 /* popup.css in Resources */,
+				AD6557B6256EF257004BE3B4 /* icon-light-128.png in Resources */,
+				AD6557B7256EF257004BE3B4 /* icon-16.png in Resources */,
+				AD6557B8256EF257004BE3B4 /* popup.js in Resources */,
+				AD6557CB256EF257004BE3B4 /* icon-32.png in Resources */,
+				AD6557B9256EF257004BE3B4 /* icon-light-32.png in Resources */,
+				AD6557BD256EF257004BE3B4 /* options.js.LICENSE.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AD65576A256EF255004BE3B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD655778256EF255004BE3B4 /* ViewController.swift in Sources */,
+				AD655773256EF255004BE3B4 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD65577C256EF256004BE3B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD655789256EF256004BE3B4 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AD655783256EF256004BE3B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD65577F256EF256004BE3B4 /* tickety-tick Extension */;
+			targetProxy = AD655782256EF256004BE3B4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AD655774256EF255004BE3B4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AD655775256EF255004BE3B4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AD65578C256EF256004BE3B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AD65578D256EF256004BE3B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		AD65578F256EF256004BE3B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "tickety-tick Extension/tickety_tick_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "tickety-tick Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.bitcrowd.tickety-tick.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AD655790256EF256004BE3B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "tickety-tick Extension/tickety_tick_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "tickety-tick Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.bitcrowd.tickety-tick.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		AD655793256EF256004BE3B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "tickety-tick/tickety_tick.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "tickety-tick/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.bitcrowd.tickety-tick";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AD655794256EF256004BE3B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "tickety-tick/tickety_tick.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "tickety-tick/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.bitcrowd.tickety-tick";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AD655769256EF255004BE3B4 /* Build configuration list for PBXProject "tickety-tick" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD65578C256EF256004BE3B4 /* Debug */,
+				AD65578D256EF256004BE3B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD65578E256EF256004BE3B4 /* Build configuration list for PBXNativeTarget "tickety-tick Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD65578F256EF256004BE3B4 /* Debug */,
+				AD655790256EF256004BE3B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD655792256EF256004BE3B4 /* Build configuration list for PBXNativeTarget "tickety-tick" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD655793256EF256004BE3B4 /* Debug */,
+				AD655794256EF256004BE3B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AD655766256EF255004BE3B4 /* Project object */;
+}
