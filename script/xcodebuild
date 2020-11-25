@@ -7,7 +7,7 @@ set -o pipefail
 cd "$(dirname "$0")/.."
 
 CODE_SIGN_IDENTITY="${1:-Apple Development}"
-DEVELOPMENT_TEAM=$(script/find-team-id)
+DEVELOPMENT_TEAM=$(script/extract-cert-ou "$CODE_SIGN_IDENTITY")
 
 exec xcodebuild \
   -project safari/tickety-tick.xcodeproj \

@@ -4,6 +4,11 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-CERT_NAME='Apple Development'
+if [ $# -lt 1 ]; then
+  echo "usage: $(basename "$0") <certificate-name>"
+  exit 1
+fi
+
+CERT_NAME="$1"
 
 exec security find-certificate -a -c "$CERT_NAME" -p | keytool -printcert | grep 'Owner: ' | ruby -e 'print STDIN.readline.sub("Owner: ", "").split(", ").map { |p| p.split("=") }.to_h["OU"]'
