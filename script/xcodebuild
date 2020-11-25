@@ -6,7 +6,7 @@ set -o pipefail
 
 cd "$(dirname "$0")/.."
 
-CODE_SIGN_IDENTITY='Apple Development'
+CODE_SIGN_IDENTITY="${1:-Apple Development}"
 DEVELOPMENT_TEAM=$(script/find-team-id)
 
 exec xcodebuild \
