@@ -10,7 +10,7 @@
     "build:chrome": "cross-env VARIANT=chrome webpack --config webpack.config.babel.js",
     "build:firefox": "cross-env VARIANT=firefox webpack --config webpack.config.babel.js",
     "build:safari": "run-s 'build:chrome' 'build:safari:xcodebuild'",
-    "build:safari:xcodebuild": "xcodebuild -project safari/tickety-tick.xcodeproj -scheme tickety-tick build",
+    "build:safari:xcodebuild": "xcodebuild -project safari/tickety-tick.xcodeproj -scheme tickety-tick build CONFIGURATION_BUILD_DIR=$PWD/dist/safari",
     "watch:chrome": "run-s 'build:chrome --watch --mode development'",
     "watch:firefox": "run-s 'build:firefox --watch --mode development'",
     "open:chrome": "./script/open-in-chrome ./dist/chrome https://github.com/bitcrowd/tickety-tick",
