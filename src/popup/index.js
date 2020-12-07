@@ -13,6 +13,10 @@ function close() {
   window.close();
 }
 
+function openopts() {
+  return browser.runtime.openOptionsPage();
+}
+
 async function load() {
   const background = browser.extension.getBackgroundPage();
   const { tickets, errors } = await background.getTickets();
@@ -20,7 +24,7 @@ async function load() {
 
   const enhancer = enhance(templates, options.autofmt);
 
-  render(tickets.map(enhancer), errors, { close, pbcopy });
+  render(tickets.map(enhancer), errors, { close, openopts, pbcopy });
 }
 
 window.onload = load;

@@ -10,7 +10,7 @@ exports[`about renders 1`] = `
         className="nav-item"
       >
         <Link
-          className="nav-link"
+          className="nav-link pl-0"
           to="/"
         >
           <ChevronLeftIcon

@@ -106,6 +106,7 @@ describe('popup', () => {
       expect.any(Object),
       {
         close: expect.any(Function),
+        openopts: expect.any(Function),
         pbcopy: expect.any(Function),
       }
     );

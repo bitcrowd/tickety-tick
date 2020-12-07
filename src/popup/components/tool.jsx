@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import EnvContext from '../env-context';
 import ErrorShape from '../utils/error-shape';
 import TicketShape from '../utils/ticket-shape';
 import Content from './content';
@@ -10,13 +11,27 @@ import NoTickets from './no-tickets';
 import TicketControls from './ticket-controls';
 
 function Tool({ tickets, errors }) {
+  const { close, openopts } = useContext(EnvContext);
+
+  async function onClickSettingsLink(event) {
+    event.preventDefault();
+    await openopts();
+    close();
+  }
+
   return (
     <>
       <Navbar>
         <span className="navbar-brand">Tickety-Tick</span>
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link className="nav-link" to="/about">
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a className="nav-link" href="#" onClick={onClickSettingsLink}>
+              Settings
+            </a>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link pr-0" to="/about">
               Help
             </Link>
           </li>
