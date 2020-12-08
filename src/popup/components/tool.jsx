@@ -25,8 +25,11 @@ function Tool({ tickets, errors }) {
         <span className="navbar-brand">Tickety-Tick</span>
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a className="nav-link" href="#" onClick={onClickSettingsLink}>
+            <a
+              className="nav-link"
+              href="options.html"
+              onClick={onClickSettingsLink}
+            >
               Settings
             </a>
           </li>
