@@ -75,6 +75,7 @@
   "dependencies": {
     "@primer/octicons-react": "^11.0.0",
     "bootstrap": "4.5.3",
+    "copy-text-to-clipboard": "^2.2.0",
     "ky": "^0.24.0",
     "micro-match": "^1.0.1",
     "prettier": "^2.1.2",

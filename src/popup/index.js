@@ -1,21 +1,13 @@
 import './index.scss';
 import './index-dark.scss';
 
+import pbcopy from 'copy-text-to-clipboard';
 import browser from 'webextension-polyfill';
 
 import enhance from '../core/enhance';
 import store from '../store';
 import onmedia from './observe-media';
 import render from './render';
-
-function pbcopy(text) {
-  const input = document.createElement('textarea');
-  input.textContent = text;
-  document.body.appendChild(input);
-  input.select();
-  document.execCommand('copy');
-  document.body.removeChild(input);
-}
 
 function close() {
   window.close();
