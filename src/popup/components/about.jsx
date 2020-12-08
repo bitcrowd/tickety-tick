@@ -16,7 +16,7 @@ function About() {
       <Navbar>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <Link className="nav-link" to="/">
+            <Link className="nav-link pl-0" to="/">
               <ChevronLeftIcon size={14} className="octicon-nav" />
               Back
             </Link>
