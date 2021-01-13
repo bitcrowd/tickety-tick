@@ -1,6 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
-
-// eslint-disable-next-line simple-import-sort/sort
+// eslint-disable-next-line simple-import-sort/imports
 import path from 'path';
 
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
