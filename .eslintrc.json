@@ -19,6 +19,18 @@
     "simple-import-sort"
   ],
   "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "webpack.config.babel.js",
+          "src/**/*.test.jsx",
+          "src/**/*.test.js",
+          "test/**/*.js",
+          "script/*"
+        ]
+      }
+    ],
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
@@ -27,6 +39,6 @@
     ],
     "react/jsx-props-no-spreading": "off",
     "prettier/prettier": "error",
-    "simple-import-sort/sort": "error"
+    "simple-import-sort/imports": "error"
   }
 }
