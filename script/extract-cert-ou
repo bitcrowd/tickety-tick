@@ -9,6 +9,10 @@ if [ $# -lt 1 ]; then
   exit 1
 fi
 
-CERT_NAME="$1"
+certname="$1"
 
-exec security find-certificate -a -c "$CERT_NAME" -p | keytool -printcert | grep 'Owner: ' | ruby -e 'print STDIN.readline.sub("Owner: ", "").split(", ").map { |p| p.split("=") }.to_h["OU"]'
+exec security find-certificate -a -c "$certname" -p \
+  | keytool -printcert \
+  | grep 'Owner: ' \
+  | head -n 1 \
+  | sed -n -e 's/^.*OU=\([^:space:,]*\).*$/\1/p'
