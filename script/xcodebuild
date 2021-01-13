@@ -6,13 +6,39 @@ set -o pipefail
 
 cd "$(dirname "$0")/.."
 
-CODE_SIGN_IDENTITY="${1:-Apple Development}"
-DEVELOPMENT_TEAM=$(script/extract-cert-ou "$CODE_SIGN_IDENTITY")
+# Utility functions
+
+function usage {
+  echo "usage: $(basename "$0") [code-sign-identity]"
+  exit 0
+}
+
+# Set defaults
+
+identity="Apple Development"
+
+# Parse arguments
+
+while [ $# -gt 0 ]; do
+  case $1 in
+    --help|-h)
+      usage
+      ;;
+    *)
+      identity=$1
+      break
+      ;;
+  esac
+done
+
+# Run build
+
+team=$(script/extract-cert-ou "$identity")
 
 exec xcodebuild \
   -project safari/tickety-tick.xcodeproj \
   -scheme tickety-tick \
   build \
   CONFIGURATION_BUILD_DIR="$(pwd)/dist/safari" \
-  CODE_SIGN_IDENTITY="$CODE_SIGN_IDENTITY" \
-  DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM"
+  CODE_SIGN_IDENTITY="$identity" \
+  DEVELOPMENT_TEAM="$team"
