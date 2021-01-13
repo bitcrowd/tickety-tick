@@ -144,7 +144,7 @@ config.plugin('copy').use(CopyWebpackPlugin, [
     patterns: [
       {
         from: src('icons', '*.png'),
-        flatten: true,
+        to: '[name].[ext]',
       },
       {
         from: src('manifest.json'),
