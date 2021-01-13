@@ -2,7 +2,7 @@
 
 [Opera](https://www.opera.com) is no longer accepting extensions for their own [add-ons](https://addons.opera.com/en/extensions/) platform. Users can instead install add-ons via the [Chrome Web Store](https://chrome.google.com/webstore), with the [Install Chrome Extensions](https://addons.opera.com/en-gb/extensions/details/install-chrome-extensions/) add on by the Opera team bridging the gap.
 
-## Install TicketyTick
+## Install Tickety-Tick
 
 1. Open Opera
     ![open opera](./screenshots/opera/step1.png)

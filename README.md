@@ -47,6 +47,7 @@ Tickety-Tick is available for every major browser:
 - [Chrome/Chromium](https://chrome.google.com/webstore/detail/ciakolhgmfijpjbpcofoalfjiladihbg)
 - [Firefox](https://addons.mozilla.org/firefox/addon/tickety-tick/)
 - [Opera](./OPERA.md)
+- [Safari](./SAFARI.md) - experimental 🧪
 
 ### Manual Installation
 
