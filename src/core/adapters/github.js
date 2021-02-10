@@ -78,10 +78,21 @@ async function attempt(doc, selector) {
   return [];
 }
 
-async function scan(loc, doc) {
+async function tryScanDefaultThenLegacy(doc) {
   const tickets = await attempt(doc, selectors.default);
   if (tickets.length > 0) return tickets;
   return attempt(doc, selectors.legacy);
+}
+
+async function scan(loc, doc) {
+  const project = loc.pathname.split('/').slice(1, 3).join('/');
+  const tickets = await tryScanDefaultThenLegacy(doc);
+
+  return tickets.map((ticket) => {
+    const { id } = ticket;
+    const url = `https://github.com/${project}/issues/${id}`;
+    return { ...ticket, url };
+  });
 }
 
 export default scan;
