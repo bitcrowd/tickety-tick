@@ -130,6 +130,10 @@ const pages = {
   },
 };
 
+const projectUrl = (path) => {
+  return new URL(`https://github.com/test_org/test_project/${path}`);
+};
+
 Object.keys(selectors).forEach((variant) => {
   const html = pages[variant];
 
@@ -141,36 +145,64 @@ Object.keys(selectors).forEach((variant) => {
     }
 
     it('returns an empty array if it is on a different page', async () => {
-      const result = await scan(null, dom());
+      const result = await scan(new URL('https://example.net'), dom());
       expect(result).toEqual([]);
     });
 
     it('extracts tickets from issue pages', async () => {
-      const result = await scan(null, dom(html.issuepage));
+      const result = await scan(projectUrl('issues/12'), dom(html.issuepage));
       expect(result).toEqual([
-        { id: '12', title: 'A Random GitHub Issue', type: 'feature' },
+        {
+          id: '12',
+          title: 'A Random GitHub Issue',
+          type: 'feature',
+          url: 'https://github.com/test_org/test_project/issues/12',
+        },
       ]);
     });
 
     it('recognizes issues labelled as bugs', async () => {
-      const result = await scan(null, dom(html.bugpage));
+      const result = await scan(projectUrl('issues/12'), dom(html.bugpage));
       expect(result).toEqual([
-        { id: '12', title: 'A Random GitHub Issue', type: 'bug' },
+        {
+          id: '12',
+          title: 'A Random GitHub Issue',
+          type: 'bug',
+          url: 'https://github.com/test_org/test_project/issues/12',
+        },
       ]);
     });
 
     it('extracts tickets from issues index pages', async () => {
-      const result = await scan(null, dom(html.indexpage));
+      const result = await scan(projectUrl('issues'), dom(html.indexpage));
       expect(result).toEqual([
-        { id: '12', title: 'A Selected GitHub Issue', type: 'bug' },
+        {
+          id: '12',
+          title: 'A Selected GitHub Issue',
+          type: 'bug',
+          url: 'https://github.com/test_org/test_project/issues/12',
+        },
       ]);
     });
 
     it('extracts tickets from project pages', async () => {
-      const result = await scan(null, dom(html.projectpage));
+      const result = await scan(
+        projectUrl('projects/1'),
+        dom(html.projectpage)
+      );
       expect(result).toEqual([
-        { id: '42', title: 'An Example Feature Ticket', type: 'feature' },
-        { id: '43', title: 'An Example Bug Ticket', type: 'bug' },
+        {
+          id: '42',
+          title: 'An Example Feature Ticket',
+          type: 'feature',
+          url: 'https://github.com/test_org/test_project/issues/42',
+        },
+        {
+          id: '43',
+          title: 'An Example Bug Ticket',
+          type: 'bug',
+          url: 'https://github.com/test_org/test_project/issues/43',
+        },
       ]);
     });
   });
