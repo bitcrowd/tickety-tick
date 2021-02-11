@@ -32,7 +32,7 @@ class ErrorDetails extends Component {
 
     Promise.all(errors.map(trace))
       .then((traces) => this.setState({ traces }))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err)); // eslint-disable-line no-console
   }
 
   render() {
