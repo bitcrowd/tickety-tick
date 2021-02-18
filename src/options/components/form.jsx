@@ -5,8 +5,8 @@ import {
 } from '@primer/octicons-react';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import format, { defaults, helpers } from 'tickety-tick-formatter';
 
-import format, { defaults, helpers } from '../../core/format';
 import CheckboxInput from './checkbox-input';
 import * as example from './example';
 import TemplateInput from './template-input';

@@ -1,5 +1,6 @@
+import format, { defaults } from 'tickety-tick-formatter';
+
 import enhance from './enhance';
-import format, { defaults } from './format';
 
 describe('ticket enhancer', () => {
   const ticket = {
