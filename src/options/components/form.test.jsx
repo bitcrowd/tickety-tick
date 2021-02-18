@@ -153,8 +153,8 @@ describe('form', () => {
     const wrapper = render({});
     const text = wrapper.text();
 
-    Object.keys(helpers).forEach((helperName) => {
-      expect(text).toContain(helpers[helperName].description || helperName);
+    Object.entries(helpers).forEach(([name, helper]) => {
+      expect(text).toContain(helper.description || name);
     });
   });
 
