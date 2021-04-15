@@ -12,6 +12,7 @@
  * - Issue view: https://<YOUR-SUBDOMAIN>.atlassian.net/browse/<ISSUE-KEY>
  */
 
+import j2m from 'jira2md';
 import { match } from 'micro-match';
 
 import client from '../client';
@@ -50,12 +51,15 @@ function extractTicketInfo(response, host) {
   const type = issuetype.name.toLowerCase();
   const url = `https://${host}/browse/${id}`;
 
+  const descriptionMd =
+    description && j2m.to_markdown(description).replace('|smart-link', '');
+
   return {
     type,
     id,
     title,
-    description,
     url,
+    description: descriptionMd,
   };
 }
 

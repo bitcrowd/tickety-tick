@@ -6493,6 +6493,13 @@ jetpack-id@1.0.0:
   resolved "https://registry.yarnpkg.com/jetpack-id/-/jetpack-id-1.0.0.tgz#2cf9fbae46d8074fc16b7de0071c8efebca473a6"
   integrity sha1-LPn7rkbYB0/Ba33gBxyO/rykc6Y=
 
+jira2md@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/jira2md/-/jira2md-2.1.0.tgz#6e038b4310f97bf408316d5c35df58e379da89f7"
+  integrity sha512-9OdJJfv5tGuD8jlQVLkL0p4vV5wwrXEta5F7/4/6bytZNfMtN602zQQNJPgvr6/hWwF9bfciR3sL8d0mSIsozA==
+  dependencies:
+    marked "^2.0.1"
+
 js-select@~0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/js-select/-/js-select-0.6.0.tgz#c284e22824d5927aec962dcdf247174aefb0d190"
@@ -7111,6 +7118,11 @@ map-visit@^1.0.0:
   integrity sha1-7Nyo8TFE5mDxtb1B8S80edmN+48=
   dependencies:
     object-visit "^1.0.0"
+
+marked@^2.0.1:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-2.0.3.tgz#3551c4958c4da36897bda2a16812ef1399c8d6b0"
+  integrity sha512-5otztIIcJfPc2qGTN8cVtOJEjNJZ0jwa46INMagrYfk0EvqtRuEHLsEe0LrFS0/q+ZRKT0+kXK7P2T1AN5lWRA==
 
 marky@^1.2.0:
   version "1.2.1"

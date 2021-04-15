@@ -13,7 +13,8 @@ const response = {
   fields: {
     issuetype: { name: 'Story' },
     summary: 'A quick summary of the ticket',
-    description: 'A long description of the ticket',
+    description:
+      'A [http://example.net|http://example.net|smart-link] long {{description}} of the ticket',
   },
   key,
 };
@@ -21,7 +22,8 @@ const response = {
 const ticket = {
   id: response.key,
   title: response.fields.summary,
-  description: response.fields.description,
+  description:
+    'A [http://example.net](http://example.net) long `description` of the ticket',
   type: response.fields.issuetype.name.toLowerCase(),
   url: `https://my-subdomain.atlassian.net/browse/${key}`,
 };
