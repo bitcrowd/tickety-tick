@@ -46,20 +46,21 @@ function getSelectedIssueId(loc, prefix = '') {
 function extractTicketInfo(response, host) {
   const {
     key: id,
-    fields: { issuetype, summary: title, description },
+    fields: { issuetype, summary: title, description: descriptionJira },
   } = response;
   const type = issuetype.name.toLowerCase();
   const url = `https://${host}/browse/${id}`;
 
-  const descriptionMd =
-    description && j2m.to_markdown(description).replace('|smart-link', '');
+  const description =
+    descriptionJira &&
+    j2m.to_markdown(descriptionJira).replace('|smart-link', '');
 
   return {
     type,
     id,
     title,
+    description,
     url,
-    description: descriptionMd,
   };
 }
 
