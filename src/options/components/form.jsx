@@ -87,7 +87,15 @@ class Form extends Component {
   render() {
     const { loading, autofmt, ...templates } = this.state;
 
-    const fmt = format(templates, autofmt);
+    // Use default for preview if template is blank
+    const config = {
+      branch: templates.branch || defaults.branch,
+      commit: templates.commit || defaults.commit,
+      command: templates.command || defaults.command,
+    };
+
+    // Create a formatter for rendering previews
+    const fmt = format(config, autofmt);
 
     const fields = [
       {
