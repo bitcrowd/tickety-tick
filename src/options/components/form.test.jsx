@@ -30,6 +30,7 @@ describe('form', () => {
   const inputs = (wrapper) => wrapper.find(TemplateInput);
   const input = (wrapper, name) => inputs(wrapper).filter({ name });
   const value = (wrapper, name) => input(wrapper, name).prop('value');
+  const preview = (wrapper, name) => input(wrapper, name).prop('preview');
 
   const change = (wrapper, name, val) => {
     const event = { target: { name, value: val } };
@@ -73,7 +74,7 @@ describe('form', () => {
       value: '',
       multiline: false,
       fallback: fallbacks.branch,
-      preview: expect.any(String),
+      preview: 'formatted-branch (true)',
       disabled: true,
       onChange: instance.handleChanged,
     });
@@ -93,7 +94,7 @@ describe('form', () => {
       value: '',
       multiline: true,
       fallback: fallbacks.commit,
-      preview: expect.any(String),
+      preview: 'formatted-commit (true)',
       disabled: true,
       onChange: instance.handleChanged,
     });
@@ -127,7 +128,7 @@ describe('form', () => {
       value: '',
       multiline: false,
       fallback: fallbacks.command,
-      preview: expect.any(String),
+      preview: 'formatted-command (true)',
       disabled: true,
       onChange: instance.handleChanged,
     });
@@ -206,6 +207,25 @@ describe('form', () => {
 
     change(wrapper, 'command', 'command++');
     expect(value(wrapper, 'command')).toBe('command++');
+  });
+
+  it('shows previews using defaults for empty form inputs', () => {
+    format.mockImplementation((templates) => ({
+      commit: () => templates.commit,
+      branch: () => templates.branch,
+      command: () => templates.command,
+    }));
+
+    const wrapper = render({});
+
+    change(wrapper, 'branch', '');
+    expect(preview(wrapper, 'branch')).toBe(fallbacks.branch);
+
+    change(wrapper, 'commit', '');
+    expect(preview(wrapper, 'commit')).toBe(fallbacks.commit);
+
+    change(wrapper, 'command', '');
+    expect(preview(wrapper, 'command')).toBe(fallbacks.command);
   });
 
   it('stores templates and options on submit and disables form elements while saving', async () => {
