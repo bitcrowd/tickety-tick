@@ -5,7 +5,10 @@ import {
 } from '@primer/octicons-react';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import format, { defaults, helpers } from 'tickety-tick-formatter';
+import format, {
+  helpers,
+  templateDefaults as fallbacks,
+} from 'tickety-tick-formatter';
 
 import CheckboxInput from './checkbox-input';
 import * as example from './example';
@@ -93,7 +96,7 @@ class Form extends Component {
         id: 'commit-message-format',
         name: 'commit',
         value: templates.commit,
-        fallback: defaults.commit,
+        fallback: fallbacks.commit,
         preview: fmt.commit(example),
         multiline: true,
       },
@@ -103,7 +106,7 @@ class Form extends Component {
         id: 'branch-name-format',
         name: 'branch',
         value: templates.branch,
-        fallback: defaults.branch,
+        fallback: fallbacks.branch,
         preview: fmt.branch(example),
       },
       {
@@ -112,7 +115,7 @@ class Form extends Component {
         id: 'command-format',
         name: 'command',
         value: templates.command,
-        fallback: defaults.command,
+        fallback: fallbacks.command,
         preview: fmt.command(example),
       },
     ];

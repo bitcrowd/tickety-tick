@@ -1,6 +1,9 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import format, { defaults as fallbacks, helpers } from 'tickety-tick-formatter';
+import format, {
+  helpers,
+  templateDefaults as fallbacks,
+} from 'tickety-tick-formatter';
 
 import CheckboxInput from './checkbox-input';
 import Form from './form';
