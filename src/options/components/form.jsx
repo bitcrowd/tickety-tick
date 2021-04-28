@@ -89,9 +89,9 @@ class Form extends Component {
 
     // Use default for preview if template is blank
     const config = {
-      branch: templates.branch || defaults.branch,
-      commit: templates.commit || defaults.commit,
-      command: templates.command || defaults.command,
+      branch: templates.branch || fallbacks.branch,
+      commit: templates.commit || fallbacks.commit,
+      command: templates.command || fallbacks.command,
     };
 
     // Create a formatter for rendering previews
