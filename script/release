@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+cd "$(dirname "$0")/.."
+
+prev=$(git describe --abbrev=0 --tags)
+
+# Run checks, bump version. Create a commit, tag and push.
+yarn np \
+  --test-script checks \
+  --no-release-draft \
+  --no-publish
+
+# Build artifacts.
+yarn bundle:chrome
+yarn bundle:firefox
+
+# # Create a GitHub release, upload build artifacts.
+notes=$(./script/list-changes "$prev")
+tag=$(git describe --abbrev=0 --tags)
+gh release create "$tag" \
+  --notes "$notes" \
+  ./dist/*.zip
+
+# Submit release to Mozilla.
+read -rp "Please provide your Mozilla API Key: " apikey
+read -srp "Please provide the corresponding API Secret: " apisecret
+
+printf "\n\n"
+
+yarn web-ext sign \
+  --api-key "$apikey" \
+  --api-secret "$apisecret" \
+  --source-dir ./dist/firefox \
+  --channel=listed \
+  || true
+
+printf "\n\n"
+
+cat <<EOS
+Do not forget to upload a source code archive for the new release here:
+https://addons.mozilla.org/developers/addon/tickety-tick/versions
+
+You can grab a source code archive here:
+https://github.com/bitcrowd/tickety-tick/releases/tag/$tag
+EOS
