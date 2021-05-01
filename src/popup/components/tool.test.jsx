@@ -1,16 +1,17 @@
 import { shallow } from 'enzyme';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import browser from 'webextension-polyfill';
 
 import { ticket as make } from '../../../test/factories';
-import EnvContext from '../env-context';
 import NoTickets from './no-tickets';
 import TicketControls from './ticket-controls';
 import Tool from './tool';
 
-jest.mock('react', () => ({
-  ...jest.requireActual('react'),
-  useContext: jest.fn(),
+jest.mock('webextension-polyfill', () => ({
+  runtime: {
+    openOptionsPage: jest.fn(),
+  },
 }));
 
 describe('tool', () => {
@@ -20,18 +21,21 @@ describe('tool', () => {
   const errors = [new Error('ouch')];
 
   let wrapper;
+  let openopts;
+  let close;
 
   beforeEach(() => {
-    useContext.mockReset();
-    useContext.mockReturnValue({});
+    openopts = browser.runtime.openOptionsPage.mockResolvedValue();
+    close = jest.spyOn(window, 'close');
+  });
+
+  afterEach(() => {
+    openopts.mockReset();
+    close.mockRestore();
   });
 
   describe('always', () => {
-    const openopts = jest.fn();
-    const close = jest.fn();
-
     beforeEach(() => {
-      useContext.mockReturnValue({ close, openopts });
       wrapper = shallow(<Tool tickets={[]} errors={[]} />);
       openopts.mockReset().mockResolvedValue();
       close.mockReset();
@@ -39,7 +43,6 @@ describe('tool', () => {
 
     it('renders a settings link', async () => {
       const link = wrapper.find('a').filter({ children: 'Settings' });
-      expect(useContext).toHaveBeenCalledWith(EnvContext);
       expect(link.exists()).toBe(true);
 
       const preventDefault = jest.fn();

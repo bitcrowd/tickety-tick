@@ -1,13 +1,6 @@
+import pbcopy from 'copy-text-to-clipboard';
 import PropTypes from 'prop-types';
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-
-import EnvContext from '../env-context';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 function useDelayed(fn, ms) {
   const timeout = useRef(null);
@@ -32,8 +25,11 @@ function useDelayed(fn, ms) {
   return run;
 }
 
+function close() {
+  window.close();
+}
+
 function CopyButton({ children, value, ...rest }) {
-  const { close, pbcopy } = useContext(EnvContext);
   const [copied, setCopied] = useState(false);
   const closeWithDelay = useDelayed(close, 600);
 
@@ -41,7 +37,7 @@ function CopyButton({ children, value, ...rest }) {
     pbcopy(value);
     setCopied(true);
     closeWithDelay();
-  }, [closeWithDelay, pbcopy, value]);
+  }, [closeWithDelay, value]);
 
   return (
     <button type="button" {...rest} onClick={handler}>

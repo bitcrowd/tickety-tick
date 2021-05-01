@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import browser from 'webextension-polyfill';
 
-import EnvContext from '../env-context';
 import ErrorShape from '../utils/error-shape';
 import TicketShape from '../utils/ticket-shape';
 import Content from './content';
@@ -10,9 +10,15 @@ import Navbar from './navbar';
 import NoTickets from './no-tickets';
 import TicketControls from './ticket-controls';
 
-function Tool({ tickets, errors }) {
-  const { close, openopts } = useContext(EnvContext);
+function close() {
+  window.close();
+}
 
+function openopts() {
+  return browser.runtime.openOptionsPage();
+}
+
+function Tool({ tickets, errors }) {
   async function onClickSettingsLink(event) {
     event.preventDefault();
     await openopts();

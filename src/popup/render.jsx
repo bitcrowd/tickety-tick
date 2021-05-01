@@ -4,7 +4,6 @@ import { MemoryRouter as Router, Route } from 'react-router';
 
 import About from './components/about';
 import Tool from './components/tool';
-import EnvContext from './env-context';
 
 function propped(Component, defaults) {
   const ProppedComponent = (more) => {
@@ -15,16 +14,14 @@ function propped(Component, defaults) {
   return ProppedComponent;
 }
 
-function render(tickets, errors, env) {
+function render(tickets, errors) {
   const root = document.getElementById('popup-root');
 
   const element = (
-    <EnvContext.Provider value={env}>
-      <Router>
-        <Route exact path="/" component={propped(Tool, { tickets, errors })} />
-        <Route path="/about" component={About} />
-      </Router>
-    </EnvContext.Provider>
+    <Router>
+      <Route exact path="/" component={propped(Tool, { tickets, errors })} />
+      <Route path="/about" component={About} />
+    </Router>
   );
 
   ReactDOM.render(element, root);
