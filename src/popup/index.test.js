@@ -80,7 +80,6 @@ describe('popup', () => {
 
     expect(render).toHaveBeenCalledWith(
       tickets.map(format),
-      expect.any(Object),
       expect.any(Object)
     );
   });
@@ -91,24 +90,6 @@ describe('popup', () => {
 
     await initialize();
 
-    expect(render).toHaveBeenCalledWith(
-      expect.any(Object),
-      errors,
-      expect.any(Object)
-    );
-  });
-
-  it('renders the popup content with context', async () => {
-    await initialize();
-
-    expect(render).toHaveBeenCalledWith(
-      expect.any(Object),
-      expect.any(Object),
-      {
-        close: expect.any(Function),
-        openopts: expect.any(Function),
-        pbcopy: expect.any(Function),
-      }
-    );
+    expect(render).toHaveBeenCalledWith(expect.any(Object), errors);
   });
 });

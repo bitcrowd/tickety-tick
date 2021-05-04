@@ -1,50 +1,39 @@
+import pbcopy from 'copy-text-to-clipboard';
 import { shallow } from 'enzyme';
-import React, { useContext } from 'react';
+import React from 'react';
 
-import EnvContext from '../env-context';
 import CopyButton from './copy-button';
 
-jest.mock('react', () => ({
-  ...jest.requireActual('react'),
-  useContext: jest.fn(),
-}));
+jest.mock('copy-text-to-clipboard');
 jest.useFakeTimers();
 
 describe('copy-button', () => {
-  function render(overrides, env) {
-    useContext.mockReturnValue(env);
+  function render(overrides) {
     const defaults = { value: 'copy text' };
     const props = { ...defaults, ...overrides };
     return shallow(<CopyButton {...props} />);
   }
 
-  let pbcopy;
   let close;
 
   beforeEach(() => {
-    useContext.mockReset();
-    pbcopy = jest.fn();
-    close = jest.fn();
+    close = jest.spyOn(window, 'close').mockReturnValue(true);
   });
 
   afterEach(() => {
     jest.clearAllTimers();
-  });
-
-  it('uses the env context', () => {
-    render({}, { pbcopy }); // render to check use of context
-    expect(useContext).toHaveBeenCalledWith(EnvContext);
+    close.mockRestore();
   });
 
   it('renders its children', () => {
     const children = 'button content';
-    const wrapper = render({ children }, { pbcopy });
+    const wrapper = render({ children });
     expect(wrapper.contains(children)).toBe(true);
   });
 
   it('passes the "copied" state to its children if they are a function', () => {
     const children = jest.fn();
-    const wrapper = render({ children }, { pbcopy });
+    const wrapper = render({ children });
     expect(children).toHaveBeenNthCalledWith(1, false);
 
     wrapper.simulate('click');
@@ -54,14 +43,14 @@ describe('copy-button', () => {
 
   it('calls the context pbcopy function with the provided value on click', () => {
     const value = 'a lot of value for such a small button';
-    const wrapper = render({ value }, { pbcopy });
+    const wrapper = render({ value });
     wrapper.simulate('click');
     expect(pbcopy).toHaveBeenCalledWith(value);
   });
 
   it('calls the context close function delayed after the value was copied', () => {
     const value = 'a lot of value for such a small button';
-    const wrapper = render({ value }, { pbcopy, close });
+    const wrapper = render({ value });
     wrapper.simulate('click');
     expect(pbcopy).toHaveBeenCalledWith(value);
     expect(close).not.toHaveBeenCalled();
@@ -71,10 +60,7 @@ describe('copy-button', () => {
   });
 
   it('passes on any other properties to the rendered button', () => {
-    const wrapper = render(
-      { value: '0x2a', 'data-weirdo': 'yes, please' },
-      { pbcopy }
-    );
+    const wrapper = render({ value: '0x2a', 'data-weirdo': 'yes, please' });
     expect(wrapper.find('button').prop('data-weirdo')).toBe('yes, please');
   });
 });
