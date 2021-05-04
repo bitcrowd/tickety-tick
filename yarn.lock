@@ -10321,7 +10321,7 @@ through@2:
 
 tickety-tick-formatter@bitcrowd/tickety-tick-formatter:
   version "1.0.0"
-  resolved "https://codeload.github.com/bitcrowd/tickety-tick-formatter/tar.gz/aa1895189e08689d340bf05d9e2855695a4dbb18"
+  resolved "https://codeload.github.com/bitcrowd/tickety-tick-formatter/tar.gz/01919012d8f399c4bf543ebed7745ef7410c435e"
   dependencies:
     prettier "^2.2.1"
     speakingurl "^14.0.1"
