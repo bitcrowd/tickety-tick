@@ -14,14 +14,14 @@ function close() {
   window.close();
 }
 
-function openopts() {
+function openOptions() {
   return browser.runtime.openOptionsPage();
 }
 
 function Tool({ tickets, errors }) {
   async function onClickSettingsLink(event) {
     event.preventDefault();
-    await openopts();
+    await openOptions();
     close();
   }
 

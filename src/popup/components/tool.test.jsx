@@ -21,23 +21,24 @@ describe('tool', () => {
   const errors = [new Error('ouch')];
 
   let wrapper;
-  let openopts;
+
+  let openOptions;
   let close;
 
   beforeEach(() => {
-    openopts = browser.runtime.openOptionsPage.mockResolvedValue();
+    openOptions = browser.runtime.openOptionsPage.mockResolvedValue();
     close = jest.spyOn(window, 'close');
   });
 
   afterEach(() => {
-    openopts.mockReset();
+    openOptions.mockReset();
     close.mockRestore();
   });
 
   describe('always', () => {
     beforeEach(() => {
       wrapper = shallow(<Tool tickets={[]} errors={[]} />);
-      openopts.mockReset().mockResolvedValue();
+      openOptions.mockReset().mockResolvedValue();
       close.mockReset();
     });
 
@@ -49,9 +50,9 @@ describe('tool', () => {
       link.simulate('click', { preventDefault });
 
       expect(preventDefault).toHaveBeenCalled();
-      expect(openopts).toHaveBeenCalled();
+      expect(openOptions).toHaveBeenCalled();
 
-      await openopts(); // wait for promise to settle
+      await openOptions(); // wait for promise to settle
 
       expect(close).toHaveBeenCalled();
     });
