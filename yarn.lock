@@ -10319,9 +10319,9 @@ through@2:
   resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
   integrity sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
 
-tickety-tick-formatter@bitcrowd/tickety-tick-formatter:
+tickety-tick-formatter@bitcrowd/tickety-tick-formatter#feature/7-remove-dist-from-repo:
   version "1.0.0"
-  resolved "https://codeload.github.com/bitcrowd/tickety-tick-formatter/tar.gz/01919012d8f399c4bf543ebed7745ef7410c435e"
+  resolved "https://codeload.github.com/bitcrowd/tickety-tick-formatter/tar.gz/8e9358f1d51351003486993b035f84cfdea03ba3"
   dependencies:
     prettier "^2.2.1"
     speakingurl "^14.0.1"

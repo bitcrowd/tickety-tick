@@ -89,7 +89,7 @@
     "react-svg": "^13.0.2",
     "react-textarea-autosize": "^8.3.2",
     "stacktrace-js": "^2.0.0",
-    "tickety-tick-formatter": "bitcrowd/tickety-tick-formatter",
+    "tickety-tick-formatter": "bitcrowd/tickety-tick-formatter#feature/7-remove-dist-from-repo",
     "webextension-polyfill": "^0.8.0"
   }
 }
