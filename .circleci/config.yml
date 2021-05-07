@@ -28,13 +28,13 @@ commands:
     description: Restore dependencies
     steps:
       - restore_cache:
-          key: dependency-cache-{{ arch }}-{{ checksum "yarn.lock" }}
+          key: dependency-cache-v2-{{ arch }}-{{ checksum "yarn.lock" }}
 
   save_deps:
     description: Save dependencies
     steps:
       - save_cache:
-          key: dependency-cache-{{ arch }}-{{ checksum "yarn.lock" }}
+          key: dependency-cache-v2-{{ arch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
 
