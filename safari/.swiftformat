@@ -1,0 +1,12 @@
+# File options
+--exclude .build,.git,fastlane,node_modules,xcuserdata
+
+# Language options
+--swiftversion 5.4
+
+# Rules
+--enable isEmpty
+
+# Format options
+--indent 2
+--maxwidth 100
