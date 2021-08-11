@@ -1,8 +1,5 @@
 //
-//  AppDelegate.swift
-//  tickety-tick
-//
-//  Created by Paul Meinhardt on 25/11/20.
+// AppDelegate.swift
 //
 
 import Cocoa

@@ -1,8 +1,5 @@
 //
-//  ViewController.swift
-//  tickety-tick
-//
-//  Created by Paul Meinhardt on 25/11/20.
+// ViewController.swift
 //
 
 import Cocoa
@@ -15,7 +12,7 @@ let extensionBundleIdentifier = "net.bitcrowd.tickety-tick.Extension"
 class ViewController: NSViewController {
 
     @IBOutlet var appNameLabel: NSTextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.appNameLabel.stringValue = appName
@@ -34,7 +31,7 @@ class ViewController: NSViewController {
             }
         }
     }
-    
+
     @IBAction func openSafariExtensionPreferences(_ sender: AnyObject?) {
         SFSafariApplication.showPreferencesForExtension(withIdentifier: extensionBundleIdentifier) { error in
             guard error == nil else {

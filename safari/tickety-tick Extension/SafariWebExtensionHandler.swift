@@ -1,8 +1,5 @@
 //
-//  SafariWebExtensionHandler.swift
-//  tickety-tick Extension
-//
-//  Created by Paul Meinhardt on 25/11/20.
+// SafariWebExtensionHandler.swift
 //
 
 import SafariServices
@@ -22,5 +19,5 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
         context.completeRequest(returningItems: [response], completionHandler: nil)
     }
-    
+
 }
