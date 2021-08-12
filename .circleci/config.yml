@@ -8,6 +8,10 @@ executors:
     docker:
       - image: circleci/node:14.15.4
     working_directory: *pwd
+  swift:
+    docker:
+      - image: swift:5.4
+    working_directory: *pwd
 
 commands:
   restore_pwd:
@@ -82,6 +86,34 @@ jobs:
       - store_test_results:
           path: reports
 
+  swiftformat:
+    executor: swift
+    steps:
+      - restore_cache:
+          keys:
+            - swiftformat-cache-{{ arch }}
+      - run:
+          name: Install SwiftFormat
+          command: |
+            VERSION="0.48.11"
+
+            type "swiftformat" >/dev/null 2>&1 && [[ "$(swiftformat --version)" == "$VERSION" ]] || {
+              cd /tmp
+              git clone --branch "$VERSION" --depth 1 https://github.com/nicklockwood/SwiftFormat
+              cd SwiftFormat
+              swift build --configuration release
+              BIN="$(swift build --configuration release --show-bin-path)"
+              mv $BIN/swiftformat "/usr/local/bin"
+            }
+      - save_cache:
+          key: swiftformat-cache-{{ arch }}
+          paths:
+            - /usr/local/bin
+      - checkout
+      - run:
+          name: Run SwiftFormat
+          command: cd safari && swiftformat --lint .
+
 workflows:
   version: 2.1
   checks:
@@ -96,3 +128,4 @@ workflows:
       - test:
           requires:
             - setup
+      - swiftformat
