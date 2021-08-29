@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ticket-controls renders for a single ticket 1`] = `
+<form>
+  <div
+    className="d-flex flex-row mb-2 btn-group btn-group-lg"
+    role="group"
+  >
+    <TicketCopyButton
+      icon={[Function]}
+      label="Branch"
+      tabIndex={1}
+      title="Copy branch name"
+      value="branch-1"
+    />
+    <TicketCopyButton
+      icon={[Function]}
+      label="Message"
+      tabIndex={1}
+      title="Copy commit message"
+      value="commit-1"
+    />
+    <TicketCopyButton
+      icon={[Function]}
+      label="Command"
+      tabIndex={1}
+      title="Copy CLI command"
+      value="command-1"
+    />
+  </div>
+  <div>
+    <select
+      className="form-control form-control-sm"
+      disabled={true}
+      onChange={[Function]}
+      tabIndex={1}
+      value="0"
+    >
+      <option
+        key="0"
+        value={0}
+      >
+        raz
+      </option>
+    </select>
+  </div>
+</form>
+`;
+
+exports[`ticket-controls renders for multiple tickets 1`] = `
+<form>
+  <div
+    className="d-flex flex-row mb-2 btn-group btn-group-lg"
+    role="group"
+  >
+    <TicketCopyButton
+      icon={[Function]}
+      label="Branch"
+      tabIndex={1}
+      title="Copy branch name"
+      value="branch-1"
+    />
+    <TicketCopyButton
+      icon={[Function]}
+      label="Message"
+      tabIndex={1}
+      title="Copy commit message"
+      value="commit-1"
+    />
+    <TicketCopyButton
+      icon={[Function]}
+      label="Command"
+      tabIndex={1}
+      title="Copy CLI command"
+      value="command-1"
+    />
+  </div>
+  <div>
+    <select
+      className="form-control form-control-sm"
+      disabled={false}
+      onChange={[Function]}
+      tabIndex={1}
+      value="0"
+    >
+      <option
+        key="0"
+        value={0}
+      >
+        raz
+      </option>
+      <option
+        key="1"
+        value={1}
+      >
+        dva
+      </option>
+      <option
+        key="2"
+        value={2}
+      >
+        tri
+      </option>
+    </select>
+  </div>
+</form>
+`;

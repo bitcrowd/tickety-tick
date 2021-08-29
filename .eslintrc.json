@@ -7,26 +7,49 @@
   "extends": [
     "airbnb",
     "airbnb/hooks",
+    "plugin:import/typescript",
     "plugin:jest/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "globals": {
     "COMMITHASH": "readonly"
   },
   "plugins": [
-    "jest",
-    "prettier",
     "simple-import-sort"
   ],
   "rules": {
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports"
+      }
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_" }
+    ],
+    "@typescript-eslint/no-use-before-define": "error",
+    "import/extensions": [
+      "error",
+      {
+        "js": "never",
+        "json": "always",
+        "ts": "never"
+      }
+    ],
     "import/no-extraneous-dependencies": [
       "error",
       {
         "devDependencies": [
           "webpack.config.babel.js",
           "src/**/*.test.jsx",
+          "src/**/*.test.tsx",
           "src/**/*.test.js",
+          "src/**/*.test.ts",
           "test/**/*.js",
+          "test/**/*.ts",
           "script/*"
         ]
       }
@@ -37,8 +60,22 @@
         "specialLink": ["to"]
       }
     ],
-    "react/jsx-props-no-spreading": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "no-use-before-define": "off",
     "prettier/prettier": "error",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "simple-import-sort/exports": "error",
     "simple-import-sort/imports": "error"
   }
 }
