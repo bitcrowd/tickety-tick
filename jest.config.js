@@ -2,16 +2,16 @@
 // https://jestjs.io/docs/en/configuration.html
 
 module.exports = {
-  coverageDirectory: 'coverage',
-  collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx}'],
+  coverageDirectory: "coverage",
+  collectCoverageFrom: ["<rootDir>/src/**/*.{js,jsx,ts,tsx}"],
   globals: {
-    COMMITHASH: 'test-commit-hash',
+    COMMITHASH: "test-commit-hash",
   },
-  setupFilesAfterEnv: ['<rootDir>/test/setup.js'],
-  snapshotSerializers: ['enzyme-to-json/serializer'],
+  setupFilesAfterEnv: ["<rootDir>/test/setup.js"],
+  snapshotSerializers: ["enzyme-to-json/serializer"],
   transform: {
-    '^.+\\.jsx?$': 'babel-jest',
-    '(?!^.+\\.jsx?$)': '<rootDir>/test/transforms/file.js',
+    "^.+\\.(jsx?|tsx?)$": "babel-jest",
+    "(?!^.+\\.(jsx?|tsx?)$)": "<rootDir>/test/transforms/file.js",
   },
-  transformIgnorePatterns: ['node_modules/(?!ky)'],
+  transformIgnorePatterns: ["node_modules/(?!ky)"],
 };

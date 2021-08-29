@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path"); // eslint-disable-line @typescript-eslint/no-var-requires
 
 function process(src, filename) {
   const name = path.basename(filename);
