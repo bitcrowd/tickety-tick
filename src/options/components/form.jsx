@@ -5,11 +5,8 @@ import {
 } from '@primer/octicons-react';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import format, {
-  helpers,
-  templateDefaults as fallbacks,
-} from 'tickety-tick-formatter';
 
+import format, { defaults, helpers } from '../../core/format';
 import CheckboxInput from './checkbox-input';
 import * as example from './example';
 import TemplateInput from './template-input';
@@ -89,9 +86,9 @@ class Form extends Component {
 
     // Use default for preview if template is blank
     const config = {
-      branch: templates.branch || fallbacks.branch,
-      commit: templates.commit || fallbacks.commit,
-      command: templates.command || fallbacks.command,
+      branch: templates.branch || defaults.branch,
+      commit: templates.commit || defaults.commit,
+      command: templates.command || defaults.command,
     };
 
     // Create a formatter for rendering previews
@@ -104,7 +101,7 @@ class Form extends Component {
         id: 'commit-message-format',
         name: 'commit',
         value: templates.commit,
-        fallback: fallbacks.commit,
+        fallback: defaults.commit,
         preview: fmt.commit(example),
         multiline: true,
       },
@@ -114,7 +111,7 @@ class Form extends Component {
         id: 'branch-name-format',
         name: 'branch',
         value: templates.branch,
-        fallback: fallbacks.branch,
+        fallback: defaults.branch,
         preview: fmt.branch(example),
       },
       {
@@ -123,7 +120,7 @@ class Form extends Component {
         id: 'command-format',
         name: 'command',
         value: templates.command,
-        fallback: fallbacks.command,
+        fallback: defaults.command,
         preview: fmt.command(example),
       },
     ];
