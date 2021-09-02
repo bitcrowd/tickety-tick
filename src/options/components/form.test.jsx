@@ -1,17 +1,14 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import format, {
-  helpers,
-  templateDefaults as fallbacks,
-} from 'tickety-tick-formatter';
 
+import format, { defaults as fallbacks, helpers } from '../../core/format';
 import CheckboxInput from './checkbox-input';
 import Form from './form';
 import TemplateInput from './template-input';
 
-jest.mock('tickety-tick-formatter', () => {
+jest.mock('../../core/format', () => {
   const mockFormat = jest.fn();
-  const actual = jest.requireActual('tickety-tick-formatter');
+  const actual = jest.requireActual('../../core/format');
   return Object.assign(mockFormat, actual);
 });
 
@@ -157,8 +154,8 @@ describe('form', () => {
     const wrapper = render({});
     const text = wrapper.text();
 
-    Object.entries(helpers).forEach(([name, helper]) => {
-      expect(text).toContain(helper.description || name);
+    Object.values(helpers).forEach((fn) => {
+      expect(text).toContain(fn.name || fn.description);
     });
   });
 

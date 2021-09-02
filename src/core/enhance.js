@@ -1,4 +1,4 @@
-import format from 'tickety-tick-formatter';
+import format from './format';
 
 export default (templates, autofmt) => {
   const fmt = format(templates, autofmt);

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pretty-print formats lists 1`] = `
+"Format lists in body
+
+- Bullet points are okay too
+- Typically a hyphen or asterisk is used for the bullet, followed by a
+  single space, with blank lines in between, but conventions vary here
+- Use a hanging indent
+"
+`;
+
+exports[`pretty-print strips body indentation 1`] = `
+"Strip body indentation
+
+Unindent this line. Move this one up.
+
+    function leave(me) {
+      return 'indented';
+    }
+
+And continue.
+"
+`;
+
+exports[`pretty-print strips leading and trailing blank lines and whitespace 1`] = `
+"Remove whitespace around subject line
+
+Also, remove additional blank lines before and after body.
+
+Preserve blank lines between paragraphs of the body.
+
+Strip whitespace on empty lines (see line above).
+
+Strip trailing whitespace (see end of this line).
+"
+`;
+
+exports[`pretty-print wraps overlong body lines 1`] = `
+"Wrap body lines
+
+More detailed explanatory text is wrapped to 72 characters. The blank
+line separating the subject from the body is critical unless you omit
+the body entirely.
+"
+`;
+
+exports[`pretty-print wraps overlong subject lines 1`] = `
+"Wrap commit subject lines with more than 50…
+
+…characters and insert one blank line before the remaining subject text.
+Wrap the remaining subject text to 72 characters.
+"
+`;
