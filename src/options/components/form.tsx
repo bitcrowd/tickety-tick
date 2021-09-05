@@ -155,7 +155,6 @@ class Form extends Component<Props, State> {
     return (
       <form onSubmit={this.handleSubmit} className="mw-100 px-2 py-3">
         <div className="mt-4">
-          {/* eslint-disable prettier/prettier */}
           <CheckboxInput
             id="auto-format-commits"
             name="autofmt"
@@ -163,7 +162,7 @@ class Form extends Component<Props, State> {
             disabled={loading}
             label={
               <>
-                Auto-format commit message – as per{' '}
+                Auto-format commit message – as per{" "}
                 <a
                   href={recommendation}
                   target="_blank"
@@ -175,7 +174,6 @@ class Form extends Component<Props, State> {
             }
             onChange={this.handleChanged}
           />
-          {/* eslint-enable prettier/prettier */}
         </div>
 
         {fields.map(input)}

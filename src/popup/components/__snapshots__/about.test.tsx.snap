@@ -30,8 +30,7 @@ exports[`about renders 1`] = `
       <ForwardRef(Svg)
         className="logo mr-1"
       />
-       
-      Tickety-Tick
+       Tickety-Tick
     </h1>
     <h6>
       Usage:
