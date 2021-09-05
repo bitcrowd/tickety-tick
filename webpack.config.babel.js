@@ -97,10 +97,23 @@ config.module
 
 config.module
   .rule("images")
-  .test(/\.(png|svg)$/)
+  .test(/\.png$/)
   .exclude.add(/node_modules/)
   .end()
   .use("images")
+  .loader("file-loader")
+  .options({ name: "[name].[contenthash].[ext]" });
+
+config.module
+  .rule("svgs")
+  .test(/\.svg$/)
+  .exclude.add(/node_modules/)
+  .end()
+  .use("svgr")
+  .loader("@svgr/webpack")
+  .options({ prettier: false, svgo: false, ref: true })
+  .end()
+  .use("svg-file")
   .loader("file-loader")
   .options({ name: "[name].[contenthash].[ext]" });
 

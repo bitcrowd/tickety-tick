@@ -2,9 +2,9 @@ import { ChevronLeftIcon } from "@primer/octicons-react";
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { ReactComponent as Logo } from "../../icons/icon.svg";
 import Content from "./content";
 import ExternalLink from "./external-link";
-import Logo from "./logo";
 import Navbar from "./navbar";
 
 const repo = "https://github.com/bitcrowd/tickety-tick";
@@ -28,7 +28,7 @@ function About(_: Props) {
       <Content>
         <h1 className="d-flex align-items-center h3 mb-3">
           {/* eslint-disable-next-line prettier/prettier */}
-          <Logo className="logo mr-1" wrapper="span" />
+          <Logo className="logo mr-1" />
           {' '}
           Tickety-Tick
         </h1>
