@@ -9,7 +9,7 @@
 set -o errexit
 set -o nounset
 
-dir="$(realpath "$(dirname "$0")/../src/common/icons")"
+dir="$(realpath "$(dirname "$0")/../src/icons")"
 dark_src="${dir}/icon.svg"
 light_src="${dir}/icon-light.svg"
 
