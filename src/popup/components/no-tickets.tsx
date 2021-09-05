@@ -36,9 +36,7 @@ function Report({ errors }: ReportProps) {
     <>
       <h5 className="mt-3 mb-3">Houston, we have a problem.</h5>
       <p>
-        {/* eslint-disable-next-line prettier/prettier */}
-        Tickety-Tick encountered
-        {' '}
+        Tickety-Tick encountered{" "}
         <strong>
           {errors.length === 1 ? "an error" : `${errors.length} errors`}
         </strong>

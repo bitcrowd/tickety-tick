@@ -27,10 +27,7 @@ function About(_: Props) {
       </Navbar>
       <Content>
         <h1 className="d-flex align-items-center h3 mb-3">
-          {/* eslint-disable-next-line prettier/prettier */}
-          <Logo className="logo mr-1" />
-          {' '}
-          Tickety-Tick
+          <Logo className="logo mr-1" /> Tickety-Tick
         </h1>
         <h6>Usage:</h6>
         <ol className="pl-3">
@@ -42,20 +39,12 @@ function About(_: Props) {
           </li>
         </ol>
         <p>
-          {/* eslint-disable-next-line prettier/prettier */}
-          This extension is open-source software by the fellows at
-          {' '}
-          {/* eslint-disable-next-line prettier/prettier */}
-          <ExternalLink href="http://bitcrowd.net">bitcrowd</ExternalLink>
-          .
+          This extension is open-source software by the fellows at{" "}
+          <ExternalLink href="http://bitcrowd.net">bitcrowd</ExternalLink>.
         </p>
         <p>
-          {/* eslint-disable-next-line prettier/prettier */}
-          The source code is available on
-          {' '}
-          {/* eslint-disable-next-line prettier/prettier */}
-          <ExternalLink href={repo}>GitHub</ExternalLink>
-          .
+          The source code is available on{" "}
+          <ExternalLink href={repo}>GitHub</ExternalLink>.
         </p>
         <p className="small">
           <ExternalLink href={tree} title="Browse source code for this version">
