@@ -27,9 +27,8 @@ exports[`about renders 1`] = `
     <h1
       className="d-flex align-items-center h3 mb-3"
     >
-      <Logo
+      <ForwardRef(Svg)
         className="logo mr-1"
-        wrapper="span"
       />
        
       Tickety-Tick

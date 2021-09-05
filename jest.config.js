@@ -10,8 +10,8 @@ module.exports = {
   setupFilesAfterEnv: ["<rootDir>/test/setup.js"],
   snapshotSerializers: ["enzyme-to-json/serializer"],
   transform: {
-    "^.+\\.(jsx?|tsx?)$": "babel-jest",
-    "(?!^.+\\.(jsx?|tsx?)$)": "<rootDir>/test/transforms/file.js",
+    "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
+    "(?!^.+\\.(js|jsx|ts|tsx)$)": "<rootDir>/test/transforms/file.js",
   },
   transformIgnorePatterns: ["node_modules/(?!ky)"],
 };
