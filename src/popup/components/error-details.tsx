@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import type { StackFrame } from "stacktrace-js";
 import StackTrace from "stacktrace-js";
 
@@ -21,47 +21,31 @@ export type Props = {
   errors: Error[];
 };
 
-type State = {
-  traces: string[] | null;
-};
+function ErrorDetails({ errors }: Props) {
+  const [traces, setTraces] = useState<string[] | null>(null);
 
-class ErrorDetails extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      traces: null,
-    };
-  }
-
-  componentDidMount() {
-    const { errors } = this.props;
-
+  useEffect(() => {
     Promise.all(errors.map(trace))
-      .then((traces) => this.setState({ traces }))
+      .then(setTraces)
       .catch((err) => console.error(err)); // eslint-disable-line no-console
-  }
+  }, [errors]);
 
-  render() {
-    const { traces } = this.state;
+  if (!traces) return null;
 
-    if (!traces) return null;
+  const preamble = `Tickety-Tick revision: ${COMMITHASH}`;
+  const logs = traces.map((tr) => ["```", tr, "```"].join("\n"));
 
-    const preamble = `Tickety-Tick revision: ${COMMITHASH}`;
-    const logs = traces.map((tr) => ["```", tr, "```"].join("\n"));
+  const info = [preamble, ...logs].join("\n\n");
 
-    const info = [preamble, ...logs].join("\n\n");
-
-    return (
-      <CopyButton
-        className="btn btn-primary"
-        title="Copy error details to help identify the issue"
-        value={info}
-      >
-        Copy error details
-      </CopyButton>
-    );
-  }
+  return (
+    <CopyButton
+      className="btn btn-primary"
+      title="Copy error details to help identify the issue"
+      value={info}
+    >
+      Copy error details
+    </CopyButton>
+  );
 }
 
 export default ErrorDetails;
