@@ -1,12 +1,18 @@
-import { shallow } from "enzyme";
+import { render as renderComponent, waitFor } from "@testing-library/react";
 import React from "react";
 import StackTrace from "stacktrace-js";
 
-import CopyButton from "./copy-button";
+import type { Props as CopyButtonProps } from "./copy-button";
 import type { Props } from "./error-details";
 import CopyErrorDetails from "./error-details";
 
-jest.mock("stacktrace-js", () => ({ fromError: jest.fn() }));
+jest
+  .mock("stacktrace-js", () => ({ fromError: jest.fn() }))
+  .mock("./copy-button", () => ({ value }: CopyButtonProps) => (
+    <button type="button" value={value}>
+      Copy error details
+    </button>
+  ));
 
 class MockStackFrame {
   functionName: string;
@@ -50,7 +56,7 @@ describe("error-details", () => {
   function render(overrides: Partial<Props>) {
     const defaults: Props = { errors: [new Error("WAT?")] };
     const props = { ...defaults, ...overrides };
-    return shallow(<CopyErrorDetails {...props} />);
+    return renderComponent(<CopyErrorDetails {...props} />);
   }
 
   beforeEach(() => {
@@ -86,8 +92,12 @@ describe("error-details", () => {
   });
 
   it("renders a button to copy the error details", async () => {
-    const wrapper = render({ errors: [new Error("Boom!")] });
-    await new Promise((resolve) => setTimeout(resolve, 0)); // wait for stacktrace-js processing
-    expect(wrapper.find(CopyButton).prop("value")).toMatchSnapshot();
+    const screen = render({ errors: [new Error("Boom!")] });
+    await waitFor(() => {
+      const button = screen.getByRole("button", {
+        name: "Copy error details",
+      }) as HTMLButtonElement;
+      expect(button.value).toMatchSnapshot();
+    });
   });
 });
