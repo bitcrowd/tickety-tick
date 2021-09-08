@@ -4,7 +4,7 @@ import {
   GitBranchIcon,
   TerminalIcon,
 } from "@primer/octicons-react";
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 
 import format, { defaults, helpers } from "../../core/format";
 import CheckboxInput from "./checkbox-input";
@@ -34,197 +34,161 @@ type State = {
   command: string;
 };
 
-class Form extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+const initialState: State = {
+  loading: true,
+  autofmt: true,
+  branch: "",
+  commit: "",
+  command: "",
+};
 
-    this.state = {
-      loading: true,
-      autofmt: true,
-      branch: "",
-      commit: "",
-      command: "",
-    };
+function Form({ store }: Props) {
+  const [state, setState] = useState<State>(initialState);
 
-    this.handleLoaded = this.handleLoaded.bind(this);
-    this.handleChanged = this.handleChanged.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSaved = this.handleSaved.bind(this);
-  }
+  useEffect(() => {
+    store.get(null).then((data) => {
+      const { options, templates } = data ?? {};
+      setState({ ...initialState, loading: false, ...options, ...templates });
+    });
+  }, [store]);
 
-  componentDidMount() {
-    const { store } = this.props;
-    store.get(null).then(this.handleLoaded);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  handleLoaded(data: any) {
-    const { options, templates } = data ?? {};
-    this.setState(() => ({
-      loading: false,
-      ...options,
-      ...templates,
-    }));
-  }
-
-  handleChanged(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, type, value, checked } = event.target;
 
-    this.setState((state) => ({
+    setState({
       ...state,
       [name]: type === "checkbox" ? checked : value,
-    }));
-  }
+    });
+  };
 
-  handleSubmit(event: React.FormEvent) {
+  const handleSaved = () => {
+    setState({ ...state, loading: false });
+  };
+
+  const { loading, autofmt, ...templates } = state;
+
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const { store } = this.props;
-
-    const { autofmt, branch, commit, command } = this.state;
-
     const options = { autofmt };
-    const templates = { branch, commit, command };
 
-    this.setState({ loading: true }, () => {
-      store.set({ templates, options }).then(this.handleSaved);
-    });
-  }
+    setState({ ...state, loading: true });
+    store.set({ templates, options }).then(handleSaved);
+  };
 
-  handleSaved() {
-    this.setState(() => ({ loading: false }));
-  }
+  // Create a formatter for rendering previews
+  const fmt = format(templates, autofmt);
 
-  render() {
-    const { loading, autofmt, ...templates } = this.state;
+  const fields = [
+    {
+      icon: <InputIcon icon={CommentIcon} />,
+      label: "Commit Message Format",
+      id: "commit-message-format",
+      name: "commit",
+      value: templates.commit,
+      fallback: defaults.commit,
+      preview: fmt.commit(example),
+      multiline: true,
+    },
+    {
+      icon: <InputIcon icon={GitBranchIcon} />,
+      label: "Branch Name Format",
+      id: "branch-name-format",
+      name: "branch",
+      value: templates.branch,
+      fallback: defaults.branch,
+      preview: fmt.branch(example),
+    },
+    {
+      icon: <InputIcon icon={TerminalIcon} />,
+      label: "Command Format",
+      id: "command-format",
+      name: "command",
+      value: templates.command,
+      fallback: defaults.command,
+      preview: fmt.command(example),
+    },
+  ];
 
-    // Use default for preview if template is blank
-    const config = {
-      branch: templates.branch || defaults.branch,
-      commit: templates.commit || defaults.commit,
-      command: templates.command || defaults.command,
-    };
+  const input = (props: Omit<TemplateInputProps, "disabled" | "onChange">) => (
+    <React.Fragment key={props.id}>
+      <h3 className="h5 mt-4 pt-2 pb-1">{props.label}</h3>
+      <TemplateInput disabled={loading} onChange={handleChanged} {...props} />
+    </React.Fragment>
+  );
 
-    // Create a formatter for rendering previews
-    const fmt = format(config, autofmt);
-
-    const fields = [
-      {
-        icon: <InputIcon icon={CommentIcon} />,
-        label: "Commit Message Format",
-        id: "commit-message-format",
-        name: "commit",
-        value: templates.commit,
-        fallback: defaults.commit,
-        preview: fmt.commit(example),
-        multiline: true,
-      },
-      {
-        icon: <InputIcon icon={GitBranchIcon} />,
-        label: "Branch Name Format",
-        id: "branch-name-format",
-        name: "branch",
-        value: templates.branch,
-        fallback: defaults.branch,
-        preview: fmt.branch(example),
-      },
-      {
-        icon: <InputIcon icon={TerminalIcon} />,
-        label: "Command Format",
-        id: "command-format",
-        name: "command",
-        value: templates.command,
-        fallback: defaults.command,
-        preview: fmt.command(example),
-      },
-    ];
-
-    const input = (
-      props: Omit<TemplateInputProps, "disabled" | "onChange">
-    ) => (
-      <React.Fragment key={props.id}>
-        <h3 className="h5 mt-4 pt-2 pb-1">{props.label}</h3>
-        <TemplateInput
+  return (
+    <form onSubmit={handleSubmit} className="mw-100 px-2 py-3">
+      <div className="mt-4">
+        <CheckboxInput
+          id="auto-format-commits"
+          name="autofmt"
+          checked={autofmt}
           disabled={loading}
-          onChange={this.handleChanged}
-          {...props}
+          label={
+            <>
+              Auto-format commit message – as per{" "}
+              <a
+                href={recommendation}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                recommendation
+              </a>
+            </>
+          }
+          onChange={handleChanged}
         />
-      </React.Fragment>
-    );
+      </div>
 
-    return (
-      <form onSubmit={this.handleSubmit} className="mw-100 px-2 py-3">
-        <div className="mt-4">
-          <CheckboxInput
-            id="auto-format-commits"
-            name="autofmt"
-            checked={autofmt}
-            disabled={loading}
-            label={
-              <>
-                Auto-format commit message – as per{" "}
-                <a
-                  href={recommendation}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  recommendation
-                </a>
-              </>
-            }
-            onChange={this.handleChanged}
-          />
-        </div>
+      {fields.map(input)}
 
-        {fields.map(input)}
+      <hr />
 
-        <hr />
+      <div className="container-fluid px-0">
+        <div className="row no-gutters">
+          <div className="col small">
+            Template variables:
+            <ul className="list-unstyled text-muted">
+              {Object.keys(example)
+                .sort()
+                .map((name) => (
+                  <li key={name}>{name}</li>
+                ))}
+              <li>branch (only in command)</li>
+              <li>commit (only in command)</li>
+            </ul>
+          </div>
 
-        <div className="container-fluid px-0">
-          <div className="row no-gutters">
-            <div className="col small">
-              Template variables:
-              <ul className="list-unstyled text-muted">
-                {Object.keys(example)
-                  .sort()
-                  .map((name) => (
-                    <li key={name}>{name}</li>
-                  ))}
-                <li>branch (only in command)</li>
-                <li>commit (only in command)</li>
-              </ul>
-            </div>
-
-            <div className="col small">
-              Available Helpers:
-              <ul className="list-unstyled text-muted">
-                {Object.keys(helpers)
-                  .sort()
-                  .map((name) => {
-                    const helper = helpers[name as keyof typeof helpers];
-                    return (
-                      <li key={name}>
-                        {"description" in helper ? helper.description : name}
-                      </li>
-                    );
-                  })}
-              </ul>
-            </div>
+          <div className="col small">
+            Available Helpers:
+            <ul className="list-unstyled text-muted">
+              {Object.keys(helpers)
+                .sort()
+                .map((name) => {
+                  const helper = helpers[name as keyof typeof helpers];
+                  return (
+                    <li key={name}>
+                      {"description" in helper ? helper.description : name}
+                    </li>
+                  );
+                })}
+            </ul>
           </div>
         </div>
+      </div>
 
-        <div className="mt-2">
-          <button
-            className="btn btn-outline-primary"
-            type="submit"
-            disabled={loading}
-          >
-            Save
-          </button>
-        </div>
-      </form>
-    );
-  }
+      <div className="mt-2">
+        <button
+          className="btn btn-outline-primary"
+          type="submit"
+          disabled={loading}
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  );
 }
 
 export default Form;

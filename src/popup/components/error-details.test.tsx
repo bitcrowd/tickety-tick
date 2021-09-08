@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { render as renderComponent, waitFor } from "@testing-library/react";
 import React from "react";
 import StackTrace from "stacktrace-js";
