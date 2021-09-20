@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import pbcopy from 'copy-text-to-clipboard';
 import { shallow } from 'enzyme';
 import React from 'react';
