@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import '.';
 
 import browser from 'webextension-polyfill';
