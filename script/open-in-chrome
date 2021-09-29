@@ -2,15 +2,15 @@
 
 // usage: open-in-chrome [extension-dir] [starting-url]
 
-const path = require('path');
-const launcher = require('chrome-launcher');
+const path = require("path");
+const launcher = require("chrome-launcher");
 
-const dir = process.argv[2] || path.join(__dirname, '..', 'dist', 'chrome');
-const url = process.argv[3] || 'https://github.com/bitcrowd/tickety-tick';
+const dir = process.argv[2] || path.join(__dirname, "..", "dist", "chrome");
+const url = process.argv[3] || "https://github.com/bitcrowd/tickety-tick";
 
 const chromeFlags = launcher.Launcher.defaultFlags()
-  .filter((flag) => flag !== '--disable-extensions')
-  .concat(['--no-default-browser-check', `--load-extension=${dir}`]);
+  .filter((flag) => flag !== "--disable-extensions")
+  .concat(["--no-default-browser-check", `--load-extension=${dir}`]);
 
 const options = {
   chromeFlags,
