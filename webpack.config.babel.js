@@ -3,7 +3,7 @@ import path from "path";
 
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import GitRevisionPlugin from "git-revision-webpack-plugin";
+import { GitRevisionPlugin } from "git-revision-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { DefinePlugin } from "webpack";
