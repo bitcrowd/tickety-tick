@@ -18,7 +18,7 @@ function About(_: Props) {
       <Navbar>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <Link className="nav-link pl-0" to="/">
+            <Link className="nav-link ps-0" to="/">
               <ChevronLeftIcon size={14} className="octicon-nav" />
               Back
             </Link>
@@ -27,10 +27,10 @@ function About(_: Props) {
       </Navbar>
       <Content>
         <h1 className="d-flex align-items-center h3 mb-3">
-          <Logo className="logo mr-1" /> Tickety-Tick
+          <Logo className="logo me-1" /> Tickety-Tick
         </h1>
         <h6>Usage:</h6>
-        <ol className="pl-3">
+        <ol className="ps-3">
           <li>Open a ticket in your favourite issue tracking system.</li>
           <li>Click the extension icon.</li>
           <li>

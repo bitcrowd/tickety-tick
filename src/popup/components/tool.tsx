@@ -32,7 +32,7 @@ function Tool({ tickets, errors }: Props) {
     <>
       <Navbar>
         <span className="navbar-brand">Tickety-Tick</span>
-        <ul className="navbar-nav ml-auto">
+        <ul className="navbar-nav">
           <li className="nav-item">
             <a
               className="nav-link"
