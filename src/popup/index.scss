@@ -1,3 +1,39 @@
-@import "styles/settings/common";
-@import "styles/settings/default";
-@import "styles/main";
+@import "styles/settings";
+
+// Bootstrap
+@import "~bootstrap";
+
+// Bootstrap overrides
+@import "styles/overrides";
+
+// Popup style
+@import "styles/additions";
+
+// Spinner
+@import "styles/spinner";
+
+.dark {
+  // Invert gray-scale colors
+  --bs-black-rgb: 255, 255, 255;
+  --bs-white-rgb: 0, 0, 0;
+  --bs-white: #000;
+  --bs-gray-100: #212529;
+  --bs-gray-200: #343a40;
+  --bs-gray-300: #495057;
+  --bs-gray-400: #6c757d;
+  --bs-gray-500: #adb5bd;
+  --bs-gray-600: #ced4da;
+  --bs-gray-700: #dee2e6;
+  --bs-gray-800: #e9ecef;
+  --bs-gray-900: #f8f9fa;
+
+  // Set custom dark foreground & background
+  --bs-body-bg: #292a2d;
+  --bs-body-bg-rgb: 41, 42, 45;
+  --bs-body-color: #f8f9fa;
+  --bs-body-color-rgb: 248, 249, 250;
+
+  // Invert dark & light colors
+  --bs-light-rgb: 33, 37, 41;
+  --bs-dark-rgb: 248, 249, 250;
+}

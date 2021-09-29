@@ -118,7 +118,7 @@ function Form({ store }: Props) {
   );
 
   return (
-    <form onSubmit={handleSubmit} className="mw-100 px-2 py-3">
+    <form onSubmit={handleSubmit} className="px-2 py-3">
       <div className="mt-4">
         <CheckboxInput
           id="auto-format-commits"

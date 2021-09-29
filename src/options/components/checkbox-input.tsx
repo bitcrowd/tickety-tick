@@ -20,20 +20,18 @@ function CheckboxInput({
   return (
     <div className="form-group">
       <div className="input-group">
-        <div className="input-group-prepend">
-          <div className="input-group-text">
-            <input
-              className="input-checkbox"
-              type="checkbox"
-              id={id}
-              name={name}
-              checked={checked}
-              disabled={disabled}
-              onChange={onChange}
-            />
-          </div>
+        <div className="input-group-text">
+          <input
+            className="input-checkbox"
+            type="checkbox"
+            id={id}
+            name={name}
+            checked={checked}
+            disabled={disabled}
+            onChange={onChange}
+          />
         </div>
-        <div className="form-control px-2">
+        <div className="form-control p-2">
           <label htmlFor={id}>{label}</label>
         </div>
       </div>

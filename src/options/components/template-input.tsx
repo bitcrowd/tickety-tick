@@ -65,16 +65,14 @@ function TemplateInput(props: Props) {
   return (
     <div className="form-group mb-4">
       <div className="input-group mb-3">
-        <div className="input-group-prepend">
-          <label className="input-group-text" htmlFor={id}>
-            <span title={label}>
-              {icon}
-              <span className="sr-only">{label}</span>
-            </span>
-          </label>
-        </div>
+        <label className="input-group-text" htmlFor={id}>
+          <span title={label}>
+            {icon}
+            <span className="visually-hidden">{label}</span>
+          </span>
+        </label>
         <TemplateInputElement
-          className="form-control px-2 py-3"
+          className="form-control p-2"
           id={id}
           name={name}
           value={value}

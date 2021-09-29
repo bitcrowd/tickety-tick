@@ -36,7 +36,7 @@ function TicketCopyButton({
         return (
           <>
             <IconComponent size={18} />
-            <span className="pl-1 small btn-label btn-label-conceal">
+            <span className="ps-1 small btn-label btn-label-conceal">
               {copied ? "Copied" : label}
             </span>
           </>

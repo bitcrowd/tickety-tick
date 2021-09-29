@@ -10,7 +10,7 @@ exports[`about renders 1`] = `
         className="nav-item"
       >
         <Link
-          className="nav-link pl-0"
+          className="nav-link ps-0"
           to="/"
         >
           <ChevronLeftIcon
@@ -28,7 +28,7 @@ exports[`about renders 1`] = `
       className="d-flex align-items-center h3 mb-3"
     >
       <ForwardRef(Svg)
-        className="logo mr-1"
+        className="logo me-1"
       />
        Tickety-Tick
     </h1>
@@ -36,7 +36,7 @@ exports[`about renders 1`] = `
       Usage:
     </h6>
     <ol
-      className="pl-3"
+      className="ps-3"
     >
       <li>
         Open a ticket in your favourite issue tracking system.

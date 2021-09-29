@@ -1,5 +1,4 @@
 import "./index.scss";
-import "./index-dark.scss";
 
 import browser from "webextension-polyfill";
 

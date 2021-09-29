@@ -1,0 +1,32 @@
+.border-bottom {
+  border-color: var(--bs-gray-400) !important;
+}
+
+.navbar-light .navbar-brand {
+  color: var(--bs-body-color);
+
+  &:hover,
+  &:focus {
+    color: var(--bs-body-color);
+  }
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: var(--bs-gray-600);
+
+  &:hover,
+  &:focus {
+    color: var(--bs-gray-900);
+  }
+}
+
+.form-control {
+  background-color: var(--bs-body-bg);
+  border-color: var(--bs-gray-400);
+  color: var(--bs-gray-800);
+
+  &:disabled {
+    background-color: rgb(var(--bs-light-rgb));
+    color: var(--bs-gray-500);
+  }
+}
