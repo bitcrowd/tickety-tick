@@ -51,12 +51,7 @@ config.output.filename("[name].js");
 
 // Configure module/import resolution.
 
-config.resolve.extensions
-  .add(".js")
-  .add(".jsx")
-  .add(".json")
-  .add(".ts")
-  .add(".tsx");
+config.resolve.extensions.add(".js").add(".json").add(".ts").add(".tsx");
 
 config.module
   .rule("js")
