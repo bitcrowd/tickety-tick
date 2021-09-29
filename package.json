@@ -95,7 +95,7 @@
     "@types/webextension-polyfill": "^0.8.0",
     "bootstrap": "4.6.0",
     "copy-text-to-clipboard": "^2.2.0",
-    "ky": "^0.24.0",
+    "ky": "^0.28.5",
     "micro-match": "^1.0.1",
     "prettier": "^2.2.1",
     "react": "17.0.2",
