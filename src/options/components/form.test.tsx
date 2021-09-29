@@ -125,7 +125,7 @@ describe("form", () => {
       ["command", "Command Format"],
     ].map<[string, HTMLInputElement]>(([key, name]) => [
       key,
-      screen.getByRole("textbox", { name }),
+      screen.getByRole("textbox", { name }) as HTMLInputElement,
     ]);
 
     fireEvent.click(checkbox);
