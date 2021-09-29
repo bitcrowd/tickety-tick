@@ -98,15 +98,6 @@ config.module
   });
 
 config.module
-  .rule("images")
-  .test(/\.png$/)
-  .exclude.add(/node_modules/)
-  .end()
-  .use("images")
-  .loader("file-loader")
-  .options({ name: "[name].[contenthash].[ext]" });
-
-config.module
   .rule("svgs")
   .test(/\.svg$/)
   .exclude.add(/node_modules/)
