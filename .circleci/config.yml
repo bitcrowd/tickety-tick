@@ -114,6 +114,14 @@ jobs:
           name: Run SwiftFormat
           command: cd safari && swiftformat --lint .
 
+  build:
+    executor: base
+    steps:
+      - restore_pwd
+      - run:
+          name: Build
+          command: yarn build:firefox
+
 workflows:
   version: 2.1
   checks:
@@ -129,3 +137,6 @@ workflows:
           requires:
             - setup
       - swiftformat
+      - build:
+          requires:
+            - setup
