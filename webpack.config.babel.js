@@ -32,6 +32,8 @@ export function dist(...p) {
 
 const config = new Config();
 
+config.mode(process.env.NODE_ENV ?? "production");
+
 config.context(__dirname);
 
 // Configure separate entry points.
