@@ -54,20 +54,12 @@ config.output.filename("[name].js");
 config.resolve.extensions.add(".js").add(".json").add(".ts").add(".tsx");
 
 config.module
-  .rule("js")
-  .test(/\.jsx?$/)
-  .exclude.add(/node_modules/)
-  .end()
-  .use("babel")
-  .loader("babel-loader");
-
-config.module
   .rule("ts")
   .test(/\.tsx?$/)
   .exclude.add(/node_modules/)
   .end()
-  .use("typescript")
-  .loader("ts-loader");
+  .use("babel")
+  .loader("babel-loader");
 
 config.module
   .rule("css")
