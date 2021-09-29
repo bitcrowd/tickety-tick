@@ -13,5 +13,7 @@ module.exports = {
     "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
     "(?!^.+\\.(js|jsx|ts|tsx)$)": "<rootDir>/test/transforms/file.js",
   },
-  transformIgnorePatterns: ["node_modules/(?!ky|strip-indent)"],
+  transformIgnorePatterns: [
+    "node_modules/(?!copy-text-to-clipboard|ky|strip-indent)",
+  ],
 };

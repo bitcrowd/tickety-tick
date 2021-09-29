@@ -94,7 +94,7 @@
     "@types/speakingurl": "^13.0.3",
     "@types/webextension-polyfill": "^0.8.0",
     "bootstrap": "4.6.0",
-    "copy-text-to-clipboard": "^2.2.0",
+    "copy-text-to-clipboard": "^3.0.1",
     "ky": "^0.28.5",
     "micro-match": "^1.0.1",
     "prettier": "^2.2.1",
