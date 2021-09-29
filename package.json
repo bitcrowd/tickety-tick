@@ -105,7 +105,7 @@
     "react-textarea-autosize": "^8.3.2",
     "speakingurl": "14.0.1",
     "stacktrace-js": "^2.0.0",
-    "strip-indent": "^3.0.0",
+    "strip-indent": "^4.0.0",
     "webextension-polyfill": "^0.8.0"
   }
 }
