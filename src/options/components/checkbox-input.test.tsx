@@ -1,11 +1,11 @@
-import { shallow } from "enzyme";
+import { fireEvent, render } from "@testing-library/react";
 import React from "react";
 
 import type { Props } from "./checkbox-input";
 import CheckboxInput from "./checkbox-input";
 
 describe("checkbox-input", () => {
-  function render(overrides: Partial<Props>) {
+  function subject(overrides: Partial<Props>) {
     const defaults: Props = {
       id: "checkbox-input-id",
       name: "checkbox-input-name",
@@ -16,36 +16,40 @@ describe("checkbox-input", () => {
     };
 
     const props = { ...defaults, ...overrides };
-    const wrapper = shallow(<CheckboxInput {...props} />);
-
-    return wrapper;
+    return render(<CheckboxInput {...props} />);
   }
 
   it("renders an input label", () => {
-    const wrapper = render({ id: "id-1", label: <span>Awesome Label</span> });
-    const label = wrapper.find("label");
-    expect(label.prop("htmlFor")).toBe("id-1");
-    expect(label.contains(<span>Awesome Label</span>)).toBe(true);
+    const label = "Awesome Label";
+    const screen = subject({ id: "id-1", label });
+    const input = screen.getByRole("checkbox", { name: label });
+
+    expect(input).toBeInTheDocument();
   });
 
   it("renders an input field", () => {
-    const wrapper = render({ id: "id-2", name: "name-2", checked: true });
-    const input = wrapper.find('input[type="checkbox"]');
-    expect(input.prop("id")).toBe("id-2");
-    expect(input.prop("name")).toBe("name-2");
-    expect(input.prop("checked")).toBe(true);
+    const screen = subject({ id: "id-2", name: "name-2", checked: true });
+    const input = screen.getByRole("checkbox");
+
+    expect(input).toHaveAttribute("id", "id-2");
+    expect(input).toHaveAttribute("name", "name-2");
+    expect(input).toBeChecked();
   });
 
   it("notifies about input changes", () => {
-    const onChange = () => "called on change";
-    const wrapper = render({ onChange });
-    const input = wrapper.find('input[type="checkbox"]');
-    expect(input.prop("onChange")).toBe(onChange);
+    const onChange = jest.fn();
+    const screen = subject({ onChange });
+    const input = screen.getByRole("checkbox");
+
+    fireEvent.click(input);
+
+    expect(onChange).toHaveBeenCalled();
   });
 
   it("disables the input if requested", () => {
-    const wrapper = render({ disabled: true });
-    const input = wrapper.find('input[type="checkbox"]');
-    expect(input.prop("disabled")).toBe(true);
+    const screen = subject({ disabled: true });
+    const input = screen.getByRole("checkbox");
+
+    expect(input).toBeDisabled();
   });
 });

@@ -1,17 +1,17 @@
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 import React from "react";
 
 import type { Props } from "./navbar";
 import Navbar from "./navbar";
 
 describe("navbar", () => {
-  function render(props: Props) {
-    return shallow(<Navbar {...props} />);
+  function subject(props: Props) {
+    return render(<Navbar {...props} />);
   }
 
   it("renders its children", () => {
     const children = "navbar content";
-    const wrapper = render({ children });
-    expect(wrapper.contains(children)).toBe(true);
+    const screen = subject({ children });
+    expect(screen.container).toHaveTextContent(children);
   });
 });

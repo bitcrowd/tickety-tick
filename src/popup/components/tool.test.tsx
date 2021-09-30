@@ -1,19 +1,22 @@
-/**
- * @jest-environment jsdom
- */
-import type { ShallowWrapper } from "enzyme";
-import { shallow } from "enzyme";
+import type { RenderResult } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import React from "react";
-import { Link } from "react-router-dom";
 import browser from "webextension-polyfill";
 
 import { ticket as make } from "../../../test/factories";
-import NoTickets from "./no-tickets";
-import TicketControls from "./ticket-controls";
+import * as router from "../../../test/router";
+import type { Props as ErrorDetailsProps } from "./error-details";
 import type { Props } from "./tool";
 import Tool from "./tool";
 
-const promises = () => new Promise((resolve) => setTimeout(resolve, 0));
+jest.mock("./error-details", () => ({ errors }: ErrorDetailsProps) => {
+  const info = errors.map((e) => e.message).join("\n");
+  return (
+    <button type="button" value={info}>
+      ErrorDetails
+    </button>
+  );
+});
 
 describe("tool", () => {
   const tickets = ["un", "deux", "trois"].map((title, i) =>
@@ -21,10 +24,16 @@ describe("tool", () => {
   );
   const errors = [new Error("ouch")];
 
-  let wrapper: ShallowWrapper<Props>;
+  let screen: RenderResult;
 
   let openOptions: jest.SpyInstance<Promise<void>, []>;
   let close: jest.SpyInstance<void, []>;
+
+  function subject(overrides: Partial<Props>) {
+    const defaults: Props = { tickets: [], errors: [] };
+    const props = { ...defaults, ...overrides };
+    return render(<Tool {...props} />, { wrapper: router.wrapper });
+  }
 
   beforeEach(() => {
     openOptions = jest.spyOn(browser.runtime, "openOptionsPage");
@@ -38,62 +47,59 @@ describe("tool", () => {
 
   describe("always", () => {
     beforeEach(() => {
-      wrapper = shallow(<Tool tickets={[]} errors={[]} />);
+      screen = subject({ tickets: [], errors: [] });
       openOptions.mockReset().mockResolvedValue();
       close.mockReset();
     });
 
     it("renders a settings link", async () => {
-      const link = wrapper.find("a").filter({ children: "Settings" });
-      expect(link.exists()).toBe(true);
+      const link = screen.getByRole("link", { name: "Settings" });
 
-      const preventDefault = jest.fn();
-      link.simulate("click", { preventDefault });
+      fireEvent.click(link);
 
-      expect(preventDefault).toHaveBeenCalled();
-      expect(openOptions).toHaveBeenCalled();
-
-      await promises(); // wait for promise to settle
-
-      expect(close).toHaveBeenCalled();
+      await waitFor(() => {
+        expect(openOptions).toHaveBeenCalled();
+        expect(close).toHaveBeenCalled();
+      });
     });
 
     it("renders a help link", () => {
-      const link = wrapper.find(Link).filter({ children: "Help" });
-      expect(link.prop("to")).toBe("/about");
+      const link = screen.getByRole("link", { name: "Help" });
+      expect(link).toHaveAttribute("href", "/about");
     });
   });
 
   describe("with an array of tickets", () => {
     beforeEach(() => {
-      wrapper = shallow(<Tool tickets={tickets} errors={errors} />);
+      screen = subject({ tickets, errors });
     });
 
     it("renders a ticket list", () => {
-      expect(wrapper.find(TicketControls).prop("tickets")).toBe(tickets);
+      const options = screen.getAllByRole("option");
+      const titles = tickets.map((t) => t.title);
+      expect(options.map((o) => o.textContent)).toEqual(titles);
     });
   });
 
   describe("with no tickets found and no errors", () => {
     beforeEach(() => {
-      wrapper = shallow(<Tool tickets={[]} errors={[]} />);
+      screen = subject({ tickets: [], errors: [] });
     });
 
     it('renders the "no tickets" notification', () => {
-      const notification = wrapper.find(NoTickets);
-      expect(notification.exists()).toBe(true);
+      expect(screen.container).toHaveTextContent(/no tickets found/i);
     });
   });
 
   describe("with no tickets found and errors", () => {
     beforeEach(() => {
-      wrapper = shallow(<Tool tickets={[]} errors={errors} />);
+      screen = subject({ tickets: [], errors });
     });
 
-    it('renders the "no tickets" notification', () => {
-      const notification = wrapper.find(NoTickets);
-      expect(notification.exists()).toBe(true);
-      expect(notification.prop("errors")).toBe(errors);
+    it("renders an error notification", () => {
+      const notification = screen.getByRole("button", { name: "ErrorDetails" }); // because of the mock
+      const info = errors.map((e) => e.message).join("\n");
+      expect(notification).toHaveValue(info);
     });
   });
 });

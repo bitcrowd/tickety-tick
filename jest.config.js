@@ -8,7 +8,7 @@ module.exports = {
     COMMITHASH: "test-commit-hash",
   },
   setupFilesAfterEnv: ["<rootDir>/test/setup.js"],
-  snapshotSerializers: ["enzyme-to-json/serializer"],
+  testEnvironment: "jsdom",
   transform: {
     "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
     "(?!^.+\\.(js|jsx|ts|tsx)$)": "<rootDir>/test/transforms/file.js",

@@ -4,7 +4,7 @@ export type Props = {
   checked: boolean;
   disabled: boolean;
   id: string;
-  label: React.ReactElement;
+  label: React.ReactNode;
   name: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 };

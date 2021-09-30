@@ -1,37 +1,41 @@
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 import React from "react";
 
 import type { Props } from "./external-link";
 import ExternalLink from "./external-link";
 
 describe("external-link", () => {
-  function render(overrides: Partial<Props>) {
+  function subject(overrides: Partial<Props>) {
     const defaults: Props = {
       children: "link text",
       href: "https://github.com/bitcrowd/tickety-tick",
     };
     const props = { ...defaults, ...overrides };
-    return shallow(<ExternalLink {...props} />);
+    return render(<ExternalLink {...props} />);
   }
 
   it("sets the link href attribute", () => {
     const href = "https://github.com/";
-    const wrapper = render({ href });
-    expect(wrapper.find("a").prop("href")).toBe(href);
+    const screen = subject({ href });
+    const link = screen.getByRole("link");
+    expect(link).toHaveAttribute("href", href);
   });
 
   it('sets the target to "_blank"', () => {
-    const wrapper = render({});
-    expect(wrapper.find("a").prop("target")).toBe("_blank");
+    const screen = subject({});
+    const link = screen.getByRole("link");
+    expect(link).toHaveAttribute("target", "_blank");
   });
 
   it("renders the link children", () => {
-    const wrapper = render({ children: "neat" });
-    expect(wrapper.find("a").prop("children")).toBe("neat");
+    const screen = subject({ children: "neat" });
+    const link = screen.getByRole("link");
+    expect(link).toHaveTextContent("neat");
   });
 
   it("passes on any other properties to the rendered link", () => {
-    const wrapper = render({ className: "fancy-link" });
-    expect(wrapper.find("a").prop("className")).toBe("fancy-link");
+    const screen = subject({ className: "fancy-link" });
+    const link = screen.getByRole("link");
+    expect(link).toHaveClass("fancy-link");
   });
 });
