@@ -16,4 +16,8 @@ module.exports = {
   transformIgnorePatterns: [
     "node_modules/(?!copy-text-to-clipboard|ky|strip-indent)",
   ],
+  watchPlugins: [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname",
+  ],
 };
