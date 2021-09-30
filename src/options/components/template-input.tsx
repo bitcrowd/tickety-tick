@@ -35,7 +35,7 @@ export type Props = {
   icon: React.ReactElement;
   name: string;
   multiline?: boolean;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   preview: string;
   value: string;
 };

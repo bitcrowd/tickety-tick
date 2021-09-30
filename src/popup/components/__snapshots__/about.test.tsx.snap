@@ -1,42 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`about renders 1`] = `
-<Fragment>
-  <Navbar>
-    <ul
-      className="navbar-nav"
+<DocumentFragment>
+  <div
+    class="navbar navbar-expand navbar-light bg-light border-bottom"
+  >
+    <div
+      class="container-fluid"
     >
-      <li
-        className="nav-item"
+      <ul
+        class="navbar-nav"
       >
-        <Link
-          className="nav-link ps-0"
-          to="/"
+        <li
+          class="nav-item"
         >
-          <ChevronLeftIcon
-            className="octicon-nav"
-            size={14}
-            verticalAlign="text-bottom"
-          />
-          Back
-        </Link>
-      </li>
-    </ul>
-  </Navbar>
-  <Content>
+          <a
+            class="nav-link ps-0"
+            href="/"
+          >
+            <svg
+              aria-hidden="true"
+              class="octicon-nav"
+              fill="currentColor"
+              height="14"
+              role="img"
+              style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"
+              viewBox="0 0 16 16"
+              width="14"
+            >
+              <path
+                d="M9.78 12.78a.75.75 0 01-1.06 0L4.47 8.53a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L6.06 8l3.72 3.72a.75.75 0 010 1.06z"
+                fill-rule="evenodd"
+              />
+            </svg>
+            Back
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    class="container-fluid py-3"
+  >
     <h1
-      className="d-flex align-items-center h3 mb-3"
+      class="d-flex align-items-center h3 mb-3"
     >
-      <ForwardRef(Svg)
-        className="logo me-1"
-      />
+      <svg
+        class="logo me-1"
+      >
+        icon.svg
+      </svg>
        Tickety-Tick
     </h1>
     <h6>
       Usage:
     </h6>
     <ol
-      className="ps-3"
+      class="ps-3"
     >
       <li>
         Open a ticket in your favourite issue tracking system.
@@ -49,46 +69,52 @@ exports[`about renders 1`] = `
       </li>
     </ol>
     <p>
-      This extension is open-source software by the fellows at
-       
-      <ExternalLink
+      This extension is open-source software by the fellows at 
+      <a
         href="http://bitcrowd.net"
+        rel="noopener noreferrer"
+        target="_blank"
       >
         bitcrowd
-      </ExternalLink>
+      </a>
       .
     </p>
     <p>
-      The source code is available on
-       
-      <ExternalLink
+      The source code is available on 
+      <a
         href="https://github.com/bitcrowd/tickety-tick"
+        rel="noopener noreferrer"
+        target="_blank"
       >
         GitHub
-      </ExternalLink>
+      </a>
       .
     </p>
     <p
-      className="small"
+      class="small"
     >
-      <ExternalLink
+      <a
         href="https://github.com/bitcrowd/tickety-tick/tree/test-commit-hash"
+        rel="noopener noreferrer"
+        target="_blank"
         title="Browse source code for this version"
       >
         test-commit-hash
-      </ExternalLink>
+      </a>
     </p>
     <p
-      className="small mb-0"
+      class="small mb-0"
     >
       <span>
         Logo by 
       </span>
-      <ExternalLink
+      <a
         href="http://thenounproject.com/term/ticket/92194/"
+        rel="noopener noreferrer"
+        target="_blank"
       >
         Ramón G.
-      </ExternalLink>
+      </a>
       <span>
          under CC-BY 3.0
       </span>
@@ -96,12 +122,14 @@ exports[`about renders 1`] = `
       <span>
         Other icons from 
       </span>
-      <ExternalLink
+      <a
         href="https://octicons.github.com/"
+        rel="noopener noreferrer"
+        target="_blank"
       >
         GitHub Octicons
-      </ExternalLink>
+      </a>
     </p>
-  </Content>
-</Fragment>
+  </div>
+</DocumentFragment>
 `;

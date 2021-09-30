@@ -1,107 +1,390 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ticket-controls renders for a single ticket 1`] = `
-<form>
-  <div
-    className="d-flex flex-row mb-2 btn-group btn-group-lg"
-    role="group"
-  >
-    <TicketCopyButton
-      icon={[Function]}
-      label="Branch"
-      tabIndex={1}
-      title="Copy branch name"
-      value="branch-1"
-    />
-    <TicketCopyButton
-      icon={[Function]}
-      label="Message"
-      tabIndex={1}
-      title="Copy commit message"
-      value="commit-1"
-    />
-    <TicketCopyButton
-      icon={[Function]}
-      label="Command"
-      tabIndex={1}
-      title="Copy CLI command"
-      value="command-1"
-    />
-  </div>
-  <div>
-    <select
-      className="form-control form-control-sm"
-      disabled={true}
-      onChange={[Function]}
-      tabIndex={1}
-      value="0"
-    >
-      <option
-        key="0"
-        value={0}
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <form>
+        <div
+          class="d-flex flex-row mb-2 btn-group btn-group-lg"
+          role="group"
+        >
+          <button
+            class="d-flex justify-content-center align-items-center btn btn-primary"
+            tabindex="1"
+            title="Copy branch name"
+            type="button"
+            value="branch-1"
+          >
+            <svg
+              aria-hidden="true"
+              class="octicon octicon-git-branch"
+              fill="currentColor"
+              height="18"
+              role="img"
+              style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"
+              viewBox="0 0 16 16"
+              width="18"
+            >
+              <path
+                d="M11.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122V6A2.5 2.5 0 0110 8.5H6a1 1 0 00-1 1v1.128a2.251 2.251 0 11-1.5 0V5.372a2.25 2.25 0 111.5 0v1.836A2.492 2.492 0 016 7h4a1 1 0 001-1v-.628A2.25 2.25 0 019.5 3.25zM4.25 12a.75.75 0 100 1.5.75.75 0 000-1.5zM3.5 3.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0z"
+                fill-rule="evenodd"
+              />
+            </svg>
+            <span
+              class="ps-1 small btn-label btn-label-conceal"
+            >
+              Branch
+            </span>
+          </button>
+          <button
+            class="d-flex justify-content-center align-items-center btn btn-primary"
+            tabindex="1"
+            title="Copy commit message"
+            type="button"
+            value="commit-1"
+          >
+            <svg
+              aria-hidden="true"
+              class="octicon octicon-comment"
+              fill="currentColor"
+              height="18"
+              role="img"
+              style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"
+              viewBox="0 0 16 16"
+              width="18"
+            >
+              <path
+                d="M2.75 2.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.19l2.72-2.72a.75.75 0 01.53-.22h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75zM1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.457 1.457 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5z"
+                fill-rule="evenodd"
+              />
+            </svg>
+            <span
+              class="ps-1 small btn-label btn-label-conceal"
+            >
+              Message
+            </span>
+          </button>
+          <button
+            class="d-flex justify-content-center align-items-center btn btn-primary"
+            tabindex="1"
+            title="Copy CLI command"
+            type="button"
+            value="command-1"
+          >
+            <svg
+              aria-hidden="true"
+              class="octicon octicon-terminal"
+              fill="currentColor"
+              height="18"
+              role="img"
+              style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"
+              viewBox="0 0 16 16"
+              width="18"
+            >
+              <path
+                d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0114.25 15H1.75A1.75 1.75 0 010 13.25V2.75zm1.75-.25a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V2.75a.25.25 0 00-.25-.25H1.75zM7.25 8a.75.75 0 01-.22.53l-2.25 2.25a.75.75 0 11-1.06-1.06L5.44 8 3.72 6.28a.75.75 0 111.06-1.06l2.25 2.25c.141.14.22.331.22.53zm1.5 1.5a.75.75 0 000 1.5h3a.75.75 0 000-1.5h-3z"
+                fill-rule="evenodd"
+              />
+            </svg>
+            <span
+              class="ps-1 small btn-label btn-label-conceal"
+            >
+              Command
+            </span>
+          </button>
+        </div>
+        <div>
+          <select
+            class="form-control form-control-sm"
+            disabled=""
+            tabindex="1"
+          >
+            <option
+              value="0"
+            >
+              raz
+            </option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </body>,
+  "container": <div>
+    <form>
+      <div
+        class="d-flex flex-row mb-2 btn-group btn-group-lg"
+        role="group"
       >
-        raz
-      </option>
-    </select>
-  </div>
-</form>
+        <button
+          class="d-flex justify-content-center align-items-center btn btn-primary"
+          tabindex="1"
+          title="Copy branch name"
+          type="button"
+          value="branch-1"
+        >
+          <svg
+            aria-hidden="true"
+            class="octicon octicon-git-branch"
+            fill="currentColor"
+            height="18"
+            role="img"
+            style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"
+            viewBox="0 0 16 16"
+            width="18"
+          >
+            <path
+              d="M11.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122V6A2.5 2.5 0 0110 8.5H6a1 1 0 00-1 1v1.128a2.251 2.251 0 11-1.5 0V5.372a2.25 2.25 0 111.5 0v1.836A2.492 2.492 0 016 7h4a1 1 0 001-1v-.628A2.25 2.25 0 019.5 3.25zM4.25 12a.75.75 0 100 1.5.75.75 0 000-1.5zM3.5 3.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0z"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <span
+            class="ps-1 small btn-label btn-label-conceal"
+          >
+            Branch
+          </span>
+        </button>
+        <button
+          class="d-flex justify-content-center align-items-center btn btn-primary"
+          tabindex="1"
+          title="Copy commit message"
+          type="button"
+          value="commit-1"
+        >
+          <svg
+            aria-hidden="true"
+            class="octicon octicon-comment"
+            fill="currentColor"
+            height="18"
+            role="img"
+            style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"
+            viewBox="0 0 16 16"
+            width="18"
+          >
+            <path
+              d="M2.75 2.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.19l2.72-2.72a.75.75 0 01.53-.22h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75zM1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.457 1.457 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5z"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <span
+            class="ps-1 small btn-label btn-label-conceal"
+          >
+            Message
+          </span>
+        </button>
+        <button
+          class="d-flex justify-content-center align-items-center btn btn-primary"
+          tabindex="1"
+          title="Copy CLI command"
+          type="button"
+          value="command-1"
+        >
+          <svg
+            aria-hidden="true"
+            class="octicon octicon-terminal"
+            fill="currentColor"
+            height="18"
+            role="img"
+            style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"
+            viewBox="0 0 16 16"
+            width="18"
+          >
+            <path
+              d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0114.25 15H1.75A1.75 1.75 0 010 13.25V2.75zm1.75-.25a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V2.75a.25.25 0 00-.25-.25H1.75zM7.25 8a.75.75 0 01-.22.53l-2.25 2.25a.75.75 0 11-1.06-1.06L5.44 8 3.72 6.28a.75.75 0 111.06-1.06l2.25 2.25c.141.14.22.331.22.53zm1.5 1.5a.75.75 0 000 1.5h3a.75.75 0 000-1.5h-3z"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <span
+            class="ps-1 small btn-label btn-label-conceal"
+          >
+            Command
+          </span>
+        </button>
+      </div>
+      <div>
+        <select
+          class="form-control form-control-sm"
+          disabled=""
+          tabindex="1"
+        >
+          <option
+            value="0"
+          >
+            raz
+          </option>
+        </select>
+      </div>
+    </form>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`ticket-controls renders for multiple tickets 1`] = `
-<form>
-  <div
-    className="d-flex flex-row mb-2 btn-group btn-group-lg"
-    role="group"
-  >
-    <TicketCopyButton
-      icon={[Function]}
-      label="Branch"
-      tabIndex={1}
-      title="Copy branch name"
-      value="branch-1"
-    />
-    <TicketCopyButton
-      icon={[Function]}
-      label="Message"
-      tabIndex={1}
-      title="Copy commit message"
-      value="commit-1"
-    />
-    <TicketCopyButton
-      icon={[Function]}
-      label="Command"
-      tabIndex={1}
-      title="Copy CLI command"
-      value="command-1"
-    />
-  </div>
-  <div>
-    <select
-      className="form-control form-control-sm"
-      disabled={false}
-      onChange={[Function]}
-      tabIndex={1}
-      value="0"
+<DocumentFragment>
+  <form>
+    <div
+      class="d-flex flex-row mb-2 btn-group btn-group-lg"
+      role="group"
     >
-      <option
-        key="0"
-        value={0}
+      <button
+        class="d-flex justify-content-center align-items-center btn btn-primary"
+        tabindex="1"
+        title="Copy branch name"
+        type="button"
+        value="branch-1"
       >
-        raz
-      </option>
-      <option
-        key="1"
-        value={1}
+        <svg
+          aria-hidden="true"
+          class="octicon octicon-git-branch"
+          fill="currentColor"
+          height="18"
+          role="img"
+          style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"
+          viewBox="0 0 16 16"
+          width="18"
+        >
+          <path
+            d="M11.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122V6A2.5 2.5 0 0110 8.5H6a1 1 0 00-1 1v1.128a2.251 2.251 0 11-1.5 0V5.372a2.25 2.25 0 111.5 0v1.836A2.492 2.492 0 016 7h4a1 1 0 001-1v-.628A2.25 2.25 0 019.5 3.25zM4.25 12a.75.75 0 100 1.5.75.75 0 000-1.5zM3.5 3.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0z"
+            fill-rule="evenodd"
+          />
+        </svg>
+        <span
+          class="ps-1 small btn-label btn-label-conceal"
+        >
+          Branch
+        </span>
+      </button>
+      <button
+        class="d-flex justify-content-center align-items-center btn btn-primary"
+        tabindex="1"
+        title="Copy commit message"
+        type="button"
+        value="commit-1"
       >
-        dva
-      </option>
-      <option
-        key="2"
-        value={2}
+        <svg
+          aria-hidden="true"
+          class="octicon octicon-comment"
+          fill="currentColor"
+          height="18"
+          role="img"
+          style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"
+          viewBox="0 0 16 16"
+          width="18"
+        >
+          <path
+            d="M2.75 2.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.19l2.72-2.72a.75.75 0 01.53-.22h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H2.75zM1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0113.25 12H9.06l-2.573 2.573A1.457 1.457 0 014 13.543V12H2.75A1.75 1.75 0 011 10.25v-7.5z"
+            fill-rule="evenodd"
+          />
+        </svg>
+        <span
+          class="ps-1 small btn-label btn-label-conceal"
+        >
+          Message
+        </span>
+      </button>
+      <button
+        class="d-flex justify-content-center align-items-center btn btn-primary"
+        tabindex="1"
+        title="Copy CLI command"
+        type="button"
+        value="command-1"
       >
-        tri
-      </option>
-    </select>
-  </div>
-</form>
+        <svg
+          aria-hidden="true"
+          class="octicon octicon-terminal"
+          fill="currentColor"
+          height="18"
+          role="img"
+          style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"
+          viewBox="0 0 16 16"
+          width="18"
+        >
+          <path
+            d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0114.25 15H1.75A1.75 1.75 0 010 13.25V2.75zm1.75-.25a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V2.75a.25.25 0 00-.25-.25H1.75zM7.25 8a.75.75 0 01-.22.53l-2.25 2.25a.75.75 0 11-1.06-1.06L5.44 8 3.72 6.28a.75.75 0 111.06-1.06l2.25 2.25c.141.14.22.331.22.53zm1.5 1.5a.75.75 0 000 1.5h3a.75.75 0 000-1.5h-3z"
+            fill-rule="evenodd"
+          />
+        </svg>
+        <span
+          class="ps-1 small btn-label btn-label-conceal"
+        >
+          Command
+        </span>
+      </button>
+    </div>
+    <div>
+      <select
+        class="form-control form-control-sm"
+        tabindex="1"
+      >
+        <option
+          value="0"
+        >
+          raz
+        </option>
+        <option
+          value="1"
+        >
+          dva
+        </option>
+        <option
+          value="2"
+        >
+          tri
+        </option>
+      </select>
+    </div>
+  </form>
+</DocumentFragment>
 `;

@@ -42,7 +42,7 @@ function CopyButton({ children = null, value, ...rest }: Props) {
   }, [closeWithDelay, value]);
 
   return (
-    <button type="button" {...rest} onClick={handler}>
+    <button type="button" value={value} {...rest} onClick={handler}>
       {typeof children === "function" ? children(copied) : children}
     </button>
   );

@@ -1,7 +1,4 @@
-/**
- * @jest-environment jsdom
- */
-import { render as renderComponent, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import React from "react";
 import StackTrace from "stacktrace-js";
 
@@ -56,10 +53,10 @@ class MockStackFrame {
 }
 
 describe("error-details", () => {
-  function render(overrides: Partial<Props>) {
+  function subject(overrides: Partial<Props>) {
     const defaults: Props = { errors: [new Error("WAT?")] };
     const props = { ...defaults, ...overrides };
-    return renderComponent(<CopyErrorDetails {...props} />);
+    return render(<CopyErrorDetails {...props} />);
   }
 
   beforeEach(() => {
@@ -95,7 +92,7 @@ describe("error-details", () => {
   });
 
   it("renders a button to copy the error details", async () => {
-    const screen = render({ errors: [new Error("Boom!")] });
+    const screen = subject({ errors: [new Error("Boom!")] });
     await waitFor(() => {
       const button = screen.getByRole("button", {
         name: "Copy error details",

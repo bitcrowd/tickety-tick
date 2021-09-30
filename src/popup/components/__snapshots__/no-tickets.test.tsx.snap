@@ -1,23 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`no-tickets with errors renders an error report 1`] = `
-<div
-  className="text-center"
->
-  <Report
-    errors={
-      Array [
-        [Error: An error to test error reporting],
-      ]
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="text-center"
+  >
+    <h5
+      class="mt-3 mb-3"
+    >
+      Houston, we have a problem.
+    </h5>
+    <p>
+      Tickety-Tick encountered 
+      <strong>
+        an error
+      </strong>
+      <br />
+      while scanning for tickets.
+    </p>
+    <p />
+    <p>
+      <a
+        href="https://github.com/bitcrowd/tickety-tick/issues"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Report an issue
+      </a>
+    </p>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`no-tickets with no errors renders a hint 1`] = `
-<div
-  className="text-center"
->
-  <Hint />
-</div>
+<DocumentFragment>
+  <div
+    class="text-center"
+  >
+    <h5
+      class="mt-3 mb-3"
+    >
+      No tickets found on this page.
+    </h5>
+    <h6>
+      Did you select or open any tickets?
+    </h6>
+    <p>
+      Tickety-Tick currently supports
+      <br />
+      GitHub, GitLab, Jira, Trello, Notion and Tara.
+    </p>
+    <h6>
+      Missing anything or found a bug?
+    </h6>
+    <p
+      class="pb-1"
+    >
+      <a
+        href="https://github.com/bitcrowd/tickety-tick/issues"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Report an issue
+      </a>
+    </p>
+  </div>
+</DocumentFragment>
 `;

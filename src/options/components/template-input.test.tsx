@@ -1,12 +1,11 @@
-import { shallow } from "enzyme";
+import { fireEvent, render } from "@testing-library/react";
 import React from "react";
-import TextareaAutosize from "react-textarea-autosize";
 
 import type { Props, TemplateInputElementProps } from "./template-input";
 import TemplateInput, { TemplateInputElement } from "./template-input";
 
 describe("template-input", () => {
-  function render(overrides: Partial<Props>) {
+  function subject(overrides: Partial<Props>) {
     const defaults: Props = {
       id: "template-input-id",
       name: "template-input-name",
@@ -20,65 +19,71 @@ describe("template-input", () => {
     };
 
     const props = { ...defaults, ...overrides };
-    const wrapper = shallow(<TemplateInput {...props} />);
+    const screen = render(<TemplateInput {...props} />);
 
-    return wrapper;
+    return screen;
   }
 
   it("renders an input label", () => {
-    const wrapper = render({ id: "id-1", label: "Awesome Template Label" });
-    const label = wrapper.find("label");
-    expect(label.prop("htmlFor")).toBe("id-1");
-    expect(label.text()).toContain("Awesome Template Label");
+    const label = "Awesome Template Label";
+    const screen = subject({ id: "id-1", label });
+    const input = screen.getByRole("textbox", { name: label });
+
+    expect(input).toBeInTheDocument();
   });
 
   it("renders an input label icon", () => {
-    const icon = <span>icon</span>;
-    const wrapper = render({ id: "id-2", icon });
-    const label = wrapper.find("label");
-    expect(label.prop("htmlFor")).toBe("id-2");
-    expect(label.contains(icon)).toBe(true);
+    const screen = subject({ icon: <span data-testid="icon">icon</span> });
+
+    const icon = screen.getByTestId("icon");
+    expect(icon).toBeInTheDocument();
   });
 
   it("renders an input field", () => {
-    const wrapper = render({ id: "id-2", name: "name-2", value: "vvv" });
-    const input = wrapper.find(TemplateInputElement);
-    expect(input.prop("id")).toBe("id-2");
-    expect(input.prop("name")).toBe("name-2");
-    expect(input.prop("value")).toBe("vvv");
+    const screen = subject({ id: "id-2", name: "name-2", value: "vvv" });
+    const input = screen.getByRole("textbox");
+
+    expect(input).toHaveAttribute("id", "id-2");
+    expect(input).toHaveAttribute("name", "name-2");
+    expect(input).toHaveValue("vvv");
   });
 
   it("notifies about input changes", () => {
-    const onChange = () => "called on change";
-    const wrapper = render({ onChange });
-    const input = wrapper.find(TemplateInputElement);
-    expect(input.prop("onChange")).toBe(onChange);
+    const onChange = jest.fn();
+    const screen = subject({ onChange });
+    const input = screen.getByRole("textbox");
+
+    fireEvent.change(input, { target: { value: "changed" } });
+
+    expect(onChange).toHaveBeenCalled();
   });
 
   it("disables the input if requested", () => {
-    const wrapper = render({ disabled: true });
-    const input = wrapper.find(TemplateInputElement);
-    expect(input.prop("disabled")).toBe(true);
+    const screen = subject({ disabled: true });
+    const input = screen.getByRole("textbox");
+
+    expect(input).toBeDisabled();
   });
 
   it("renders the default value used as a placeholder", () => {
-    const wrapper = render({ fallback: "fbfbfb" });
-    const input = wrapper.find(TemplateInputElement);
-    expect(input.prop("placeholder")).toContain("fbfbfb");
+    const screen = subject({ fallback: "fbfbfb" });
+    const input = screen.getByRole("textbox");
+
+    expect(input).toHaveAttribute("placeholder", "fbfbfb");
   });
 
   it("populates an empty input with the fallback value on focus", () => {
     const onChange = jest.fn();
-    const wrapper = render({
+    const screen = subject({
       fallback: "fb-value",
       name: "tpl",
       value: "",
       onChange,
     });
 
-    const input = wrapper.find(TemplateInputElement);
+    const input = screen.getByRole("textbox");
 
-    input.simulate("focus");
+    fireEvent.focus(input);
 
     expect(onChange).toHaveBeenCalledWith({
       target: { name: "tpl", value: "fb-value" },
@@ -87,26 +92,26 @@ describe("template-input", () => {
 
   it("preserves non-empty values different from the fallback on focus", () => {
     const onChange = jest.fn();
-    const wrapper = render({ fallback: "fb", value: "other", onChange });
-    const input = wrapper.find(TemplateInputElement);
+    const screen = subject({ fallback: "fb", value: "other", onChange });
+    const input = screen.getByRole("textbox");
 
-    input.simulate("focus");
+    fireEvent.focus(input);
 
     expect(onChange).not.toHaveBeenCalled();
   });
 
   it("resets an input containing the fallback value on blur", () => {
     const onChange = jest.fn();
-    const wrapper = render({
+    const screen = subject({
       fallback: "fb-value",
       name: "tpl",
       value: "fb-value",
       onChange,
     });
 
-    const input = wrapper.find(TemplateInputElement);
+    const input = screen.getByRole("textbox");
 
-    input.simulate("blur");
+    fireEvent.blur(input);
 
     expect(onChange).toHaveBeenCalledWith({
       target: { name: "tpl", value: "" },
@@ -115,58 +120,56 @@ describe("template-input", () => {
 
   it("preserves non-empty values different from the fallback on blur", () => {
     const onChange = jest.fn();
-    const wrapper = render({ fallback: "fb", value: "other", onChange });
-    const input = wrapper.find(TemplateInputElement);
+    const screen = subject({ fallback: "fb", value: "other", onChange });
+    const input = screen.getByRole("textbox");
 
-    input.simulate("blur");
+    fireEvent.blur(input);
 
     expect(onChange).not.toHaveBeenCalled();
   });
 });
 
 describe("template-input-element", () => {
-  function render(overrides: Partial<TemplateInputElementProps>) {
+  function subject(overrides: Partial<TemplateInputElementProps>) {
     const defaults = {
       name: "test-input-name",
       value: "test-input-value",
       placeholder: "test-placeholder",
       disabled: false,
-      onChange: jest.fn(),
       multiline: false,
     };
-
     const props = { ...defaults, ...overrides };
-    const wrapper = shallow(<TemplateInputElement {...props} />);
-
-    return wrapper;
+    return render(<TemplateInputElement {...props} />);
   }
 
   it("renders a text input for single-line values", () => {
-    const wrapper = render({ multiline: false });
-    const input = wrapper.find("input");
-    expect(input.props()).toEqual(
-      expect.objectContaining({
-        type: "text",
-        name: "test-input-name",
-        value: "test-input-value",
-        placeholder: "test-placeholder",
-        disabled: false,
-        onChange: expect.any(Function),
-      })
-    );
+    const onChange = jest.fn();
+    const screen = subject({ multiline: false, onChange });
+    const input = screen.getByRole("textbox");
+
+    expect(input).toHaveAttribute("type", "text");
+    expect(input).toHaveAttribute("name", "test-input-name");
+    expect(input).toHaveAttribute("placeholder", "test-placeholder");
+    expect(input).toHaveValue("test-input-value");
+    expect(input).not.toBeDisabled();
+
+    fireEvent.change(input, { target: { value: "changed" } });
+
+    expect(onChange).toHaveBeenCalled();
   });
 
   it("renders a textarea for multi-line values", () => {
-    const wrapper = render({ multiline: true });
-    const textarea = wrapper.find(TextareaAutosize);
-    expect(textarea.props()).toEqual(
-      expect.objectContaining({
-        name: "test-input-name",
-        value: "test-input-value",
-        placeholder: "test-placeholder",
-        disabled: false,
-        onChange: expect.any(Function),
-      })
-    );
+    const onChange = jest.fn();
+    const screen = subject({ multiline: true, onChange });
+    const textarea = screen.getByRole("textbox");
+
+    expect(textarea).toHaveAttribute("name", "test-input-name");
+    expect(textarea).toHaveAttribute("placeholder", "test-placeholder");
+    expect(textarea).toHaveValue("test-input-value");
+    expect(textarea).not.toBeDisabled();
+
+    fireEvent.change(textarea, { target: { value: "changed" } });
+
+    expect(onChange).toHaveBeenCalled();
   });
 });
