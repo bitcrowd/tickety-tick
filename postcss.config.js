@@ -10,7 +10,7 @@ module.exports = {
           if (src.endsWith("src/options/index.scss")) {
             return ["src/options/**/*.{html,ts,tsx}"];
           }
-          return ["src/**/*.{html,ts,tsx}"];
+          throw new Error(`Unexpected CSS entrypoint: ${src}`);
         },
       },
     ],
