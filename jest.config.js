@@ -14,7 +14,7 @@ module.exports = {
     "(?!^.+\\.(js|jsx|ts|tsx)$)": "<rootDir>/test/transforms/file.js",
   },
   transformIgnorePatterns: [
-    "node_modules/(?!copy-text-to-clipboard|ky|serialize-error|strip-indent)",
+    "node_modules/(?!ccount|character-entities|copy-text-to-clipboard|escape-string-regexp|ky|longest-streak|markdown-table|mdast-util-|micromark-|parse-entities|serialize-error|strip-indent|unist-|zwitch)",
   ],
   watchPlugins: [
     "jest-watch-typeahead/filename",
