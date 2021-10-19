@@ -11,12 +11,23 @@ jest.mock("../client");
 
 const key = "RC-654";
 
+const description = "A long description of the ticket";
+
 const response = {
   id: "10959",
   fields: {
     issuetype: { name: "Story" },
     summary: "A quick summary of the ticket",
-    description: "A long description of the ticket",
+    description: {
+      version: 1,
+      type: "doc",
+      content: [
+        {
+          type: "paragraph",
+          content: [{ type: "text", text: description }],
+        },
+      ],
+    },
   },
   key,
 };
@@ -24,7 +35,7 @@ const response = {
 const ticket = {
   id: response.key,
   title: response.fields.summary,
-  description: response.fields.description,
+  description: `${description}\n`,
   type: response.fields.issuetype.name.toLowerCase(),
   url: `https://my-subdomain.atlassian.net/browse/${key}`,
 };
@@ -61,7 +72,7 @@ describe("jira adapter", () => {
   it("uses the endpoints for the current host", async () => {
     await scan(url(`https://my-subdomain.atlassian.net/browse/${key}`), doc);
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/latest"
+      "https://my-subdomain.atlassian.net/rest/api/3"
     );
     expect(api.get).toHaveBeenCalled();
   });
@@ -103,7 +114,7 @@ describe("jira adapter", () => {
       doc
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/latest"
+      "https://my-subdomain.atlassian.net/rest/api/3"
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -117,7 +128,7 @@ describe("jira adapter", () => {
       doc
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/latest"
+      "https://my-subdomain.atlassian.net/rest/api/3"
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -131,7 +142,7 @@ describe("jira adapter", () => {
       doc
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/latest"
+      "https://my-subdomain.atlassian.net/rest/api/3"
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -145,7 +156,7 @@ describe("jira adapter", () => {
       doc
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/latest"
+      "https://my-subdomain.atlassian.net/rest/api/3"
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -153,7 +164,7 @@ describe("jira adapter", () => {
 
   it("extracts tickets on self-managed instances", async () => {
     const result = await scan(url(`https://jira.local/browse/${key}`), doc);
-    expect(client).toHaveBeenCalledWith("https://jira.local/rest/api/latest");
+    expect(client).toHaveBeenCalledWith("https://jira.local/rest/api/3");
     expect(result).toEqual([
       { ...ticket, url: `https://jira.local/browse/${key}` },
     ]);
@@ -171,7 +182,7 @@ describe("jira adapter", () => {
       scan(url(`https://jira.local/prefix/browse/${key}`), doc),
     ]);
 
-    const endpoint = "https://jira.local/prefix/rest/api/latest";
+    const endpoint = "https://jira.local/prefix/rest/api/3";
     const expectedTicket = {
       ...ticket,
       url: `https://jira.local/browse/${key}`,
