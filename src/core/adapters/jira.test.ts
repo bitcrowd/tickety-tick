@@ -123,6 +123,34 @@ describe("jira adapter", () => {
     expect(result).toEqual([ticket]);
   });
 
+  it("extracts tickets from classic software projects from the board-URL", async () => {
+    const result = await scan(
+      url(
+        `https://my-subdomain.atlassian.net/jira/software/c/projects/TT/boards/7?selectedIssue=${key}`
+      ),
+      doc
+    );
+    expect(client).toHaveBeenCalledWith(
+      "https://my-subdomain.atlassian.net/rest/api/latest"
+    );
+    expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
+    expect(result).toEqual([ticket]);
+  });
+
+  it("extracts tickets from classic software projects from the backlog-URL", async () => {
+    const result = await scan(
+      url(
+        `https://my-subdomain.atlassian.net/jira/software/c/projects/TT/boards/7/backlog?selectedIssue=${key}`
+      ),
+      doc
+    );
+    expect(client).toHaveBeenCalledWith(
+      "https://my-subdomain.atlassian.net/rest/api/latest"
+    );
+    expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
+    expect(result).toEqual([ticket]);
+  });
+
   it("extracts tickets on self-managed instances", async () => {
     const result = await scan(url(`https://jira.local/browse/${key}`), doc);
     expect(client).toHaveBeenCalledWith("https://jira.local/rest/api/latest");
