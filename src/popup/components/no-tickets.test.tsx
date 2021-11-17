@@ -1,8 +1,17 @@
 import { render } from "@testing-library/react";
 import React from "react";
 
+import type { Props as ErrorDetailsProps } from "./error-details";
 import type { Props } from "./no-tickets";
 import NoTickets from "./no-tickets";
+
+jest.mock("./error-details", () => ({ errors }: ErrorDetailsProps) => (
+  <ul>
+    {errors.map((error, index) => (
+      <li key={index}>{error.toString()}</li> // eslint-disable-line react/no-array-index-key
+    ))}
+  </ul>
+));
 
 describe("no-tickets", () => {
   function subject(overrides: Partial<Props>) {
