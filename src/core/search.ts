@@ -1,3 +1,5 @@
+import type { ErrorObject } from "../errors";
+import { serialize } from "../errors";
 import type { Ticket } from "../types";
 import GitHub from "./adapters/github";
 import GitLab from "./adapters/gitlab";
@@ -7,8 +9,6 @@ import Tara from "./adapters/tara";
 import Trello from "./adapters/trello";
 import defaults from "./defaults";
 import type { Adapter } from "./types";
-import type { SerializableError } from "./utils/serializable-errors";
-import serializable from "./utils/serializable-errors";
 
 async function attempt(scan: Adapter, url: URL, document: Document) {
   try {
@@ -21,10 +21,10 @@ async function attempt(scan: Adapter, url: URL, document: Document) {
 }
 
 function aggregate(results: (Ticket[] | Error)[]) {
-  return results.reduce<{ tickets: Ticket[]; errors: SerializableError[] }>(
+  return results.reduce<{ tickets: Ticket[]; errors: ErrorObject[] }>(
     ({ tickets, errors }, result) =>
       result instanceof Error
-        ? { tickets, errors: errors.concat(serializable(result)) }
+        ? { tickets, errors: errors.concat(serialize(result)) }
         : { errors, tickets: tickets.concat(result) },
     { tickets: [], errors: [] }
   );

@@ -1,8 +1,6 @@
+import { serialize } from "../errors";
 import { search } from "./search";
 import type { Adapter, TicketData } from "./types";
-import serializable from "./utils/serializable-errors";
-
-jest.mock("./utils/serializable-errors", () => (error: Error) => error.message);
 
 describe("ticket search", () => {
   function mock(result: Promise<TicketData[]>, index: number): Adapter {
@@ -44,7 +42,7 @@ describe("ticket search", () => {
 
     expect(results).toEqual({
       tickets: [...tickets0, ...tickets1],
-      errors: [error0, error1].map(serializable),
+      errors: [error0, error1].map(serialize),
     });
   });
 });

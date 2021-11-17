@@ -2,9 +2,7 @@ import React from "react";
 
 import CopyButton from "./copy-button";
 
-export type Props = {
-  errors: Error[];
-};
+export type Props = { errors: Error[] };
 
 function ErrorDetails({ errors }: Props) {
   const preamble = `Tickety-Tick revision: ${COMMITHASH}`;

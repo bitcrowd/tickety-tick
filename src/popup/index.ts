@@ -3,6 +3,7 @@ import "./index.scss";
 import browser from "webextension-polyfill";
 
 import enhance from "../core/enhance";
+import { deserialize } from "../errors";
 import store from "../store";
 import onmedia from "./observe-media";
 import render from "./render";
@@ -15,7 +16,7 @@ async function load() {
 
   const enhancer = enhance(templates, options.autofmt);
 
-  render(tickets.map(enhancer), errors);
+  render(tickets.map(enhancer), errors.map(deserialize));
 }
 
 window.onload = load;
