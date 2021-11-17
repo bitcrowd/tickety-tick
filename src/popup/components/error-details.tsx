@@ -8,7 +8,7 @@ function ErrorDetails({ errors }: Props) {
   const preamble = `Tickety-Tick revision: ${COMMITHASH}`;
 
   const logs = errors.map((err) =>
-    ["```", err, err.stack?.trim(), "```"].join("\n")
+    ["```", err, err.stack?.trim() ?? "", "```"].join("\n")
   );
 
   const info = [preamble, ...logs].join("\n\n");
