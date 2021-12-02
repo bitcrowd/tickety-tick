@@ -95,7 +95,7 @@ config.module
   .end()
   .use("svg-file")
   .loader("file-loader")
-  .options({ name: "[name].[contenthash].[ext]" });
+  .options({ name: "[name].[ext]" });
 
 // Clean up output directory before building.
 
