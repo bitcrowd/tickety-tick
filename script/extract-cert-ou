@@ -12,7 +12,7 @@ fi
 certname="$1"
 
 exec security find-certificate -a -c "$certname" -p \
-  | keytool -printcert \
+  | keytool -printcert -J-Duser.language=en \
   | grep 'Owner: ' \
   | head -n 1 \
   | sed -n -e 's/^.*OU=\([^:space:,]*\).*$/\1/p'
