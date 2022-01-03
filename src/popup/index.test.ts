@@ -7,23 +7,22 @@ import browser from "webextension-polyfill";
 
 import { ticket as make } from "../../test/factories";
 import enhance from "../core/enhance";
+import { deserialize } from "../errors";
 import store from "../store";
 import render from "./render";
 import type { BackgroundPage } from "./types";
 
-jest.mock("webextension-polyfill", () => {
-  const result = { tickets: [], errors: [] };
-  const background = { getTickets: jest.fn().mockResolvedValue(result) };
-  const extension = { getBackgroundPage: () => background };
-  return { extension };
-});
-
-jest.mock("../core/enhance", () => jest.fn(() => jest.fn()));
-
-jest.mock("../store", () => ({ get: jest.fn().mockResolvedValue({}) }));
-
-jest.mock("./observe-media");
-jest.mock("./render");
+jest
+  .mock("webextension-polyfill", () => {
+    const result = { tickets: [], errors: [] };
+    const background = { getTickets: jest.fn().mockResolvedValue(result) };
+    const extension = { getBackgroundPage: () => background };
+    return { extension };
+  })
+  .mock("../core/enhance", () => jest.fn(() => jest.fn()))
+  .mock("../store", () => ({ get: jest.fn().mockResolvedValue({}) }))
+  .mock("./observe-media")
+  .mock("./render");
 
 describe("popup", () => {
   const initialize = window.onload as () => Promise<void>;
@@ -106,6 +105,9 @@ describe("popup", () => {
 
     await initialize();
 
-    expect(render).toHaveBeenCalledWith(expect.any(Object), errors);
+    expect(render).toHaveBeenCalledWith(
+      expect.any(Object),
+      errors.map(deserialize)
+    );
   });
 });
