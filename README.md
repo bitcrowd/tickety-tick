@@ -37,6 +37,7 @@ Currently, we support:
 - [Notion](https://www.notion.so/)
 - [Tara](https://app.tara.ai/)
 - [Trello](https://trello.com/)
+- [Linear](https://linear.app)
 
 Your ticket system is missing? Go ahead and implement an adapter for it! We are always happy about contributions and here to support you 👋.
 

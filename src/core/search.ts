@@ -4,6 +4,7 @@ import type { Ticket } from "../types";
 import GitHub from "./adapters/github";
 import GitLab from "./adapters/gitlab";
 import Jira from "./adapters/jira";
+import Linear from "./adapters/linear";
 import Notion from "./adapters/notion";
 import Tara from "./adapters/tara";
 import Trello from "./adapters/trello";
@@ -36,7 +37,15 @@ async function search(adapters: Adapter[], url: URL, document: Document) {
   return aggregate(results);
 }
 
-const stdadapters: Adapter[] = [GitHub, GitLab, Jira, Notion, Tara, Trello];
+const stdadapters: Adapter[] = [
+  GitHub,
+  GitLab,
+  Jira,
+  Notion,
+  Tara,
+  Trello,
+  Linear,
+];
 
 export { search, stdadapters };
 export default search.bind(null, stdadapters);

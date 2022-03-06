@@ -54,7 +54,7 @@ exports[`no-tickets with no errors renders a hint 1`] = `
     <p>
       Tickety-Tick currently supports
       <br />
-      GitHub, GitLab, Jira, Trello, Notion and Tara.
+      GitHub, GitLab, Jira, Trello, Notion, Tara and Linear.
     </p>
     <h6>
       Missing anything or found a bug?
