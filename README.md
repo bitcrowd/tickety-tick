@@ -132,7 +132,9 @@ You can run both `watch:[browser]` and `open:[browser]` scripts in parallel to a
 
 #### Tips & Tricks 🎩
 
-Use the Firefox developer tools to [debug the extension](https://extensionworkshop.com/documentation/develop/debugging/).
+* Debugging
+  * Firefox: use the developer tools to [debug the extension](https://extensionworkshop.com/documentation/develop/debugging/)
+  * Chrome: right-click `inspect` on the popup or the settings page to open a separate debugger
 
 ### Running automated checks
 
