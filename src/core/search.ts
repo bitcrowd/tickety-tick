@@ -41,10 +41,10 @@ const stdadapters: Adapter[] = [
   GitHub,
   GitLab,
   Jira,
+  Linear,
   Notion,
   Tara,
   Trello,
-  Linear,
 ];
 
 export { search, stdadapters };
