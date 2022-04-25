@@ -6,11 +6,7 @@ import type { Props } from "./no-tickets";
 import NoTickets from "./no-tickets";
 
 jest.mock("./error-details", () => ({ errors }: ErrorDetailsProps) => (
-  <ul>
-    {errors.map((error, index) => (
-      <li key={index}>{error.toString()}</li> // eslint-disable-line react/no-array-index-key
-    ))}
-  </ul>
+  <>{errors.map((error) => `- ${error}`).join("\n")}</>
 ));
 
 describe("no-tickets", () => {

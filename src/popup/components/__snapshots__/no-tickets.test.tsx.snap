@@ -18,13 +18,9 @@ exports[`no-tickets with errors renders an error report 1`] = `
       <br />
       while scanning for tickets.
     </p>
-    <p />
-    <ul>
-      <li>
-        Error: An error to test error reporting
-      </li>
-    </ul>
-    <p />
+    <p>
+      - Error: An error to test error reporting
+    </p>
     <p>
       <a
         href="https://github.com/bitcrowd/tickety-tick/issues"
