@@ -7,7 +7,6 @@ import { GitRevisionPlugin } from "git-revision-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { DefinePlugin } from "webpack";
-import NotifierPlugin from "webpack-build-notifier";
 import ZipWebpackPlugin from "zip-webpack-plugin";
 import Config from "webpack-chain";
 
@@ -191,14 +190,6 @@ config
       COMMITHASH: JSON.stringify(revision.commithash()),
     },
   ]);
-
-// Show build notifications.
-
-config.plugin("notifier").use(NotifierPlugin, [
-  {
-    title: "Tickety-Tick Build",
-  },
-]);
 
 // Configure source-maps.
 
