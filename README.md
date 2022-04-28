@@ -25,6 +25,12 @@ Additionally, Tickety-Tick generates [**commands**](#generated-commands) to set 
 
 If you need your commit messages, branch names or commands to look different, you can [configure](#advanced-configuration) Tickety-Tick to use a custom format.
 
+## Demo
+
+Here is a short example for how a possible workflow with Tickety-Tick could look like:
+
+https://user-images.githubusercontent.com/3491815/165905554-5162a625-f2bd-4ea1-9bcd-5d712e31e33e.mp4
+
 ## Supported ticket systems
 
 Tickety-Tick helps you create branches and commits for a few ticket systems.
