@@ -6,7 +6,7 @@ definitions:
 executors:
   base:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:lts
     working_directory: *pwd
   swift:
     docker:
