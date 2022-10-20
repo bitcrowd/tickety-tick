@@ -73,7 +73,7 @@ Get a `tickety_tick-<version>.xpi` file from the [releases](https://github.com/b
 
 #### Opera
 
-Download and unpack a `chrome.zip` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases). Then navigate to the [opera://extensions](//opera://extensions) page, enable "Developer mode", press "Load unpacked extension" and point to the unpacked folder.
+Download and unpack a `chrome.zip` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases). Then navigate to the [opera:extensions](opera:extensions) page, enable "Developer mode", press "Load unpacked extension" and point to the unpacked folder.
 </details>
 
 ## Keyboard Shortcuts
