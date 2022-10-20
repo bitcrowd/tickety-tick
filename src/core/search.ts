@@ -3,7 +3,8 @@ import { serialize } from "../errors";
 import type { Ticket } from "../types";
 import GitHub from "./adapters/github";
 import GitLab from "./adapters/gitlab";
-import Jira from "./adapters/jira";
+import JiraCloud from "./adapters/jira-cloud";
+import JiraServer from "./adapters/jira-server";
 import Linear from "./adapters/linear";
 import Notion from "./adapters/notion";
 import Tara from "./adapters/tara";
@@ -40,7 +41,8 @@ async function search(adapters: Adapter[], url: URL, document: Document) {
 const stdadapters: Adapter[] = [
   GitHub,
   GitLab,
-  Jira,
+  JiraCloud,
+  JiraServer,
   Linear,
   Notion,
   Tara,

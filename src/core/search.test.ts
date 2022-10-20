@@ -1,5 +1,7 @@
 import { serialize } from "../errors";
-import { search } from "./search";
+import JiraCloud from "./adapters/jira-cloud";
+import JiraServer from "./adapters/jira-server";
+import { search, stdadapters } from "./search";
 import type { Adapter, TicketData } from "./types";
 
 describe("ticket search", () => {
@@ -44,5 +46,11 @@ describe("ticket search", () => {
       tickets: [...tickets0, ...tickets1],
       errors: [error0, error1].map(serialize),
     });
+  });
+
+  it("searches jira cloud before jira server", () => {
+    expect(stdadapters.indexOf(JiraCloud)).toBeLessThan(
+      stdadapters.indexOf(JiraServer)
+    );
   });
 });
