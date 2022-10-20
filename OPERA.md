@@ -1,6 +1,6 @@
 # Opera
 
-[Opera](https://www.opera.com) is no longer accepting extensions for their own [add-ons](https://addons.opera.com/en/extensions/) platform. Users can directly instead install add-ons via the [Chrome Web Store](https://chrome.google.com/webstore).
+[Opera](https://www.opera.com) is no longer accepting extensions for their own [add-ons](https://addons.opera.com/en/extensions/) platform. Users can directly install add-ons via the [Chrome Web Store](https://chrome.google.com/webstore).
 
 ## Install Tickety-Tick
 
