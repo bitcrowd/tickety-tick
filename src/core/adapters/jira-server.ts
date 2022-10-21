@@ -1,7 +1,7 @@
 /**
  * Jira Server adapter
  *
- * This adapter is for self-hosted jira instances and uses the old rest API for fetching tickets.
+ * This adapter is for self-hosted jira instances and uses the old v2 rest API for fetching tickets.
  *
  * The adapter extracts the identifier of the selected issue from the page URL
  * and uses the Jira API to retrieve the corresponding ticket information.

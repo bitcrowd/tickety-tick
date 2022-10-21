@@ -1,7 +1,7 @@
 /**
  * Jira Cloud adapter
  *
- * This adapter is for cloud-hosted jira and uses the old rest API for fetching tickets.
+ * This adapter is for cloud-hosted Jira and uses the v3 rest API for fetching tickets.
  *
  * The adapter extracts the identifier of the selected issue from the page URL
  * and uses the Jira API to retrieve the corresponding ticket information.
