@@ -1,20 +1,19 @@
 /**
- * Jira adapter
+ * Jira Server adapter
+ *
+ * This adapter is for self-hosted jira instances and uses the old v2 rest API for fetching tickets.
  *
  * The adapter extracts the identifier of the selected issue from the page URL
  * and uses the Jira API to retrieve the corresponding ticket information.
  *
- * https://developer.atlassian.com/server/jira/platform/rest-apis/
+ * https://my-jira.org/server/jira/platform/rest-apis/
  *
  * Supported page URLs:
- * - Backlog and Active Sprints: https://<YOUR-SUBDOMAIN>.atlassian.net/secure/RapidBoard.jspa?…&selectedIssue=<ISSUE-KEY>
- * - Issues and filters: https://<YOUR-SUBDOMAIN>.atlassian.net/projects/<PROJECT-KEY>/issues/<ISSUE-KEY>
- * - Issue view: https://<YOUR-SUBDOMAIN>.atlassian.net/browse/<ISSUE-KEY>
+ * - Backlog and Active Sprints: https://<YOURDOMAIN>/secure/RapidBoard.jspa?…&selectedIssue=<ISSUE-KEY>
+ * - Issues and filters: https://<YOUR-DOMAIN>/projects/<PROJECT-KEY>/issues/<ISSUE-KEY>
+ * - Issue view: https://<YOUR-DOMAIN>/browse/<ISSUE-KEY>
  */
 
-import { fromADF } from "mdast-util-from-adf";
-import { gfmToMarkdown } from "mdast-util-gfm";
-import { toMarkdown } from "mdast-util-to-markdown";
 import { match } from "micro-match";
 
 import client from "../client";
@@ -25,18 +24,17 @@ type JiraTicketInfo = {
   fields: {
     issuetype: { name: string };
     summary: string;
-    description: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+    description: string;
   };
 };
 
 function isJiraPage(url: URL, document: Document) {
-  if (url.host.endsWith(".atlassian.net")) return true;
-  if (document.body.id === "jira") return true; // self-managed instance on different domain
+  if (document.body.id === "jira") return true;
   return false;
 }
 
 const pathSuffixes = new RegExp(
-  "/(jira/software/([^/]/)?)?(browse/[^/]+|projects/[^/]+/issues/[^/]+|projects/[^/]+/boards/.*|secure/RapidBoard.jspa)$",
+  "/(browse/[^/]+|projects/[^/]+/issues/[^/]+|secure/RapidBoard.jspa|jira/software/([^/]/)*projects/[^/]+/boards/.*)$",
   "g"
 );
 
@@ -49,9 +47,7 @@ function getSelectedIssueId(url: URL, prefix = "") {
 
   if (params.has("selectedIssue")) return params.get("selectedIssue");
 
-  const path = url.pathname
-    .substr(prefix.length)
-    .replace(/^\/jira\/software/, ""); // strip path prefix
+  const path = url.pathname.substr(prefix.length); // strip path prefix
 
   return ["/projects/:project/issues/:id", "/browse/:id"]
     .map((pattern) => match(pattern, path).id)
@@ -59,14 +55,12 @@ function getSelectedIssueId(url: URL, prefix = "") {
 }
 
 function extractTicketInfo(info: JiraTicketInfo, host: string) {
-  const { key: id, fields } = info;
-  const { issuetype, summary: title } = fields;
-
+  const {
+    key: id,
+    fields: { issuetype, summary: title, description },
+  } = info;
   const type = issuetype.name.toLowerCase();
   const url = `https://${host}/browse/${id}`;
-  const description = fields.description
-    ? toMarkdown(fromADF(fields.description), { extensions: [gfmToMarkdown()] })
-    : undefined;
 
   return {
     type,
@@ -86,7 +80,7 @@ async function scan(url: URL, document: Document): Promise<TicketData[]> {
 
   if (!id) return [];
 
-  const jira = client(`https://${url.host}${prefix}/rest/api/3`);
+  const jira = client(`https://${url.host}${prefix}/rest/api/latest`);
   const response = await jira.get(`issue/${id}`).json<JiraTicketInfo>();
   const ticket = extractTicketInfo(response, url.host);
 

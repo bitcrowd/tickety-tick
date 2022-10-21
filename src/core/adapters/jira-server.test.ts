@@ -5,29 +5,18 @@
 import { JSDOM } from "jsdom";
 
 import client from "../client";
-import scan from "./jira";
+import scan from "./jira-server";
 
 jest.mock("../client");
 
 const key = "RC-654";
-
-const description = "A long description of the ticket";
 
 const response = {
   id: "10959",
   fields: {
     issuetype: { name: "Story" },
     summary: "A quick summary of the ticket",
-    description: {
-      version: 1,
-      type: "doc",
-      content: [
-        {
-          type: "paragraph",
-          content: [{ type: "text", text: description }],
-        },
-      ],
-    },
+    description: "A long description of the ticket",
   },
   key,
 };
@@ -35,12 +24,12 @@ const response = {
 const ticket = {
   id: response.key,
   title: response.fields.summary,
-  description: `${description}\n`,
+  description: response.fields.description,
   type: response.fields.issuetype.name.toLowerCase(),
-  url: `https://my-subdomain.atlassian.net/browse/${key}`,
+  url: `https://my-domain.com/browse/${key}`,
 };
 
-describe("jira adapter", () => {
+describe("jira server adapter", () => {
   const dom = new JSDOM('<html><body id="jira">…</body"</html>');
   const url = (str: string) => new URL(str);
   const doc = dom.window.document;
@@ -58,28 +47,28 @@ describe("jira adapter", () => {
   });
 
   it("returns an empty array when on a different host", async () => {
-    const result = await scan(url("https://another-domain.com"), doc);
+    const result = await scan(url("https://my-domain.com"), doc);
     expect(api.get).not.toHaveBeenCalled();
     expect(result).toEqual([]);
   });
 
   it("returns null when no issue is selected", async () => {
-    const result = await scan(url("https://my-subdomain.atlassian.com"), doc);
+    const result = await scan(url("https://my-domain.com"), doc);
     expect(api.get).not.toHaveBeenCalled();
     expect(result).toEqual([]);
   });
 
   it("uses the endpoints for the current host", async () => {
-    await scan(url(`https://my-subdomain.atlassian.net/browse/${key}`), doc);
+    await scan(url(`https://my-domain.com/browse/${key}`), doc);
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/3"
+      "https://my-domain.com/rest/api/latest"
     );
     expect(api.get).toHaveBeenCalled();
   });
 
   it("extracts tickets from the active sprints tab", async () => {
     const result = await scan(
-      url(`https://my-subdomain.atlassian.net/?selectedIssue=${key}`),
+      url(`https://my-domain.com/?selectedIssue=${key}`),
       doc
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
@@ -88,9 +77,7 @@ describe("jira adapter", () => {
 
   it("extracts tickets from the issues tab", async () => {
     const result = await scan(
-      url(
-        `https://my-subdomain.atlassian.net/projects/TT/issues/${key}?filter=something`
-      ),
+      url(`https://my-domain.com/projects/TT/issues/${key}?filter=something`),
       doc
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
@@ -98,10 +85,7 @@ describe("jira adapter", () => {
   });
 
   it("extracts tickets when browsing an issue", async () => {
-    const result = await scan(
-      url(`https://my-subdomain.atlassian.net/browse/${key}`),
-      doc
-    );
+    const result = await scan(url(`https://my-domain.com/browse/${key}`), doc);
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
   });
@@ -109,12 +93,12 @@ describe("jira adapter", () => {
   it("extracts tickets from new generation software projects", async () => {
     const result = await scan(
       url(
-        `https://my-subdomain.atlassian.net/jira/software/projects/TT/boards/8?selectedIssue=${key}`
+        `https://my-domain.com/jira/software/projects/TT/boards/8?selectedIssue=${key}`
       ),
       doc
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/3"
+      "https://my-domain.com/rest/api/latest"
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -123,12 +107,12 @@ describe("jira adapter", () => {
   it("extracts tickets from new generation software projects from the board-URL", async () => {
     const result = await scan(
       url(
-        `https://my-subdomain.atlassian.net/jira/software/projects/TT/boards/7/backlog?selectedIssue=${key}`
+        `https://my-domain.com/jira/software/projects/TT/boards/7/backlog?selectedIssue=${key}`
       ),
       doc
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/3"
+      "https://my-domain.com/rest/api/latest"
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -137,12 +121,12 @@ describe("jira adapter", () => {
   it("extracts tickets from classic software projects from the board-URL", async () => {
     const result = await scan(
       url(
-        `https://my-subdomain.atlassian.net/jira/software/c/projects/TT/boards/7?selectedIssue=${key}`
+        `https://my-domain.com/jira/software/c/projects/TT/boards/7?selectedIssue=${key}`
       ),
       doc
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/3"
+      "https://my-domain.com/rest/api/latest"
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -151,23 +135,15 @@ describe("jira adapter", () => {
   it("extracts tickets from classic software projects from the backlog-URL", async () => {
     const result = await scan(
       url(
-        `https://my-subdomain.atlassian.net/jira/software/c/projects/TT/boards/7/backlog?selectedIssue=${key}`
+        `https://my-domain.com/jira/software/c/projects/TT/boards/7/backlog?selectedIssue=${key}`
       ),
       doc
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/3"
+      "https://my-domain.com/rest/api/latest"
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
-  });
-
-  it("extracts tickets on self-managed instances", async () => {
-    const result = await scan(url(`https://jira.local/browse/${key}`), doc);
-    expect(client).toHaveBeenCalledWith("https://jira.local/rest/api/3");
-    expect(result).toEqual([
-      { ...ticket, url: `https://jira.local/browse/${key}` },
-    ]);
   });
 
   it("extracts tickets on self-managed instances (with path prefix)", async () => {
@@ -182,7 +158,7 @@ describe("jira adapter", () => {
       scan(url(`https://jira.local/prefix/browse/${key}`), doc),
     ]);
 
-    const endpoint = "https://jira.local/prefix/rest/api/3";
+    const endpoint = "https://jira.local/prefix/rest/api/latest";
     const expectedTicket = {
       ...ticket,
       url: `https://jira.local/browse/${key}`,
