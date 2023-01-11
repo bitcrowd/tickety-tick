@@ -8,6 +8,7 @@ describe("notion adapter", () => {
   const title = "Add notion.so support";
   const slugId = "5b1d7dd791074890b2ec83175b8eda83";
   const slug = `Add-notion-so-support-${slugId}`;
+  const ticketUrl = `https://www.notion.so/notionuser/${slugId}`;
 
   const response = {
     results: [
@@ -22,7 +23,7 @@ describe("notion adapter", () => {
     ],
   };
 
-  const ticket = { id, title, type: "page" };
+  const ticket = { id, title, type: "page", url: ticketUrl };
   const url = (str: string) => new URL(str);
   const api = { post: jest.fn() };
 

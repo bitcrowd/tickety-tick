@@ -53,7 +53,7 @@ function getSelectedPageId(url: URL) {
   const slugId = isPageModal ? params.get("p") : getPageFromPath(path);
 
   if (!slugId) return null;
-  return uuid(slugId);
+  return slugId;
 }
 
 function extractTicketInfo(result: NotionTicketInfo) {
@@ -73,10 +73,16 @@ function getTickets(response: NotionTicketResponse, id: string) {
     .filter((t) => t && t.id === id) as TicketData[];
 }
 
+function buildUrl(url: URL, id: string): string {
+  const { organization } = match("/:organization/:slug", url.pathname);
+  return `https://www.notion.so/${organization}/${id}`;
+}
+
 async function scan(url: URL): Promise<TicketData[]> {
   if (url.host !== "www.notion.so") return [];
 
-  const id = getSelectedPageId(url);
+  const slugId = getSelectedPageId(url);
+  const id = uuid(slugId);
 
   if (!id) return [];
 
@@ -86,7 +92,10 @@ async function scan(url: URL): Promise<TicketData[]> {
     .post("api/v3/getRecordValues", request)
     .json<NotionTicketResponse>();
 
-  return getTickets(response, id);
+  return getTickets(response, id).map((ticket) => ({
+    url: buildUrl(url, slugId),
+    ...ticket,
+  })) as TicketData[];
 }
 
 export default scan;
