@@ -9,8 +9,6 @@
  * API yet.
  */
 
-import { match } from "micro-match";
-
 import client from "../client";
 import type { TicketData } from "../types";
 
@@ -30,7 +28,9 @@ type NotionTicketResponse = {
  * Turns a slugged page ID without dashes into a dasherized RFC 4122 UUID.
  * UUID-Format: 96ec637d-e4b0-4a5e-acf3-8d4d9a1b2e4b
  */
-function uuid(slugId: string) {
+function uuid(slugId: string | null) {
+  if (!slugId) return null;
+
   return [
     slugId.substring(0, 8),
     slugId.substring(8, 12),
@@ -41,7 +41,7 @@ function uuid(slugId: string) {
 }
 
 function getPageFromPath(path: string) {
-  const { slug } = match("/:organization/:slug", path);
+  const slug = path.split("/").slice(-1)[0];
   if (!slug) return null;
 
   return slug.replace(/.*-/, ""); // strip title from slug
