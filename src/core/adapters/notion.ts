@@ -73,11 +73,6 @@ function getTickets(response: NotionTicketResponse, id: string) {
     .filter((t) => t && t.id === id) as TicketData[];
 }
 
-function buildUrl(url: URL, id: string): string {
-  const { organization } = match("/:organization/:slug", url.pathname);
-  return `https://www.notion.so/${organization}/${id}`;
-}
-
 async function scan(url: URL): Promise<TicketData[]> {
   if (url.host !== "www.notion.so") return [];
 
@@ -93,7 +88,7 @@ async function scan(url: URL): Promise<TicketData[]> {
     .json<NotionTicketResponse>();
 
   return getTickets(response, id).map((ticket) => ({
-    url: buildUrl(url, slugId),
+    url: `https://www.notion.so/${slugId}`,
     ...ticket,
   })) as TicketData[];
 }
