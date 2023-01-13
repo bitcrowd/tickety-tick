@@ -9,6 +9,8 @@
  * API yet.
  */
 
+import { match } from "micro-match";
+
 import client from "../client";
 import type { TicketData } from "../types";
 
@@ -41,7 +43,7 @@ function uuid(slugId: string | null) {
 }
 
 function getPageFromPath(path: string) {
-  const slug = path.split("/").slice(-1)[0];
+  const { slug } = match(":organization?/:slug", path);
   if (!slug) return null;
 
   return slug.replace(/.*-/, ""); // strip title from slug
