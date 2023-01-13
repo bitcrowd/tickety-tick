@@ -30,9 +30,7 @@ type NotionTicketResponse = {
  * Turns a slugged page ID without dashes into a dasherized RFC 4122 UUID.
  * UUID-Format: 96ec637d-e4b0-4a5e-acf3-8d4d9a1b2e4b
  */
-function uuid(slugId: string | null) {
-  if (!slugId) return null;
-
+function uuid(slugId: string) {
   return [
     slugId.substring(0, 8),
     slugId.substring(8, 12),
@@ -79,10 +77,9 @@ async function scan(url: URL): Promise<TicketData[]> {
   if (url.host !== "www.notion.so") return [];
 
   const slugId = getSelectedPageId(url);
+  if (!slugId) return [];
+
   const id = uuid(slugId);
-
-  if (!id) return [];
-
   const api = client(`https://${url.host}`);
   const request = { json: { requests: [{ table: "block", id }] } };
   const response = await api
