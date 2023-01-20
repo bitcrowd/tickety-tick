@@ -41,7 +41,7 @@ function uuid(slugId: string) {
 }
 
 function getPageFromPath(path: string) {
-  const { slug } = match("/:organization/:slug", path);
+  const { slug } = match(":organization?/:slug", path);
   if (!slug) return null;
 
   return slug.replace(/.*-/, ""); // strip title from slug
@@ -77,10 +77,9 @@ async function scan(url: URL): Promise<TicketData[]> {
   if (url.host !== "www.notion.so") return [];
 
   const slugId = getSelectedPageId(url);
+  if (!slugId) return [];
+
   const id = uuid(slugId);
-
-  if (!id) return [];
-
   const api = client(`https://${url.host}`);
   const request = { json: { requests: [{ table: "block", id }] } };
   const response = await api

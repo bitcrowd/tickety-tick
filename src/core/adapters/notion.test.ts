@@ -113,4 +113,12 @@ describe("notion adapter", () => {
     });
     expect(result).toEqual([ticket]);
   });
+
+  it("extracts tickets from the page view without organization", async () => {
+    const result = await scan(url(`https://www.notion.so/${slug}`));
+    expect(api.post).toHaveBeenCalledWith("api/v3/getRecordValues", {
+      json: { requests: [{ table: "block", id }] },
+    });
+    expect(result).toEqual([ticket]);
+  });
 });
