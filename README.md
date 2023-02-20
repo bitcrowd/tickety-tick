@@ -69,7 +69,7 @@ Download and unpack a `chrome.zip` file from the [releases](https://github.com/b
 
 #### Firefox
 
-Get a `tickety_tick-<version>.xpi` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases) or sign a build yourself as per our [maintainer guide](./MAINTAINERS.md#sign-add-on-for-firefox). Then go to [about:addons](//about:addons), click on the small cog icon, select `Install Add-on From File…` and choose your `.xpi` file.
+Sign a build yourself as per our [maintainer guide](./MAINTAINERS.md#sign-add-on-for-firefox). Then go to [about:addons](//about:addons), click on the small cog icon, select `Install Add-on From File…` and choose your `.xpi` file.
 
 #### Opera
 
@@ -202,7 +202,7 @@ yarn bundle:firefox
 3. Build releases for Chrome and Firefox (see above)
 4. Draft a [new release on GitHub](https://github.com/bitcrowd/tickety-tick/releases/new)
 5. Add package bundles to your new release
-6. Publish release in Chrome and Mozilla stores
+6. Publish release in Chrome and Mozilla stores (credentials and details in 1password)
 
 ## Insights
 
