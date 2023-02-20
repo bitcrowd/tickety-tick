@@ -198,7 +198,7 @@ yarn bundle:firefox
 ### Releasing a new version
 
 1. Tick the version with [`yarn version`](https://yarnpkg.com/en/docs/cli/version) (creates a Git tag)
-2. Push the tag with `git push --tags`
+2. Push the tag with `git push origin <tag-name>`
 3. Build releases for Chrome and Firefox (see above)
 4. Draft a [new release on GitHub](https://github.com/bitcrowd/tickety-tick/releases/new)
 5. Add package bundles to your new release
