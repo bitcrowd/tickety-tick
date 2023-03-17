@@ -40,10 +40,11 @@ Currently, we support:
 - [GitHub](https://github.com/)
 - [GitLab](https://gitlab.com/)
 - [Jira](https://www.atlassian.com/software/jira)
+- [Linear](https://linear.app)
 - [Notion](https://www.notion.so/)
 - [Tara](https://app.tara.ai/)
 - [Trello](https://trello.com/)
-- [Linear](https://linear.app)
+- [YouTrack](https://www.jetbrains.com/youtrack/)
 
 Your ticket system is missing? Go ahead and implement an adapter for it! We are always happy about contributions and here to support you 👋.
 
