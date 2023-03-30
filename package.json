@@ -78,7 +78,7 @@
     "stylelint-prettier": "^1.2.0",
     "typescript": "^5.0.2",
     "web-ext": "^7.6.0",
-    "webpack": "5.76.3",
+    "webpack": "5.77.0",
     "webpack-chain": "6.5.1",
     "webpack-cli": "^5.0.1",
     "zip-webpack-plugin": "4.0.1"
