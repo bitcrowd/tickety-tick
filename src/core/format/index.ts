@@ -1,39 +1,47 @@
+import { Liquid } from "liquidjs";
+
 import type { Ticket } from "../../types";
 import * as defaults from "./defaults";
-import * as helpers from "./helpers";
+import * as extras from "./filters";
 import pprint from "./pretty-print";
-import compile from "./template";
 import type { Formatter, Templates } from "./types";
 
-export { defaults, helpers };
+export { defaults };
 
-function format<T extends Ticket>(
-  templates: Partial<Templates>,
-  name: keyof Templates
-) {
-  const render = compile(templates[name] || defaults[name], helpers);
-  return (ticket: T) => render(ticket).trim();
-}
+const engine = new Liquid({});
+
+Object.entries(extras).forEach(([name, filter]) => {
+  engine.registerFilter(name, filter);
+});
+
+export const { filters } = engine;
+
+const trim = (s: string) => s.trim();
 
 export default (
   templates: Partial<Templates> = {},
   prettify = true
 ): Formatter => {
-  const branch = format(templates, "branch");
+  const compile = <T extends Ticket>(name: keyof Templates) => {
+    const tpl = engine.parse(templates[name] || defaults[name]);
+    return (ticket: T) => engine.render(tpl, ticket).then(trim);
+  };
 
-  const commit = prettify
-    ? (ticket: Ticket) => pprint(format(templates, "commit")(ticket))
-    : format(templates, "commit");
+  const branch = compile("branch");
 
-  const command = (ticket: Ticket) =>
-    format<Ticket & { branch: string; commit: string }>(
-      templates,
-      "command"
-    )({
-      branch: branch(ticket),
-      commit: commit(ticket),
-      ...ticket,
-    });
+  const commit = ((render) =>
+    prettify ? async (ticket: Ticket) => pprint(await render(ticket)) : render)(
+    compile("commit")
+  );
+
+  const command = (
+    (render) => async (ticket: Ticket) =>
+      render({
+        branch: await branch(ticket),
+        commit: await commit(ticket),
+        ...ticket,
+      })
+  )(compile<Ticket & { branch: string; commit: string }>("command"));
 
   return { branch, command, commit };
 };

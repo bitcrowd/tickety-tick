@@ -6,7 +6,7 @@ import {
 } from "@primer/octicons-react";
 import React, { useEffect, useState } from "react";
 
-import format, { defaults, helpers } from "../../core/format";
+import format, { defaults, filters } from "../../core/format";
 import CheckboxInput from "./checkbox-input";
 import * as example from "./example";
 import type { Props as TemplateInputProps } from "./template-input";
@@ -87,7 +87,7 @@ function Form({ store }: Props) {
       name: "commit",
       value: templates.commit,
       fallback: defaults.commit,
-      preview: fmt.commit(example),
+      preview: "", //fmt.commit(example),
       multiline: true,
     },
     {
@@ -97,7 +97,7 @@ function Form({ store }: Props) {
       name: "branch",
       value: templates.branch,
       fallback: defaults.branch,
-      preview: fmt.branch(example),
+      preview: "", //fmt.branch(example),
     },
     {
       icon: <InputIcon icon={TerminalIcon} />,
@@ -106,7 +106,7 @@ function Form({ store }: Props) {
       name: "command",
       value: templates.command,
       fallback: defaults.command,
-      preview: fmt.command(example),
+      preview: "", //fmt.command(example),
     },
   ];
 
@@ -161,12 +161,12 @@ function Form({ store }: Props) {
           </div>
 
           <div className="col small">
-            Available Helpers:
+            Available Filters:
             <ul className="list-unstyled text-muted">
-              {Object.keys(helpers)
+              {Object.keys(filters)
                 .sort()
                 .map((name) => {
-                  const helper = helpers[name as keyof typeof helpers];
+                  const helper = filters[name as keyof typeof filters];
                   return (
                     <li key={name}>
                       {"description" in helper ? helper.description : name}
