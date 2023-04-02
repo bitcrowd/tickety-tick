@@ -38,9 +38,9 @@ describe("form", () => {
 
   beforeEach(() => {
     (format as jest.Mock).mockImplementation((templates, autofmt) => ({
-      commit: () => `formatted-commit (${autofmt})`,
-      branch: () => `formatted-branch (${autofmt})`,
-      command: () => `formatted-command (${autofmt})`,
+      commit: async () => `formatted-commit (${autofmt})`,
+      branch: async () => `formatted-branch (${autofmt})`,
+      command: async () => `formatted-command (${autofmt})`,
     }));
   });
 
