@@ -17,3 +17,6 @@ dist/
 
 # Test coverage reports
 coverage/
+
+# web-ext artifacts
+web-ext-artifacts/
