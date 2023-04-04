@@ -6,8 +6,6 @@ set -o pipefail
 
 cd "$(dirname "$0")/.."
 
-prev=$(git describe --abbrev=0 --tags)
-
 # Run checks, bump version. Create a commit, tag and push.
 yarn np \
   --test-script checks \
@@ -18,17 +16,23 @@ yarn np \
 yarn bundle:chrome
 yarn bundle:firefox
 
-# # Create a GitHub release, upload build artifacts.
+# Create a GitHub release, upload build artifacts.
 tag=$(git describe --abbrev=0 --tags)
 gh release create "$tag" \
   --generate-notes \
   --verify-tag \
   ./dist/*.zip
 
-# Submit release to Mozilla.
+# Mozilla Add-Ons
 read -rp "Please provide your Mozilla API Key: " apikey
 read -srp "Please provide the corresponding API Secret: " apisecret
+printf "\n\n"
 
+# Chrome Web Store
+read -rp "Please provide your Chrome Web Store Publish API client ID: " client_id
+read -srp "Please provide your Chrome Web Store Publish API client secret: " client_secret
+printf "\n"
+read -srp "Please provide your Chrome Web Store Publish API refresh token: " refresh_token
 printf "\n\n"
 
 yarn web-ext sign \
@@ -45,6 +49,14 @@ gh release upload \
   "web-ext-artifacts/tickety_tick-${tag##v}.xpi"
 
 printf "\n\n"
+
+yarn chrome-webstore-upload upload \
+  --client-id "$client_id" \
+  --client-secret "$client_secret" \
+  --refresh-token "$refresh_token" \
+  --extension-id "ciakolhgmfijpjbpcofoalfjiladihbg" \
+  --auto-publish \
+  --source ./dist/chrome.zip
 
 cat <<EOS
 Edit the auto-generated release notes on GitHub as necessary:
