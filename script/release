@@ -23,17 +23,25 @@ gh release create "$tag" \
   --verify-tag \
   ./dist/*.zip
 
-# Mozilla Add-Ons
-read -rp "Please provide your Mozilla API Key: " apikey
-read -srp "Please provide the corresponding API Secret: " apisecret
-printf "\n\n"
+if type op >/dev/null 2>&1; then
+  apikey=$(op item get "bgi26drb3naqhipfmt5wth6634" --field key)
+  apisecret=$(op item get "bgi26drb3naqhipfmt5wth6634" --field secret)
+  client_id=$(op item get "yjtvyfa4wcygxlps6smdeybdu4" --field "Client ID")
+  client_secret=$(op item get "yjtvyfa4wcygxlps6smdeybdu4" --field "Client Secret")
+  refresh_token=$(op item get "yjtvyfa4wcygxlps6smdeybdu4" --field "OAuth Refresh Token")
+else
+  # Mozilla Add-Ons
+  read -rp "Please provide your Mozilla API Key: " apikey
+  read -srp "Please provide the corresponding API Secret: " apisecret
+  printf "\n\n"
 
-# Chrome Web Store
-read -rp "Please provide your Chrome Web Store Publish API client ID: " client_id
-read -srp "Please provide your Chrome Web Store Publish API client secret: " client_secret
-printf "\n"
-read -srp "Please provide your Chrome Web Store Publish API refresh token: " refresh_token
-printf "\n\n"
+  # Chrome Web Store
+  read -rp "Please provide your Chrome Web Store Publish API client ID: " client_id
+  read -srp "Please provide your Chrome Web Store Publish API client secret: " client_secret
+  printf "\n"
+  read -srp "Please provide your Chrome Web Store Publish API refresh token: " refresh_token
+  printf "\n\n"
+fi
 
 yarn web-ext sign \
   --api-key "$apikey" \
