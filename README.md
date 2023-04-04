@@ -70,7 +70,7 @@ Download and unpack a `chrome.zip` file from the [releases](https://github.com/b
 
 #### Firefox
 
-Sign a build yourself as per our [maintainer guide](./MAINTAINERS.md#sign-add-on-for-firefox). Then go to [about:addons](//about:addons), click on the small cog icon, select `Install Add-on From File…` and choose your `.xpi` file.
+Download and unpack a `tickety_tick-<version>.xpi` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases) and open it in Firefox.
 
 #### Opera
 
@@ -198,12 +198,11 @@ yarn bundle:firefox
 
 ### Releasing a new version
 
-1. Tick the version with [`yarn version`](https://yarnpkg.com/en/docs/cli/version) (creates a Git tag)
-2. Push the tag with `git push origin <tag-name>`
-3. Build releases for Chrome and Firefox (see above)
-4. Draft a [new release on GitHub](https://github.com/bitcrowd/tickety-tick/releases/new)
-5. Add package bundles to your new release
-6. Publish release in Chrome and Mozilla stores (credentials and details in 1password)
+```shell
+yarn release
+```
+
+You will be prompted for Mozilla Add-Ons and Chrome Web Store API credentials. Alternatively, if you have [1Password CLI](https://1password.com/downloads/command-line/) installed and access to the `Tickety-Tick` vault, it will only ask you for access there.
 
 ## Insights
 
