@@ -12,7 +12,8 @@ prev=$(git describe --abbrev=0 --tags)
 yarn np \
   --test-script checks \
   --no-release-draft \
-  --no-publish
+  --no-publish \
+  --any-branch
 
 # Build artifacts.
 yarn bundle:chrome
@@ -35,8 +36,9 @@ yarn web-ext sign \
   --api-key "$apikey" \
   --api-secret "$apisecret" \
   --source-dir ./dist/firefox \
+  --use-submission-api \
   --channel=listed \
-  || true
+  --verbose
 
 printf "\n\n"
 
@@ -45,5 +47,8 @@ Do not forget to upload a source code archive for the new release here:
 https://addons.mozilla.org/developers/addon/tickety-tick/versions
 
 You can grab a source code archive here:
+https://github.com/bitcrowd/tickety-tick/releases/tag/$tag
+
+Edit the auto-generated release notes on GitHub as necessary:
 https://github.com/bitcrowd/tickety-tick/releases/tag/$tag
 EOS
