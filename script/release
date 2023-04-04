@@ -19,10 +19,10 @@ yarn bundle:chrome
 yarn bundle:firefox
 
 # # Create a GitHub release, upload build artifacts.
-notes=$(./script/list-changes "$prev")
 tag=$(git describe --abbrev=0 --tags)
 gh release create "$tag" \
-  --notes "$notes" \
+  --generat-notes \
+  --verify-tag \
   ./dist/*.zip
 
 # Submit release to Mozilla.
