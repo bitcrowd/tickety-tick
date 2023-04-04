@@ -12,8 +12,7 @@ prev=$(git describe --abbrev=0 --tags)
 yarn np \
   --test-script checks \
   --no-release-draft \
-  --no-publish \
-  --any-branch
+  --no-publish
 
 # Build artifacts.
 yarn bundle:chrome
@@ -22,7 +21,7 @@ yarn bundle:firefox
 # # Create a GitHub release, upload build artifacts.
 tag=$(git describe --abbrev=0 --tags)
 gh release create "$tag" \
-  --generat-notes \
+  --generate-notes \
   --verify-tag \
   ./dist/*.zip
 
@@ -37,18 +36,23 @@ yarn web-ext sign \
   --api-secret "$apisecret" \
   --source-dir ./dist/firefox \
   --use-submission-api \
-  --channel=listed \
-  --verbose
+  --channel=listed
+
+printf "\n\n"
+
+gh release upload \
+  "$tag" \
+  "web-ext-artifacts/tickety_tick-${tag##v}.xpi"
 
 printf "\n\n"
 
 cat <<EOS
+Edit the auto-generated release notes on GitHub as necessary:
+https://github.com/bitcrowd/tickety-tick/releases/tag/$tag
+
 Do not forget to upload a source code archive for the new release here:
 https://addons.mozilla.org/developers/addon/tickety-tick/versions
 
 You can grab a source code archive here:
-https://github.com/bitcrowd/tickety-tick/releases/tag/$tag
-
-Edit the auto-generated release notes on GitHub as necessary:
 https://github.com/bitcrowd/tickety-tick/releases/tag/$tag
 EOS
