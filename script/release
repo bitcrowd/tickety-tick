@@ -12,7 +12,8 @@ prev=$(git describe --abbrev=0 --tags)
 yarn np \
   --test-script checks \
   --no-release-draft \
-  --no-publish
+  --no-publish \
+  --any-branch
 
 # Build artifacts.
 yarn bundle:chrome
