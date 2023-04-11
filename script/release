@@ -6,18 +6,31 @@ set -o pipefail
 
 cd "$(dirname "$0")/.."
 
+branch="release-$(git rev-parse HEAD)"
+git checkout -b "$branch"
+
 # Run checks, bump version. Create a commit, tag and push.
 yarn np \
   --test-script checks \
+  --branch $branch \
   --no-release-draft \
   --no-publish
+
+tag=$(git describe --abbrev=0 --tags)
+
+gh pr create \
+  --title "Release $tag" \
+  --body ""
+
+gh pr merge $branch \
+  --admin \
+  --rebase
 
 # Build artifacts.
 yarn bundle:chrome
 yarn bundle:firefox
 
 # Create a GitHub release, upload build artifacts.
-tag=$(git describe --abbrev=0 --tags)
 gh release create "$tag" \
   --generate-notes \
   --verify-tag \
