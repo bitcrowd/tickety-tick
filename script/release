@@ -4,27 +4,27 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+SCRIPTDIR=$(cd "$(dirname "$0")"; pwd)
+# shellcheck source=SCRIPTDIR/lib/utils
+source "$SCRIPTDIR/lib/utils"
+
 cd "$(dirname "$0")/.."
 
-branch="release-$(git rev-parse HEAD)"
-git checkout -b "$branch"
+./script/check-release-dependencies
 
-# Run checks, bump version. Create a commit, tag and push.
-yarn np \
-  --test-script checks \
-  --branch $branch \
-  --no-release-draft \
-  --no-publish
+branch=$(git branch --show-current)
 
-tag=$(git describe --abbrev=0 --tags)
+if [[ "$branch" != "main" ]]; then
+  abort "Please only release from the main branch."
+fi
 
-gh pr create \
-  --title "Release $tag" \
-  --body ""
+yarn checks
 
-gh pr merge $branch \
-  --admin \
-  --rebase
+version=$(script/version)
+tag="v$(version)"
+
+git tag "$(tag)"
+git push origin "$tag"
 
 # Build artifacts.
 yarn bundle:chrome
@@ -36,7 +36,7 @@ gh release create "$tag" \
   --verify-tag \
   ./dist/*.zip
 
-if type op >/dev/null 2>&1; then
+if has op; then
   apikey=$(op item get "bgi26drb3naqhipfmt5wth6634" --field key)
   apisecret=$(op item get "bgi26drb3naqhipfmt5wth6634" --field secret)
   client_id=$(op item get "yjtvyfa4wcygxlps6smdeybdu4" --field "Client ID")

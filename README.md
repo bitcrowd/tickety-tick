@@ -70,7 +70,7 @@ Download and unpack a `chrome.zip` file from the [releases](https://github.com/b
 
 #### Firefox
 
-Download and unpack a `tickety_tick-<version>.xpi` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases) and open it in Firefox.
+Download a `tickety_tick-<version>.xpi` file from the [releases](https://github.com/bitcrowd/tickety-tick/releases) and open it in Firefox.
 
 #### Opera
 
@@ -197,6 +197,14 @@ yarn bundle:firefox
 ```
 
 ### Releasing a new version
+
+Prepare the release by bumping the version and submitting the change as a pull request:
+
+```shell
+yarn prepare-release
+```
+
+Once the version change is on the `main` branch, you can trigger the release process:
 
 ```shell
 yarn release

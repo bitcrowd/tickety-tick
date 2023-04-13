@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+cd "$(dirname "$0")/.."
+
+./script/check-release-dependencies
+
+branch="chore/prepare-release-$(git rev-parse HEAD)"
+git checkout -b "$branch"
+
+yarn version
+
+tag=$(git describe --abbrev=0 --tags)
+
+git tag --delete "$tag"
+
+gh pr create \
+  --title "Prepare $tag" \
+  --body "Bump version to $tag."
