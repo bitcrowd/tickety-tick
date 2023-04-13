@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# A collection of helpers for our scripts.
+
+function has() {
+  type "$1" >/dev/null 2>&1
+}
+
+function abort() {
+  printf "${1}\n">&2
+  exit 1
+}

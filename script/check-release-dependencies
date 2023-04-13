@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+SCRIPTDIR=$(cd "$(dirname "$0")"; pwd)
+# shellcheck source=SCRIPTDIR/lib/utils
+source "$SCRIPTDIR/lib/utils"
+
+if ! has gh; then
+  abort "Please install GitHub CLI first (https://cli.github.com)."
+fi
