@@ -3,6 +3,7 @@
   "plugins": ["stylelint-prettier"],
   "rules": {
     "prettier/prettier": true,
+    "scss/comment-no-empty": null,
     "value-keyword-case": [
       "lower",
       {
