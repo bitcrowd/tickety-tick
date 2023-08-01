@@ -1,5 +1,5 @@
 .spinner {
-  margin: 2rem auto 2rem;
+  margin: 2rem auto;
   width: 4rem;
   text-align: center;
 }
@@ -11,42 +11,25 @@
   background-color: $gray-500;
   border-radius: 100%;
   display: inline-block;
-  -webkit-animation: spinner-bouncedelay 1.4s infinite ease-in-out both;
   animation: spinner-bouncedelay 1.4s infinite ease-in-out both;
 }
 
 .spinner .bounce-1 {
-  -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
 
 .spinner .bounce-2 {
-  -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
-}
-
-@-webkit-keyframes spinner-bouncedelay {
-  0%,
-  80%,
-  100% {
-    -webkit-transform: scale(0);
-  }
-
-  40% {
-    -webkit-transform: scale(1);
-  }
 }
 
 @keyframes spinner-bouncedelay {
   0%,
   80%,
   100% {
-    -webkit-transform: scale(0);
     transform: scale(0);
   }
 
   40% {
-    -webkit-transform: scale(1);
     transform: scale(1);
   }
 }
