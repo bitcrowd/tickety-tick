@@ -28,7 +28,7 @@ function aggregate(results: (Ticket[] | Error)[]) {
       result instanceof Error
         ? { tickets, errors: errors.concat(serialize(result)) }
         : { errors, tickets: tickets.concat(result) },
-    { tickets: [], errors: [] }
+    { tickets: [], errors: [] },
   );
 }
 

@@ -23,7 +23,7 @@ const html = {
 };
 
 const url = new URL(
-  "https://bitcrowd.youtrack.cloud/issue/TT-0/Support-YouTrack"
+  "https://bitcrowd.youtrack.cloud/issue/TT-0/Support-YouTrack",
 );
 
 describe("youtrack adapter", () => {

@@ -77,7 +77,7 @@ describe("tara adapter", () => {
   it("extracts tickets from full-page task view", async () => {
     const result = await scan(
       url("https://app.tara.ai/my-workspace/tasks/17"),
-      doc(FULL_PAGE_VIEW)
+      doc(FULL_PAGE_VIEW),
     );
 
     expect(result).toEqual([
@@ -93,7 +93,7 @@ describe("tara adapter", () => {
   it("extracts tickets from modal-overlay task view", async () => {
     const result = await scan(
       url("https://app.tara.ai/my-workspace/tasks/123"),
-      doc(MODAL_VIEW)
+      doc(MODAL_VIEW),
     );
 
     expect(result).toEqual([

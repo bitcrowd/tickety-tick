@@ -32,8 +32,8 @@ describe("ticket formatting", () => {
         const formatted = fmt.branch(ticket);
         expect(formatted).toBe(
           `${slugify(ticket.type)}/${slugify(ticket.id)}-${slugify(
-            ticket.title
-          )}`
+            ticket.title,
+          )}`,
         );
       });
     });
@@ -49,7 +49,7 @@ describe("ticket formatting", () => {
 
         expect(formatted).toBe(
           `git checkout -b ${shellquote(branch)}` +
-            ` && git commit --allow-empty -m ${shellquote(commit)}`
+            ` && git commit --allow-empty -m ${shellquote(commit)}`,
         );
       });
     });

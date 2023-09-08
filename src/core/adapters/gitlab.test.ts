@@ -59,7 +59,7 @@ describe("gitlab adapter", () => {
 
   function doc(body = "", dataPage = "") {
     const { window } = new JSDOM(
-      `<html><body data-page="${dataPage}">${body}</body></html>`
+      `<html><body data-page="${dataPage}">${body}</body></html>`,
     );
     return window.document;
   }
