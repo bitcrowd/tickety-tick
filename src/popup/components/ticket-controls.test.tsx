@@ -9,7 +9,7 @@ describe("ticket-controls", () => {
   function subject(overrides: Partial<Props>) {
     const defaults: Props = {
       tickets: ["raz", "dva", "tri"].map((title, i) =>
-        make({ id: `${i + 1}`, title })
+        make({ id: `${i + 1}`, title }),
       ),
     };
     const props = { ...defaults, ...overrides };
@@ -27,7 +27,7 @@ describe("ticket-controls", () => {
 
   it("renders a dropdown if there is more than one ticket", () => {
     const tickets = ["raz", "dva", "tri"].map((title, i) =>
-      make({ id: `${i + 1}`, title })
+      make({ id: `${i + 1}`, title }),
     );
     const screen = subject({ tickets });
     const select = screen.getByRole("combobox");

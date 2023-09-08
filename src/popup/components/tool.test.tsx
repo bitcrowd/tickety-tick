@@ -20,7 +20,7 @@ jest.mock("./error-details", () => ({ errors }: ErrorDetailsProps) => {
 
 describe("tool", () => {
   const tickets = ["un", "deux", "trois"].map((title, i) =>
-    make({ id: `${i + 1}`, title })
+    make({ id: `${i + 1}`, title }),
   );
   const errors = [new Error("ouch")];
 

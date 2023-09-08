@@ -1,4 +1,4 @@
-import markdown from "prettier/parser-markdown";
+import markdown from "prettier/plugins/markdown";
 import prettier from "prettier/standalone";
 import unindent from "strip-indent";
 
@@ -46,7 +46,7 @@ function gitbody(text: string): string {
 
 function maybe(
   value: string | null | undefined,
-  fn: (text: string) => string
+  fn: (text: string) => string,
 ): string | null | undefined {
   if (typeof value !== "string") return value;
   return fn(value);

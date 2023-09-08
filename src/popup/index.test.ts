@@ -74,7 +74,7 @@ describe("popup", () => {
 
   it("renders the popup content with enhanced tickets", async () => {
     const tickets = ["uno", "dos"].map((title, id) =>
-      make({ id: id.toString(), title })
+      make({ id: id.toString(), title }),
     );
     (background.getTickets as jest.Mock).mockResolvedValue({
       tickets,
@@ -92,7 +92,7 @@ describe("popup", () => {
 
     expect(render).toHaveBeenCalledWith(
       tickets.map(format),
-      expect.any(Object)
+      expect.any(Object),
     );
   });
 
@@ -107,7 +107,7 @@ describe("popup", () => {
 
     expect(render).toHaveBeenCalledWith(
       expect.any(Object),
-      errors.map(deserialize)
+      errors.map(deserialize),
     );
   });
 });

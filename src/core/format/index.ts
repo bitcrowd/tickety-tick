@@ -9,7 +9,7 @@ export { defaults, helpers };
 
 function format<T extends Ticket>(
   templates: Partial<Templates>,
-  name: keyof Templates
+  name: keyof Templates,
 ) {
   const render = compile(templates[name] || defaults[name], helpers);
   return (ticket: T) => render(ticket).trim();
@@ -17,7 +17,7 @@ function format<T extends Ticket>(
 
 export default (
   templates: Partial<Templates> = {},
-  prettify = true
+  prettify = true,
 ): Formatter => {
   const branch = format(templates, "branch");
 
@@ -28,7 +28,7 @@ export default (
   const command = (ticket: Ticket) =>
     format<Ticket & { branch: string; commit: string }>(
       templates,
-      "command"
+      "command",
     )({
       branch: branch(ticket),
       commit: commit(ticket),

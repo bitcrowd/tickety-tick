@@ -67,7 +67,7 @@ describe("template", () => {
 
     const render = compile(
       "({ a } * 3)**2 = {  a  |  triple  |  square  }",
-      transforms
+      transforms,
     );
     const output = render({ a: 2 });
 

@@ -9,7 +9,7 @@ import scan from "./linear";
 const pages = {
   issuePage: {
     url: new URL(
-      "https://linear.app/my_team/issue/FOO-1/do-something-interesting"
+      "https://linear.app/my_team/issue/FOO-1/do-something-interesting",
     ),
     document: "<span title='Edit issue title'>Do something interesting</span>",
   },
@@ -29,7 +29,7 @@ describe("linear adapter", () => {
   it("extracts the ticket from the issue page", async () => {
     const result = await scan(
       pages.issuePage.url,
-      doc(pages.issuePage.document)
+      doc(pages.issuePage.document),
     );
     expect(result).toEqual([
       {

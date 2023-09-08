@@ -46,7 +46,7 @@ async function scan(url: URL, document: Document): Promise<TicketData[]> {
   const id = $text('span[data-cy="task-modal-task-id-text"]', document);
   const title = $text(
     'textarea[data-cy="task-modal-task-name-text"]',
-    document
+    document,
   );
   const description = extractDescription(document);
 

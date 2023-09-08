@@ -5,7 +5,7 @@ describe("pretty-print", () => {
     expect(print("apply proper casing")).toBe("Apply proper casing");
     expect(print("[#42] capitalize subject")).toBe("[#42] Capitalize subject");
     expect(print("[#lowercase-id] capitalize subject")).toBe(
-      "[#lowercase-id] Capitalize subject"
+      "[#lowercase-id] Capitalize subject",
     );
   });
 

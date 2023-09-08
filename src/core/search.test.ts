@@ -50,7 +50,7 @@ describe("ticket search", () => {
 
   it("searches jira cloud before jira server", () => {
     expect(stdadapters.indexOf(JiraCloud)).toBeLessThan(
-      stdadapters.indexOf(JiraServer)
+      stdadapters.indexOf(JiraServer),
     );
   });
 });
