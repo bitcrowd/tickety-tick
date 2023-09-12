@@ -1,5 +1,5 @@
 import markdown from "prettier/plugins/markdown";
-import prettier from "prettier/standalone";
+import * as prettier from "prettier/standalone";
 import unindent from "strip-indent";
 
 const widths = { subject: 50, body: 72 };
