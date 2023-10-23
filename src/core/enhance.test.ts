@@ -11,16 +11,16 @@ describe("ticket enhancer", () => {
 
   const templates = defaults;
 
-  it('attaches format output to tickets as "fmt" property', () => {
-    const formatter = format(templates);
+  it('attaches format output to tickets as "fmt" property', async () => {
+    const fmt = format(templates);
     const enhancer = enhance(templates, false);
 
-    expect(enhancer(ticket)).toEqual({
+    expect(await enhancer(ticket)).toEqual({
       ...ticket,
       fmt: {
-        branch: formatter.branch(ticket),
-        commit: formatter.commit(ticket),
-        command: formatter.command(ticket),
+        branch: await fmt.branch(ticket),
+        commit: await fmt.commit(ticket),
+        command: await fmt.command(ticket),
       },
     });
   });

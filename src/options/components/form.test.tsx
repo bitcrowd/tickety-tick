@@ -9,7 +9,7 @@ import {
 } from "@testing-library/react";
 import React from "react";
 
-import format, { helpers } from "../../core/format";
+import format, { filters } from "../../core/format";
 import type { Props } from "./form";
 import Form from "./form";
 
@@ -38,9 +38,9 @@ describe("form", () => {
 
   beforeEach(() => {
     (format as jest.Mock).mockImplementation((templates, autofmt) => ({
-      commit: () => `formatted-commit (${autofmt})`,
-      branch: () => `formatted-branch (${autofmt})`,
-      command: () => `formatted-command (${autofmt})`,
+      commit: async () => `formatted-commit (${autofmt})`,
+      branch: async () => `formatted-branch (${autofmt})`,
+      command: async () => `formatted-command (${autofmt})`,
     }));
   });
 
@@ -94,7 +94,7 @@ describe("form", () => {
     const screen = render({});
     await waitForLoadingToFinish(screen);
 
-    Object.values(helpers).forEach((fn) => {
+    Object.values(filters).forEach((fn) => {
       expect(screen.container).toHaveTextContent(
         "description" in fn ? fn.description : fn.name
       );

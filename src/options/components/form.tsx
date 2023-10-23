@@ -4,9 +4,11 @@ import {
   GitBranchIcon,
   TerminalIcon,
 } from "@primer/octicons-react";
-import React, { useEffect, useState } from "react";
+import debounce from "lodash/debounce";
+import pick from "lodash/pick";
+import React, { useEffect, useMemo, useState } from "react";
 
-import format, { defaults, helpers } from "../../core/format";
+import format, { defaults, filters } from "../../core/format";
 import CheckboxInput from "./checkbox-input";
 import * as example from "./example";
 import type { Props as TemplateInputProps } from "./template-input";
@@ -65,19 +67,56 @@ function Form({ store }: Props) {
     setState({ ...state, loading: false });
   };
 
-  const { loading, autofmt, ...templates } = state;
+  const { loading, autofmt } = state;
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
+    const templates = pick(state, ["branch", "commit", "command"]);
     const options = { autofmt };
 
-    setState({ ...state, loading: true });
+    setState((prev) => ({ ...prev, loading: true }));
     store.set({ templates, options }).then(handleSaved);
   };
 
-  // Create a formatter for rendering previews
-  const fmt = format(templates, autofmt);
+  const [previews, setPreviews] = useState({
+    commit: "",
+    branch: "",
+    command: "",
+  });
+
+  const updatePreviewsDebounced = useMemo(
+    () =>
+      debounce(async (templates, autofmt) => {
+        const fmt = format(templates, autofmt);
+
+        setPreviews({
+          branch: await fmt.branch(example),
+          commit: await fmt.commit(example),
+          command: await fmt.command(example),
+        });
+      }, 160),
+    [setPreviews]
+  );
+
+  useEffect(
+    () =>
+      updatePreviewsDebounced(
+        {
+          branch: state.branch,
+          commit: state.commit,
+          command: state.command,
+        },
+        autofmt
+      ),
+    [
+      updatePreviewsDebounced,
+      state.branch,
+      state.commit,
+      state.command,
+      autofmt,
+    ]
+  );
 
   const fields = [
     {
@@ -85,9 +124,9 @@ function Form({ store }: Props) {
       label: "Commit Message Format",
       id: "commit-message-format",
       name: "commit",
-      value: templates.commit,
+      value: state.commit,
       fallback: defaults.commit,
-      preview: fmt.commit(example),
+      preview: previews.commit,
       multiline: true,
     },
     {
@@ -95,18 +134,18 @@ function Form({ store }: Props) {
       label: "Branch Name Format",
       id: "branch-name-format",
       name: "branch",
-      value: templates.branch,
+      value: state.branch,
       fallback: defaults.branch,
-      preview: fmt.branch(example),
+      preview: previews.branch,
     },
     {
       icon: <InputIcon icon={TerminalIcon} />,
       label: "Command Format",
       id: "command-format",
       name: "command",
-      value: templates.command,
+      value: state.command,
       fallback: defaults.command,
-      preview: fmt.command(example),
+      preview: previews.command,
     },
   ];
 
@@ -161,12 +200,12 @@ function Form({ store }: Props) {
           </div>
 
           <div className="col small">
-            Available Helpers:
+            Available Filters:
             <ul className="list-unstyled text-muted">
-              {Object.keys(helpers)
+              {Object.keys(filters)
                 .sort()
                 .map((name) => {
-                  const helper = helpers[name as keyof typeof helpers];
+                  const helper = filters[name as keyof typeof filters];
                   return (
                     <li key={name}>
                       {"description" in helper ? helper.description : name}
