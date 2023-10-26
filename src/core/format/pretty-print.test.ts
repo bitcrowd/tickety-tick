@@ -1,30 +1,30 @@
 import print from "./pretty-print";
 
 describe("pretty-print", () => {
-  it("capitalizes subject lines", () => {
-    expect(print("apply proper casing")).toBe("Apply proper casing");
-    expect(print("[#42] capitalize subject")).toBe("[#42] Capitalize subject");
-    expect(print("[#lowercase-id] capitalize subject")).toBe(
+  it("capitalizes subject lines", async () => {
+    expect(await print("apply proper casing")).toBe("Apply proper casing");
+    expect(await print("[#42] capitalize subject")).toBe("[#42] Capitalize subject");
+    expect(await print("[#lowercase-id] capitalize subject")).toBe(
       "[#lowercase-id] Capitalize subject",
     );
   });
 
-  it("wraps overlong subject lines", () => {
+  it("wraps overlong subject lines", async () => {
     const input =
       "Wrap commit subject lines with more than 50 characters and insert one blank line before the remaining subject text. Wrap the remaining subject text to 72 characters.";
-    expect(print(input)).toMatchSnapshot();
+    expect(await print(input)).toMatchSnapshot();
   });
 
-  it("wraps overlong body lines", () => {
+  it("wraps overlong body lines", async () => {
     const input = `Wrap body lines
 
 More detailed explanatory text is wrapped to 72 characters. The blank line separating the subject from the body is critical unless you omit the body entirely.
     `;
 
-    expect(print(input)).toMatchSnapshot();
+    expect(await print(input)).toMatchSnapshot();
   });
 
-  it("formats lists", () => {
+  it("formats lists", async () => {
     const input = `Format lists in body
 
 * Bullet points are okay too
@@ -33,10 +33,10 @@ single space, with blank lines in between, but conventions vary here
 * Use a hanging indent
     `;
 
-    expect(print(input)).toMatchSnapshot();
+    expect(await print(input)).toMatchSnapshot();
   });
 
-  it("strips leading and trailing blank lines and whitespace", () => {
+  it("strips leading and trailing blank lines and whitespace", async () => {
     const input = `
 
   Remove whitespace around subject line
@@ -52,10 +52,10 @@ Strip trailing whitespace (see end of this line).
 
     `;
 
-    expect(print(input)).toMatchSnapshot();
+    expect(await print(input)).toMatchSnapshot();
   });
 
-  it("strips body indentation", () => {
+  it("strips body indentation", async () => {
     const input = `Strip body indentation
 
       Unindent this line.
@@ -68,6 +68,6 @@ Strip trailing whitespace (see end of this line).
       And continue.
     `;
 
-    expect(print(input)).toMatchSnapshot();
+    expect(await print(input)).toMatchSnapshot();
   });
 });
