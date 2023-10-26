@@ -2,15 +2,15 @@ import type { Ticket, TicketWithFmt } from "../types";
 import format from "./format";
 import type { Templates } from "./format/types";
 
-function enhancer(templates: Partial<Templates>, autofmt: boolean) {
-  const fmt = format(templates, autofmt);
+async function enhancer(templates: Partial<Templates>, autofmt: boolean) {
+  const fmt = await format(templates, autofmt);
 
-  const enhance = (ticket: Ticket): TicketWithFmt =>
+  const enhance = async (ticket: Ticket): Promise<TicketWithFmt> =>
     Object.assign(ticket, {
       fmt: {
-        branch: fmt.branch(ticket),
-        commit: fmt.commit(ticket),
-        command: fmt.command(ticket),
+        branch: await fmt.branch(ticket),
+        commit: await fmt.commit(ticket),
+        command: await fmt.command(ticket),
       },
     });
 
