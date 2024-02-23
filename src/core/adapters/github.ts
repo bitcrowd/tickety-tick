@@ -18,9 +18,9 @@ import { hasRequiredDetails } from "./utils";
 export const selectors = {
   default: {
     issuesPage: ".js-check-all-container .js-issue-row.selected",
-    issuesPageLabel: ".labels .IssueLabel",
+    issuesPageLabel: ".lh-default .IssueLabel",
     issuePage: ".js-issues-results .gh-header-number",
-    issuePageLabel: '.js-issue-labels .sidebar-labels-style[title="bug"]',
+    issuePageLabel: '.js-issue-labels .IssueLabel[data-name="bug" i]',
   },
   legacy: {
     issuesPage: ".issues-listing .js-issue-row.selected",
