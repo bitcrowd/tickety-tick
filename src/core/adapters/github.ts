@@ -38,16 +38,21 @@ async function attempt(
   if ($has(select.issuesPage, doc)) {
     const issues = $all(select.issuesPage, doc);
 
-    const tickets = issues.map((issue) => {
+    const tickets = issues.reduce((acc, issue) => {
       const id = $value("input.js-issues-list-check", issue);
       const title = $text("a.js-navigation-open", issue);
+
+      if (!id || !title) return acc;
+
       const labels = $all(select.issuesPageLabel, issue);
       const type = labels.some((l) => /bug/i.test(`${l.textContent}`))
         ? "bug"
         : "feature";
 
-      return { id, title, type };
-    });
+      const ticket = { id, title, type };
+      acc.push(ticket);
+      return acc;
+    }, <TicketData[]>[]);
 
     return tickets;
   }
@@ -56,27 +61,11 @@ async function attempt(
   if ($has(select.issuePage, doc)) {
     const id = $text(".gh-header-number", doc)?.replace(/^#/, "");
     const title = $text(".js-issue-title", doc);
+
+    if (!id || !title) return [];
+
     const type = $has(select.issuePageLabel, doc) ? "bug" : "feature";
     const tickets = [{ id, title, type }];
-    return tickets;
-  }
-
-  // project page
-  if ($has(".project-columns .project-card", doc)) {
-    const openProjectCardSelector =
-      ".project-columns .project-card[data-card-state='[\"open\"]']";
-    const projectCards = $all(openProjectCardSelector, doc);
-
-    const tickets = projectCards.map((card) => {
-      const id = JSON.parse(card.dataset.cardTitle ?? "null").slice(-2, -1)[0];
-      const type = JSON.parse(card.dataset.cardLabel ?? "null").includes("bug")
-        ? "bug"
-        : "feature";
-      const title = $text("a.h5", card);
-
-      return { id, title, type };
-    });
-
     return tickets;
   }
 

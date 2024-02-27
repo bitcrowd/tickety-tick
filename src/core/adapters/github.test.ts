@@ -45,27 +45,6 @@ const pages = {
             </div>
           </div>
         </div>`,
-    projectpage: `
-        <div class="project-columns">
-          <div class="project-card"
-              data-card-state='["open"]'
-              data-card-label='["enhancement"]'
-              data-card-title='["an","example","feature","ticket","42","#42"]'>
-            <a class="h5">An Example Feature Ticket</a>
-          </div>
-          <div class="project-card"
-              data-card-state='["open"]'
-              data-card-label='["bug"]'
-              data-card-title='["an","example","bug","ticket","43","#43"]'>
-            <a class="h5">An Example Bug Ticket</a>
-          </div>
-          <div class="project-card"
-              data-card-state='["closed"]'
-              data-card-label='["bug"]'
-              data-card-title='["an","example","bug","ticket","which","was","closed","and","should","not","be","found","44","#44"]'>
-            <a class="h5">An Example Bug Ticket which was closed and should not be found</a>
-          </div>
-        </div>`,
   },
   legacy: {
     issuepage: `
@@ -108,28 +87,6 @@ const pages = {
           </li>
         </ul>
       </div>`,
-
-    projectpage: `
-      <div class="project-columns">
-        <div class="project-card"
-            data-card-state='["open"]'
-            data-card-label='["enhancement"]'
-            data-card-title='["an","example","feature","ticket","42","#42"]'>
-          <a class="h5">An Example Feature Ticket</a>
-        </div>
-        <div class="project-card"
-            data-card-state='["open"]'
-            data-card-label='["bug"]'
-            data-card-title='["an","example","bug","ticket","43","#43"]'>
-          <a class="h5">An Example Bug Ticket</a>
-        </div>
-        <div class="project-card"
-            data-card-state='["closed"]'
-            data-card-label='["bug"]'
-            data-card-title='["an","example","bug","ticket","which","was","closed","and","should","not","be","found","44","#44"]'>
-          <a class="h5">An Example Bug Ticket which was closed and should not be found</a>
-        </div>
-      </div>`,
   },
 };
 
@@ -139,7 +96,6 @@ const url = (path: string) =>
 Object.keys(selectors).forEach((variant) => {
   const html = pages[variant as keyof typeof selectors];
 
-  // eslint-disable-next-line jest/valid-describe
   describe(`github adapter (${variant})`, () => {
     function doc(body = "") {
       const { window } = new JSDOM(`<html><body>${body}</body></html>`);
@@ -183,24 +139,6 @@ Object.keys(selectors).forEach((variant) => {
           title: "A Selected GitHub Issue",
           type: "bug",
           url: "https://github.com/test-org/test-project/issues/12",
-        },
-      ]);
-    });
-
-    it("extracts tickets from project pages", async () => {
-      const result = await scan(url("projects/1"), doc(html.projectpage));
-      expect(result).toEqual([
-        {
-          id: "42",
-          title: "An Example Feature Ticket",
-          type: "feature",
-          url: "https://github.com/test-org/test-project/issues/42",
-        },
-        {
-          id: "43",
-          title: "An Example Bug Ticket",
-          type: "bug",
-          url: "https://github.com/test-org/test-project/issues/43",
         },
       ]);
     });
