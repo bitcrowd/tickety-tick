@@ -32,7 +32,7 @@ export const selectors = {
 
 async function attempt(
   doc: Document,
-  select: typeof selectors[keyof typeof selectors]
+  select: (typeof selectors)[keyof typeof selectors],
 ) {
   // issue list page
   if ($has(select.issuesPage, doc)) {

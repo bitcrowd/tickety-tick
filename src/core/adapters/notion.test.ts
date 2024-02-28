@@ -62,8 +62,8 @@ describe("notion adapter", () => {
     });
     const result = await scan(
       url(
-        `https://www.notion.so/notionuser/${slugId}?v=77ff97cab6ff4beab7fa6e27f992dd5e`
-      )
+        `https://www.notion.so/notionuser/${slugId}?v=77ff97cab6ff4beab7fa6e27f992dd5e`,
+      ),
     );
     expect(api.post).toHaveBeenCalledWith("api/v3/getRecordValues", {
       json: { requests: [{ table: "block", id }] },
@@ -86,7 +86,7 @@ describe("notion adapter", () => {
     const otherId = "7c1e7ee7-9107-4890-b2ec-83175b8edv99";
     const otherSlugId = otherId.replace(/-/g, "");
     const result = await scan(
-      url(`https://www.notion.so/notionuser/Some-ticket-${otherSlugId}`)
+      url(`https://www.notion.so/notionuser/Some-ticket-${otherSlugId}`),
     );
     expect(api.post).toHaveBeenCalledWith("api/v3/getRecordValues", {
       json: { requests: [{ table: "block", id: otherId }] },
@@ -97,8 +97,8 @@ describe("notion adapter", () => {
   it("extracts tickets from page modals (board view)", async () => {
     const result = await scan(
       url(
-        `https://www.notion.so/notionuser/0e8608aa770a4d36a246d7a3c64f51af?v=77ff97cab6ff4beab7fa6e27f992dd5e&p=${slugId}`
-      )
+        `https://www.notion.so/notionuser/0e8608aa770a4d36a246d7a3c64f51af?v=77ff97cab6ff4beab7fa6e27f992dd5e&p=${slugId}`,
+      ),
     );
     expect(api.post).toHaveBeenCalledWith("api/v3/getRecordValues", {
       json: { requests: [{ table: "block", id }] },

@@ -72,7 +72,7 @@ describe("jira cloud adapter", () => {
   it("uses the endpoints for the current host", async () => {
     await scan(url(`https://my-subdomain.atlassian.net/browse/${key}`), doc);
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/3"
+      "https://my-subdomain.atlassian.net/rest/api/3",
     );
     expect(api.get).toHaveBeenCalled();
   });
@@ -80,7 +80,7 @@ describe("jira cloud adapter", () => {
   it("extracts tickets from the active sprints tab", async () => {
     const result = await scan(
       url(`https://my-subdomain.atlassian.net/?selectedIssue=${key}`),
-      doc
+      doc,
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -89,9 +89,9 @@ describe("jira cloud adapter", () => {
   it("extracts tickets from the issues tab", async () => {
     const result = await scan(
       url(
-        `https://my-subdomain.atlassian.net/projects/TT/issues/${key}?filter=something`
+        `https://my-subdomain.atlassian.net/projects/TT/issues/${key}?filter=something`,
       ),
-      doc
+      doc,
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -100,7 +100,7 @@ describe("jira cloud adapter", () => {
   it("extracts tickets when browsing an issue", async () => {
     const result = await scan(
       url(`https://my-subdomain.atlassian.net/browse/${key}`),
-      doc
+      doc,
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -109,12 +109,12 @@ describe("jira cloud adapter", () => {
   it("extracts tickets from new generation software projects", async () => {
     const result = await scan(
       url(
-        `https://my-subdomain.atlassian.net/jira/software/projects/TT/boards/8?selectedIssue=${key}`
+        `https://my-subdomain.atlassian.net/jira/software/projects/TT/boards/8?selectedIssue=${key}`,
       ),
-      doc
+      doc,
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/3"
+      "https://my-subdomain.atlassian.net/rest/api/3",
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -123,12 +123,12 @@ describe("jira cloud adapter", () => {
   it("extracts tickets from new generation software projects from the board-URL", async () => {
     const result = await scan(
       url(
-        `https://my-subdomain.atlassian.net/jira/software/projects/TT/boards/7/backlog?selectedIssue=${key}`
+        `https://my-subdomain.atlassian.net/jira/software/projects/TT/boards/7/backlog?selectedIssue=${key}`,
       ),
-      doc
+      doc,
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/3"
+      "https://my-subdomain.atlassian.net/rest/api/3",
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -137,12 +137,12 @@ describe("jira cloud adapter", () => {
   it("extracts tickets from classic software projects from the board-URL", async () => {
     const result = await scan(
       url(
-        `https://my-subdomain.atlassian.net/jira/software/c/projects/TT/boards/7?selectedIssue=${key}`
+        `https://my-subdomain.atlassian.net/jira/software/c/projects/TT/boards/7?selectedIssue=${key}`,
       ),
-      doc
+      doc,
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/3"
+      "https://my-subdomain.atlassian.net/rest/api/3",
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -151,12 +151,12 @@ describe("jira cloud adapter", () => {
   it("extracts tickets from classic software projects from the backlog-URL", async () => {
     const result = await scan(
       url(
-        `https://my-subdomain.atlassian.net/jira/software/c/projects/TT/boards/7/backlog?selectedIssue=${key}`
+        `https://my-subdomain.atlassian.net/jira/software/c/projects/TT/boards/7/backlog?selectedIssue=${key}`,
       ),
-      doc
+      doc,
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-subdomain.atlassian.net/rest/api/3"
+      "https://my-subdomain.atlassian.net/rest/api/3",
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);

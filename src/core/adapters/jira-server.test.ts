@@ -61,7 +61,7 @@ describe("jira server adapter", () => {
   it("uses the endpoints for the current host", async () => {
     await scan(url(`https://my-domain.com/browse/${key}`), doc);
     expect(client).toHaveBeenCalledWith(
-      "https://my-domain.com/rest/api/latest"
+      "https://my-domain.com/rest/api/latest",
     );
     expect(api.get).toHaveBeenCalled();
   });
@@ -69,7 +69,7 @@ describe("jira server adapter", () => {
   it("extracts tickets from the active sprints tab", async () => {
     const result = await scan(
       url(`https://my-domain.com/?selectedIssue=${key}`),
-      doc
+      doc,
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -78,7 +78,7 @@ describe("jira server adapter", () => {
   it("extracts tickets from the issues tab", async () => {
     const result = await scan(
       url(`https://my-domain.com/projects/TT/issues/${key}?filter=something`),
-      doc
+      doc,
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -93,12 +93,12 @@ describe("jira server adapter", () => {
   it("extracts tickets from new generation software projects", async () => {
     const result = await scan(
       url(
-        `https://my-domain.com/jira/software/projects/TT/boards/8?selectedIssue=${key}`
+        `https://my-domain.com/jira/software/projects/TT/boards/8?selectedIssue=${key}`,
       ),
-      doc
+      doc,
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-domain.com/rest/api/latest"
+      "https://my-domain.com/rest/api/latest",
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -107,12 +107,12 @@ describe("jira server adapter", () => {
   it("extracts tickets from new generation software projects from the board-URL", async () => {
     const result = await scan(
       url(
-        `https://my-domain.com/jira/software/projects/TT/boards/7/backlog?selectedIssue=${key}`
+        `https://my-domain.com/jira/software/projects/TT/boards/7/backlog?selectedIssue=${key}`,
       ),
-      doc
+      doc,
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-domain.com/rest/api/latest"
+      "https://my-domain.com/rest/api/latest",
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -121,12 +121,12 @@ describe("jira server adapter", () => {
   it("extracts tickets from classic software projects from the board-URL", async () => {
     const result = await scan(
       url(
-        `https://my-domain.com/jira/software/c/projects/TT/boards/7?selectedIssue=${key}`
+        `https://my-domain.com/jira/software/c/projects/TT/boards/7?selectedIssue=${key}`,
       ),
-      doc
+      doc,
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-domain.com/rest/api/latest"
+      "https://my-domain.com/rest/api/latest",
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -135,12 +135,12 @@ describe("jira server adapter", () => {
   it("extracts tickets from classic software projects from the backlog-URL", async () => {
     const result = await scan(
       url(
-        `https://my-domain.com/jira/software/c/projects/TT/boards/7/backlog?selectedIssue=${key}`
+        `https://my-domain.com/jira/software/c/projects/TT/boards/7/backlog?selectedIssue=${key}`,
       ),
-      doc
+      doc,
     );
     expect(client).toHaveBeenCalledWith(
-      "https://my-domain.com/rest/api/latest"
+      "https://my-domain.com/rest/api/latest",
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -150,9 +150,9 @@ describe("jira server adapter", () => {
     const results = await Promise.all([
       scan(
         url(
-          `https://jira.local/prefix/secure/RapidBoard.jspa?selectedIssue=${key}`
+          `https://jira.local/prefix/secure/RapidBoard.jspa?selectedIssue=${key}`,
         ),
-        doc
+        doc,
       ),
       scan(url(`https://jira.local/prefix/projects/TT/issues/${key}`), doc),
       scan(url(`https://jira.local/prefix/browse/${key}`), doc),

@@ -4,7 +4,7 @@ import TextareaAutosize from "react-textarea-autosize";
 
 function shouldRenderAsTextarea(
   props: React.InputHTMLAttributes<HTMLInputElement> | TextareaAutosizeProps,
-  multiline: boolean
+  multiline: boolean,
 ): props is TextareaAutosizeProps {
   return multiline;
 }

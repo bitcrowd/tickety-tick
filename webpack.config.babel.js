@@ -203,7 +203,7 @@ config.when(process.env.BUNDLE === "true", (cfg) =>
       path: dist(),
       filename: variant,
     },
-  ])
+  ]),
 );
 
 export default config.toConfig();
