@@ -14,9 +14,9 @@ async function load() {
   const { tickets, errors } = await background.getTickets();
   const { options = {}, templates } = await store.get(null);
 
-  const enhancer = enhance(templates, options.autofmt);
+  const enhancer = await enhance(templates, options.autofmt);
 
-  render(tickets.map(enhancer), errors.map(deserialize));
+  render(await Promise.all(tickets.map(enhancer)), errors.map(deserialize));
 }
 
 window.onload = load;

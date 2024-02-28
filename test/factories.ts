@@ -3,6 +3,7 @@
 import type { Ticket, TicketWithFmt } from "../src/types";
 
 export function ticket(overrides: Partial<Ticket> = {}): TicketWithFmt {
+
   const defaults = { id: "1", title: "ticket title", type: "feature" };
 
   const base = { ...defaults, ...overrides };
