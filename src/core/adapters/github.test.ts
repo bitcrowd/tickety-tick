@@ -22,49 +22,27 @@ const pages = {
           <span class="gh-header-number">#12</span>
         </h1>
         <div class="js-issue-labels">
-          <a class="sidebar-labels-style" title="bug">bug</a>
+          <a class="IssueLabel hx_IssueLabel" data-name="bug">bug</a>
         </div>
       </div>`,
     indexpage: `
         <div class="js-check-all-container">
-          <ul>
-            <li id="issue_12" class="js-issue-row selected">
+          <div>
+            <div id="issue_12" class="js-issue-row selected">
               <input type="checkbox" class="js-issues-list-check" name="issues[]" value="12">
               <a href="/bitcrowd/tickety-tick/issues/12" class="h4 js-navigation-open">
                 A Selected GitHub Issue
               </a>
-              <span class="labels">
+              <span class="lh-default">
                 <a href="#" class="IssueLabel">bug</a>
               </span>
-            </li>
-            <li id="issue_11" class="js-issue-row">
+            </div>
+            <div id="issue_11" class="js-issue-row">
               <input type="checkbox" class="js-issues-list-check" name="issues[]" value="11">
               <a href="/bitcrowd/tickety-tick/issues/11" class="h4 js-navigation-open">
                 A GitHub Issue
               </a>
-              <span class="labels"></span>
-            </li>
-          </ul>
-        </div>`,
-    projectpage: `
-        <div class="project-columns">
-          <div class="project-card"
-              data-card-state='["open"]'
-              data-card-label='["enhancement"]'
-              data-card-title='["an","example","feature","ticket","42","#42"]'>
-            <a class="h5">An Example Feature Ticket</a>
-          </div>
-          <div class="project-card"
-              data-card-state='["open"]'
-              data-card-label='["bug"]'
-              data-card-title='["an","example","bug","ticket","43","#43"]'>
-            <a class="h5">An Example Bug Ticket</a>
-          </div>
-          <div class="project-card"
-              data-card-state='["closed"]'
-              data-card-label='["bug"]'
-              data-card-title='["an","example","bug","ticket","which","was","closed","and","should","not","be","found","44","#44"]'>
-            <a class="h5">An Example Bug Ticket which was closed and should not be found</a>
+            </div>
           </div>
         </div>`,
   },
@@ -109,28 +87,6 @@ const pages = {
           </li>
         </ul>
       </div>`,
-
-    projectpage: `
-      <div class="project-columns">
-        <div class="project-card"
-            data-card-state='["open"]'
-            data-card-label='["enhancement"]'
-            data-card-title='["an","example","feature","ticket","42","#42"]'>
-          <a class="h5">An Example Feature Ticket</a>
-        </div>
-        <div class="project-card"
-            data-card-state='["open"]'
-            data-card-label='["bug"]'
-            data-card-title='["an","example","bug","ticket","43","#43"]'>
-          <a class="h5">An Example Bug Ticket</a>
-        </div>
-        <div class="project-card"
-            data-card-state='["closed"]'
-            data-card-label='["bug"]'
-            data-card-title='["an","example","bug","ticket","which","was","closed","and","should","not","be","found","44","#44"]'>
-          <a class="h5">An Example Bug Ticket which was closed and should not be found</a>
-        </div>
-      </div>`,
   },
 };
 
@@ -140,7 +96,6 @@ const url = (path: string) =>
 Object.keys(selectors).forEach((variant) => {
   const html = pages[variant as keyof typeof selectors];
 
-  // eslint-disable-next-line jest/valid-describe
   describe(`github adapter (${variant})`, () => {
     function doc(body = "") {
       const { window } = new JSDOM(`<html><body>${body}</body></html>`);
@@ -184,24 +139,6 @@ Object.keys(selectors).forEach((variant) => {
           title: "A Selected GitHub Issue",
           type: "bug",
           url: "https://github.com/test-org/test-project/issues/12",
-        },
-      ]);
-    });
-
-    it("extracts tickets from project pages", async () => {
-      const result = await scan(url("projects/1"), doc(html.projectpage));
-      expect(result).toEqual([
-        {
-          id: "42",
-          title: "An Example Feature Ticket",
-          type: "feature",
-          url: "https://github.com/test-org/test-project/issues/42",
-        },
-        {
-          id: "43",
-          title: "An Example Bug Ticket",
-          type: "bug",
-          url: "https://github.com/test-org/test-project/issues/43",
         },
       ]);
     });
