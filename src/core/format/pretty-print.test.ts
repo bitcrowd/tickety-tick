@@ -3,7 +3,9 @@ import print from "./pretty-print";
 describe("pretty-print", () => {
   it("capitalizes subject lines", async () => {
     expect(await print("apply proper casing")).toBe("Apply proper casing");
-    expect(await print("[#42] capitalize subject")).toBe("[#42] Capitalize subject");
+    expect(await print("[#42] capitalize subject")).toBe(
+      "[#42] Capitalize subject",
+    );
     expect(await print("[#lowercase-id] capitalize subject")).toBe(
       "[#lowercase-id] Capitalize subject",
     );

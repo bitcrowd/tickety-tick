@@ -38,21 +38,24 @@ async function attempt(
   if ($has(select.issuesPage, doc)) {
     const issues = $all(select.issuesPage, doc);
 
-    const tickets = issues.reduce((acc, issue) => {
-      const id = $value("input.js-issues-list-check", issue);
-      const title = $text("a.js-navigation-open", issue);
+    const tickets = issues.reduce(
+      (acc, issue) => {
+        const id = $value("input.js-issues-list-check", issue);
+        const title = $text("a.js-navigation-open", issue);
 
-      if (!id || !title) return acc;
+        if (!id || !title) return acc;
 
-      const labels = $all(select.issuesPageLabel, issue);
-      const type = labels.some((l) => /bug/i.test(`${l.textContent}`))
-        ? "bug"
-        : "feature";
+        const labels = $all(select.issuesPageLabel, issue);
+        const type = labels.some((l) => /bug/i.test(`${l.textContent}`))
+          ? "bug"
+          : "feature";
 
-      const ticket = { id, title, type };
-      acc.push(ticket);
-      return acc;
-    }, <TicketData[]>[]);
+        const ticket = { id, title, type };
+        acc.push(ticket);
+        return acc;
+      },
+      <TicketData[]>[],
+    );
 
     return tickets;
   }
