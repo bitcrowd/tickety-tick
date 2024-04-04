@@ -14,7 +14,7 @@ import type { Props } from "./form";
 import Form from "./form";
 
 jest.mock("../../core/format", () =>
-  Object.assign(jest.fn(), jest.requireActual("../../core/format"))
+  Object.assign(jest.fn(), jest.requireActual("../../core/format")),
 );
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -96,7 +96,7 @@ describe("form", () => {
 
     Object.values(helpers).forEach((fn) => {
       expect(screen.container).toHaveTextContent(
-        "description" in fn ? fn.description : fn.name
+        "description" in fn ? fn.description : fn.name,
       );
     });
   });
