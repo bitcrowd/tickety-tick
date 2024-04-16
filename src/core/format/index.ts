@@ -15,15 +15,23 @@ function format<T extends Ticket>(
   return (ticket: T) => render(ticket).trim();
 }
 
-export default async (
+function formatCommit(templates: Partial<Templates>, prettify: boolean) {
+  return async (ticket: Ticket) => {
+    let formattedCommit = format(templates, "commit")(ticket);
+    if (prettify) {
+      formattedCommit = await pprint(formattedCommit);
+    }
+    return formattedCommit;
+  };
+}
+
+export default (
   templates: Partial<Templates> = {},
   prettify = true,
-): Promise<Formatter> => {
+): Formatter => {
   const branch = format(templates, "branch");
 
-  const commit = prettify
-    ? async (ticket: Ticket) => pprint(format(templates, "commit")(ticket))
-    : format(templates, "commit");
+  const commit = formatCommit(templates, prettify);
 
   const command = async (ticket: Ticket) =>
     format<Ticket & { branch: string; commit: string }>(

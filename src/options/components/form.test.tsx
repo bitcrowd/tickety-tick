@@ -37,10 +37,12 @@ describe("form", () => {
   }
 
   beforeEach(() => {
-    (format as jest.Mock).mockImplementation((templates, autofmt) => ({
-      commit: () => `formatted-commit (${autofmt})`,
+    (format as jest.Mock).mockImplementation((_templates, autofmt) => ({
+      commit: () =>
+        new Promise((resolve) => resolve(`formatted-commit (${autofmt})`)),
       branch: () => `formatted-branch (${autofmt})`,
-      command: () => `formatted-command (${autofmt})`,
+      command: () =>
+        new Promise((resolve) => resolve(`formatted-command (${autofmt})`)),
     }));
   });
 
@@ -87,7 +89,9 @@ describe("form", () => {
 
     expect(checkbox).not.toBeChecked();
     expect(format).toHaveBeenLastCalledWith(expect.any(Object), false);
-    expect(screen.getByText("formatted-commit (false)")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("formatted-commit (false)")).toBeInTheDocument();
+    });
   });
 
   it("renders the names & descriptions of available template helpers", async () => {
