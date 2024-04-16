@@ -1,11 +1,12 @@
 import type { Ticket } from "../../types";
 
-type FormatFunction = (ticket: Ticket) => Promise<string>;
+type AsyncFormatFunction = (ticket: Ticket) => Promise<string>;
+type FormatFunction = (ticket: Ticket) => string;
 
 export interface Formatter {
   branch: FormatFunction;
-  commit: FormatFunction;
-  command: FormatFunction;
+  commit: AsyncFormatFunction;
+  command: AsyncFormatFunction;
 }
 
 export type Templates = {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type { TextareaAutosizeProps } from "react-textarea-autosize";
 import TextareaAutosize from "react-textarea-autosize";
 
@@ -27,6 +27,8 @@ function TemplateInputElement({
 
 const noop = () => undefined;
 
+const isPromise = (input: Promise<string> | string) => input instanceof Promise;
+
 export type Props = {
   disabled: boolean;
   fallback: string;
@@ -36,7 +38,7 @@ export type Props = {
   name: string;
   multiline?: boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  preview: string;
+  preview: string | Promise<string>;
   value: string;
 };
 
@@ -53,6 +55,17 @@ function TemplateInput(props: Props) {
     onChange,
     preview,
   } = props;
+
+  const [previewString, setPreviewString] = useState(
+    isPromise(preview) ? "" : preview,
+  );
+
+  useEffect(() => {
+    if (isPromise(preview)) {
+      const setPreview = async () => setPreviewString(await preview);
+      setPreview();
+    }
+  }, [preview]);
 
   const setValue = (newValue: string) =>
     onChange({
@@ -87,7 +100,7 @@ function TemplateInput(props: Props) {
       <div className="card">
         <div className="card-body">
           <pre className="small text-muted mw-100ch m-0 overflow-auto">
-            {preview}
+            {previewString}
           </pre>
         </div>
       </div>
