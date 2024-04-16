@@ -71,7 +71,7 @@ describe("form", () => {
   });
 
   it("renders a checkbox to toggle commit message auto-formatting", async () => {
-    const store = createMockStore({ options: { autofmt: false } });
+    const store = createMockStore({ options: { autofmt: true } });
     const screen = render({ store });
 
     await waitForLoadingToFinish(screen);
@@ -81,15 +81,17 @@ describe("form", () => {
       exact: false,
     });
 
-    // expect(checkbox).toBeChecked();
-    // expect(format).toHaveBeenCalledWith(expect.any(Object), true);
-    // expect(screen.getByText("formatted-commit (true)")).toBeInTheDocument();
+    expect(checkbox).toBeChecked();
+    expect(format).toHaveBeenCalledWith(expect.any(Object), true);
+    expect(screen.getByText("formatted-commit (true)")).toBeInTheDocument();
 
-    // fireEvent.click(checkbox);
+    fireEvent.click(checkbox);
 
     expect(checkbox).not.toBeChecked();
     expect(format).toHaveBeenLastCalledWith(expect.any(Object), false);
-    expect(screen.getByText("formatted-commit (false)")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("formatted-commit (false)")).toBeInTheDocument();
+    });
   });
 
   it("renders the names & descriptions of available template helpers", async () => {
