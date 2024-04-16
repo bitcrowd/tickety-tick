@@ -2,8 +2,6 @@
  * @jest-environment node
  */
 
-import { JSDOM } from "jsdom";
-
 import client from "../client";
 import scan from "./jira-cloud";
 
@@ -41,9 +39,7 @@ const ticket = {
 };
 
 describe("jira cloud adapter", () => {
-  const dom = new JSDOM('<html><body id="jira">…</body"</html>');
   const url = (str: string) => new URL(str);
-  const doc = dom.window.document;
 
   const api = { get: jest.fn() };
 
