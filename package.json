@@ -20,6 +20,7 @@
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "stylelint": "stylelint --ignore-path .gitignore 'src/**/*.scss'",
     "test": "jest",
+    "typecheck": "tsc --noEmit",
     "checks": "run-s stylelint lint test",
     "prepare-release": "./script/prepare-release",
     "release": "./script/release"

@@ -2,8 +2,6 @@
  * @jest-environment node
  */
 
-import { JSDOM } from "jsdom";
-
 import client from "../client";
 import scan from "./jira-cloud";
 
@@ -41,9 +39,7 @@ const ticket = {
 };
 
 describe("jira cloud adapter", () => {
-  const dom = new JSDOM('<html><body id="jira">…</body"</html>');
   const url = (str: string) => new URL(str);
-  const doc = dom.window.document;
 
   const api = { get: jest.fn() };
 
@@ -58,19 +54,19 @@ describe("jira cloud adapter", () => {
   });
 
   it("returns an empty array when on a different host", async () => {
-    const result = await scan(url("https://another-domain.com"), doc);
+    const result = await scan(url("https://another-domain.com"));
     expect(api.get).not.toHaveBeenCalled();
     expect(result).toEqual([]);
   });
 
   it("returns null when no issue is selected", async () => {
-    const result = await scan(url("https://my-subdomain.atlassian.com"), doc);
+    const result = await scan(url("https://my-subdomain.atlassian.com"));
     expect(api.get).not.toHaveBeenCalled();
     expect(result).toEqual([]);
   });
 
   it("uses the endpoints for the current host", async () => {
-    await scan(url(`https://my-subdomain.atlassian.net/browse/${key}`), doc);
+    await scan(url(`https://my-subdomain.atlassian.net/browse/${key}`));
     expect(client).toHaveBeenCalledWith(
       "https://my-subdomain.atlassian.net/rest/api/3",
     );
@@ -80,7 +76,6 @@ describe("jira cloud adapter", () => {
   it("extracts tickets from the active sprints tab", async () => {
     const result = await scan(
       url(`https://my-subdomain.atlassian.net/?selectedIssue=${key}`),
-      doc,
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -91,7 +86,6 @@ describe("jira cloud adapter", () => {
       url(
         `https://my-subdomain.atlassian.net/projects/TT/issues/${key}?filter=something`,
       ),
-      doc,
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -100,7 +94,6 @@ describe("jira cloud adapter", () => {
   it("extracts tickets when browsing an issue", async () => {
     const result = await scan(
       url(`https://my-subdomain.atlassian.net/browse/${key}`),
-      doc,
     );
     expect(api.get).toHaveBeenCalledWith(`issue/${key}`);
     expect(result).toEqual([ticket]);
@@ -111,7 +104,6 @@ describe("jira cloud adapter", () => {
       url(
         `https://my-subdomain.atlassian.net/jira/software/projects/TT/boards/8?selectedIssue=${key}`,
       ),
-      doc,
     );
     expect(client).toHaveBeenCalledWith(
       "https://my-subdomain.atlassian.net/rest/api/3",
@@ -125,7 +117,6 @@ describe("jira cloud adapter", () => {
       url(
         `https://my-subdomain.atlassian.net/jira/software/projects/TT/boards/7/backlog?selectedIssue=${key}`,
       ),
-      doc,
     );
     expect(client).toHaveBeenCalledWith(
       "https://my-subdomain.atlassian.net/rest/api/3",
@@ -139,7 +130,6 @@ describe("jira cloud adapter", () => {
       url(
         `https://my-subdomain.atlassian.net/jira/software/c/projects/TT/boards/7?selectedIssue=${key}`,
       ),
-      doc,
     );
     expect(client).toHaveBeenCalledWith(
       "https://my-subdomain.atlassian.net/rest/api/3",
@@ -153,7 +143,6 @@ describe("jira cloud adapter", () => {
       url(
         `https://my-subdomain.atlassian.net/jira/software/c/projects/TT/boards/7/backlog?selectedIssue=${key}`,
       ),
-      doc,
     );
     expect(client).toHaveBeenCalledWith(
       "https://my-subdomain.atlassian.net/rest/api/3",

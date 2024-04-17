@@ -74,6 +74,14 @@ jobs:
       - store_test_results:
           path: reports
 
+  typecheck:
+    executor: base
+    steps:
+      - restore_pwd
+      - run:
+          name: Run tsc
+          command: yarn typecheck
+
   test:
     executor: base
     steps:
@@ -131,6 +139,9 @@ workflows:
           requires:
             - setup
       - stylelint:
+          requires:
+            - setup
+      - typecheck:
           requires:
             - setup
       - test:
