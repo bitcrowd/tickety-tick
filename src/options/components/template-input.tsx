@@ -99,7 +99,10 @@ function TemplateInput(props: Props) {
       </div>
       <div className="card">
         <div className="card-body">
-          <pre className="small text-muted mw-100ch m-0 overflow-auto">
+          <pre
+            data-testid="preview"
+            className="small text-muted mw-100ch m-0 overflow-auto"
+          >
             {previewString}
           </pre>
         </div>
