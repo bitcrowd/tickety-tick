@@ -21,7 +21,7 @@
     "stylelint": "stylelint --ignore-path .gitignore 'src/**/*.scss'",
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "checks": "run-s stylelint lint test",
+    "checks": "run-s stylelint lint typecheck test",
     "prepare-release": "./script/prepare-release",
     "release": "./script/release"
   },
