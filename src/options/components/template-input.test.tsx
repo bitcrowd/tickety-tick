@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import React from "react";
 
 import type { Props, TemplateInputElementProps } from "./template-input";
@@ -30,6 +30,33 @@ describe("template-input", () => {
     const input = screen.getByRole("textbox", { name: label });
 
     expect(input).toBeInTheDocument();
+  });
+
+  it("renders a code preview", () => {
+    const preview = "# Markdown Preview\nWith <code>html</code>";
+    const screen = subject({ id: "id-1", preview });
+    const preformatted = screen.getByTestId("preview");
+
+    expect(preformatted).toBeInTheDocument();
+    expect(preformatted).toHaveTextContent(
+      "# Markdown Preview With <code>html</code>",
+    );
+  });
+
+  it("renders a code preview for an async preview value", async () => {
+    const preview = new Promise<string>((resolve) =>
+      resolve("# Markdown Preview\nWith <code>html</code>"),
+    );
+    const screen = subject({ id: "id-1", preview });
+
+    const preformatted = screen.getByTestId("preview");
+
+    await waitFor(() => {
+      expect(preformatted).toBeInTheDocument();
+      expect(preformatted).toHaveTextContent(
+        "# Markdown Preview With <code>html</code>",
+      );
+    });
   });
 
   it("renders an input label icon", () => {
