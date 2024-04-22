@@ -8557,10 +8557,10 @@ mdast-util-find-and-replace@^2.0.0:
     unist-util-is "^5.0.0"
     unist-util-visit-parents "^4.0.0"
 
-mdast-util-from-adf@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/mdast-util-from-adf/-/mdast-util-from-adf-2.1.0.tgz#bef4bc9cdd4979e34d4033a98cf4ed6a0c0aa8fc"
-  integrity sha512-JjQrthlokpsesMiZYFuEXO+PBq2LEf9aitY5UjewmBuOz/iCAPsKRh33FplvFBsbMz2obPgETD7eHFEjVGyLvg==
+mdast-util-from-adf@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/mdast-util-from-adf/-/mdast-util-from-adf-2.1.1.tgz#47b5feef6e1be1be9707f4dd2f943cd6c3d991a7"
+  integrity sha512-Ix4uzX6445GtuwpS7AxIoTYUPOgH8WAqkKTr4lB81vPvUcHNFfJjIFteFZLE1fk86jdtryr5aR4/68FCLUCpAA==
   dependencies:
     "@atlaskit/adf-schema" "^24.0.0"
     "@types/mdast" "^3.0.0"
