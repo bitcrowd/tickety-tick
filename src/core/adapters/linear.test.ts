@@ -11,7 +11,7 @@ const pages = {
     url: new URL(
       "https://linear.app/my_team/issue/FOO-1/do-something-interesting",
     ),
-    document: "<span title='Edit issue title'>Do something interesting</span>",
+    document: "<title>FOO-1 Do something interesting</title>",
   },
 };
 
