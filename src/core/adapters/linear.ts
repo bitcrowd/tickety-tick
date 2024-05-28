@@ -17,7 +17,8 @@ async function scan(url: URL, document: Document): Promise<TicketData[]> {
   if (url.hostname !== "linear.app") return [];
 
   const { id, issueType } = match("/:team/:issueType/:id/:slug", url.pathname);
-  const title = $text('[title="Edit issue title"]', document);
+  const pageTitle = $text("title", document);
+  const title = pageTitle && pageTitle.substring(id.length + 1);
 
   if (!id) return [];
 
