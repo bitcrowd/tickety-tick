@@ -1,6 +1,7 @@
 import type { ErrorObject } from "../errors";
 import { serialize } from "../errors";
 import type { Ticket } from "../types";
+import Clickup from "./adapters/clickup";
 import GitHub from "./adapters/github";
 import GitLab from "./adapters/gitlab";
 import JiraCloud from "./adapters/jira-cloud";
@@ -47,6 +48,7 @@ const stdadapters: Adapter[] = [
   Notion,
   Tara,
   Trello,
+  Clickup,
 ];
 
 export { search, stdadapters };
