@@ -159,14 +159,11 @@ config.plugin("copy").use(CopyWebpackPlugin, [
           mf.description = pkg.description;
 
           if (variant === "firefox") {
-            // mf.options_ui.browser_style = true;
             mf.browser_specific_settings = {
               gecko: {
                 id: "jid1-ynkvezs8Qn2TJA@jetpack",
               },
             };
-          } else {
-            mf.options_ui.chrome_style = true;
           }
 
           return JSON.stringify(mf);
