@@ -159,8 +159,8 @@ config.plugin("copy").use(CopyWebpackPlugin, [
           mf.description = pkg.description;
 
           if (variant === "firefox") {
-            mf.options_ui.browser_style = true;
-            mf.applications = {
+            // mf.options_ui.browser_style = true;
+            mf.browser_specific_settings = {
               gecko: {
                 id: "jid1-ynkvezs8Qn2TJA@jetpack",
               },
