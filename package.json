@@ -112,6 +112,6 @@
     "serialize-error": "^9.0.0",
     "speakingurl": "14.0.1",
     "strip-indent": "^4.0.0",
-    "webextension-polyfill": "^0.8.0"
+    "webextension-polyfill": "^0.12.0"
   }
 }
