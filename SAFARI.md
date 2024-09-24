@@ -11,7 +11,7 @@ You’ll also need a signing certificate.
 The easiest way to create one might be this:
 
 1. Open Xcode
-2. Go to Preferences > Accounts
+2. Go to Xcode -> Settings > Accounts
 3. Add an account of type “Apple ID”
 
 — https://help.apple.com/xcode/mac/current/#/dev154b28f09
