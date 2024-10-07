@@ -12,7 +12,7 @@ const tree = [repo, "tree", COMMITHASH].join("/");
 
 export type Props = Record<string, never>;
 
-function About(_: Props) {
+function About(_: Props): React.ReactNode {
   return (
     <>
       <Navbar>
