@@ -28,8 +28,13 @@ function close() {
   window.close();
 }
 
-export type Props = React.PropsWithChildren<{ value: string }> &
-  React.HTMLAttributes<HTMLButtonElement>;
+export type Props = {
+  value: string;
+  children?:
+    | undefined
+    | React.ReactNode
+    | ((copied: boolean) => React.ReactNode);
+} & Omit<React.HTMLAttributes<HTMLButtonElement>, "children">;
 
 function CopyButton({ children = null, value, ...rest }: Props) {
   const [copied, setCopied] = useState(false);
