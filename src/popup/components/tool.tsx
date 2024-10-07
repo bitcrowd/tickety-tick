@@ -21,7 +21,7 @@ export type Props = {
   errors: Error[];
 };
 
-function Tool({ tickets, errors }: Props) {
+function Tool({ tickets, errors }: Props): React.ReactElement {
   async function onClickSettingsLink(event: React.MouseEvent) {
     event.preventDefault();
     await openOptions();

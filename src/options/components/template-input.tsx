@@ -56,8 +56,8 @@ function TemplateInput(props: Props) {
     preview,
   } = props;
 
-  const [previewString, setPreviewString] = useState(
-    isPromise(preview) ? "" : preview,
+  const [previewString, setPreviewString] = useState<string>(
+    isPromise(preview) ? "" : (preview as string),
   );
 
   useEffect(() => {
