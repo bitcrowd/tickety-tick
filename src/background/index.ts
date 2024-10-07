@@ -1,15 +1,16 @@
 import browser from "webextension-polyfill";
 
-import type { BackgroundMessage } from "../popup/types";
+import type { BackgroundMessage, ContentMessage } from "../types";
 
 async function getTickets() {
+  const message: ContentMessage = { tickets: true };
   const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
-  const results = await browser.tabs.sendMessage(tab.id!, { tickets: true }); // eslint-disable-line @typescript-eslint/no-non-null-assertion
+  const results = await browser.tabs.sendMessage(tab.id!, message); // eslint-disable-line @typescript-eslint/no-non-null-assertion
   return results;
 }
 
-async function handleMessage(msg: BackgroundMessage) {
-  if (msg.getTickets) {
+async function handleMessage(message: unknown) {
+  if ((message as BackgroundMessage).getTickets) {
     return getTickets();
   }
   return null;

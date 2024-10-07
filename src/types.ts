@@ -13,3 +13,11 @@ export type Fmt = {
 };
 
 export type TicketWithFmt = Ticket & { fmt: Fmt };
+
+export type BackgroundMessage = {
+  getTickets?: boolean;
+};
+
+export type ContentMessage = {
+  tickets?: boolean;
+};

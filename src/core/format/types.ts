@@ -14,3 +14,7 @@ export type Templates = {
   commit: string;
   command: string;
 };
+
+export type Options = {
+  autofmt: boolean;
+};

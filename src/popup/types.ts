@@ -8,7 +8,3 @@ export type BackgroundPage = Window & {
 export type BackgroundWorker = {
   getTickets: () => { tickets: Ticket[]; errors: ErrorObject[] };
 };
-
-export type BackgroundMessage = {
-  getTickets?: boolean;
-};
