@@ -78,7 +78,6 @@ describe("form", () => {
 
     const checkbox = screen.getByRole("checkbox", {
       name: /Auto-format commit message/,
-      exact: false,
     });
 
     expect(checkbox).toBeChecked();
@@ -121,7 +120,6 @@ describe("form", () => {
 
     const checkbox = screen.getByRole("checkbox", {
       name: /Auto-format commit message/,
-      exact: false,
     });
     const inputs = [
       ["branch", "Branch Name Format"],
