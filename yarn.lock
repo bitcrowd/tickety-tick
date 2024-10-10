@@ -10862,12 +10862,12 @@ semver@^7.3.2, semver@^7.3.4, semver@^7.3.5, semver@^7.3.8:
   dependencies:
     lru-cache "^6.0.0"
 
-serialize-error@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/serialize-error/-/serialize-error-9.0.0.tgz#9b8a83dcbb2a61fa50d016b155f1b2884587825e"
-  integrity sha512-g2bg8Axwii7KlEkLAKXbLuGXS8rkvEdOY7VAlh8OpvG7lZH6Fcj3cyWVPU7HhiJMIe/1udV+Te3ON0Ch3TFlWQ==
+serialize-error@^11.0.3:
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/serialize-error/-/serialize-error-11.0.3.tgz#b54f439e15da5b4961340fbbd376b6b04aa52e92"
+  integrity sha512-2G2y++21dhj2R7iHAdd0FIzjGwuKZld+7Pl/bTU6YIkrC2ZMbVUjm+luj6A6V34Rv9XfKJDKpTWu9W4Gse1D9g==
   dependencies:
-    type-fest "^2.5.3"
+    type-fest "^2.12.2"
 
 serialize-javascript@^6.0.0:
   version "6.0.0"
@@ -11732,10 +11732,10 @@ type-fest@^1.0.1, type-fest@^1.2.1, type-fest@^1.2.2:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-1.4.0.tgz#e9fb813fe3bf1744ec359d55d1affefa76f14be1"
   integrity sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==
 
-type-fest@^2.5.3:
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.5.3.tgz#2538287381b24d0c1d4911279934f28aaa10d620"
-  integrity sha512-7VNmE7FlsrdcWjKbtuRuynZz96Gmf35p5DvoR2tbceNP0vd58ISx87PvUUInlhtRC49vSX6qlxEKc7AoiHRirg==
+type-fest@^2.12.2:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
+  integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
 
 type-fest@^3.8.0:
   version "3.13.1"
