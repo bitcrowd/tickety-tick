@@ -187,16 +187,13 @@ To view an HTML version of the report:
 open coverage/lcov-report/index.html
 ```
 
-### Building releases
+### Releasing a new version
 
-Chrome Web Store and Firefox Add-ons require you to submit extensions as a single zip archive. To build and zip the extension for a release, run:
+Optionally check the extension configuration first _(a bug in Chrome [this issue](https://github.com/mozilla/web-ext/issues/3213) currently causes an error)_:
 
 ```shell
-yarn bundle:chrome
-yarn bundle:firefox
+yarn lint:ext
 ```
-
-### Releasing a new version
 
 Prepare the release by bumping the version and submitting the change as a pull request:
 

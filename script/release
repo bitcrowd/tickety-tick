@@ -36,6 +36,11 @@ gh release create "$tag" \
   --verify-tag \
   ./dist/*.zip
 
+gh release download "$tag"\
+  --archive=zip \
+  --clobber \
+  --output="release-artifacts/tickety_tick-${tag##v}.zip"
+
 if has op; then
   apikey=$(op item get "bgi26drb3naqhipfmt5wth6634" --field key)
   apisecret=$(op item get "bgi26drb3naqhipfmt5wth6634" --field secret)
@@ -60,14 +65,14 @@ yarn web-ext sign \
   --api-key "$apikey" \
   --api-secret "$apisecret" \
   --source-dir ./dist/firefox \
-  --use-submission-api \
-  --channel=listed
+  --channel=listed \
+  --upload-source-code="release-artifacts/tickety_tick-${tag##v}.zip"
 
 printf "\n\n"
 
 gh release upload \
   "$tag" \
-  "web-ext-artifacts/tickety_tick-${tag##v}.xpi"
+  "release-artifacts/tickety_tick-${tag##v}.xpi"
 
 printf "\n\n"
 
@@ -81,11 +86,5 @@ yarn chrome-webstore-upload upload \
 
 cat <<EOS
 Edit the auto-generated release notes on GitHub as necessary:
-https://github.com/bitcrowd/tickety-tick/releases/tag/$tag
-
-Do not forget to upload a source code archive for the new release here:
-https://addons.mozilla.org/developers/addon/tickety-tick/versions
-
-You can grab a source code archive here:
 https://github.com/bitcrowd/tickety-tick/releases/tag/$tag
 EOS
