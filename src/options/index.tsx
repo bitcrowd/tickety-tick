@@ -1,11 +1,12 @@
 import "./index.scss";
 
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 
 import store from "../store";
 import Form from "./components/form";
 
-const root = document.getElementById("options-root");
+const domNode = document.getElementById("options-root");
+const root = createRoot(domNode!);
 const element = <Form store={store} />;
-ReactDOM.render(element, root);
+root.render(element);

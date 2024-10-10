@@ -1,6 +1,8 @@
 import React from "react";
 
-export type Props = React.AnchorHTMLAttributes<HTMLAnchorElement>;
+export type Props = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  href: string;
+};
 
 function ExternalLink({ children, href, ...other }: Props) {
   return (

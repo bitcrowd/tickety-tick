@@ -10,7 +10,7 @@ describe("template-input", () => {
       id: "template-input-id",
       name: "template-input-name",
       label: "template-label",
-      icon: <span>icon</span>,
+      icon: <svg />,
       value: "template-value",
       fallback: "template-fallback",
       disabled: false,
