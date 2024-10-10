@@ -75,6 +75,8 @@
       }
     ],
     "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "react/prop-types": "off",
     "simple-import-sort/exports": "error",
     "simple-import-sort/imports": "error"
   }
