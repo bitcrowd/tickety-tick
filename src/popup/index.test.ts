@@ -10,14 +10,20 @@ import enhance from "../core/enhance";
 import { deserialize } from "../errors";
 import store from "../store";
 import render from "./render";
-import type { BackgroundPage } from "./types";
+import type { BackgroundWorker } from "./types";
+
+const mockBackgroundWorker: BackgroundWorker = { getTickets: jest.fn() };
 
 jest
   .mock("webextension-polyfill", () => {
-    const result = { tickets: [], errors: [] };
-    const background = { getTickets: jest.fn().mockResolvedValue(result) };
-    const extension = { getBackgroundPage: () => background };
-    return { extension };
+    const runtime = {
+      sendMessage: jest
+        .fn()
+        .mockImplementation((_msg, _sender) =>
+          mockBackgroundWorker.getTickets(),
+        ),
+    };
+    return { runtime };
   })
   .mock("../core/enhance", () => jest.fn(() => jest.fn()))
   .mock("../store", () => ({ get: jest.fn().mockResolvedValue({}) }))
@@ -27,11 +33,8 @@ jest
 describe("popup", () => {
   const initialize = window.onload as () => Promise<void>;
 
-  let background: BackgroundPage;
-
   beforeEach(() => {
-    background = browser.extension.getBackgroundPage() as BackgroundPage;
-    (background.getTickets as jest.Mock).mockResolvedValue({
+    (mockBackgroundWorker.getTickets as jest.Mock).mockResolvedValue({
       tickets: [],
       errors: [],
     });
@@ -40,7 +43,7 @@ describe("popup", () => {
   });
 
   afterEach(() => {
-    (background.getTickets as jest.Mock).mockReset();
+    (mockBackgroundWorker.getTickets as jest.Mock).mockReset();
     (store.get as jest.Mock).mockReset();
     (enhance as jest.Mock).mockReset();
     (render as jest.Mock).mockReset();
@@ -53,7 +56,10 @@ describe("popup", () => {
   it("fetches ticket information through the background page", async () => {
     await initialize();
 
-    expect(background.getTickets).toHaveBeenCalled();
+    expect(browser.runtime.sendMessage).toHaveBeenCalledWith({
+      getTickets: true,
+    });
+    expect(mockBackgroundWorker.getTickets).toHaveBeenCalled();
   });
 
   it("loads settings from storage", async () => {
@@ -76,7 +82,7 @@ describe("popup", () => {
     const tickets = ["uno", "dos"].map((title, id) =>
       make({ id: id.toString(), title }),
     );
-    (background.getTickets as jest.Mock).mockResolvedValue({
+    (mockBackgroundWorker.getTickets as jest.Mock).mockResolvedValue({
       tickets,
       errors: [],
     });
@@ -98,7 +104,7 @@ describe("popup", () => {
 
   it("renders the popup content with errors", async () => {
     const errors = [{ message: "Test Error" }];
-    (background.getTickets as jest.Mock).mockResolvedValue({
+    (mockBackgroundWorker.getTickets as jest.Mock).mockResolvedValue({
       tickets: [],
       errors,
     });
