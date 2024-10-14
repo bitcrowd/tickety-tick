@@ -1,20 +1,34 @@
 import "./index.scss";
 
+import type { ErrorObject } from "serialize-error";
 import browser from "webextension-polyfill";
 
 import enhance from "../core/enhance";
+import type { Options, Templates } from "../core/format/types";
 import { deserialize } from "../errors";
 import store from "../store";
+import type { Ticket } from "../types";
 import onmedia from "./observe-media";
 import render from "./render";
 
-async function load() {
-  const { tickets, errors } = await browser.runtime.sendMessage({
+async function getTickets(): Promise<{
+  tickets: Ticket[];
+  errors: ErrorObject[];
+}> {
+  return browser.runtime.sendMessage({
     getTickets: true,
-  });
-  const { options = {}, templates } = await store.get(null);
+  }) as Promise<{ tickets: Ticket[]; errors: ErrorObject[] }>;
+}
 
-  const enhancer = await enhance(templates, options.autofmt);
+async function getConfig() {
+  return store.get(null) as Promise<{ templates: Templates; options: Options }>;
+}
+
+async function load() {
+  const { tickets, errors } = await getTickets();
+  const { options, templates } = await getConfig();
+
+  const enhancer = await enhance(templates, options?.autofmt);
 
   render(await Promise.all(tickets.map(enhancer)), errors.map(deserialize));
 }

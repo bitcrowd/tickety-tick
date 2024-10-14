@@ -2,8 +2,8 @@
 
 // usage: open-in-chrome [extension-dir] [starting-url]
 
-const path = require("path");
-const launcher = require("chrome-launcher");
+import * as path from 'path';
+import * as launcher from 'chrome-launcher';
 
 const dir = process.argv[2] || path.join(__dirname, "..", "dist", "chrome");
 const url = process.argv[3] || "https://github.com/bitcrowd/tickety-tick";
