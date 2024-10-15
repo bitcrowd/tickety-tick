@@ -98,6 +98,7 @@
     "@types/webextension-polyfill": "^0.12.1",
     "bootstrap": "5.1.1",
     "copy-text-to-clipboard": "^3.0.1",
+    "headers-polyfill": "^4.0.3",
     "ky": "^0.28.5",
     "mdast-util-from-adf": "^2.1.1",
     "mdast-util-gfm": "^2.0.0",
