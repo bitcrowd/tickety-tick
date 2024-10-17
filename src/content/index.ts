@@ -1,3 +1,5 @@
+import "../polyfills";
+
 import browser from "webextension-polyfill";
 
 import stdsearch from "../core/search";
