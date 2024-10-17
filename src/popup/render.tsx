@@ -1,34 +1,25 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { MemoryRouter as Router, Route, Switch } from "react-router";
+import { createRoot } from "react-dom/client";
+import { MemoryRouter as Router, Route, Routes } from "react-router";
 
 import type { TicketWithFmt } from "../types";
 import About from "./components/about";
 import Tool from "./components/tool";
 
-function propped<P>(Component: React.ComponentType<P>, defaults: P) {
-  const ProppedComponent = (more: Partial<P>) => {
-    const props = { ...defaults, ...more };
-    return <Component {...props} />;
-  };
-
-  return ProppedComponent;
-}
-
 function render(tickets: TicketWithFmt[], errors: Error[]) {
-  const root = document.getElementById("popup-root");
+  const container = document.getElementById("popup-root");
+  const root = createRoot(container!);
 
   const element = (
     <Router>
-      <Switch>
-        <Route exact path="/" component={propped(Tool, { tickets, errors })} />
-        <Route path="/about" component={About} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Tool tickets={tickets} errors={errors} />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </Router>
   );
 
-  ReactDOM.render(element, root);
+  root.render(element);
 }
 
-export { propped };
 export default render;
