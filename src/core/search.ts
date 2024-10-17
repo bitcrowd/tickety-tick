@@ -10,6 +10,7 @@ import Linear from "./adapters/linear";
 import Notion from "./adapters/notion";
 import Tara from "./adapters/tara";
 import Trello from "./adapters/trello";
+import Plane from "./adapters/plane";
 import defaults from "./defaults";
 import type { Adapter } from "./types";
 
@@ -49,6 +50,7 @@ const stdadapters: Adapter[] = [
   Tara,
   Trello,
   Clickup,
+  Plane,
 ];
 
 export { search, stdadapters };
