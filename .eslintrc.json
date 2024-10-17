@@ -43,7 +43,7 @@
       "error",
       {
         "devDependencies": [
-          "webpack.config.babel.js",
+          "webpack.config.ts",
           "src/**/*.test.jsx",
           "src/**/*.test.tsx",
           "src/**/*.test.js",
