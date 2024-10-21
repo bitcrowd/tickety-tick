@@ -26,7 +26,7 @@ describe("plane adapter", () => {
     expect(result).toEqual([]);
   });
 
-  it("extracts the ticket from the issue page", async () => {
+  it("extracts the ticket info from the issue page", async () => {
     const result = await scan(
       pages.issuePage.url,
       doc(pages.issuePage.document),
