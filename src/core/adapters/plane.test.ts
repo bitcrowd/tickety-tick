@@ -11,13 +11,16 @@ const pages = {
     url: new URL(
       "https://app.plane.so/my_team/projects/e9460bd9-2967-4c5e-8d95-24b053e6965d/issues/9210a612-338b-4620-a834-07a89a26bf65/",
     ),
-    document: "<title>FOO-1 Do something interesting</title><meta property='og:url' content='https://app.plane.so/'>",
+    document:
+      "<title>FOO-1 Do something interesting</title><meta property='og:url' content='https://app.plane.so/'>",
   },
 };
 
 describe("plane adapter", () => {
   function doc(head = "") {
-    const { window } = new JSDOM(`<html><head>${head}</head><body></body></html>`);
+    const { window } = new JSDOM(
+      `<html><head>${head}</head><body></body></html>`,
+    );
     return window.document;
   }
 
