@@ -8,6 +8,7 @@ import JiraCloud from "./adapters/jira-cloud";
 import JiraServer from "./adapters/jira-server";
 import Linear from "./adapters/linear";
 import Notion from "./adapters/notion";
+import Plane from "./adapters/plane";
 import Tara from "./adapters/tara";
 import Trello from "./adapters/trello";
 import defaults from "./defaults";
@@ -49,6 +50,7 @@ const stdadapters: Adapter[] = [
   Tara,
   Trello,
   Clickup,
+  Plane,
 ];
 
 export { search, stdadapters };

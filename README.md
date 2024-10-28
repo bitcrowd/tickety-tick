@@ -43,6 +43,7 @@ Currently, we support:
 - [Jira](https://www.atlassian.com/software/jira)
 - [Linear](https://linear.app)
 - [Notion](https://www.notion.so/)
+- [Plane](https://plane.so/)
 - [Tara](https://app.tara.ai/)
 - [Trello](https://trello.com/)
 - [YouTrack](https://www.jetbrains.com/youtrack/)
