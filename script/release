@@ -43,10 +43,10 @@ gh release download "$tag"\
 
 if has op; then
   apikey=$(op item get "bgi26drb3naqhipfmt5wth6634" --field key)
-  apisecret=$(op item get "bgi26drb3naqhipfmt5wth6634" --field secret)
+  apisecret=$(op item get "bgi26drb3naqhipfmt5wth6634" --reveal --field secret)
   client_id=$(op item get "yjtvyfa4wcygxlps6smdeybdu4" --field "Client ID")
-  client_secret=$(op item get "yjtvyfa4wcygxlps6smdeybdu4" --field "Client Secret")
-  refresh_token=$(op item get "yjtvyfa4wcygxlps6smdeybdu4" --field "OAuth Refresh Token")
+  client_secret=$(op item get "yjtvyfa4wcygxlps6smdeybdu4" --reveal --field "Client Secret")
+  refresh_token=$(op item get "yjtvyfa4wcygxlps6smdeybdu4" --reveal --field "OAuth Refresh Token")
 else
   # Mozilla Add-Ons
   read -rp "Please provide your Mozilla API Key: " apikey
@@ -66,7 +66,8 @@ yarn web-ext sign \
   --api-secret "$apisecret" \
   --source-dir ./dist/firefox \
   --channel=listed \
-  --upload-source-code="release-artifacts/tickety_tick-${tag##v}.zip"
+  --upload-source-code="release-artifacts/tickety_tick-${tag##v}.zip" \
+  --artifacts-dir="./release-artifacts"
 
 printf "\n\n"
 
