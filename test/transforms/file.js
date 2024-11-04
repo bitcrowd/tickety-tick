@@ -1,6 +1,6 @@
-const path = require("path"); // eslint-disable-line @typescript-eslint/no-var-requires
+const path = require("path"); // eslint-disable-line @typescript-eslint/no-require-imports
 
-function process(src, filename) {
+function process(_src, filename) {
   const name = path.basename(filename);
   const namestr = JSON.stringify(name);
 
