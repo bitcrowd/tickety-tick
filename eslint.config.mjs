@@ -1,13 +1,14 @@
-import { fixupConfigRules, includeIgnoreFile } from "@eslint/compat";
-import simpleImportSort from "eslint-plugin-simple-import-sort";
-import globals from "globals";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { fixupConfigRules, includeIgnoreFile } from "@eslint/compat";
+import { FlatCompat } from "@eslint/eslintrc";
+import js from "@eslint/js";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
+import globals from "globals";
+
+const __filename = fileURLToPath(import.meta.url); // eslint-disable-line no-underscore-dangle
+const __dirname = path.dirname(__filename); // eslint-disable-line no-underscore-dangle
 const compat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: js.configs.recommended,
@@ -28,7 +29,7 @@ export default [
   ),
   includeIgnoreFile(gitignorePath),
   {
-    files: ["**/*.ts", "**/*.tsx"],
+    files: ["**/*.ts", "**/*.tsx", "**/*.mjs", "**/*.js"],
     plugins: {
       "simple-import-sort": simpleImportSort,
     },
@@ -56,6 +57,7 @@ export default [
         "error",
         {
           argsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
         },
       ],
 
@@ -74,7 +76,9 @@ export default [
         "error",
         {
           devDependencies: [
+            "eslint.config.mjs",
             "webpack.config.ts",
+            "script/open-in-chrome.mjs",
             "src/**/*.test.jsx",
             "src/**/*.test.tsx",
             "src/**/*.test.js",
