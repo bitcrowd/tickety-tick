@@ -5,7 +5,7 @@
  */
 
 import type { TicketData } from "../types";
-import { $all, $has, $text, $value } from "./dom-helpers";
+import { $has, $text } from "./dom-helpers";
 import { hasRequiredDetails } from "./utils";
 
 /**
@@ -17,16 +17,14 @@ import { hasRequiredDetails } from "./utils";
  */
 export const selectors = {
   default: {
-    issuesPage: ".js-check-all-container .js-issue-row.selected",
-    issuesPageLabel: ".lh-default .IssueLabel",
-    issuePage: ".js-issues-results .gh-header-number",
-    issuePageLabel: '.js-issue-labels .IssueLabel[data-name="bug" i]',
+    issuePage: 'div[data-testid="issue-viewer-container"]',
+    issueId: 'div[data-component="TitleArea"] span',
+    issueTitle: 'div[data-component="TitleArea"] bdi.markdown-title',
   },
   legacy: {
-    issuesPage: ".issues-listing .js-issue-row.selected",
-    issuesPageLabel: ".labels .label",
-    issuePage: ".issues-listing .gh-header-number",
-    issuePageLabel: '.sidebar-labels .label[title="bug"]',
+    issuePage: ".js-issues-results .gh-header-number",
+    issueId: ".gh-header-number",
+    issueTitle: ".js-issue-title",
   },
 };
 
@@ -34,40 +32,20 @@ async function attempt(
   doc: Document,
   select: (typeof selectors)[keyof typeof selectors],
 ) {
-  // issue list page
-  if ($has(select.issuesPage, doc)) {
-    const issues = $all(select.issuesPage, doc);
-
-    const tickets = issues.reduce(
-      (acc, issue) => {
-        const id = $value("input.js-issues-list-check", issue);
-        const title = $text("a.js-navigation-open", issue);
-
-        if (!id || !title) return acc;
-
-        const labels = $all(select.issuesPageLabel, issue);
-        const type = labels.some((l) => /bug/i.test(`${l.textContent}`))
-          ? "bug"
-          : "feature";
-
-        const ticket = { id, title, type };
-        acc.push(ticket);
-        return acc;
-      },
-      <TicketData[]>[],
-    );
-
-    return tickets;
-  }
-
   // single issue page
   if ($has(select.issuePage, doc)) {
-    const id = $text(".gh-header-number", doc)?.replace(/^#/, "");
-    const title = $text(".js-issue-title", doc);
+    const id = $text(select.issueId, doc)?.replace(/^#/, "");
+    const title = $text(select.issueTitle, doc);
 
     if (!id || !title) return [];
 
-    const type = $has(select.issuePageLabel, doc) ? "bug" : "feature";
+    const type =
+      $text('div[data-testid="issue-type-container"]', doc)
+        ?.toLowerCase()
+        .trim() || $has('.js-issue-labels .IssueLabel[data-name="bug" i]', doc)
+        ? "bug"
+        : "feature";
+
     const tickets = [{ id, title, type }];
     return tickets;
   }
