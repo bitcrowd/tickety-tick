@@ -64,6 +64,8 @@ function TemplateInput(props: Props) {
     if (isPromise(preview)) {
       const setPreview = async () => setPreviewString(await preview);
       setPreview();
+    } else {
+      setPreviewString(preview);
     }
   }, [preview]);
 
