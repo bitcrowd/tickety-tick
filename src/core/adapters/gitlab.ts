@@ -24,10 +24,17 @@ function findTicketId(document: Document) {
 async function scan(url: URL, document: Document): Promise<TicketData[]> {
   if (document.body.dataset.page === "projects:issues:show") {
     const id = findTicketId(document);
-    const title = $text(".issue-details .title", document);
-    const type = $has('.labels [data-original-title="bug"]', document)
-      ? "bug"
-      : "feature";
+    const title =
+      $text(".issue-details .title", document) ||
+      $text('h1[data-testid="work-item-title"]', document);
+    const type =
+      $has('.labels [data-original-title="bug"]', document) ||
+      $has(
+        'section[data-testid="work-item-labels"] [data-testid="bug"]',
+        document,
+      )
+        ? "bug"
+        : "feature";
 
     const ticket = { id, title, type };
 
