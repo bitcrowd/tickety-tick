@@ -18,6 +18,14 @@ const ISSUEPAGE = `
   </body>
 `;
 
+const NEWISSUEPAGE = `
+  <body data-page="projects:issues:show" data-page-type-id="18">
+    <div data-testid="work-item-type">
+      <h1 data-testid="work-item-title">A Random GitLab Issue</h1>
+    </div>
+  </body>
+`;
+
 const LEGACYISSUE = `
   <div class="content">
     <div class="issue-details">
@@ -54,6 +62,17 @@ const BUGPAGE = `
   </div>
 `;
 
+const NEWBUGPAGE = `
+  <body data-page="projects:issues:show" data-page-type-id="1">
+    <div data-testid="work-item-type">
+      <h1 data-testid="work-item-title">test</h1>
+    </div>
+    <section data-testid="work-item-labels">
+      <span data-testid="bug">bug</span>
+    </section>
+  </body>
+`;
+
 describe("gitlab adapter", () => {
   const url = new URL("https://x.yz");
 
@@ -76,6 +95,13 @@ describe("gitlab adapter", () => {
     ]);
   });
 
+  it("extracts tickets from new issue pages", async () => {
+    const result = await scan(url, doc(NEWISSUEPAGE, "projects:issues:show"));
+    expect(result).toEqual([
+      { id: "18", title: "A Random GitLab Issue", type: "feature" },
+    ]);
+  });
+
   it("extracts tickets from legacy issue pages", async () => {
     const result = await scan(url, doc(LEGACYISSUE, "projects:issues:show"));
     expect(result).toEqual([
@@ -88,5 +114,10 @@ describe("gitlab adapter", () => {
     expect(result).toEqual([
       { id: "22578", title: "A Random GitLab Issue", type: "bug" },
     ]);
+  });
+
+  it("recognizes issues labelled as bugs on the new page", async () => {
+    const result = await scan(url, doc(NEWBUGPAGE, "projects:issues:show"));
+    expect(result).toEqual([{ id: "1", title: "test", type: "bug" }]);
   });
 });
