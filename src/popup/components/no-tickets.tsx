@@ -19,7 +19,7 @@ function Hint() {
       <p>
         Tickety-Tick currently supports
         <br />
-        GitHub, GitLab, Jira, Trello, Notion, Tara, Linear and Plane.
+        GitHub, GitLab, Jira, Trello, Notion, Tara, Linear, Plane and Polarion.
       </p>
       <h6>Missing anything or found a bug?</h6>
       <p className="pb-1">
