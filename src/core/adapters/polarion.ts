@@ -8,7 +8,13 @@
 import type { TicketData } from "../types";
 import { $text } from "./dom-helpers";
 
+function isPolarionPage(document: Document) {
+  if (document.body.classList.contains("polarion-WorkItem-Title")) return true;
+  return false;
+}
 async function scan(url: URL, document: Document): Promise<TicketData[]> {
+  if (isPolarionPage(document)) return [];
+
   const polarionTitle = $text(
     ".polarion-WorkItem-Title a.polarion-Hyperlink",
     document,

@@ -70,8 +70,9 @@ describe("polarion adapter", () => {
     return window.document;
   }
 
-  it("returns an empty array when on a different page", async () => {
-    const result = await scan(new URL("https://example.com/"), doc("other"));
+  it("returns an empty array when page does not contain a valid workitem", async () => {
+    const result = await scan(url, doc("<div>Invalid content</div>"));
+
     expect(result).toEqual([]);
   });
 
