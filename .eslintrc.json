@@ -44,6 +44,7 @@
       {
         "devDependencies": [
           "webpack.config.ts",
+          "postcss.config.js",
           "src/**/*.test.jsx",
           "src/**/*.test.tsx",
           "src/**/*.test.js",
