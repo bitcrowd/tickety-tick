@@ -14,7 +14,7 @@
     "watch:chrome": "cross-env NODE_ENV=development run-s 'build:chrome --watch'",
     "watch:firefox": "cross-env NODE_ENV=development run-s 'build:firefox --watch'",
     "open:chrome": "./script/open-in-chrome.mjs ./dist/chrome https://github.com/bitcrowd/tickety-tick",
-    "open:firefox": "web-ext run --source-dir ./dist/firefox --pref startup.homepage_welcome_url=https://github.com/bitcrowd/tickety-tick",
+    "open:firefox": "web-ext run --source-dir ./dist/firefox --url https://github.com/bitcrowd/tickety-tick/issues --url https://issues.apache.org/jira/browse/HIVE-29271?filter=-4",
     "bundle:chrome": "cross-env BUNDLE=true run-s build:chrome",
     "bundle:firefox": "cross-env BUNDLE=true run-s build:firefox",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
