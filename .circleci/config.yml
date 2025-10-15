@@ -6,7 +6,7 @@ definitions:
 executors:
   base:
     docker:
-      - image: cimg/node:lts
+      - image: cimg/node:24.10.0
     working_directory: *pwd
   swift:
     docker:
