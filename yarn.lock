@@ -3046,10 +3046,10 @@
     "@pnpm/network.ca-file" "^1.0.1"
     config-chain "^1.1.11"
 
-"@primer/octicons-react@^19.11.0":
-  version "19.11.0"
-  resolved "https://registry.yarnpkg.com/@primer/octicons-react/-/octicons-react-19.11.0.tgz#011d2c18c32d8bf4c1628a7b6ed2c48872fe7efe"
-  integrity sha512-8PpCz7cpYY2GCGnJ/G9UARh9PH4C290l31YjriQHZ+WsagE37ntKXhFwq+s4OWoRqZ7fA7HeU81zGDFHQi0VKg==
+"@primer/octicons-react@^19.19.0":
+  version "19.19.0"
+  resolved "https://registry.yarnpkg.com/@primer/octicons-react/-/octicons-react-19.19.0.tgz#e4e575004d9fb52b1391952fa8475af7b54becb3"
+  integrity sha512-dTO3khy50yS7XC0FB5L7Wwg+aEjI7mrdiZ+FeZGKiNSpkpcRDn7HTidLdtKgo0cJp6QKpqtUHGHRRpa+wrc6Bg==
 
 "@remix-run/router@1.19.2":
   version "1.19.2"
@@ -3534,10 +3534,10 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.6.tgz#250a7b16c3b91f672a24552ec64678eeb1d3a08d"
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
 
-"@types/webextension-polyfill@^0.12.1":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@types/webextension-polyfill/-/webextension-polyfill-0.12.1.tgz#8dae244fe094cbb541005362e8e22f16671f6054"
-  integrity sha512-xPTFWwQ8BxPevPF2IKsf4hpZNss4LxaOLZXypQH4E63BDLmcwX/RMGdI4tB4VO4Nb6xDBH3F/p4gz4wvof1o9w==
+"@types/webextension-polyfill@^0.12.4":
+  version "0.12.4"
+  resolved "https://registry.yarnpkg.com/@types/webextension-polyfill/-/webextension-polyfill-0.12.4.tgz#d111b76e1ebf421fb64244598453bf44763a0266"
+  integrity sha512-wK8YdSI0pDiaehSLDIvtvonYmLwUUivg4Z6JCJO8rkyssMAG82cFJgwPK/V7NO61mJBLg/tXeoXQL8AFzpXZmQ==
 
 "@types/yargs-parser@*":
   version "21.0.3"
@@ -8313,7 +8313,12 @@ known-css-properties@^0.28.0:
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.28.0.tgz#8a8be010f368b3036fe6ab0ef4bbbed972bd6274"
   integrity sha512-9pSL5XB4J+ifHP0e0jmmC98OGC1nL8/JjS+fi6mnTlIf//yt/MfVLtKg7S6nCtj/8KTcWX7nRlY0XywoYY1ISQ==
 
-ky@^1.2.0, ky@^1.7.2:
+ky@^1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/ky/-/ky-1.12.0.tgz#5eff5df2920b8e560add4e8bfd2f7b06d70b05d9"
+  integrity sha512-YRLmSUHCwOJRBMArtqMRLOmO7fewn3yOoui6aB8ERkRVXupa0UiaQaKbIXteMt4jUElhbdqTMsLFHs8APxxUoQ==
+
+ky@^1.2.0:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/ky/-/ky-1.7.2.tgz#b97d9b997ba51ff1e152f0815d3d27b86513eb1c"
   integrity sha512-OzIvbHKKDpi60TnF9t7UUVAF1B4mcqc02z5PIvrm08Wyb+yOcz63GRvEuVxNT18a9E1SrNouhB4W2NNLeD7Ykg==
@@ -11357,6 +11362,11 @@ strip-indent@^4.0.0:
   integrity sha512-mnVSV2l+Zv6BLpSD/8V87CW/y9EmmbYzGCIavsnsI6/nwn26DwffM/yztm30Z/I2DY9wdS3vXVCMnHDgZaVNoA==
   dependencies:
     min-indent "^1.0.1"
+
+strip-indent@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-4.1.1.tgz#aba13de189d4ad9a17f6050e76554ac27585c7af"
+  integrity sha512-SlyRoSkdh1dYP0PzclLE7r0M9sgbFKKMFXpFRUMNuKhQSbC6VQIGzq3E0qsfvGJaUFJPGv6Ws1NZ/haTAjfbMA==
 
 strip-json-comments@5.0.3:
   version "5.0.3"
