@@ -1,7 +1,9 @@
-module.exports = {
+import { purgeCSSPlugin } from "@fullhuman/postcss-purgecss";
+
+export default {
   plugins: [
     [
-      "@fullhuman/postcss-purgecss",
+      purgeCSSPlugin({ content: ["src/**/*.{html,tsx}"] }),
       {
         contentFunction: (src) => {
           if (src.endsWith("src/popup/index.scss")) {
