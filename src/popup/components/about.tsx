@@ -1,6 +1,6 @@
 import { ChevronLeftIcon } from "@primer/octicons-react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 import { ReactComponent as Logo } from "../../icons/icon.svg";
 import Content from "./content";
