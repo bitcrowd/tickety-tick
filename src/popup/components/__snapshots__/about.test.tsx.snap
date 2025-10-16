@@ -16,6 +16,7 @@ exports[`about renders 1`] = `
         >
           <a
             class="nav-link ps-0"
+            data-discover="true"
             href="/"
           >
             <svg
