@@ -2,12 +2,12 @@ import pbcopy from "copy-text-to-clipboard";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 function useDelayed(fn: () => void, ms: number) {
-  const timeout = useRef<ReturnType<typeof setTimeout>>();
+  const timeout = useRef<ReturnType<typeof setTimeout>>(null);
   const callback = useRef(fn);
 
   const clear = useCallback(() => {
     if (timeout.current) clearTimeout(timeout.current);
-    timeout.current = undefined;
+    timeout.current = null;
   }, []);
 
   const run = useCallback(() => {
