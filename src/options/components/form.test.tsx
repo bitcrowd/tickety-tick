@@ -63,10 +63,10 @@ describe("form", () => {
       await waitForLoadingToFinish(screen);
 
       const input = screen.getByRole("textbox", { name });
-      expect(input).toHaveValue(value);
+      await waitFor(() => expect(input).toHaveValue(value));
 
       fireEvent.change(input, { target: { value: `${key}++` } });
-      expect(input).toHaveValue(`${key}++`);
+      await waitFor(() => expect(input).toHaveValue(`${key}++`));
     });
   });
 
