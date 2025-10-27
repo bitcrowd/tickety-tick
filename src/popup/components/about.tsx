@@ -1,6 +1,6 @@
 import { ChevronLeftIcon } from "@primer/octicons-react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 import { ReactComponent as Logo } from "../../icons/icon.svg";
 import Content from "./content";
@@ -12,7 +12,9 @@ const tree = [repo, "tree", COMMITHASH].join("/");
 
 export type Props = Record<string, never>;
 
-function About(_: Props): React.ReactNode {
+interface AboutProps {}
+
+function About(_: AboutProps): React.ReactNode {
   return (
     <>
       <Navbar>
@@ -67,7 +69,5 @@ function About(_: Props): React.ReactNode {
     </>
   );
 }
-
-About.propTypes = {};
 
 export default About;

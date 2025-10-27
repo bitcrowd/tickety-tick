@@ -16,15 +16,18 @@ exports[`about renders 1`] = `
         >
           <a
             class="nav-link ps-0"
+            data-discover="true"
             href="/"
           >
             <svg
               aria-hidden="true"
-              class="octicon-nav"
+              class="octicon octicon-chevron-left octicon-nav"
+              display="inline-block"
               fill="currentColor"
               focusable="false"
               height="14"
-              style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible;"
+              overflow="visible"
+              style="vertical-align: text-bottom;"
               viewBox="0 0 12 12"
               width="14"
             >
