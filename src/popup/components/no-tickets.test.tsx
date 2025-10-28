@@ -5,9 +5,13 @@ import type { Props as ErrorDetailsProps } from "./error-details";
 import type { Props } from "./no-tickets";
 import NoTickets from "./no-tickets";
 
-jest.mock("./error-details", () => ({ errors }: ErrorDetailsProps) => (
-  <>{errors.map((error) => `- ${error}`).join("\n")}</>
-));
+jest.mock(
+  "./error-details",
+  () =>
+    function Component({ errors }: ErrorDetailsProps) {
+      return <>{errors.map((error) => `- ${error}`).join("\n")}</>;
+    },
+);
 
 describe("no-tickets", () => {
   function subject(overrides: Partial<Props>) {

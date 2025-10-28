@@ -40,7 +40,7 @@ function make(expr: string, transforms: Helpers = {}) {
   try {
     const args = JSON.parse(`[${argstr}]`);
     return fn(...args);
-  } catch (_) {
+  } catch {
     return raise(`invalid parameters provided to "${name}": ${argstr}`);
   }
 }

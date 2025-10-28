@@ -28,15 +28,13 @@ type JiraTicketInfo = {
   };
 };
 
-function isJiraPage(url: URL, document: Document) {
+function isJiraPage(_url: URL, document: Document) {
   if (document.body.id === "jira") return true;
   return false;
 }
 
-const pathSuffixes = new RegExp(
-  "/(browse/[^/]+|projects/[^/]+/issues/[^/]+|secure/RapidBoard.jspa|jira/software/([^/]/)*projects/[^/]+/boards/.*)$",
-  "g",
-);
+const pathSuffixes =
+  /\/(browse\/[^/]+|projects\/[^/]+\/issues\/[^/]+|secure\/RapidBoard\.jspa|jira\/software\/([^/]\/)*projects\/[^/]+\/boards\/.*)$/g;
 
 function getPathPrefix(url: URL) {
   return url.pathname.replace(pathSuffixes, "");
@@ -47,7 +45,7 @@ function getSelectedIssueId(url: URL, prefix = "") {
 
   if (params.has("selectedIssue")) return params.get("selectedIssue");
 
-  const path = url.pathname.substr(prefix.length); // strip path prefix
+  const path = url.pathname.substring(prefix.length); // strip path prefix
 
   return ["/projects/:project/issues/:id", "/browse/:id"]
     .map((pattern) => match(pattern, path).id)

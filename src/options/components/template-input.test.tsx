@@ -44,9 +44,9 @@ describe("template-input", () => {
   });
 
   it("renders a code preview for an async preview value", async () => {
-    const preview = new Promise<string>((resolve) =>
-      resolve("# Markdown Preview\nWith <code>html</code>"),
-    );
+    const preview = new Promise<string>((resolve) => {
+      resolve("# Markdown Preview\nWith <code>html</code>");
+    });
     const screen = subject({ id: "id-1", preview });
 
     const preformatted = screen.getByTestId("preview");
