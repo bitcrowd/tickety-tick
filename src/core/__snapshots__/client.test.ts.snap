@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`client creates a new client with default values 1`] = `
-Array [
-  Array [
-    Object {
+[
+  [
+    {
       "credentials": "include",
-      "headers": Object {
+      "headers": {
         "accept": "application/json",
         "content-type": "application/json; charset=utf-8",
       },
@@ -17,11 +17,11 @@ Array [
 `;
 
 exports[`client sets custom options 1`] = `
-Array [
-  Array [
-    Object {
+[
+  [
+    {
       "credentials": "same-origin",
-      "headers": Object {
+      "headers": {
         "accept": "application/json",
         "content-type": "application/json; charset=utf-8",
       },
