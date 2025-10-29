@@ -9,14 +9,18 @@ import type { Props as ErrorDetailsProps } from "./error-details";
 import type { Props } from "./tool";
 import Tool from "./tool";
 
-jest.mock("./error-details", () => ({ errors }: ErrorDetailsProps) => {
-  const info = errors.map((e) => e.message).join("\n");
-  return (
-    <button type="button" value={info}>
-      ErrorDetails
-    </button>
-  );
-});
+jest.mock(
+  "./error-details",
+  () =>
+    function Component({ errors }: ErrorDetailsProps) {
+      const info = errors.map((e) => e.message).join("\n");
+      return (
+        <button type="button" value={info}>
+          ErrorDetails
+        </button>
+      );
+    },
+);
 
 describe("tool", () => {
   const tickets = ["un", "deux", "trois"].map((title, i) =>
