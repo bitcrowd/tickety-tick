@@ -5,11 +5,17 @@ import type { Props as CopyButtonProps } from "./copy-button";
 import type { Props } from "./error-details";
 import CopyErrorDetails from "./error-details";
 
-jest.mock("./copy-button", () => ({ value }: CopyButtonProps) => (
-  <button type="button" value={value}>
-    Copy error details
-  </button>
-));
+jest.mock(
+  "./copy-button",
+  () =>
+    function Component({ value }: CopyButtonProps) {
+      return (
+        <button type="button" value={value}>
+          Copy error details
+        </button>
+      );
+    },
+);
 
 describe("error-details", () => {
   function subject(overrides: Partial<Props>) {

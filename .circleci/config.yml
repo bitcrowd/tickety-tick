@@ -70,7 +70,7 @@ jobs:
       - restore_pwd
       - run:
           name: Run SCSS Linter
-          command: mkdir -p reports/stylelint && yarn stylelint --custom-formatter node_modules/stylelint-junit-formatter -o reports/stylelint/results.xml
+          command: mkdir -p reports/stylelint && yarn stylelint --custom-formatter node_modules/stylelint-junit-formatter/index.js -o reports/stylelint/results.xml
       - store_test_results:
           path: reports
 
