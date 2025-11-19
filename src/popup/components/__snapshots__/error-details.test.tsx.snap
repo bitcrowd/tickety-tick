@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`error-details renders a button to copy the error details 1`] = `
 "Tickety-Tick revision: test-commit-hash
