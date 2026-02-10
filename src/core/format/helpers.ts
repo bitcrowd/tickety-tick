@@ -4,6 +4,31 @@ type StringMappingFn = (input: string) => string;
 
 export const lowercase = (): StringMappingFn => (s) => s.toLowerCase();
 
+// This function is a bit more complex than the others, so it has some tests to ensure it works correctly. It can be used in two ways:
+// 1. With an object: map({ a: "b" }) will return a function that maps "a" to "b" and returns the original value for any other input.
+// 2. With pairs of arguments: map("a", "b", "c", "d") will return a function that maps "a" to "b", "c" to "d", and returns the original value for any other input.
+export const map =
+  (
+    objectOrString: Record<string, string> | string,
+    ...otherArgs: string[]
+  ): StringMappingFn =>
+  (s) => {
+    // If the first argument is an object, use it as a mapping.
+    // Otherwise, treat the arguments as pairs of key and value.
+    if (objectOrString instanceof Object) {
+      return objectOrString[s] || s;
+    }
+
+    const pairs = [objectOrString, ...otherArgs];
+    for (let i = 0; i < pairs.length; i += 2) {
+      if (pairs[i] === s) {
+        return pairs[i + 1] ?? s;
+      }
+    }
+
+    return s;
+  };
+
 export const shellquote = (): StringMappingFn => (s) =>
   `'${s.replace(/'/g, "'\\''")}'`;
 

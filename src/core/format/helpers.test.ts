@@ -9,6 +9,29 @@ describe("format helpers", () => {
     });
   });
 
+  describe("map", () => {
+    it("maps values using an object", () => {
+      const map = helpers.map({ a: "b" });
+      expect(map("a")).toBe("b");
+    });
+
+    it("returns the original value if key is not found in object", () => {
+      const map = helpers.map({ a: "b" });
+      expect(map("c")).toBe("c");
+    });
+
+    it("maps values using pairs", () => {
+      const map = helpers.map("a", "b", "c", "d");
+      expect(map("a")).toBe("b");
+      expect(map("c")).toBe("d");
+    });
+
+    it("returns the original value if key is not found in pairs", () => {
+      const map = helpers.map("a", "b");
+      expect(map("c")).toBe("c");
+    });
+  });
+
   describe("shellquote", () => {
     const shellquote = helpers.shellquote();
 
