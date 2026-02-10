@@ -4,7 +4,7 @@ type StringMappingFn = (input: string) => string;
 
 export const lowercase = (): StringMappingFn => (s) => s.toLowerCase();
 
-// This function is a bit more complex than the others, so it has some tests to ensure it works correctly. It can be used in two ways:
+// This is a mapping function, it can be used in two ways:
 // 1. With an object: map({ a: "b" }) will return a function that maps "a" to "b" and returns the original value for any other input.
 // 2. With pairs of arguments: map("a", "b", "c", "d") will return a function that maps "a" to "b", "c" to "d", and returns the original value for any other input.
 export const map =
