@@ -17,7 +17,7 @@ export const map = (...pairs: string[]): StringMappingFn => {
   return (s) => mapping[s] ?? s;
 };
 
-map.description = "map('key1', 'value1', 'key2', 'value2', ...)";
+map.description = "map('before1', 'after1', 'before2', 'after2', ...)";
 
 export const shellquote = (): StringMappingFn => (s) =>
   `'${s.replace(/'/g, "'\\''")}'`;
