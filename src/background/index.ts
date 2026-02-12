@@ -5,7 +5,7 @@ import type { BackgroundMessage, ContentMessage } from "../types";
 async function getTickets() {
   const message: ContentMessage = { tickets: true };
   const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
-  const results = await browser.tabs.sendMessage(tab.id!, message); // eslint-disable-line @typescript-eslint/no-non-null-assertion
+  const results = await browser.tabs.sendMessage(tab.id!, message);
   return results;
 }
 

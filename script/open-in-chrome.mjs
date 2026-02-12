@@ -2,8 +2,8 @@
 
 // usage: open-in-chrome [extension-dir] [starting-url]
 
-import * as path from "path";
 import * as launcher from "chrome-launcher";
+import * as path from "path";
 
 const dir = process.argv[2] || path.join(__dirname, "..", "dist", "chrome");
 const url = process.argv[3] || "https://github.com/bitcrowd/tickety-tick";
@@ -58,8 +58,8 @@ async function launchChrome() {
 
     pipes.incoming.on("data", (chunk) => {
       buffer += chunk;
-      let end;
-      while ((end = buffer.indexOf("\x00")) !== -1) {
+      let end = buffer.indexOf("\x00");
+      while (end !== -1) {
         const message = buffer.slice(0, end);
         buffer = buffer.slice(end + 1);
         try {
@@ -70,11 +70,12 @@ async function launchChrome() {
         } catch {
           // ignore non-JSON noise
         }
+        end = buffer.indexOf("\x00");
       }
     });
   });
 
-  pipes.outgoing.write(JSON.stringify(request) + "\x00");
+  pipes.outgoing.write(`${JSON.stringify(request)}\x00`);
 
   const response = await firstResponse;
   if (response.error) {
