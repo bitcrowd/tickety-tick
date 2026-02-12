@@ -4,9 +4,7 @@ type StringMappingFn = (input: string) => string;
 
 export const lowercase = (): StringMappingFn => (s) => s.toLowerCase();
 
-export const map = (
-  ...pairs: string[]
-): StringMappingFn => {
+export const map = (...pairs: string[]): StringMappingFn => {
   const mapping: Record<string, string> = {};
 
   for (let i = 0; i < pairs.length; i += 2) {
@@ -29,16 +27,16 @@ export const slugify = (separator = "-"): StringMappingFn =>
 
 export const substring =
   (start: number, end?: number): StringMappingFn =>
-    (s) =>
-      s.substring(start, end);
+  (s) =>
+    s.substring(start, end);
 substring.description = "substring(start-index[, end-index])";
 
 export const trim = (): StringMappingFn => (s) => s.trim();
 
 export const truncate =
   (limit: number): StringMappingFn =>
-    (s) =>
-      s.length > limit ? `${s.substring(0, limit - 1)}…` : s;
+  (s) =>
+    s.length > limit ? `${s.substring(0, limit - 1)}…` : s;
 truncate.description = "truncate(max-length)";
 
 export const uppercase = (): StringMappingFn => (s) => s.toUpperCase();
