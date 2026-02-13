@@ -5,19 +5,19 @@ type StringMappingFn = (input: string) => string;
 export const lowercase = (): StringMappingFn => (s) => s.toLowerCase();
 
 export const map = (...pairs: string[]): StringMappingFn => {
-  const mapping: Record<string, string> = {};
+  const mappings: Record<string, string> = {};
 
   for (let i = 0; i < pairs.length; i += 2) {
     const value = pairs[i + 1];
     if (value !== undefined) {
-      mapping[pairs[i]] = value;
+      mappings[pairs[i]] = value;
     }
   }
 
-  return (s) => mapping[s] ?? s;
+  return (s) => mappings[s] ?? s;
 };
 
-map.description = "map('before1', 'after1', 'before2', 'after2', ...)";
+map.description = 'map("from", "to"[, …])';
 
 export const shellquote = (): StringMappingFn => (s) =>
   `'${s.replace(/'/g, "'\\''")}'`;
