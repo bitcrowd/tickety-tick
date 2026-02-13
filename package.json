@@ -90,7 +90,7 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.55.0",
     "web-ext": "9.0.0",
-    "webpack": "5.102.1",
+    "webpack": "5.104.1",
     "webpack-chain": "6.5.1",
     "webpack-cli": "^6.0.1",
     "zip-webpack-plugin": "4.0.3"
