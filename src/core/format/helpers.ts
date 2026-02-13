@@ -8,10 +8,7 @@ export const map = (...pairs: string[]): StringMappingFn => {
   const mappings: Record<string, string> = {};
 
   for (let i = 0; i < pairs.length; i += 2) {
-    const value = pairs[i + 1];
-    if (value !== undefined) {
-      mappings[pairs[i]] = value;
-    }
+    mappings[pairs[i]] = pairs[i + 1];
   }
 
   return (s) => mappings[s] ?? s;
