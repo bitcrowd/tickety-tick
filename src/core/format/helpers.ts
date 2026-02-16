@@ -4,6 +4,18 @@ type StringMappingFn = (input: string) => string;
 
 export const lowercase = (): StringMappingFn => (s) => s.toLowerCase();
 
+export const map = (...pairs: string[]): StringMappingFn => {
+  const mappings: Record<string, string> = {};
+
+  for (let i = 0; i < pairs.length; i += 2) {
+    mappings[pairs[i]] = pairs[i + 1];
+  }
+
+  return (s) => mappings[s] ?? s;
+};
+
+map.description = 'map("from", "to"[, …])';
+
 export const shellquote = (): StringMappingFn => (s) =>
   `'${s.replace(/'/g, "'\\''")}'`;
 
