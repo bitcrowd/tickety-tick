@@ -11,7 +11,6 @@ module.exports = {
   testEnvironment: "jsdom",
   transform: {
     "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
-    "(?!^.+\\.(js|jsx|ts|tsx)$)": "<rootDir>/test/transforms/file.js",
   },
   transformIgnorePatterns: [
     "node_modules/(?!ccount|character-entities|copy-text-to-clipboard|escape-string-regexp|ky|longest-streak|markdown-table|mdast-util-|micromark-|parse-entities|serialize-error|strip-indent|unist-|zwitch)",
@@ -20,4 +19,8 @@ module.exports = {
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname",
   ],
+  moduleNameMapper: {
+    "\\.svg$": "<rootDir>/__mocks__/svg.js",
+    "\\.scss": "<rootDir>/__mocks__/styleMock.js",
+  },
 };
