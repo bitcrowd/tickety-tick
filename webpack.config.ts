@@ -75,16 +75,10 @@ const config: Configuration = {
       {
         test: /\.svg$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: "@svgr/webpack",
-            options: { prettier: false, svgo: false, ref: true },
-          },
-          {
-            loader: "file-loader",
-            options: { name: "[name].[ext]" },
-          },
-        ],
+        use: {
+          loader: "@svgr/webpack",
+          options: { prettier: false, svgo: false, ref: true },
+        },
       },
     ],
   },
