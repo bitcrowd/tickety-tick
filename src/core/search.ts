@@ -8,6 +8,7 @@ import JiraCloud from "./adapters/jira-cloud";
 import JiraServer from "./adapters/jira-server";
 import Linear from "./adapters/linear";
 import Notion from "./adapters/notion";
+import OpenProject from "./adapters/openproject";
 import Plane from "./adapters/plane";
 import Polarion from "./adapters/polarion";
 import Tara from "./adapters/tara";
@@ -51,8 +52,10 @@ const stdadapters: Adapter[] = [
   Tara,
   Trello,
   Clickup,
+  OpenProject,
   Plane,
   Polarion,
+  // TODO: YouTrack,
 ];
 
 export { search, stdadapters };
