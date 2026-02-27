@@ -13,6 +13,7 @@ import Plane from "./adapters/plane";
 import Polarion from "./adapters/polarion";
 import Tara from "./adapters/tara";
 import Trello from "./adapters/trello";
+import YouTrack from "./adapters/youtrack";
 import defaults from "./defaults";
 import type { Adapter } from "./types";
 
@@ -55,7 +56,7 @@ const stdadapters: Adapter[] = [
   OpenProject,
   Plane,
   Polarion,
-  // TODO: YouTrack,
+  YouTrack,
 ];
 
 export { search, stdadapters };
