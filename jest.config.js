@@ -10,10 +10,10 @@ module.exports = {
   setupFilesAfterEnv: ["<rootDir>/test/setup.js"],
   testEnvironment: "jsdom",
   transform: {
-    "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
+    "^.+\\.(js|jsx|mjs|ts|tsx)$": "babel-jest",
   },
   transformIgnorePatterns: [
-    "node_modules/(?!ccount|character-entities|copy-text-to-clipboard|escape-string-regexp|ky|longest-streak|markdown-table|mdast-util-|micromark-|parse-entities|serialize-error|strip-indent|unist-|zwitch)",
+    "node_modules/(?!(.+/)?(@asamuzakjp/|@bramus/|@csstools/|@exodus/|ccount|character-entities|copy-text-to-clipboard|css-tree|escape-string-regexp|ky|longest-streak|lru-cache|markdown-table|mdast-util-|micromark-|parse-entities|parse5|serialize-error|strip-indent|tough-cookie|unist-|zwitch))",
   ],
   watchPlugins: [
     "jest-watch-typeahead/filename",
