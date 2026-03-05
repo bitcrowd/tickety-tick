@@ -103,7 +103,7 @@
     "@types/webextension-polyfill": "^0.12.4",
     "bootstrap": "5.3.8",
     "copy-text-to-clipboard": "^3.2.2",
-    "headers-polyfill": "^4.0.3",
+    "headers-polyfill": "^5.0.1",
     "ky": "^1.14.3",
     "mdast-util-from-adf": "^2.1.1",
     "mdast-util-gfm": "^2.0.0",
