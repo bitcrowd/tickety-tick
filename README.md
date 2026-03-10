@@ -48,6 +48,7 @@ Currently, we support:
 - [Trello](https://trello.com/)
 - [YouTrack](https://www.jetbrains.com/youtrack/)
 - [Polarion](https://polarion.plm.automation.siemens.com)
+- [OpenProject](https://www.openproject.org/)
 
 Your ticket system is missing? Go ahead and implement an adapter for it! We are always happy about contributions and here to support you 👋.
 
