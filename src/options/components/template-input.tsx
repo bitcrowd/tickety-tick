@@ -10,8 +10,7 @@ function shouldRenderAsTextarea(
 }
 
 export type TemplateInputElementProps = { multiline: boolean } & (
-  | React.InputHTMLAttributes<HTMLInputElement>
-  | TextareaAutosizeProps
+  React.InputHTMLAttributes<HTMLInputElement> | TextareaAutosizeProps
 );
 
 function TemplateInputElement({

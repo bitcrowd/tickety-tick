@@ -22,6 +22,7 @@ exports[`about renders 1`] = `
             <svg
               aria-hidden="true"
               class="octicon octicon-chevron-left octicon-nav"
+              data-component="Octicon"
               display="inline-block"
               fill="currentColor"
               focusable="false"

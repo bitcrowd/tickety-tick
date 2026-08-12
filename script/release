@@ -77,12 +77,11 @@ gh release upload \
 
 printf "\n\n"
 
-yarn chrome-webstore-upload upload \
-  --client-id "$client_id" \
-  --client-secret "$client_secret" \
-  --refresh-token "$refresh_token" \
+CLIENT_ID="$client_id" \
+CLIENT_SECRET="$client_secret" \
+REFRESH_TOKEN="$refresh_token" \
+yarn chrome-webstore-upload \
   --extension-id "ciakolhgmfijpjbpcofoalfjiladihbg" \
-  --auto-publish \
   --source ./dist/chrome.zip
 
 cat <<EOS
