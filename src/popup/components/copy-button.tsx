@@ -31,9 +31,7 @@ function close() {
 export type Props = {
   value: string;
   children?:
-    | undefined
-    | React.ReactNode
-    | ((copied: boolean) => React.ReactNode);
+    undefined | React.ReactNode | ((copied: boolean) => React.ReactNode);
 } & Omit<React.HTMLAttributes<HTMLButtonElement>, "children">;
 
 function CopyButton({ children = null, value, ...rest }: Props) {

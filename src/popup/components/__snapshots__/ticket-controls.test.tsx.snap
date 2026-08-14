@@ -20,6 +20,7 @@ exports[`ticket-controls renders for a single ticket 1`] = `
             <svg
               aria-hidden="true"
               class="octicon octicon-git-branch"
+              data-component="Octicon"
               display="inline-block"
               fill="currentColor"
               focusable="false"
@@ -49,6 +50,7 @@ exports[`ticket-controls renders for a single ticket 1`] = `
             <svg
               aria-hidden="true"
               class="octicon octicon-comment"
+              data-component="Octicon"
               display="inline-block"
               fill="currentColor"
               focusable="false"
@@ -78,6 +80,7 @@ exports[`ticket-controls renders for a single ticket 1`] = `
             <svg
               aria-hidden="true"
               class="octicon octicon-terminal"
+              data-component="Octicon"
               display="inline-block"
               fill="currentColor"
               focusable="false"
@@ -130,6 +133,7 @@ exports[`ticket-controls renders for a single ticket 1`] = `
           <svg
             aria-hidden="true"
             class="octicon octicon-git-branch"
+            data-component="Octicon"
             display="inline-block"
             fill="currentColor"
             focusable="false"
@@ -159,6 +163,7 @@ exports[`ticket-controls renders for a single ticket 1`] = `
           <svg
             aria-hidden="true"
             class="octicon octicon-comment"
+            data-component="Octicon"
             display="inline-block"
             fill="currentColor"
             focusable="false"
@@ -188,6 +193,7 @@ exports[`ticket-controls renders for a single ticket 1`] = `
           <svg
             aria-hidden="true"
             class="octicon octicon-terminal"
+            data-component="Octicon"
             display="inline-block"
             fill="currentColor"
             focusable="false"
@@ -294,6 +300,7 @@ exports[`ticket-controls renders for multiple tickets 1`] = `
         <svg
           aria-hidden="true"
           class="octicon octicon-git-branch"
+          data-component="Octicon"
           display="inline-block"
           fill="currentColor"
           focusable="false"
@@ -323,6 +330,7 @@ exports[`ticket-controls renders for multiple tickets 1`] = `
         <svg
           aria-hidden="true"
           class="octicon octicon-comment"
+          data-component="Octicon"
           display="inline-block"
           fill="currentColor"
           focusable="false"
@@ -352,6 +360,7 @@ exports[`ticket-controls renders for multiple tickets 1`] = `
         <svg
           aria-hidden="true"
           class="octicon octicon-terminal"
+          data-component="Octicon"
           display="inline-block"
           fill="currentColor"
           focusable="false"

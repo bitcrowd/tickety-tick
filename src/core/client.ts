@@ -12,7 +12,7 @@ const timeout = 1000;
 
 function client(base: string, options: Partial<Options> = {}) {
   return ky.extend({
-    prefixUrl: base,
+    prefix: base,
     credentials,
     headers,
     timeout,
