@@ -18,7 +18,7 @@ import { hasRequiredDetails } from "./utils";
 export const selectors = {
   default: {
     issuePage: 'div[data-testid="issue-viewer-container"]',
-    issueId: 'div[data-component="TitleArea"] span',
+    issueId: 'div[data-component="TitleArea"] span[class*="issueNumberText"]',
     issueTitle: 'div[data-component="TitleArea"] bdi.markdown-title',
   },
   legacy: {
