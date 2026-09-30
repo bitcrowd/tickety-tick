@@ -13,7 +13,7 @@ const pages = {
         <div data-component="TitleArea" data-size-variant="medium">
           <h1 data-component="PH_Title" data-hidden="false">
             <bdi class="markdown-title" data-testid="issue-title">A Random GitHub Issue</bdi>
-            <span>#12</span>
+            <span class="HeaderViewer-module__issueNumberText--Xm7Rz">#12</span>
           </h1>
         </div>
       </div>`,
@@ -23,7 +23,7 @@ const pages = {
           <div data-component="TitleArea" data-size-variant="medium">
             <h1 data-component="PH_Title" data-hidden="false">
               <bdi class="markdown-title" data-testid="issue-title">A Random GitHub Issue</bdi>
-              <span>#12</span>
+              <span class="HeaderViewer-module__issueNumberText--Xm7Rz">#12</span>
             </h1>
           </div>
         </div>
@@ -41,6 +41,21 @@ const pages = {
               </div>
             </div>
           </div>
+        </div>
+      </div>`,
+    loggedInIssuepage: `
+      <div data-testid="issue-viewer-container">
+        <div data-component="TitleArea" data-size-variant="medium">
+          <h1 data-component="PH_Title" data-hidden="false">
+            <bdi class="markdown-title" data-testid="issue-title">A Random GitHub Issue</bdi>
+            <span>
+              <span class="HeaderViewer-module__issueNumberText--Xm7Rz">#12</span>
+              <button type="button" aria-label="Edit title">
+                <svg aria-hidden="true" class="octicon octicon-pencil"></svg>
+                <span>Edit</span>
+              </button>
+            </span>
+          </h1>
         </div>
       </div>`,
   },
@@ -62,8 +77,20 @@ const pages = {
           <a class="IssueLabel hx_IssueLabel" data-name="bug">bug</a>
         </div>
       </div>`,
+    loggedInIssuepage: `
+      <div class="js-issues-results">
+        <h1 class="gh-header-title">
+          <span class="js-issue-title">A Random GitHub Issue</span>
+          <span class="gh-header-number">#12</span>
+        </h1>
+      </div>`,
   },
 };
+
+function doc(body = "") {
+  const { window } = new JSDOM(`<html><body>${body}</body></html>`);
+  return window.document;
+}
 
 const url = (path: string) =>
   new URL(`https://github.com/test-org/test-project/${path}`);
@@ -72,11 +99,6 @@ Object.keys(selectors).forEach((variant) => {
   const html = pages[variant as keyof typeof selectors];
 
   describe(`github adapter (${variant})`, () => {
-    function doc(body = "") {
-      const { window } = new JSDOM(`<html><body>${body}</body></html>`);
-      return window.document;
-    }
-
     it("returns an empty array if it is on a different page", async () => {
       const result = await scan(new URL("https://example.net"), doc());
       expect(result).toEqual([]);
@@ -101,6 +123,18 @@ Object.keys(selectors).forEach((variant) => {
           id: "12",
           title: "A Random GitHub Issue",
           type: "bug",
+          url: "https://github.com/test-org/test-project/issues/12",
+        },
+      ]);
+    });
+
+    it("ignores additional markup when logged in and extracts ticktes from an issue page", async () => {
+      const result = await scan(url("issues/12"), doc(html.loggedInIssuepage));
+      expect(result).toEqual([
+        {
+          id: "12",
+          title: "A Random GitHub Issue",
+          type: "feature",
           url: "https://github.com/test-org/test-project/issues/12",
         },
       ]);
