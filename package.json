@@ -76,7 +76,7 @@
     "jest-watch-typeahead": "^3.0.1",
     "jsdom": "29.1.1",
     "mini-css-extract-plugin": "^2.9.4",
-    "npm-run-all2": "^8.0.4",
+    "npm-run-all2": "^9.0.4",
     "postcss": "^8.5.10",
     "postcss-loader": "8.2.1",
     "postcss-preset-env": "^11.2.0",
