@@ -45,3 +45,14 @@ jobs:
 
       - name: Run ${{ matrix.name }}
         run: ${{ matrix.command }}
+
+  swiftformat:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Run SwiftFormat
+        working-directory: safari
+        run: swiftformat --lint .
